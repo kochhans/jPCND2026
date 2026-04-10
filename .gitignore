@@ -1,0 +1,16 @@
+lib/
+bin/
+build/
+target/
+dist/
+.settings/
+.classpath
+.project
+*.dll
+*.so
+*.dylib
+
+
+zzz-sonstiges/
+zumkunde/
+

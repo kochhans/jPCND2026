@@ -1,0 +1,98 @@
+/* ==========================
+   Msgbox - Standard-Styling
+   ========================== */
+
+.root {
+    -fx-background-color: linear-gradient(to bottom, #f9f9f9, #ececec);
+    -fx-padding: 15px;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);
+}
+
+/* Titelbereich */
+.label-title {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+/* Nachrichtentext */
+.label-message {
+    -fx-font-size: 12px;
+    -fx-text-fill: #444444;
+}
+
+
+.msgbox-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: #222;
+}
+
+.msgbox-button {
+    -fx-min-width: 90px;
+    -fx-pref-height: 32px;
+    -fx-font-size: 14px;
+    -fx-background-color: #dfe6f3;
+    -fx-background-radius: 6px;
+    -fx-border-color: #b0b0b0;
+    -fx-border-radius: 6px;
+}
+
+.msgbox-button:hover {
+    -fx-background-color: #cfdcf2;
+}
+.hyperlink {
+    -fx-text-fill: #0645AD; /* typisches Blau für Links */
+    -fx-underline: true;
+}
+
+.hyperlink:hover {
+    -fx-cursor: hand;
+}
+
+
+/* Buttons */
+.button {
+    -fx-pref-width: 100px;
+    -fx-pref-height: 30px;
+    -fx-font-size: 12px;
+    /*-fx-font-weight: bold;*/
+    -fx-background-radius: 6px;
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #d9d9d9);
+    -fx-border-color: #b3b3b3;
+    -fx-border-radius: 6px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 2, 0, 0, 1);
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #f0f0f0, #cfcfcf);
+}
+
+.button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #d9d9d9, #bfbfbf);
+    -fx-effect: none;
+}
+
+/* JA / OK Buttons leicht grünlich hervorheben */
+.button-ok, .button-yes {
+    -fx-background-color: linear-gradient(to bottom, #e7f8e7, #bde5b8);
+    -fx-border-color: #93d189;
+}
+
+.button-ok:hover, .button-yes:hover {
+    -fx-background-color: linear-gradient(to bottom, #daf3da, #a8db9f);
+}
+
+/* NEIN / CANCEL Buttons leicht rötlich */
+.button-no, .button-cancel {
+    -fx-background-color: linear-gradient(to bottom, #f9e6e6, #f0c3c3);
+    -fx-border-color: #e08f8f;
+}
+
+.button-no:hover, .button-cancel:hover {
+    -fx-background-color: linear-gradient(to bottom, #f4dada, #e6a9a9);
+}
+

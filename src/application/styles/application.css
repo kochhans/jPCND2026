@@ -1,0 +1,278 @@
+/* =========================
+   Globale Font & Grundlayout
+   ========================= */
+.root {
+    -fx-font-family: "Segoe UI", "Arial", "Sans-Serif";
+    -fx-font-size: 10pt;  /* Standard für alle Controls */
+}
+
+/* =========================
+   Buttons
+   ========================= */
+.button {
+    -fx-font-size: 9pt;  /* etwas kleiner als Standard */
+    -fx-font-family: "Segoe UI", "Arial", "Sans-Serif";
+    -fx-padding: 6 12 6 12;
+    -fx-background-color: linear-gradient(#E0E0E0, #C8C8C8);
+    -fx-border-color: #6D6D6D;
+    -fx-border-width: 0.5px;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+}
+/* Speichern */
+.button-speichern {
+    -fx-text-fill: #077c57;
+}
+
+/* Löschen */
+.button-loeschen {
+    -fx-text-fill: #d01717;
+}
+/* neu */
+.button-neu {
+    -fx-text-fill: #000000;
+}
+
+.button:hover {
+    -fx-background-color: #AAC4DF;   /* Farbe bei Hover */
+    /*-fx-text-fill: #ffffff;            Textfarbe bei Hover */
+	-fx-cursor: hand;   /* Mauszeiger zu Hand ändern */
+}
+.button-icon:hover .graphic {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 5,0,0,0);
+}
+
+.buttonklein {
+    -fx-font-size: 9pt;  /* etwas kleiner als Standard */
+    -fx-font-family: "Segoe UI", "Arial", "Sans-Serif";
+    -fx-padding: 3 6 3 6;
+    -fx-background-color: linear-gradient(#E0E0E0, #C8C8C8);
+    -fx-border-color: #6D6D6D;
+    -fx-border-width: 0.5px;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+}
+/* =========================
+   TextFields & TextAreas
+   ========================= */
+.text-field, .text-area {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #6D6D6D;
+    -fx-border-width: 0.5px;
+    -fx-font-size: 10pt;
+}
+
+.text-field:focused, .text-area:focused{
+    -fx-background-color: #E0E0E0;
+    -fx-border-color: #812323;
+}
+
+.textfield-error {
+    -fx-border-color: red ;
+    -fx-border-width: 1px ;
+}
+
+.text-fieldklein{
+    -fx-background-color: #ffffff;
+    -fx-border-color: #6D6D6D;
+    -fx-border-width: 0.5px;
+    -fx-font-size: 8pt;
+}
+.text-fieldklein:focused{
+    -fx-background-color: #E0E0E0;
+    -fx-border-color: #812323;
+}
+.label{
+    -fx-font-size: 8pt;
+    -fx-font-weight: normal;
+	-fx-text-fill: black;	
+}
+.label-title {
+    -fx-font-size: 14pt;
+    -fx-font-weight: bold;
+	-fx-text-fill: black;
+	
+}
+.label-title2 {
+    -fx-font-size: 12pt;
+    -fx-font-weight: bold;
+	
+}
+.label-rot {
+    -fx-font-size: 10pt;
+    
+	-fx-text-fill: #BA0020;
+}
+.label-rotklein {
+    -fx-font-size: 8pt;
+    
+	-fx-text-fill: #BA0020;
+}
+
+.label-filter {
+    -fx-font-size: 8pt;
+   
+	-fx-text-fill: #BA0020;
+}
+.label-gn {
+    -fx-font-size: 10pt;
+    -fx-text-fill: #0E9937;
+	
+}
+.schriftweiss{
+	-fx-text-fill: white;
+}
+.schriftgelb{
+	-fx-text-fill: white;
+}
+/*Pesudoklassen für Laufzeitumschaltung*/
+.label:blau	{
+	-fx-text-fill: #1686D9;	
+}
+.label:rot	{
+	-fx-text-fill: #CF2020;	
+}
+.label:gruen	{
+	-fx-text-fill: #18A31A;	
+}
+
+
+.update-menu {
+    -fx-text-fill: red;
+    -fx-font-weight: bold;
+}
+/* =========================
+   ComboBoxes
+   ========================= */
+.combo-box, .combo-box .text-field {
+    -fx-background-color: white;
+    -fx-border-color: #6D6D6D;
+    -fx-border-width: 0.5px; 
+    -fx-font-size: 10pt;
+}
+
+.combo-box:focused, .combo-box .text-field:focused {
+    -fx-background-color: #E0E0E0; /*#AAC4DF;*/
+    -fx-border-color: #812323;
+    -fx-border-width: 1.0px;
+}
+
+.combo-boxklein, .combo-boxklein .text-fieldklein {
+    -fx-background-color: white;
+    -fx-border-color: #6D6D6D;
+    -fx-border-width: 0.5px; 
+    -fx-font-size: 6pt;
+}
+
+.combo-boxklein:focused, .combo-boxklein .text-fieldklein:focused {
+    -fx-background-color: #E0E0E0; /*#AAC4DF;*/
+    -fx-border-color: #812323;
+    -fx-border-width: 1.0px;
+}
+
+.combo-box .list-view {
+    -fx-background-color: #E0E0E0;
+    -fx-border-color: #6D6D6D;   
+    -fx-border-width: 0.5px; 
+    -fx-font-size: 10pt;
+}
+.combo-focused,
+.combo-focused .text-field {
+    -fx-background-color: #E0E0E0;
+    -fx-border-color: #812323;
+    -fx-border-width: 1.0px;
+}
+.combo-box:showing,
+.combo-box:showing .text-field {
+    -fx-background-color: #E0E0E0;
+    -fx-border-color: #812323;
+}
+
+
+
+/* =========================
+   TableViews
+   ========================= */
+.table-view {
+    -fx-font-size: 10pt; /* Tabelleninhalt */
+}
+
+.table-view .table-cell {
+    -fx-font-size: 10pt;
+}
+
+.table-view .column-header {
+    -fx-font-size: 10pt; /* Header */
+    -fx-font-weight: normal;
+}
+
+.table-view .placeholder {
+    -fx-font-size: 10pt; 
+    -fx-font-style: italic;
+}
+
+.table-row-cell:odd {
+    /* optional: Alternating Row-Colors */
+}
+
+.table-row-cell:selected {
+    /* optional: Selected Row Style */
+}
+/* =========================
+   Kleine Tabelle
+   ========================= */
+.table-view.table-small {
+    -fx-font-size: 8pt;
+}
+
+.table-view.table-small .table-cell {
+    -fx-font-size: 8pt;
+}
+
+.table-view.table-small .column-header {
+    -fx-font-size: 8pt;
+}
+
+
+
+/* =========================
+   Große Tabelle
+   ========================= */
+.table-view.table-large {
+    -fx-font-size: 11pt;
+}
+
+.table-view.table-large .table-cell {
+    -fx-font-size: 11pt;
+}
+
+.table-view.table-large .column-header {
+    -fx-font-size: 11pt;
+    -fx-font-weight: bold;
+}
+
+
+/* =========================
+   ImageView Wrapper
+   ========================= */
+.image-view-wrapper:border {
+    -fx-border-color: grey;
+    -fx-border-style: solid;
+    -fx-border-width: 1;
+}
+/* =========================
+   Tooltips
+   ========================= */
+   .tooltip {
+       -fx-background-color: #FFE086;
+       -fx-text-fill: #000000;
+       -fx-padding: 6 10 6 10;
+       -fx-background-radius: 10;
+       -fx-border-color: #333333;
+   }
+
+   .tooltip .label {
+       -fx-text-fill: #000000;
+       -fx-font-size: 14px;
+   }
+

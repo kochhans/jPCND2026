@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0" prefWidth="721.0" style="-fx-background-color: #c8c8c8;" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.FrmStartEinstellungenController">
+	<children>
+		<AnchorPane layoutY="72.0" maxHeight="486.0" maxWidth="794.0" minHeight="232.0" minWidth="460.0" prefHeight="232.0" prefWidth="721.0" style="-fx-background-color: #F0F0F0;">
+			<children>
+            <TextField fx:id="txtDatenbankpfad" layoutX="176.0" layoutY="59.0" prefHeight="30.0" prefWidth="434.0" promptText="bitte auswählen....">
+               <font>
+                  <Font name="Courier New Bold" size="12.0" />
+               </font></TextField>
+            <Label fx:id="lblTabellenueberschrift" layoutX="14.0" layoutY="14.0" prefHeight="32.0" prefWidth="660.0" text="Speicherpfade neu auswählen oder ändern ..." textFill="#046972">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="12.0" layoutY="61.0" prefHeight="20.0" prefWidth="161.0" text="aktueller Datenbankpfad" wrapText="true">
+               <font>
+                  <Font name="System Italic" size="10.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtEingabezeile6" disable="true" editable="false" layoutX="248.0" layoutY="196.0" prefHeight="25.0" prefWidth="98.0" visible="false" />
+            <Label fx:id="lblStueckauswahl1112" alignment="CENTER_RIGHT" layoutX="377.0" layoutY="189.0" prefHeight="15.0" prefWidth="40.0" text="DB" visible="false">
+               <font>
+                  <Font name="System Italic" size="10.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtEingabezeile7" disable="true" editable="false" layoutX="133.0" layoutY="196.0" prefHeight="25.0" prefWidth="48.0" visible="false" />
+            <Button fx:id="btnDbpfadAuswaehlen" layoutX="632.0" layoutY="59.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="48.0" text="..." />
+            <Button fx:id="btnDbAnlegen" layoutX="460.0" layoutY="90.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="213.0" text="Datenbank anlegen..." visible="false" />
+            <Label fx:id="lblStueckauswahl11111" alignment="CENTER_RIGHT" layoutX="243.0" layoutY="128.0" prefHeight="15.0" prefWidth="40.0" text="id" visible="false">
+               <font>
+                  <Font name="System Italic" size="10.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnEinstellungenSpeichern" layoutX="460.0" layoutY="254.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="213.0" text="alle Änderungen übernehmen" visible="false" />
+            <Button fx:id="btnSicherungskopieErstellen" layoutX="481.0" layoutY="159.0" mnemonicParsing="false" onAction="#btnSicherungskopieErstellen_OnClick" prefHeight="32.0" prefWidth="40.0" text="Datensicherung starten" visible="false" />
+            <Label layoutX="12.0" layoutY="107.0" prefHeight="20.0" prefWidth="167.0" text="aktueller Sicherungsordner" wrapText="true">
+               <font>
+                  <Font name="System Italic" size="10.0" />
+               </font>
+            </Label>
+            <Label layoutX="33.0" layoutY="193.0" prefHeight="20.0" prefWidth="124.0" text="xxx" visible="false" wrapText="true">
+               <font>
+                  <Font name="System Italic" size="10.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtSicherungsordner" layoutX="176.0" layoutY="105.0" prefHeight="30.0" prefWidth="434.0" promptText="bitte auswählen....">
+               <font>
+                  <Font name="Courier New Bold" size="12.0" />
+               </font></TextField>
+            <Button fx:id="btnDatenimport" layoutX="500.0" layoutY="257.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="161.0" text="neue Daten importieren..." visible="false" />
+            <Button fx:id="btnBackuppfadWaehlen" layoutX="633.0" layoutY="107.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="48.0" text="..." />
+            <Button fx:id="btnZurueck" layoutX="490.0" layoutY="151.0" mnemonicParsing="false" onAction="#btnZurueck_OnClick" prefHeight="32.0" prefWidth="191.0" styleClass="button-speichern" text="speichern und zurück" textFill="#07861d" />
+            <ProgressBar fx:id="progressBar" layoutX="176.0" layoutY="167.0" prefHeight="18.0" prefWidth="285.0" progress="0.0" />
+            <Label fx:id="lblStatus" layoutX="176.0" layoutY="143.0" prefHeight="20.0" prefWidth="434.0" text="Download...." visible="false" wrapText="true">
+               <font>
+                  <Font name="System Italic" size="10.0" />
+               </font>
+            </Label>
+            <Label layoutX="12.0" layoutY="79.0" prefHeight="20.0" prefWidth="161.0" text="und Pfad für PDF-Ausdrucke" wrapText="true">
+               <font>
+                  <Font name="System Italic" size="10.0" />
+               </font>
+            </Label>
+
+			</children>
+		</AnchorPane>
+		<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="721.0" style="-fx-background-color: #E3E3E3#D7D7D7;">
+			<children>
+				<Label fx:id="lblHaupttitel" layoutX="87.0" layoutY="21.0" maxHeight="41.0" maxWidth="655.0" minHeight="30.0" minWidth="181.0" prefHeight="32.0" prefWidth="265.0" styleClass="label-title" text="Programm-Einstellungen">
+					<font>
+						<Font name="System Bold" size="20.0" />
+					</font>
+					<padding>
+						<Insets left="5.0" />
+					</padding>
+				</Label>
+				<Label fx:id="lblNotenmappenInfozeile" layoutX="403.0" layoutY="6.0" prefHeight="20.0" prefWidth="386.0" text="Bitte eine vorhandene  NOTENMAPPE  aus der Liste auswählen oder neu anlegen..." visible="false">
+					<font>
+						<Font name="System Italic" size="12.0" />
+					</font>
+				</Label>
+            <Label layoutX="74.0" layoutY="31.0" prefHeight="25.0" prefWidth="434.0" text="neu anlegen und bearbeiten" visible="false">
+               <font>
+                  <Font name="System Italic" size="16.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="48.0" fitWidth="62.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/icons/javafx/werkzeug.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnAbbruchZurueck" layoutX="493.0" layoutY="21.0" mnemonicParsing="false" onAction="#btnAbbruchZurueck_OnClick" prefHeight="32.0" prefWidth="191.0" styleClass="button-loeschen" text="abbrechen und zurück" textFill="RED" />
+			</children>
+		</AnchorPane>
+	</children>
+</AnchorPane>

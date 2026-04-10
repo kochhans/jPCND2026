@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane id="rootScene2" fx:id="rootScene2" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1240.0" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.FrmAktionenController">
+	<children>
+		<VBox spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<children>
+				
+				<HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="60.0" prefWidth="1240.0" spacing="10.0" VBox.vgrow="ALWAYS">
+					<children>
+						<AnchorPane maxHeight="89.0" minHeight="66.0" prefHeight="66.0" prefWidth="1240.0" style="-fx-background-color: #C0C0C0;" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Button fx:id="btnZurueck" cancelButton="true" focusTraversable="false" layoutX="1095.0" layoutY="14.0" onAction="#btnZurueck_OnClick" prefHeight="46.0" prefWidth="131.0" styleClass="button-neu" text="Zurück" AnchorPane.rightAnchor="14.0" />
+                        <Label fx:id="lblTitelHinweise" layoutX="116.0" layoutY="41.0" prefHeight="14.0" prefWidth="630.0" text="Aktionen können angelegt werden - Zu jeder Aktion können beliebig viele Stücke in die Titelliste gesetzt werden." />
+                        <Label fx:id="lblHaupttitel" layoutX="111.0" layoutY="9.0" maxHeight="41.0" maxWidth="655.0" minHeight="30.0" minWidth="181.0" prefHeight="32.0" prefWidth="522.0" styleClass="label-title" text="Aktionen - Proben, Konzerte, Aufführungen, ...">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <ImageView fitHeight="63.0" fitWidth="91.0" layoutX="24.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="24.0">
+                           <image>
+                              <Image url="@/icons/javafx/jpcnd-150.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btnInfo" focusTraversable="false" layoutX="1011.0" layoutY="22.0" onAction="#btnInfo_OnClick" prefHeight="29.0" prefWidth="73.0" styleClass="button-neu" text="Info" visible="false" AnchorPane.rightAnchor="156.0" />
+                        <Button fx:id="btnStammdaten" focusTraversable="false" layoutX="918.0" layoutY="14.0" onAction="#btnStammdaten_OnClick" prefHeight="46.0" prefWidth="166.0" styleClass="button-loeschen" text="Stammdaten &amp; Import" AnchorPane.rightAnchor="156.0" />
+                     </children>
+						</AnchorPane>
+					</children>
+					<VBox.margin>
+						<Insets />
+					</VBox.margin>
+					<padding>
+						<Insets bottom="5.0" top="5.0" />
+					</padding>
+				</HBox>
+				<HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="100.0" prefHeight="100.0" prefWidth="1240.0" VBox.vgrow="ALWAYS">
+					<children>
+						<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="104.0" prefWidth="1221.0" style="-fx-background-color: #EBEBEB;" HBox.hgrow="ALWAYS">
+                     <children>
+                        <RadioButton fx:id="radFilterProben" focusTraversable="false" layoutX="24.0" layoutY="32.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="18.0" prefWidth="85.0" selected="true" styleClass="label-filter" text="nur Proben">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="ogrFilterProbeAuffAlles" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="radFilterAlles" focusTraversable="false" layoutX="24.0" layoutY="71.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="18.0" prefWidth="50.0" styleClass="label-filter" text="alles" toggleGroup="$ogrFilterProbeAuffAlles" />
+                        <RadioButton fx:id="radFilterAuff" focusTraversable="false" layoutX="24.0" layoutY="51.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="18.0" prefWidth="85.0" styleClass="label-filter" text="nur Auffüh." toggleGroup="$ogrFilterProbeAuffAlles" />
+                        <ComboBox fx:id="cbxFilterOrt" editable="true" layoutX="481.0" layoutY="25.0" maxHeight="25.0" maxWidth="-Infinity" minHeight="25.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="202.0" styleClass="text-fieldklein" />
+                        <ComboBox fx:id="cbxFilterGruppe" editable="true" layoutX="481.0" layoutY="66.0" maxHeight="25.0" maxWidth="-Infinity" minHeight="25.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="202.0" styleClass="text-fieldklein" />
+                        <DatePicker fx:id="dpFilterDatumVon" layoutX="126.0" layoutY="25.0" maxHeight="25.0" maxWidth="-Infinity" minHeight="25.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="131.0" styleClass="text-fieldklein" />
+                        <DatePicker fx:id="dpFilterDatumBis" layoutX="126.0" layoutY="68.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="131.0" styleClass="text-fieldklein" />
+                        <ComboBox fx:id="cbxFilterAktion" editable="true" layoutX="266.0" layoutY="25.0" maxHeight="25.0" maxWidth="-Infinity" minHeight="25.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="202.0" styleClass="text-fieldklein" />
+                        <Button fx:id="btnFilterAn" defaultButton="true" focusTraversable="false" layoutX="699.0" layoutY="33.0" mnemonicParsing="false" onAction="#btnFilterAn_OnClick" prefHeight="32.0" prefWidth="32.0">
+                           <graphic>
+                              <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
+                                 <image>
+                                    <Image url="@/icons/javafx/btn_filter32x32.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Filter für Aktionen aktivieren" />
+                           </tooltip>
+                        </Button>
+                        <Button fx:id="btnFilterAus" focusTraversable="false" layoutX="763.0" layoutY="33.0" mnemonicParsing="false" onAction="#btnFilterAus_OnClick" prefHeight="32.0" prefWidth="32.0" styleClass="button-icon" text="">
+                           <graphic>
+                              <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
+                                 <image>
+                                    <Image url="@/icons/javafx/btn_filter_delete32x32.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Filterfelder für Aktionen leeren" />
+                           </tooltip>
+                        </Button>
+                        <Label layoutX="128.0" layoutY="52.0" prefHeight="17.0" prefWidth="63.0" styleClass="label-filter" text="bis..." textFill="#6b6b6b" />
+                        <Label layoutX="128.0" layoutY="6.0" prefHeight="17.0" prefWidth="138.0" styleClass="label-filter" text="Datum von..." textFill="#6b6b6b" />
+                        <Label layoutX="263.0" layoutY="6.0" prefHeight="17.0" prefWidth="63.0" styleClass="label-filter" text="Aktion" textFill="#6b6b6b" />
+                        <Label layoutX="481.0" layoutY="6.0" prefHeight="17.0" prefWidth="63.0" styleClass="label-filter" text="Ort" textFill="#6b6b6b" />
+                        <Label layoutX="481.0" layoutY="52.0" prefHeight="17.0" prefWidth="63.0" styleClass="label-filter" text="Gruppe" textFill="#6b6b6b" />
+                        <Label fx:id="lblFilterFortschrittsinfo" layoutX="26.0" layoutY="1.0" prefHeight="25.0" prefWidth="97.0" styleClass="label-title2" text="Filtern..." textFill="#808080" />
+                        <TextField fx:id="txtFilterKurzbeschr" layoutX="266.0" layoutY="68.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="202.0" styleClass="text-fieldklein" />
+                        <Label layoutX="266.0" layoutY="52.0" prefHeight="17.0" prefWidth="228.0" styleClass="label-filter" text="Text enthalten in der Kurzbeschreibung" textFill="#6b6b6b" />
+                        <Button fx:id="btnAktionDrucken1" disable="true" focusTraversable="false" layoutX="1053.0" layoutY="64.0" onAction="#btnAktionDrucken1_OnClick" prefHeight="29.0" prefWidth="175.0" styleClass="label" text="Kompaktdruck" AnchorPane.rightAnchor="12.0">
+                           <tooltip>
+                              <Tooltip text="Drucken... (PDF-Seitenansicht)" />
+                           </tooltip>
+                        </Button>
+                        <CheckBox fx:id="chkDuplikatInclTitel" contentDisplay="RIGHT" disable="true" layoutX="1140.0" layoutY="32.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="19.0" prefWidth="77.0" styleClass="label" text="mit Titeln" AnchorPane.rightAnchor="23.0" />
+                        <Button fx:id="btnAktionDuplizieren" disable="true" focusTraversable="false" layoutX="1052.0" layoutY="27.0" onAction="#btnAktionDuplizieren_OnClick" prefHeight="29.0" prefWidth="97.0" styleClass="label" text="duplizieren" AnchorPane.rightAnchor="91.0">
+                           <tooltip>
+                              <Tooltip text="Drucken... (PDF-Seitenansicht)" />
+                           </tooltip>
+                        </Button>
+                        <Label fx:id="lblAktionAktuell" disable="true" layoutX="1128.0" layoutY="5.0" prefHeight="17.0" prefWidth="166.0" text="aktuelle Aktion ..." textFill="#6b6b6b" AnchorPane.rightAnchor="23.0" />
+                     </children></AnchorPane>
+					</children>
+				</HBox>
+            <SplitPane dividerPositions="0.5268456375838926" orientation="VERTICAL" prefHeight="721.0" prefWidth="1240.0" VBox.vgrow="ALWAYS">
+              <items>
+                <AnchorPane maxHeight="1.7976931348623157E308" minWidth="0.0" prefHeight="299.0" prefWidth="1238.0" style="-fx-background-color: green;">
+                     <children>
+                        <SplitPane dividerPositions="0.37318255250403876" layoutX="-1.0" layoutY="36.0" prefHeight="328.0" prefWidth="1240.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minHeight="240.0" minWidth="0.0" prefHeight="297.0" prefWidth="573.0" style="-fx-background-color: blue;">
+                                 <children>
+                                    <TableView fx:id="tblvwChoraktionen" focusTraversable="false" layoutX="14.0" onMousePressed="#handletblvwAktionenliste_onmouse_clicked" prefHeight="315.0" prefWidth="459.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <columns>
+                                          <TableColumn fx:id="tblvwAktionenCol0" maxWidth="100.0" minWidth="50.0" resizable="false" text="Datum" />
+                                          <TableColumn fx:id="tblvwAktionenCol1" prefWidth="120.0" text="Aktion" />
+                                          <TableColumn fx:id="tblvwAktionenCol7" minWidth="30.0" prefWidth="150.0" text="Kurzbeschreibung" />
+                                          <TableColumn fx:id="tblvwAktionenCol2" minWidth="20.0" prefWidth="150.0" text="Ort" />
+                                          <TableColumn fx:id="tblvwAktionenCol3" minWidth="20.0" prefWidth="120.0" text="Gruppe" />
+                                          <TableColumn fx:id="tblvwAktionenCol4" prefWidth="55.0" text="Beginn" visible="false" />
+                                          <TableColumn fx:id="tblvwAktionenCol5" maxWidth="100.0" minWidth="60.0" prefWidth="70.0" resizable="false" text="Treffp" />
+                                          <TableColumn fx:id="tblvwAktionenCol6" prefWidth="50.0" text="Anw" visible="false" />
+                                       </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                       <placeholder>
+											<Label alignment="TOP_CENTER" focusTraversable="false" text="- keine Aktion gefiltert -- bitte Filterkriterien überprüfen -" textFill="#ae2020" />
+								 		</placeholder>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane maxWidth="800.0" minHeight="190.0" minWidth="635.0" prefHeight="323.0" prefWidth="773.0" style="-fx-background-color: #FFFCC6;">
+                                 <children>
+                                    <ComboBox fx:id="cbxEingabeAktion" editable="true" layoutX="9.0" layoutY="65.0" prefHeight="30.0" prefWidth="355.0" />
+                                    <TextField fx:id="txtEingabeKurzbeschr" layoutX="6.0" layoutY="112.0" prefHeight="28.0" prefWidth="355.0" />
+                                    <DatePicker fx:id="dpEingabeDatum" layoutX="6.0" layoutY="162.0" prefHeight="28.0" prefWidth="138.0" />
+                                    <Spinner fx:id="spEingabeBeginn" layoutX="153.0" layoutY="162.0" prefHeight="28.0" prefWidth="100.0" />
+                                    <Spinner fx:id="spEingabeTreffpunkt" layoutX="270.0" layoutY="162.0" prefHeight="28.0" prefWidth="91.0" />
+                                    <ComboBox fx:id="cbxEingabeOrt" editable="true" layoutX="384.0" layoutY="65.0" prefHeight="30.0" prefWidth="238.0" />
+                                    <ComboBox fx:id="cbxEingabeGruppe" editable="true" layoutX="383.0" layoutY="112.0" prefHeight="30.0" prefWidth="238.0" />
+                                    <ComboBox fx:id="cbxEingabeVerantwortlich" editable="true" layoutX="383.0" layoutY="162.0" prefHeight="30.0" prefWidth="238.0" />
+                                    <TextField fx:id="txtEingabeAnzahl" focusTraversable="false" layoutX="536.0" layoutY="32.0" prefHeight="28.0" prefWidth="85.0" />
+                                    <Button fx:id="btnAktionNeu" layoutX="211.0" layoutY="9.0" mnemonicParsing="false" onAction="#btnAktionNeu_OnClick" prefHeight="16.0" prefWidth="16.0" styleClass="button-neu">
+                                       <graphic>
+                                          <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+                                             <image>
+                                                <Image url="@/icons/javafx/btn_neu16x16.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <tooltip>
+                                          <Tooltip text="Aktion hinzufügen ..." />
+                                       </tooltip>
+                                    </Button>
+                                    <Button fx:id="btnAktionSpeichern" layoutX="263.0" layoutY="9.0" mnemonicParsing="false" onAction="#btnAktionSpeichern_OnClick" prefHeight="16.0" prefWidth="16.0" styleClass="button-speichern">
+                                       <graphic>
+                                          <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+                                             <image>
+                                                <Image url="@/icons/javafx/btn_accept16x16.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <tooltip>
+                                          <Tooltip text="Aktion speichern ..." />
+                                       </tooltip>
+                                    </Button>
+                                    <Button fx:id="btnAktionLoeschen" layoutX="316.0" layoutY="9.0" mnemonicParsing="false" onAction="#btnAktionLoeschen_OnClick" prefHeight="16.0" prefWidth="16.0" styleClass="button-loeschen" text="">
+                                       <graphic>
+                                          <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+                                             <image>
+                                                <Image url="@/icons/javafx/pos_delete16x16.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <tooltip>
+                                          <Tooltip text="Aktion speichern ..." />
+                                       </tooltip>
+                                    </Button>
+                                    <TextArea fx:id="txtEingabeZusatzinfos" focusTraversable="false" layoutX="7.0" layoutY="210.0" prefHeight="100.0" prefWidth="756.0" promptText="hier können Zusatzinformationen zur Aktion eingegeben werden" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="210.0" />
+                                    <Label fx:id="lblDatum2" layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="138.0" styleClass="label-title2" text="Aktion - Details" />
+                                    <Label fx:id="lblDatum1" layoutX="6.0" layoutY="95.0" prefHeight="17.0" prefWidth="99.0" text="Kurzbeschreibung" textFill="#6b6b6b" />
+                                    <Label fx:id="lblGruppe" layoutX="383.0" layoutY="95.0" prefHeight="17.0" prefWidth="195.0" text="Beteiligte (Chor/Gruppe)" textFill="#6b6b6b" />
+                                    <Label fx:id="lblAktion" layoutX="9.0" layoutY="50.0" prefHeight="17.0" prefWidth="180.0" text="Aktion (als Stichwort für die Liste)" textFill="#6b6b6b" />
+                                    <Label fx:id="lblOrt" layoutX="382.0" layoutY="50.0" prefHeight="17.0" prefWidth="85.0" text="Ort" textFill="#6b6b6b" />
+                                    <Label fx:id="lblDatum" layoutX="6.0" layoutY="144.0" prefHeight="17.0" prefWidth="138.0" text="Datum" textFill="#6b6b6b" />
+                                    <Label fx:id="lblGruppe1" layoutX="384.0" layoutY="146.0" prefHeight="17.0" prefWidth="145.0" text="Verantwortliche(r)" textFill="#6b6b6b" />
+                                    <Label fx:id="lblAnzahl" layoutX="491.0" layoutY="38.0" prefHeight="17.0" prefWidth="42.0" text="Anzahl" textFill="#6b6b6b" />
+                                    <Label layoutX="131.0" layoutY="30.0" prefHeight="17.0" prefWidth="73.0" text="Aufführung" textFill="#6b6b6b" />
+                                    <Label layoutX="44.0" layoutY="30.0" prefHeight="17.0" prefWidth="63.0" text="Probe o.ä." textFill="#6b6b6b" />
+                                    <RadioButton fx:id="radDetailsAuff" focusTraversable="false" layoutX="108.0" layoutY="30.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="ogrProbeAuffuehrung" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton fx:id="radDetailsProbe" focusTraversable="false" layoutX="14.0" layoutY="29.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" selected="true" toggleGroup="$ogrProbeAuffuehrung" />
+                                    <Label fx:id="lblTreffpunkt" layoutX="270.0" layoutY="144.0" prefHeight="17.0" prefWidth="97.0" text="Treffpunkt (hh:mm)" textFill="#6b6b6b" />
+                                    <Label fx:id="lblBeginn" layoutX="155.0" layoutY="144.0" prefHeight="17.0" prefWidth="97.0" text="Beginn (hh:mm)" textFill="#6b6b6b" />
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="28.0" layoutX="13.0" layoutY="26.0" opacity="0.12" stroke="BLACK" strokeType="INSIDE" width="180.0" />
+                                    <Label layoutX="578.0" layoutY="10.0" prefHeight="17.0" prefWidth="42.0" text="GEMA" textFill="#6b6b6b" />
+                                    <CheckBox fx:id="chkEingabeGema" focusTraversable="false" layoutX="548.0" layoutY="9.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" />
+                                    <Label layoutX="9.0" layoutY="193.0" prefHeight="17.0" prefWidth="215.0" text="Zusatzinfos " textFill="#6b6b6b" />
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="290.0" minWidth="0.0" prefHeight="300.0" prefWidth="1238.0">
+                     <children>
+                        <TabPane fx:id="tabPaneAktionen" maxHeight="1.7976931348623157E308" prefHeight="279.0" prefWidth="1238.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="9999.0" tabMinHeight="30.0" tabMinWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <tabs>
+                              <Tab fx:id="tabDetails" text="Positionen">
+                                 <graphic>
+        							<ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+            							<image>
+                							<Image url="@/icons/javafx/regtab_positionen16x16_document_tree.png" />
+            							</image>
+        							</ImageView>
+    							</graphic>                                
+                              
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="221.0" prefWidth="1238.0" style="-fx-background-color: #FFFCC6;">
+                                       <children>
+                                          <Button fx:id="btnPosListeBearbeiten" disable="true" layoutX="16.0" layoutY="43.0" mnemonicParsing="false" onAction="#btnPosListeBearbeiten_OnClick" prefHeight="30.0" prefWidth="77.0" styleClass="button-neu" text="edit">
+                                             <graphic>
+                                                <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@/icons/javafx/poslist_edit16x16.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <tooltip>
+                                                <Tooltip text="Positionsliste detailliert bearbeiten (Literatur suchen, Liste ergänzen und bearbeiten)..." />
+                                             </tooltip>
+                                          </Button>
+                                          <Label fx:id="lblDatum21" layoutX="14.0" layoutY="14.0" prefHeight="19.0" prefWidth="112.0" styleClass="label-title2" text="Liste" textFill="#6b6b6b" />
+                                          <TableView fx:id="tblvwAktionPositionen" editable="true" focusTraversable="false" layoutX="131.0" layoutY="11.0" maxHeight="1.7976931348623157E308" prefHeight="230.0" prefWidth="1096.0" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="131.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="11.0">
+                                             <columns>
+                                                <TableColumn fx:id="tblvwPosCol0Pos" editable="false" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" resizable="false" sortable="false" text="P" />
+                                                <TableColumn fx:id="tblvwPosCol1Art" editable="false" maxWidth="150.0" minWidth="40.0" prefWidth="60.0" sortable="false" text="ProgrPkt" />
+                                                <TableColumn fx:id="tblvwPosCol2Stcktitel" editable="false" minWidth="50.0" prefWidth="120.0" sortable="false" text="Stück-Titel" />
+                                                <TableColumn fx:id="tblvwPosCol5Stckart" editable="false" minWidth="30.0" prefWidth="50.0" sortable="false" text="Stück-Art" />
+                                                <TableColumn fx:id="tblvwPosCol3Notenausgabe" editable="false" minWidth="50.0" prefWidth="100.0" sortable="false" text="Notenausgabe" />
+                                                <TableColumn fx:id="tblvwPosCol4Nr" editable="false" maxWidth="60.0" prefWidth="40.0" sortable="false" text="Nr" />
+                                                <TableColumn fx:id="tblvwPosCol4S" editable="false" maxWidth="60.0" prefWidth="40.0" sortable="false" text="S" />
+                                                <TableColumn fx:id="tblvwPosCol6Komp" editable="false" minWidth="40.0" prefWidth="50.0" sortable="false" text="Komp" />
+                                                <TableColumn fx:id="tblvwPosCol7Besetzung" editable="false" minWidth="20.0" prefWidth="50.0" sortable="false" text="Besetzung" />
+                                                <TableColumn fx:id="tblvwPosCol8Anmerkungen" editable="false" minWidth="30.0" prefWidth="50.0" sortable="false" text="Anmerkungen" />
+                                             </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
+                                             <placeholder>
+												<Label alignment="TOP_CENTER" focusTraversable="false" text="- keine Positionen in der Programmliste der ausgewählten Aktion gefunden - " textFill="#ae2020" />
+								 			 </placeholder>
+                                          </TableView>
+                                          <Button fx:id="btnPosEntf" disable="true" layoutX="14.0" layoutY="158.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnPosEntf_OnClick" prefHeight="32.0" prefWidth="32.0" styleClass="button-icon">
+                                             <graphic>
+                                                <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@/icons/javafx/pos_delete16x16.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <tooltip>
+                                                <Tooltip text="markierte Zeile in der Positionsliste löschen ..." />
+                                             </tooltip>
+                                          </Button>
+                                          <Button fx:id="btnPosRunter" disable="true" layoutX="54.0" layoutY="120.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnPosRunter_OnClick" prefHeight="32.0" prefWidth="32.0" styleClass="button-neu" text="">
+                                             <graphic>
+                                                <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@/icons/javafx/pos_runter16x16.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <tooltip>
+                                                <Tooltip text="markierte Zeile der Positionsliste nach unten schieben ..." />
+                                             </tooltip>
+                                          </Button>
+                                          <Button fx:id="btnPosHoch" disable="true" layoutX="14.0" layoutY="120.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnPosHoch_OnClick" prefHeight="32.0" prefWidth="32.0" styleClass="button-neu" text="">
+                                             <graphic>
+                                                <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@/icons/javafx/pos_rauf16x16.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <tooltip>
+                                                <Tooltip text="markierte Zeile der Positionsliste nach oben schieben ..." />
+                                             </tooltip>
+                                          </Button>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab fx:id="tabMitwirkende" disable="true" text="Mitwirkende">
+                                 <graphic>
+        							<ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+            							<image>
+                							<Image url="@/icons/javafx/regtab_mitw16x16_user_add.png" />
+            							</image>
+        							</ImageView>
+    							</graphic>                               
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="479.0" prefWidth="759.0" style="-fx-background-color: #EDEDED;">
+                                       <children>
+                                          <Label layoutX="535.0" layoutY="208.0" prefHeight="14.0" prefWidth="190.0" text="Personen-Auswahl" />
+                                          <SplitPane dividerPositions="0.49754098360655735" layoutX="5.0" layoutY="14.0" minWidth="-Infinity" prefHeight="448.0" prefWidth="790.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0">
+                                             <items>
+                                                <AnchorPane minHeight="0.0" minWidth="610.0" prefHeight="158.0" prefWidth="620.0" style="-fx-background-color: #EDEDED;">
+                                                   <children>
+                                                      <TableView fx:id="tblvwPersonen" focusTraversable="false" layoutX="6.0" layoutY="134.0" onMouseClicked="#handleTblvwPersonen_onmouseClicked" prefHeight="114.0" prefWidth="602.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="134.0">
+                                                         <columns>
+                                                            <TableColumn fx:id="tblcolPersonenChor" editable="false" prefWidth="100.0" sortable="false" text="Chor" />
+                                                            <TableColumn fx:id="tblcolPersonenGruppe" editable="false" prefWidth="100.0" sortable="false" text="Gruppe" />
+                                                            <TableColumn fx:id="tblcolPersonenName" editable="false" prefWidth="100.0" sortable="false" text="Name" />
+                                                            <TableColumn fx:id="tblcolPersonenVorname" editable="false" prefWidth="100.0" sortable="false" text="Vorname" />
+                                                            <TableColumn fx:id="tblcolPersonenStimme" editable="false" prefWidth="100.0" sortable="false" text="Stimme" />
+                                                            <TableColumn fx:id="tblcolPersonenInstrument" editable="false" prefWidth="75.0" sortable="false" text="Instrument" />
+                                                         </columns>
+                                                         <columnResizePolicy>
+                                                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                         </columnResizePolicy>
+                                                      </TableView>
+                                                      <Label layoutX="9.0" layoutY="3.0" prefHeight="32.0" prefWidth="459.0" styleClass="label-title2" text="Auswahl aus der Personen-Gesamtliste " wrapText="true" />
+                                                      <TextField fx:id="txtMitwFilterName" layoutX="9.0" layoutY="58.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="171.0" />
+                                                      <ComboBox fx:id="cbxMitwFilterChor" editable="true" layoutX="189.0" layoutY="58.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="211.0" />
+                                                      <ComboBox fx:id="cbxMitwFilterGruppe" editable="true" layoutX="188.0" layoutY="100.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="212.0" />
+                                                      <TextField fx:id="txtMitwFilterInstrument" layoutX="414.0" layoutY="58.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="171.0" />
+                                                      <TextField fx:id="txtMitwFilterStimme" layoutX="414.0" layoutY="100.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="171.0" />
+                                                      <Label layoutX="9.0" layoutY="42.0" prefHeight="14.0" prefWidth="91.0" styleClass="label-filter" text="Filter-Nachname" />
+                                                      <Label layoutX="189.0" layoutY="42.0" prefHeight="14.0" prefWidth="77.0" styleClass="label-filter" text="Filter-Chor" />
+                                                      <Label layoutX="414.0" layoutY="84.0" prefHeight="14.0" prefWidth="80.0" styleClass="label-filter" text="Filter-Stimme" />
+                                                      <Label layoutX="188.0" layoutY="84.0" prefHeight="14.0" prefWidth="91.0" styleClass="label-filter" text="Filter-Gruppe" />
+                                                      <Button fx:id="btnMitwFilterEin" focusTraversable="false" layoutX="14.0" layoutY="91.0" mnemonicParsing="false" onAction="#handleBtnMitwFilterEin_onCick" prefHeight="16.0" prefWidth="16.0">
+                                                         <graphic>
+                                                            <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@/icons/javafx/btn_filter16x16.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                         <tooltip>
+                                                            <Tooltip text="Filter - Auswahl der Personen aus der Gesamtliste - aktivieren" />
+                                                         </tooltip>
+                                                      </Button>
+                                                      <Button fx:id="btnMitwFilterAus" focusTraversable="false" layoutX="67.0" layoutY="91.0" mnemonicParsing="false" onAction="#handleBtnMitwFilterAus_onCick" prefHeight="16.0" prefWidth="16.0">
+                                                         <graphic>
+                                                            <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@/icons/javafx/btn_filter_delete16x16.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                         <tooltip>
+                                                            <Tooltip text="Personenliste -- alles anzeigen" />
+                                                         </tooltip>
+                                                      </Button>
+                                                      <Label layoutX="414.0" layoutY="42.0" prefHeight="14.0" prefWidth="107.0" styleClass="label-filter" text="Filter - Instrument" />
+                                                      <Button fx:id="btnMitwEditSpeichern1" focusTraversable="false" layoutX="375.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleBtnMitwEditSpeichern1_onClick" prefHeight="32.0" prefWidth="215.0" styleClass="button-speichern" text="zu Liste Mitwirkende hinzu" />
+                                                   </children>
+                                                </AnchorPane>
+                                                <AnchorPane minHeight="0.0" minWidth="570.0" prefHeight="228.0" prefWidth="593.0" style="-fx-background-color: #FFFCC6;">
+                                                   <children>
+                                                      <TableView fx:id="tblvwPersonenZugewiesen" focusTraversable="false" layoutX="159.0" layoutY="61.0" onMouseClicked="#handleTblvwPersonenZugewiesen_onmouseClicked" prefHeight="173.0" prefWidth="445.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="159.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="61.0">
+                                                         <columns>
+                                                            <TableColumn fx:id="tblcolMitwZugewiesenName" editable="false" prefWidth="120.0" text="Name" />
+                                                            <TableColumn fx:id="tblcolMitwZugewiesenVorname" editable="false" prefWidth="120.0" text="Vorname" />
+                                                            <TableColumn fx:id="tblcolMitwZugewiesenInstrument" editable="false" minWidth="20.0" prefWidth="120.0" text="Instrument" />
+                                                            <TableColumn fx:id="tblcolMitwZugewiesenStimme" editable="false" minWidth="20.0" prefWidth="120.0" text="Stimme" />
+                                                         </columns>
+                                                         <columnResizePolicy>
+                                                            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                         </columnResizePolicy>
+                                                      </TableView>
+                                                      <Label fx:id="lblMitwirkendeDatensatzaktion" layoutX="90.0" layoutY="39.0" prefHeight="18.0" prefWidth="512.0" styleClass="label-gn" text="Person NEU hinzufügen" />
+                                                      <TextField fx:id="txtMitwEditName" layoutX="11.0" layoutY="58.0" prefHeight="28.0" prefWidth="138.0" />
+                                                      <TextField fx:id="txtMitwEditVorname" layoutX="11.0" layoutY="100.0" prefHeight="28.0" prefWidth="138.0" />
+                                                      <TextField fx:id="txtMitwEditStimme" layoutX="11.0" layoutY="147.0" prefHeight="28.0" prefWidth="138.0" />
+                                                      <TextField fx:id="txtMitwEditInstrument" layoutX="11.0" layoutY="189.0" prefHeight="28.0" prefWidth="138.0" />
+                                                      <Button fx:id="btnMitwEditSpeichern" focusTraversable="false" layoutX="69.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleBtnMitwEditSpeichern_onClick" prefHeight="30.0" prefWidth="16.0" styleClass="button-speichern">
+                                                         <graphic>
+                                                            <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@/icons/javafx/btn_accept16x16.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                         <tooltip>
+                                                            <Tooltip text="Person als Mitwirkende speichern / hinzufügen ..." />
+                                                         </tooltip>
+                                                      </Button>
+                                                      <Button fx:id="btnMitwEditLoeschen" focusTraversable="false" layoutX="118.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleBtnMitwEditLoeschen_onClick" prefHeight="16.0" prefWidth="16.0" styleClass="button-loeschen">
+                                                         <graphic>
+                                                            <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@/icons/javafx/pos_delete16x16.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                         <tooltip>
+                                                            <Tooltip text="Person als Mitwirkende von der Aktuellen Aktion entfernen ..." />
+                                                         </tooltip>
+                                                      </Button>
+                                                      <Button fx:id="btnMitwEditNeu" focusTraversable="false" layoutX="14.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleBtnMitwEditNeu_onClick" prefHeight="16.0" prefWidth="16.0" styleClass="button-neu">
+                                                         <graphic>
+                                                            <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@/icons/javafx/btn_neu16x16.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                         <tooltip>
+                                                            <Tooltip text="Person als Mitwirkende manuell erfassen ..." />
+                                                         </tooltip>
+                                                      </Button>
+                                                      <Label layoutX="11.0" layoutY="42.0" prefHeight="14.0" prefWidth="91.0" text="Edit - Name" />
+                                                      <Label layoutX="11.0" layoutY="84.0" prefHeight="14.0" prefWidth="106.0" text="Edit - Vorname" />
+                                                      <Label layoutX="10.0" layoutY="133.0" prefHeight="14.0" prefWidth="77.0" text="Edit - Stimme " />
+                                                      <Label layoutX="10.0" layoutY="175.0" prefHeight="14.0" prefWidth="108.0" text="Edit - Instrument" />
+                                                      <Button fx:id="btnMitwEditLoeschen1" focusTraversable="false" layoutX="178.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleBtnMitwEditLoeschen1_onClick" prefHeight="32.0" prefWidth="195.0" styleClass="button-loeschen" text="aus Liste der Aktion entfernen" />
+                                                      <Label alignment="CENTER_RIGHT" layoutX="319.0" layoutY="3.0" prefHeight="19.0" prefWidth="271.0" styleClass="label-title2" text="Mitwirkende der Aktion" textFill="#6b6b6b" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </items>
+                                          </SplitPane>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab fx:id="tabDrucken" disable="true" onSelectionChanged="#tabDrucken_OnSelectionChanged" text="Drucken">
+                                 <graphic>
+        							<ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+            							<image>
+                							<Image url="@/icons/javafx/regtab_drucken16x16_printer.png" />
+            							</image>
+        							</ImageView>
+    							</graphic>                                
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #FFFCC6;">
+                                       <children>
+                                          <Button fx:id="btnAktionDrucken1Liste" alignment="CENTER" contentDisplay="TEXT_ONLY" focusTraversable="false" layoutX="16.0" layoutY="43.0" onAction="#btnAktionDrucken1Liste_OnCLick" prefHeight="46.0" prefWidth="228.0" text="markierte Aktion mit  Positionen" wrapText="true">
+                                             <tooltip>
+                                                <Tooltip text="Drucken... (PDF-Seitenansicht)" />
+                                             </tooltip>
+                                          </Button>
+                                          <Label fx:id="lblTitelDruckenReg" layoutX="16.0" layoutY="9.0" prefHeight="19.0" prefWidth="100.0" styleClass="label-title2" text="Drucken ..." textFill="#6b6b6b" />
+                                          <CheckBox fx:id="chkDruckListeZwischentexte" layoutX="37.0" layoutY="95.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="228.0" text="Zwischentexte anzeigen" />
+                                          <CheckBox fx:id="chkDruckListeZusatzangabe" layoutX="37.0" layoutY="117.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="334.0" text="Zusatzangaben anzeigen" />
+                                          <CheckBox fx:id="chkDruckListeTitelgrafiken" layoutX="37.0" layoutY="144.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="228.0" text="Grafiken anzeigen" />
+                                          <Button fx:id="btnListeDruckenVerz" focusTraversable="false" layoutX="320.0" layoutY="43.0" mnemonicParsing="false" onAction="#btnListeDruckenVerz_OnClick" prefHeight="46.0" prefWidth="228.0" text="REPORTS-Ordner öffnen ...">
+                                             <graphic>
+                                                <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@/icons/javafx/btn_folderpage32x32.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <tooltip>
+                                                <Tooltip text="Ordnerinhalt mit den gespeicherten PDF-Dateien anzeigen" />
+                                             </tooltip>
+                                          </Button>
+                                          <Label fx:id="lblDruckreportsAnzahl" layoutX="337.0" layoutY="16.0" prefHeight="18.0" prefWidth="335.0" styleClass="label-gn" text="x REPORTS sind gespeichert" textFill="#6b6b6b" />
+                                          <Label fx:id="lblDrucken1" layoutX="21.0" layoutY="177.0" prefHeight="17.0" prefWidth="190.0" text="Drucken ..." textFill="#6b6b6b" visible="false" />
+                                          <ProgressBar fx:id="pbDrucken1" layoutX="22.0" layoutY="194.0" prefHeight="20.0" prefWidth="215.0" progress="0.0" visible="false" />
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                           </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+			</children>
+		</VBox>
+	</children>
+</AnchorPane>
