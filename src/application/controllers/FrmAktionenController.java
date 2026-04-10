@@ -1391,7 +1391,7 @@ public class FrmAktionenController
 					inhalt.append("\n"); // neue Zeile unter Edition
 					if (hasNr)
 					{
-						inhalt.append("  Nr...: ").append(r.getCapoNr());
+						inhalt.append("  Nr. ").append(r.getCapoNr());
 					}
 					if (hasSeite)
 					{
@@ -1399,36 +1399,13 @@ public class FrmAktionenController
 						{
 							inhalt.append("     |   "); // Trennung zwischen Nr. und Seite
 						}
-						inhalt.append("  S....: ").append(r.getCapoSeite());
+						inhalt.append("  S. ").append(r.getCapoSeite());
 					}
 				}
 
-				// ===== Komponist + Art =====
-				// ist bereit sin der Tabelle darüber!
-//				boolean hasKomponist = r.getCapoKomponist() != null && !r.getCapoKomponist().isEmpty();
-//				boolean hasArt = r.getCapoArt() != null && !r.getCapoArt().isEmpty();
-//				if (hasKomponist || hasArt)
-//				{
-//					inhalt.append("   ---   "); // Abstand zu Komponist
-//					if (hasKomponist)
-//					{
-//						inhalt.append(r.getCapoKomponist());
-//					}
-//					if (hasArt)
-//					{
-//						if (hasKomponist)
-//							inhalt.append("  ---  "); // Trennung
-//						inhalt.append(r.getCapoArt());
-//					}
-//				}
 
-				// ===== Bemerkungen =====
+				// ===== Bemerkungen zur Position =====
 
-				if (r.getCapoSonstiges() != null && !r.getCapoSonstiges().isEmpty())
-				{
-					inhalt.append("\n ###  ").append(r.getCapoSonstiges());
-					inhalt.append(" ###");
-				}
 				if (r.getCapoBem() != null && !r.getCapoBem().isEmpty())
 				{
 					inhalt.append(" \n --- ").append(r.getCapoBem());
