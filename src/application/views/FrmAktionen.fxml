@@ -256,8 +256,8 @@
                                           <Label fx:id="lblDatum21" layoutX="14.0" layoutY="14.0" prefHeight="19.0" prefWidth="112.0" styleClass="label-title2" text="Liste" textFill="#6b6b6b" />
                                           <TableView fx:id="tblvwAktionPositionen" editable="true" focusTraversable="false" layoutX="131.0" layoutY="11.0" maxHeight="1.7976931348623157E308" prefHeight="230.0" prefWidth="1096.0" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="131.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="11.0">
                                              <columns>
-                                                <TableColumn fx:id="tblvwPosCol0Pos" editable="false" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" resizable="false" sortable="false" text="P" />
-                                                <TableColumn fx:id="tblvwPosCol1Art" editable="false" maxWidth="150.0" minWidth="40.0" prefWidth="60.0" sortable="false" text="ProgrPkt" />
+                                                <TableColumn fx:id="tblvwPosCol0Pos" editable="false" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" resizable="false" sortable="false" text="P" />
+                                                <TableColumn fx:id="tblvwPosCol1Art" editable="false" maxWidth="150.0" minWidth="40.0" prefWidth="50.0" sortable="false" text="ProgrPkt" />
                                                 <TableColumn fx:id="tblvwPosCol2Stcktitel" editable="false" minWidth="50.0" prefWidth="120.0" sortable="false" text="Stück-Titel" />
                                                 <TableColumn fx:id="tblvwPosCol5Stckart" editable="false" minWidth="30.0" prefWidth="50.0" sortable="false" text="Stück-Art" />
                                                 <TableColumn fx:id="tblvwPosCol3Notenausgabe" editable="false" minWidth="50.0" prefWidth="100.0" sortable="false" text="Notenausgabe" />

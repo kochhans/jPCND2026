@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Zentrale Verwaltung der Anwendungs-Icons.
+ * Zentrale Verwaltung der Anwendungs-Icons.   
  * Lädt 16x16, 32x32, 64x64 für Hauptfenster & Msgboxen.
  * Kompatibel mit IDE und JAR (Windows, Linux, Mac).
  */

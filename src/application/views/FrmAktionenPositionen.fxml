@@ -50,7 +50,7 @@
                            <children>
                               <TableView fx:id="tblvwAktionPositionen" focusTraversable="false" layoutX="-1.0" minHeight="100.0" minWidth="518.0" onMouseClicked="#handleTblvwAktionPositionen_onmouse_clicked" prefHeight="250.0" prefWidth="577.0" style="-fx-selection-bar-non-focused: AAC4DF; -fx-selection-bar: #AAC4DF;" styleClass="..\styles\application.css" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <columns>
-                                    <TableColumn fx:id="tblvwPosCol0Pos" editable="false" prefWidth="30.0" resizable="false" sortable="false" text="P" />
+                                    <TableColumn fx:id="tblvwPosCol0Pos" editable="false" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" resizable="false" sortable="false" text="P" />
                                     <TableColumn fx:id="tblvwPosCol1Art" editable="false" minWidth="20.0" resizable="false" sortable="false" text="ProgPkt" />
                                     <TableColumn fx:id="tblvwPosCol2Stcktitel" editable="false" prefWidth="100.0" sortable="false" text="Stück-Titel" />
                                     <TableColumn fx:id="tblvwPosCol5Stckart" editable="false" prefWidth="50.0" sortable="false" text="Stück-Art" />
