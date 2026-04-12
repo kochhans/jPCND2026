@@ -14,6 +14,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Spinner;
@@ -63,6 +64,7 @@ import com.lowagie.text.Element;
 
 import application.ConfigManager;
 import application.SceneManager;
+import application.ValuesGlobals;
 //import application.database.AccdbChorimportService;
 //import application.database.AccdbImportRepository;
 import application.database.CSVImporterAktionen;
@@ -71,6 +73,7 @@ import application.database.CSVImporterPositionen;
 import application.database.SQLiteImporter;
 import application.database.SQLiteImporterPersonen;
 import application.database.SQLiteImporterPositionen;
+import application.dbupdate.DatabaseMergeController;
 import application.models.AktionenListeModel;
 import application.models.AktionenListePersonenModel;
 import application.models.AktionenListePositionenModel;
@@ -79,7 +82,7 @@ import application.models.CvwPersonenComboGruppeModel;
 import application.models.CvwPersonenModel;
 import application.uicomponents.Msgbox;
 import application.utils.TableData;
-
+import application.utils.ToolsUpdateChecker;
 import application.utils.pdf.PdfExportOptions;
 import application.utils.pdf.PdfMasterDetailExporterUtil;
 import application.utils.pdf.PdfPathUtil;
@@ -95,15 +98,15 @@ public class FrmAktionenController
 	// ----------------------------
 	// (0) Menues
 	// ----------------------------
-//	@FXML
-//	private MenuItem men10Zurueck;
+	@FXML
+	private MenuItem men01AktionenBeenden, men02StdatPersonen;
 	// ----------------------------
 	// (1) Kopfbereich
 	// ----------------------------
 
 	// LABELS---------------------
 	@FXML
-	private Label lblHaupttitel, lblTitelHinweise, lblAktionAktuell;
+	private Label lblHaupttitel, lblTitelHinweise, lblAktionAktuell, lblUpdateinfo;
 
 	// COMBOBOXEN -----------------
 	@FXML
@@ -121,7 +124,7 @@ public class FrmAktionenController
 	private RadioButton radFilterProben, radFilterAuff, radFilterAlles;
 	// BUTTONS---------------------
 	@FXML
-	private Button btnFilterAn, btnFilterAus, btnAktionDrucken1, btnZurueck, btnStammdaten;
+	private Button btnFilterAn, btnFilterAus, btnAktionDrucken1, btnZuNotenarchiv, btnUpdaten, btnStammdaten;
 
 	// IMPORT---------------------
 	@FXML
@@ -369,6 +372,11 @@ public class FrmAktionenController
 		}
 		initTabPanes();
 		initData();
+		// ===== Update-Check nur 1x pro Sitzung =====
+		if(ValuesGlobals.updatecheck==true){
+			checkUpdates();
+			ValuesGlobals.updatecheck=false;
+		}
 
 	}
 
@@ -452,6 +460,84 @@ public class FrmAktionenController
 		});
 
 	}
+	
+	private void checkUpdates()
+	{
+		System.out.println("(3) checkUpdates in AktionenSTart()");
+		btnUpdaten.setVisible(false);
+//		men40.setVisible(false);
+		try
+		{
+			String infotext = "";
+			String versionNeu;
+
+			versionNeu = ToolsUpdateChecker.checkForUpdatesUniversell("prog");
+			if (!versionNeu.isEmpty())
+			{
+				if (versionNeu == "xxx")
+				{
+					lblUpdateinfo.setText("KEINE INTERNETVERBINDUNG VORHANDEN\nVersionscheck nicht möglich");
+					lblUpdateinfo.setVisible(true);
+					return;
+				}
+				else
+				{
+					infotext = "Neue Programm-Version: " + versionNeu + " ";
+					//men40.setVisible(true);
+					//men40Programm.setVisible(true);
+				}
+			}
+			else
+			{
+				//men40Programm.setVisible(false);
+			}
+
+			versionNeu = ToolsUpdateChecker.checkForUpdatesUniversell("db");
+			if (!versionNeu.isEmpty())
+			{
+				infotext += "\nNeue Datenbank-Version: " + versionNeu;
+				btnUpdaten.setVisible(true);
+				//men40.setVisible(true);
+				//men40Datenbank.setVisible(true);
+				// lblDbVersion.setText("aktive Datenbank: " +
+				// DatabaseVersionUtil.getLocalDatabaseVersion());
+			}
+			else
+			{
+				//men40Datenbank.setVisible(false);
+			}
+
+			if (infotext.isEmpty())
+			{
+				btnUpdaten.setVisible(false);
+				//men40.setVisible(false);
+				lblUpdateinfo.setVisible(false);
+			}
+			else
+			{
+				//men40.setVisible(true);
+				lblUpdateinfo.setVisible(true);
+				lblUpdateinfo.setText(infotext);
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			// lblDbVersion.setText("aktive Datenbank: " +
+			// DatabaseVersionUtil.getLocalDatabaseVersion());
+		}
+	}
+	//############################### Updaten #############################################
+		@FXML
+		public void btnUpdaten_OnClick() throws IOException
+		{
+			Msgbox.show("Updates sind online verfügbar...", "Bitte wechseln Sie zum Programmteil Literatur-Notenarchiv, \n"
+					+ "um die verfügbare Updates einzusehen und zu installieren!");
+		}
+
 
 	// Tabwechsel
 	@FXML
@@ -962,7 +1048,7 @@ public class FrmAktionenController
 // ============================
 
 	@FXML
-	private void btnZurueck_OnClick(ActionEvent event) throws IOException
+	private void btnZuNotenarchiv_OnClick(ActionEvent event) throws IOException
 	{
 
 		ConfigManager.saveFilterAktionDatumvon(dpFilterDatumVon.getEditor().getText());
@@ -984,7 +1070,7 @@ public class FrmAktionenController
 	
 
 	@FXML
-	private void btnStammdaten_OnClick(ActionEvent event) throws Exception
+	private void btnStammdaten_OnAction(ActionEvent event) throws Exception
 	{
 		AktionenListeModel selected = tblvwChoraktionen.getSelectionModel().getSelectedItem();
 
@@ -2650,6 +2736,15 @@ public class FrmAktionenController
 		cbxMitwFilterGruppe.setItems(oblist_filterpersonengruppe);
 	}
 
+	
+	
+	@FXML
+	public void men01AktionenBeenden_OnClick()
+	{
+
+		SceneManager.exitApp();
+	}
+	
 // --------------------------------------------------------------------------------
 // Hilfsmethoden für Steuerelemente -----------------------------------------------
 // --------------------------------------------------------------------------------

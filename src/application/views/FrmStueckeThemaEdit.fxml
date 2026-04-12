@@ -33,11 +33,11 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <Button fx:id="btnZuweisen" layoutX="298.0" layoutY="90.0" mnemonicParsing="false" onAction="#btnZuweisen_OnClick" prefHeight="25.0" prefWidth="38.0" text="&lt;&lt;" textFill="#06a803">
+            <Button fx:id="btnZuweisen" layoutX="288.0" layoutY="90.0" mnemonicParsing="false" onAction="#btnZuweisen_OnClick" prefHeight="29.0" prefWidth="55.0" text="&lt;&lt;" textFill="#06a803">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Button fx:id="btnWegnehmen" layoutX="298.0" layoutY="124.0" mnemonicParsing="false" onAction="#btnWegnehmen_OnClick" prefHeight="25.0" prefWidth="38.0" text="&gt;&gt;" textFill="#f80000">
+            <Button fx:id="btnWegnehmen" layoutX="289.0" layoutY="124.0" mnemonicParsing="false" onAction="#btnWegnehmen_OnClick" prefHeight="29.0" prefWidth="55.0" text="&gt;&gt;" textFill="#f80000">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>

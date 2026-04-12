@@ -1,5 +1,6 @@
 package application.utils;
 
+import application.ConfigManager;
 import application.db.DBManager;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
@@ -33,25 +34,17 @@ public class ToolsWinHelper
 	}
 
 
-	public static void closeApplication()
-	{
-		try
-		{
-//			if (Msgbox.yesno("Programm beenden ...", "Soll das Programm wirklich beendet werden?") == false)
-//			{
-//				return;
-//			}
+	public static void closeApplication() {
+	    try {
+	        DBManager.close(); // DB sauber schließen
+	        System.out.println("✅ (99) Anwendung wurde geschlossen.");
 
-			DBManager.close(); // falls DB vorhanden
-			System.out.println("✅ (99) Anwendung wurde geschlossen.");
-			Platform.exit(); // JavaFX sauber beenden
-			System.exit(0);
+	        Platform.exit();
+	        System.exit(0);
 
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 	}
 
 	// ============================================

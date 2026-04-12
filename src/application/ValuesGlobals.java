@@ -8,7 +8,7 @@ public class ValuesGlobals
 	// ###### ALLG. EINSTELLUNG #########
 	public static int progAdmin = 1; // 0 oder 1
 	public static String progTitel = "jPCND ";
-	public static String progVersion = "Version 1.26.0412";//"Version 1.26.0125"
+	public static String progVersion = "Version 1.25.0412";//"Version 1.26.0125"
 	public static String dbVersion ="";
 	//public static String dbStructureVersion ="";
 	public static String Versionsinfo = "JRT: " + System.getProperty("java.runtime.version") + " // JFX: " + System.getProperty("javafx.version");
@@ -77,6 +77,7 @@ public class ValuesGlobals
 	public boolean dsaendernfrei = false;
 	public static String Uebergabewert1 = "";
 	public static String Uebergabewert2 = "";
+	public static boolean updatecheck = true;
 
 //	public static void init()
 //	{

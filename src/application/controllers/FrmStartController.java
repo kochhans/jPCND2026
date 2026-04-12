@@ -16,6 +16,7 @@ import application.utils.pdf.PdfExportOptions;
 import application.utils.pdf.PdfFilenameUtil;
 import application.utils.pdf.PdfPathUtil; // für DB-Pfad
 import application.ConfigManager;
+import application.FilterState;
 import application.SceneManager;
 import application.ValuesGlobals;
 
@@ -400,6 +401,8 @@ public class FrmStartController implements Initializable
 	{
 		System.out.println("Scene1 wird angezeigt");
 		// Hier deine Scene-spezifische Initialisierung
+		
+    
 		initView();
 
 	}
@@ -434,9 +437,13 @@ public class FrmStartController implements Initializable
 			updateCombosLitItems();
 			// Felder auf dem ersten Rgeister leeren
 			clearLitEingabefelder();
-
-			// ===== Update-Check =====
 			checkUpdates();
+//			// ===== Update-Check nur 1x pro Sitzung =====
+//			if(ValuesGlobals.updatecheck==true){
+//				checkUpdates();
+//				ValuesGlobals.updatecheck=false;
+//			}
+
 			// Alle TableViews in rootPane durchgehen und Spalten fixieren
 			rootStart.lookupAll(".table-view").forEach(tv -> ((TableView<?>) tv).getColumns().forEach(col -> col.setReorderable(false)));
 			// Filterwerte laden
@@ -538,22 +545,57 @@ public class FrmStartController implements Initializable
 	// Filtereinträge vom letzten Mal holenn
 	public void loadFilterStart() throws Exception
 	{
-		// Filterwerte holen
-		txtFilterTitel.setText(ConfigManager.loadFilterStartTitel());
-		cbxFilterStueckart.getEditor().setText(ConfigManager.loadFilterStartStckart());
-		txtFilterEdit.setText(ConfigManager.loadFilterStartEdition());
-		txtFilterKomp.setText(ConfigManager.loadFilterStartKomponist());
-		txtFilterDicht.setText(ConfigManager.loadFilterStartDichter());
-		txtFilterEditVerlag.setText(ConfigManager.loadFilterStartVerlag());
-		cbxFilterWochenlied.getEditor().setText(ConfigManager.loadFilterStartWoli());
-		cbxFilterThema.getEditor().setText(ConfigManager.loadFilterStartThema());
-		cbxFilterNotenmappe.getEditor().setText(ConfigManager.loadFilterStartNoma());
-		cbxFilterBibel.getEditor().setText(ConfigManager.loadFilterStartBib());
-		cbxFilterGesangbuch.getEditor().setText(ConfigManager.loadFilterStartGesangbuch());
+//		// Filterwerte holen -- alt!
+//		txtFilterTitel.setText(ConfigManager.loadFilterStartTitel());
+//		cbxFilterStueckart.getEditor().setText(ConfigManager.loadFilterStartStckart());
+//		txtFilterEdit.setText(ConfigManager.loadFilterStartEdition());
+//		txtFilterKomp.setText(ConfigManager.loadFilterStartKomponist());
+//		txtFilterDicht.setText(ConfigManager.loadFilterStartDichter());
+//		txtFilterEditVerlag.setText(ConfigManager.loadFilterStartVerlag());
+//		cbxFilterWochenlied.getEditor().setText(ConfigManager.loadFilterStartWoli());
+//		cbxFilterThema.getEditor().setText(ConfigManager.loadFilterStartThema());
+//		cbxFilterNotenmappe.getEditor().setText(ConfigManager.loadFilterStartNoma());
+//		cbxFilterBibel.getEditor().setText(ConfigManager.loadFilterStartBib());
+//		cbxFilterGesangbuch.getEditor().setText(ConfigManager.loadFilterStartGesangbuch());
+		
+		// --------- Filterstatus holen
+	    FilterState f = FilterState.get();
+	    
+	    txtFilterTitel.setText(f.titel);
+	    cbxFilterStueckart.getEditor().setText(f.stueckart);
+	    txtFilterEdit.setText(f.edition);
+	    txtFilterKomp.setText(f.komponist);
+	    txtFilterDicht.setText(f.dichter);
+	    txtFilterEditVerlag.setText(f.verlag);
+	    cbxFilterWochenlied.getEditor().setText(f.wochenlied);
+	    cbxFilterThema.getEditor().setText(f.thema);
+	    cbxFilterNotenmappe.getEditor().setText(f.notenmappe);
+	    cbxFilterBibel.getEditor().setText(f.bibel);
+	    cbxFilterGesangbuch.getEditor().setText(f.gesangbuch);
+	    // ----------------------------------
+		
+		
 		lblFilterFortschrittsinfo.setText("Bitte Filterkriterien eingeben ...");
 		filtern(0);
 
 	}
+// Filter speichern beim ändern der Scene	
+	private void saveFilterToState() {
+	    FilterState f = FilterState.get();
+
+	    f.titel = txtFilterTitel.getText();
+	    f.stueckart = cbxFilterStueckart.getEditor().getText();
+	    f.edition = txtFilterEdit.getText();
+	    f.komponist = txtFilterKomp.getText();
+	    f.dichter = txtFilterDicht.getText();
+	    f.verlag = txtFilterEditVerlag.getText();
+	    f.wochenlied = cbxFilterWochenlied.getEditor().getText();
+	    f.thema = cbxFilterThema.getEditor().getText();
+	    f.notenmappe = cbxFilterNotenmappe.getEditor().getText();
+	    f.bibel = cbxFilterBibel.getEditor().getText();
+	    f.gesangbuch = cbxFilterGesangbuch.getEditor().getText();
+	}
+// ===================================================================================
 
 // ----------- Table Viewlisten - Spalten ------------------------------------------------------
 	private void setUIDataLiteraturliste()
@@ -1085,13 +1127,14 @@ public class FrmStartController implements Initializable
 	}
 
 	@FXML
-	private void btnAktivitaeten_OnClick(ActionEvent event) throws Exception
-	{
+	private void btnAktivitaeten_OnClick(ActionEvent event) throws Exception {
 
-		btnUpdaten.setVisible(false);
-		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		SceneManager.showScene2(stage, new DatabaseControllerAktionen());
+		saveFilterToState(); // ALLE Filter speichern
+	    btnUpdaten.setVisible(false);
 
+	    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+	    SceneManager.showAktionen(stage);
 	}
 
 //######## TabBereich Lieder Stücke	
@@ -2957,19 +3000,19 @@ public class FrmStartController implements Initializable
 	@FXML
 	public void men01Beenden_OnClick()
 	{
-		ConfigManager.saveFilterStartTitel(txtFilterTitel.getText());
-		ConfigManager.saveFilterStartStckart(cbxFilterStueckart.getEditor().getText());
-		ConfigManager.saveFilterStartEdition(txtFilterEdit.getText());
-		ConfigManager.saveFilterStartKomponist(txtFilterKomp.getText());
-		ConfigManager.saveFilterStartDichter(txtFilterDicht.getText());
-		ConfigManager.saveFilterStartVerlag(txtFilterEditVerlag.getText());
-		ConfigManager.saveFilterStartWoli(cbxFilterWochenlied.getEditor().getText());
-		ConfigManager.saveFilterStartThema(cbxFilterThema.getEditor().getText());
-		ConfigManager.saveFilterStartNoma(cbxFilterNotenmappe.getEditor().getText());
-		ConfigManager.saveFilterStartBib(cbxFilterBibel.getEditor().getText());
-		ConfigManager.saveFilterStartGesangbuch(cbxFilterGesangbuch.getEditor().getText());
+//		ConfigManager.saveFilterStartTitel(txtFilterTitel.getText());
+//		ConfigManager.saveFilterStartStckart(cbxFilterStueckart.getEditor().getText());
+//		ConfigManager.saveFilterStartEdition(txtFilterEdit.getText());
+//		ConfigManager.saveFilterStartKomponist(txtFilterKomp.getText());
+//		ConfigManager.saveFilterStartDichter(txtFilterDicht.getText());
+//		ConfigManager.saveFilterStartVerlag(txtFilterEditVerlag.getText());
+//		ConfigManager.saveFilterStartWoli(cbxFilterWochenlied.getEditor().getText());
+//		ConfigManager.saveFilterStartThema(cbxFilterThema.getEditor().getText());
+//		ConfigManager.saveFilterStartNoma(cbxFilterNotenmappe.getEditor().getText());
+//		ConfigManager.saveFilterStartBib(cbxFilterBibel.getEditor().getText());
+//		ConfigManager.saveFilterStartGesangbuch(cbxFilterGesangbuch.getEditor().getText());
 
-		ToolsWinHelper.closeApplication();
+		SceneManager.exitApp();
 	}
 
 	@FXML

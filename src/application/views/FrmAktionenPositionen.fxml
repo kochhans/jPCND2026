@@ -29,13 +29,13 @@
       <AnchorPane prefHeight="63.0" prefWidth="1280.0" style="-fx-background-color: #C0C0C0;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="btnZurueck" layoutX="1126.0" layoutY="17.0" onAction="#btnZurueck_OnClick" prefHeight="29.0" prefWidth="131.0" text="Zurück" AnchorPane.rightAnchor="23.0" />
-            <Label fx:id="lblAktionBeschreibung" layoutX="1001.0" layoutY="25.0" prefHeight="14.0" prefWidth="65.0" text="Aktion-ID" AnchorPane.rightAnchor="214.0" />
+            <Label fx:id="lblAktionBeschreibung" layoutX="1001.0" layoutY="25.0" prefHeight="14.0" prefWidth="50.0" text="Akt. -ID" AnchorPane.rightAnchor="214.0" />
             <Label fx:id="lblAktionDatum" layoutX="23.0" layoutY="37.0" prefHeight="19.0" prefWidth="1251.0" text="Label">
                <styleClass>
                   <String fx:value="label-title2" />
                   <String fx:value="schriftgelb" />
                </styleClass></Label>
-            <Label layoutX="23.0" layoutY="9.0" prefHeight="23.0" prefWidth="232.0" styleClass="label-title" text="Aktion bearbeiten ..." />
+            <Label layoutX="23.0" layoutY="9.0" prefHeight="23.0" prefWidth="232.0" styleClass="label-title" text="Aktivitäten bearbeiten ..." />
             <TextField fx:id="txtCaId" alignment="CENTER" disable="true" editable="false" layoutX="1061.0" layoutY="21.0" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: #C0C0C0;" styleClass="label" AnchorPane.rightAnchor="161.0" />
          </children></AnchorPane>
    </top>
@@ -50,8 +50,8 @@
                            <children>
                               <TableView fx:id="tblvwAktionPositionen" focusTraversable="false" layoutX="-1.0" minHeight="100.0" minWidth="518.0" onMouseClicked="#handleTblvwAktionPositionen_onmouse_clicked" prefHeight="250.0" prefWidth="577.0" style="-fx-selection-bar-non-focused: AAC4DF; -fx-selection-bar: #AAC4DF;" styleClass="..\styles\application.css" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <columns>
-                                    <TableColumn fx:id="tblvwPosCol0Pos" editable="false" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" resizable="false" sortable="false" text="P" />
-                                    <TableColumn fx:id="tblvwPosCol1Art" editable="false" minWidth="20.0" resizable="false" sortable="false" text="ProgPkt" />
+                                    <TableColumn fx:id="tblvwPosCol0Pos" editable="false" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" resizable="false" sortable="false" text="Pos" />
+                                    <TableColumn fx:id="tblvwPosCol1Art" editable="false" minWidth="20.0" resizable="false" sortable="false" text="Hinweis" />
                                     <TableColumn fx:id="tblvwPosCol2Stcktitel" editable="false" prefWidth="100.0" sortable="false" text="Stück-Titel" />
                                     <TableColumn fx:id="tblvwPosCol5Stckart" editable="false" prefWidth="50.0" sortable="false" text="Stück-Art" />
                                     <TableColumn fx:id="tblvwPosCol3Notenausgabe" editable="false" prefWidth="100.0" sortable="false" text="Notenausgabe" />
@@ -77,22 +77,22 @@
                               <TextField fx:id="txtPosTonart" alignment="CENTER" layoutX="378.0" layoutY="98.0" prefHeight="28.0" prefWidth="78.0" />
                               <TextField fx:id="txtPosKomponist" layoutX="20.0" layoutY="146.0" prefHeight="28.0" prefWidth="205.0" />
                               <TextField fx:id="txtPosBearbeiter" layoutX="235.0" layoutY="146.0" prefHeight="28.0" prefWidth="221.0" />
-                              <TextField fx:id="txtPosStueckart" layoutX="20.0" layoutY="194.0" prefHeight="28.0" prefWidth="206.0" />
-                              <TextField fx:id="txtPosDauermin" alignment="CENTER" layoutX="235.0" layoutY="194.0" prefHeight="28.0" prefWidth="60.0" />
-                              <TextField fx:id="txtPosDauersec" alignment="CENTER" layoutX="307.0" layoutY="194.0" prefHeight="28.0" prefWidth="60.0" />
+                              <TextField fx:id="txtPosStueckart" layoutX="20.0" layoutY="191.0" prefHeight="28.0" prefWidth="206.0" />
+                              <TextField fx:id="txtPosDauermin" alignment="CENTER" layoutX="235.0" layoutY="191.0" prefHeight="28.0" prefWidth="60.0" />
+                              <TextField fx:id="txtPosDauersec" alignment="CENTER" layoutX="307.0" layoutY="191.0" prefHeight="28.0" prefWidth="60.0" />
                               <TextField fx:id="txtPosBesetzung" layoutX="20.0" layoutY="235.0" prefHeight="28.0" prefWidth="438.0" />
                               <TextArea fx:id="txtBemerkungen" focusTraversable="false" layoutX="20.0" layoutY="281.0" prefHeight="69.0" prefWidth="438.0" />
-                              <Label layoutX="20.0" layoutY="38.0" text="Progr.Pkt." />
+                              <Label layoutX="20.0" layoutY="38.0" text="Hinweis" />
                               <Label layoutX="204.0" layoutY="38.0" prefHeight="14.0" prefWidth="177.0" text="Stücktitel bzw. Zwischentext" />
                               <Label layoutX="20.0" layoutY="84.0" prefHeight="14.0" prefWidth="143.0" text="Notenausgabe (Kürzel)" />
                               <Label layoutX="204.0" layoutY="84.0" text="Seite" />
                               <Label layoutX="295.0" layoutY="84.0" text="Nummer" />
-                              <Label layoutX="20.0" layoutY="177.0" text="Stück-Art" />
-                              <Label layoutX="20.0" layoutY="130.0" prefHeight="14.0" prefWidth="77.0" text="Komponist/in" />
-                              <Label layoutX="235.0" layoutY="130.0" prefHeight="14.0" prefWidth="77.0" text="Bearbeiter/in" />
+                              <Label layoutX="20.0" layoutY="176.0" text="Stück-Art" />
+                              <Label layoutX="20.0" layoutY="132.0" prefHeight="14.0" prefWidth="77.0" text="Komponist/in" />
+                              <Label layoutX="235.0" layoutY="132.0" prefHeight="14.0" prefWidth="77.0" text="Bearbeiter/in" />
                               <Label layoutX="378.0" layoutY="84.0" prefHeight="14.0" prefWidth="45.0" text="Tonart" />
-                              <Label layoutX="235.0" layoutY="178.0" prefHeight="14.0" prefWidth="60.0" text="Dauer min" />
-                              <Label layoutX="308.0" layoutY="178.0" prefHeight="14.0" prefWidth="60.0" text="Dauer sec" />
+                              <Label layoutX="235.0" layoutY="177.0" prefHeight="14.0" prefWidth="60.0" text="Dauer min" />
+                              <Label layoutX="308.0" layoutY="177.0" prefHeight="14.0" prefWidth="60.0" text="Dauer sec" />
                               <Label fx:id="lblZeilebearbeiten" layoutX="20.0" layoutY="7.0" prefHeight="19.0" prefWidth="434.0" text="...">
                                  <styleClass>
                                     <String fx:value="label-gn" />
@@ -103,7 +103,7 @@
 	                            <graphic>
 	                              <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
 	                                 <image>
-	                                    <Image url="@/icons/javafx/btn_accept16x16.png" />
+	                                    <Image url="@/icons/javafx/accept_16x16.png" />
 	                                 </image>
 	                              </ImageView>
 	                           </graphic>
@@ -117,7 +117,7 @@
                                <graphic>
 	                              <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
 	                                 <image>
-	                                    <Image url="@/icons/javafx/btn_leeren16x16.png" />
+	                                    <Image url="@/icons/javafx/table_edit16x16.png" />
 	                                 </image>
 	                              </ImageView>
 	                           </graphic>
@@ -131,7 +131,7 @@
                               <Button fx:id="btnPosLoeschen" focusTraversable="false" layoutX="519.0" layoutY="91.0" mnemonicParsing="false" onAction="#btnPosLoeschen_OnClick">
 								<graphic>
 									<ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
-										<image> <Image url="@/icons/javafx/pos_delete16x16.png" /> </image>
+										<image> <Image url="@/icons/javafx/cross16x16.png" /> </image>
 									</ImageView>
 								</graphic>
 								<tooltip>
@@ -141,8 +141,8 @@
                               
                               <Button fx:id="btnPosHoch" focusTraversable="false" layoutX="471.0" layoutY="11.0" mnemonicParsing="false" onAction="#btnPosHoch_OnClick" prefHeight="30.0" prefWidth="34.0">
                                  <graphic>
-									<ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
-										<image> <Image url="@/icons/javafx/pos_rauf16x16.png" /> </image>
+									<ImageView fitHeight="24" fitWidth="24" preserveRatio="true">
+										<image> <Image url="@/icons/javafx/icons8-pfeilaufwaerts-24x24.png" /> </image>
 									</ImageView>
 								</graphic>
 								<tooltip>
@@ -153,8 +153,8 @@
                               
                               <Button fx:id="btnPosRunter" focusTraversable="false" layoutX="519.0" layoutY="11.0" mnemonicParsing="false" onAction="#btnPosRunter_OnClick" prefHeight="30.0" prefWidth="21.0">
                                 <graphic>
-									<ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
-										<image> <Image url="@/icons/javafx/pos_runter16x16.png" /> </image>
+									<ImageView fitHeight="24" fitWidth="24" preserveRatio="true">
+										<image> <Image url="@/icons/javafx/icons8-pfeilabwaerts-24x24.png" /> </image>
 									</ImageView>
 								</graphic>
 								<tooltip>
@@ -186,7 +186,7 @@
                                  <graphic>
                                     <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
                                        <image>
-                                          <Image url="@/icons/javafx/btn_leeren-anhaengen16x16_page_white_put.png" />
+                                          <Image url="@/icons/javafx/table_add16x16.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -204,7 +204,7 @@
                <children>
                   <TabPane fx:id="tabPanePosFilter" minHeight="250.0" prefHeight="635.0" prefWidth="684.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <tabs>
-                      <Tab onSelectionChanged="#handleTabChanged" text="aus Literaturtabelle">
+                      <Tab onSelectionChanged="#handleTabChanged" text="aus Literaturdaten">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="517.0" prefWidth="684.0" style="-fx-background-color: #CBD5E8;">
                                  <children>
@@ -278,7 +278,7 @@
                                     <TableView fx:id="tblvwChoraktionenAufgef" focusTraversable="false" layoutX="9.0" layoutY="463.0" onMouseClicked="#handletblvwAktionenlisteGespielt_onmouse_clicked" prefHeight="141.0" prefWidth="678.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="463.0">
                                        <columns>
                                           <TableColumn fx:id="tblvwAktionenAufgefCol0" editable="false" minWidth="50.0" prefWidth="60.0" text="Datum" />
-                                          <TableColumn fx:id="tblvwAktionenAufgefCol1" prefWidth="120.0" text="Aktion" />
+                                          <TableColumn fx:id="tblvwAktionenAufgefCol1" prefWidth="120.0" text="Aktivität" />
                                           <TableColumn fx:id="tblvwAktionenAufgefCol2" maxWidth="80.0" prefWidth="100.0" text="Notenausgabe" />
                                           <TableColumn fx:id="tblvwAktionenAufgefCol3" minWidth="20.0" prefWidth="30.0" text="Nr" />
                                           <TableColumn fx:id="tblvwAktionenAufgefCol4" minWidth="20.0" prefWidth="30.0" text="S" />
@@ -313,7 +313,7 @@
                               </AnchorPane>
                         </content>
                       </Tab>
-                      <Tab closable="false" onSelectionChanged="#handleTabChanged" text="aus gespeicherten Aktionen">
+                      <Tab closable="false" onSelectionChanged="#handleTabChanged" text="aus gespeicherten Aktivitäten">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="569.0" prefWidth="684.0" style="-fx-background-color: #CAE5B6;">
                                  <children>
@@ -363,7 +363,7 @@
                                     <TableView fx:id="tblvwChoraktionen" focusTraversable="false" layoutX="8.0" layoutY="179.0" onMousePressed="#handletblvwAktionenliste_onmouse_clicked" prefHeight="220.0" prefWidth="678.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="179.0">
                                        <columns>
                                           <TableColumn fx:id="tblvwAktionenCol0" editable="false" minWidth="20.0" prefWidth="40.0" text="Datum" />
-                                          <TableColumn fx:id="tblvwAktionenCol1" prefWidth="100.0" text="Aktion" />
+                                          <TableColumn fx:id="tblvwAktionenCol1" prefWidth="100.0" text="Aktivität" />
                                           <TableColumn fx:id="tblvwAktionenCol2" prefWidth="100.0" text="Ort" />
                                           <TableColumn fx:id="tblvwAktionenCol3" prefWidth="100.0" text="Gruppe" />
                                           <TableColumn fx:id="tblvwAktionenCol4" prefWidth="55.0" text="Beginn" visible="false" />
@@ -378,8 +378,8 @@
                                     </TableView>
                                     <TableView fx:id="tblvwAktionPositionen1" editable="true" focusTraversable="false" layoutX="7.0" layoutY="435.0" onMouseClicked="#handleTblvwAktionPositionen1_onmouse_clicked" prefHeight="182.0" prefWidth="678.0" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="423.0">
                                        <columns>
-                                          <TableColumn fx:id="tblvwPosCol0Pos1" editable="false" prefWidth="30.0" resizable="false" sortable="false" text="P" />
-                                          <TableColumn fx:id="tblvwPosCol1Art1" editable="false" prefWidth="70.0" resizable="false" sortable="false" text="ProgPkt" />
+                                          <TableColumn fx:id="tblvwPosCol0Pos1" editable="false" prefWidth="30.0" resizable="false" sortable="false" text="Pos" />
+                                          <TableColumn fx:id="tblvwPosCol1Art1" editable="false" prefWidth="70.0" resizable="false" sortable="false" text="Hinweis" />
                                           <TableColumn fx:id="tblvwPosCol2Stcktitel1" editable="false" prefWidth="100.0" sortable="false" text="Stück-Titel" />
                                           <TableColumn fx:id="tblvwPosCol3Notenausgabe1" editable="false" prefWidth="60.0" sortable="false" text="Notenausgabe" />
                                           <TableColumn fx:id="tblvwPosCol4Nr1" editable="false" prefWidth="50.0" resizable="false" sortable="false" text="Nr" />
