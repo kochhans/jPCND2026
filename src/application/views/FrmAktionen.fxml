@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -61,25 +62,19 @@
 				<HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="60.0" prefWidth="1240.0" spacing="10.0" VBox.vgrow="ALWAYS">
 					<children>
 						<AnchorPane maxHeight="89.0" minHeight="66.0" prefHeight="66.0" prefWidth="1240.0" style="-fx-background-color: #C0C0C0;" HBox.hgrow="ALWAYS">
-                     <children>
-                        <Label fx:id="lblUpdateinfo" alignment="TOP_LEFT" layoutX="904.0" prefHeight="32.0" prefWidth="288.0" styleClass="label-rotklein" text="Updateinfo ..." textAlignment="RIGHT" wrapText="true" AnchorPane.rightAnchor="10.0" />
-                        <Button fx:id="btnZuNotenarchiv" cancelButton="true" focusTraversable="false" layoutX="668.0" layoutY="5.0" onAction="#btnZuNotenarchiv_OnClick" prefHeight="54.0" prefWidth="145.0" styleClass="button-neu" text="zum Literatur- Notenarchiv..." wrapText="true">
-                           <graphic>
-                              <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
-                                 <image>
-                                    <Image url="@/icons/javafx/jpcndicon0032.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <tooltip>
-                              <Tooltip text="zum Literatur-Notenarchiv wechseln ..." />
-                           </tooltip>
-                        </Button>                        
+                     <children>                             
+                        
+                        
+                        
+                        
+                        
+                        <Button fx:id="btnUpdaten" layoutX="798.0" layoutY="27.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#btnUpdaten_OnClick" opacity="0.78" prefHeight="32.0" prefWidth="152.0" styleClass="button-loeschen" text="Update verfügbar ..." textFill="#c90a0a" AnchorPane.rightAnchor="290.0" />
+                        <Label fx:id="lblUpdateinfo" layoutX="771.0" layoutY="2.0" prefHeight="25.0" prefWidth="428.0" styleClass="label-rotklein" text="Updateinfo ..." textAlignment="RIGHT" wrapText="true" AnchorPane.rightAnchor="10.0" />                        
                         
                         
                         
                         <Label fx:id="lblTitelHinweise" layoutX="91.0" layoutY="41.0" prefHeight="14.0" prefWidth="569.0" text="Aktivitäten bearbeiten und Programmpunkte zuweisen ..." />
-                        <Label fx:id="lblHaupttitel" layoutX="86.0" layoutY="9.0" maxHeight="41.0" maxWidth="655.0" minHeight="30.0" minWidth="181.0" prefHeight="32.0" prefWidth="547.0" styleClass="label-title" text="Aktivitäten - Proben, Konzerte, Aufführungen, ...">
+                        <Label fx:id="lblHaupttitel" layoutX="86.0" layoutY="9.0" maxHeight="41.0" maxWidth="655.0" minHeight="30.0" minWidth="181.0" prefHeight="32.0" prefWidth="428.0" styleClass="label-title" text="Aktivitäten - Proben, Aufführungen, ...">
                            <padding>
                               <Insets left="5.0" />
                            </padding>
@@ -90,8 +85,30 @@
                            </image>
                         </ImageView>
                         <Button fx:id="btnInfo" focusTraversable="false" layoutX="1011.0" layoutY="22.0" onAction="#btnInfo_OnClick" prefHeight="29.0" prefWidth="73.0" styleClass="button-neu" text="Info" visible="false" AnchorPane.rightAnchor="156.0" />
-                        <Button fx:id="btnBeenden" layoutX="1140.0" layoutY="29.0" onAction="#men01AktionenBeenden_OnClick" prefHeight="32.0" prefWidth="131.0" styleClass="button-neu" text="jPCND beenden" AnchorPane.rightAnchor="9.0" />
-                        <Button fx:id="btnUpdaten" layoutX="943.0" layoutY="29.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#btnUpdaten_OnClick" opacity="0.78" prefHeight="32.0" prefWidth="152.0" styleClass="button-loeschen" text="Update verfügbar ..." textFill="#c90a0a" AnchorPane.rightAnchor="145.0" />
+                        <Button fx:id="btnZuNotenarchiv" cancelButton="true" focusTraversable="false" layoutX="1012.0" layoutY="6.0" onAction="#btnZuNotenarchiv_OnClick" prefHeight="54.0" prefWidth="158.0" styleClass="button-neu" text="zum Literatur- Notenarchiv..." wrapText="true" AnchorPane.rightAnchor="77.0">
+                           <graphic>
+                              <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
+                                 <image>
+                                    <Image url="@/icons/javafx/jpcndicon0032.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="zum Literatur-Notenarchiv wechseln ..." />
+                           </tooltip>
+                        </Button>
+                        <Button fx:id="btnBeenden" layoutX="1173.0" layoutY="7.0" onAction="#men01AktionenBeenden_OnClick" prefHeight="54.0" prefWidth="58.0" styleClass="button-neu" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="14.0">
+                           <graphic>
+                              <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
+                                 <image>
+                                    <Image url="@/icons/javafx/application-exit_32x32_OpIcLibStd011.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Programm beenden ..." />
+                           </tooltip>
+                        </Button>
                      </children>
 						</AnchorPane>
 					</children>
@@ -162,7 +179,11 @@
                            </tooltip>
                         </Button>
                         <Label fx:id="lblAktionAktuell" disable="true" layoutX="1128.0" layoutY="5.0" prefHeight="17.0" prefWidth="175.0" text="aktuelle Aktivität..." textFill="#6b6b6b" AnchorPane.rightAnchor="14.0" />
-                        <Button fx:id="btnStammdaten" cancelButton="true" focusTraversable="false" layoutX="928.0" layoutY="64.0" onAction="#btnStammdaten_OnAction" prefHeight="29.0" prefWidth="117.0" styleClass="button-neu" text="Stammdaten" wrapText="true" AnchorPane.rightAnchor="195.0" />
+                        <Button fx:id="btnStammdaten" cancelButton="true" focusTraversable="false" layoutX="928.0" layoutY="64.0" onAction="#btnStammdaten_OnAction" prefHeight="29.0" prefWidth="117.0" text="Stammdaten" wrapText="true" AnchorPane.rightAnchor="195.0">
+                           <styleClass>
+                              <String fx:value="button-neu" />
+                              <String fx:value="schriftblaugrau" />
+                           </styleClass></Button>
                      </children></AnchorPane>
 					</children>
 				</HBox>

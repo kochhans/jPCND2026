@@ -122,8 +122,13 @@
 .schriftweiss{
 	-fx-text-fill: white;
 }
+
+.schriftblaugrau{
+	-fx-text-fill: #83AADE;
+}
+
 .schriftgelb{
-	-fx-text-fill: white;
+	-fx-text-fill: yellow;
 }
 /*Pesudoklassen für Laufzeitumschaltung*/
 .label:blau	{

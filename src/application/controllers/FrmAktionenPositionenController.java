@@ -392,7 +392,7 @@ public class FrmAktionenPositionenController
 		// ✅ Wichtig: Die Strings in PropertyValueFactory müssen exakt den Getter-Namen
 		// !!ohne get!! entsprechen (lsbibez → getLsbibez()).
 		// TABLEVIEWES mit Spalten -----
-		lblFilterTab1Anzahl.setText("Kein Filter aktiv -- bitte die gewünschte Literatur filtern");
+		lblFilterTab1Anzahl.setText("Aktivitätensuche - Filter nicht aktiv");
 		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 		DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 		// ---------------- Datum ----------------
@@ -441,7 +441,7 @@ public class FrmAktionenPositionenController
 		tblvwAktionenCol6.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getCaverantwortlich()));
 		// ---------------- Art Probe/Auff ----------------
 		tblvwAktionenCol7.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getCaauftrittstermin()));
-		lblFilterTab1Anzahl.setText("Kein Filter aktiv -- bitte gewünschte Aktionen filtern");
+		lblFilterTab1Anzahl.setText("Aktivitätensuche - Filter nicht aktiv");
 		// ---------------- Lade Daten aus DB ----------------
 		try
 		{
@@ -1417,7 +1417,7 @@ public class FrmAktionenPositionenController
 	// ===============================================================================================
 	private void initTblvwLiteraturliste()
 	{
-		lblFilterTab0Anzahl.setText("Kein Filter aktiv -- bitte die gewünschte Literatur filtern");
+		lblFilterTab0Anzahl.setText("Kein Filter aus Literaturdaten aktiv ...");
 		tblvwColId.setCellValueFactory(new PropertyValueFactory<LiteraturlisteModel, String>("id"));
 		// tblvwColErfasst.setCellValueFactory(new
 		// PropertyValueFactory<LiteraturlisteModel, String>("literfasst"));
@@ -1592,7 +1592,7 @@ public class FrmAktionenPositionenController
 		cbxFilterNotenmappe.getSelectionModel().clearSelection();
 		cbxFilterNotenmappe.getEditor().setText("");
 		oblist_lit.clear();
-		lblFilterTab0Anzahl.setText("Kein Filter aktiv -- bitte die gewünschte Literatur filtern");
+		lblFilterTab0Anzahl.setText("Kein Filter aus Literaturdaten aktiv ...");
 	}
 
 	void clearFilterfelderAktionen() throws Exception
@@ -1823,20 +1823,38 @@ public class FrmAktionenPositionenController
 	@FXML // Button Filtern...
 	public void btnFilterAn_OnClick(ActionEvent event) throws Exception
 	{
-		filtern(0);
+		int tabAktiv = 0;
+		tabAktiv=tabPanePosFilter.getSelectionModel().getSelectedIndex();
+		System.out.println(tabAktiv);
+		if(tabAktiv==0) {
+			filtern(0);
+		}
+		else if(tabAktiv==1){
+			filternAktionen();
+		}
 	}
 
 	@FXML // Button Filter aus
-	public void btnFilterAus_OnClick(ActionEvent event)
+	public void btnFilterAus_OnClick(ActionEvent event) throws Exception
 	{
-		try
-		{
+		int tabAktiv = 0;
+		tabAktiv=tabPanePosFilter.getSelectionModel().getSelectedIndex();
+		System.out.println(tabAktiv);
+		if(tabAktiv==0) {
 			clearFilterfelder();
 		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
+		else if(tabAktiv==1){
+			clearFilterfelderAktionen();
 		}
+		
+//		try
+//		{
+//			clearFilterfelder();
+//		}
+//		catch (Exception e)
+//		{
+//			e.printStackTrace();
+//		}
 	}
 
 	// =========================================================================================================
@@ -1882,7 +1900,7 @@ public class FrmAktionenPositionenController
 			listadb.forEach((item) -> oblist_lit.add(item));
 			tblvwLiteratur.setItems(oblist_lit);
 			tblvwLiteratur.getSortOrder().add(tblvwColTitel);
-			lblFilterTab0Anzahl.setText(oblist_lit.size() + " Literatureinträge");
+			lblFilterTab0Anzahl.setText(oblist_lit.size() + " Literatureinträge gefiltert");
 			// gefiltert (maximal " + ValuesGlobals.filtermax + ")");
 			Platform.runLater(new Runnable()
 			{
@@ -2024,7 +2042,7 @@ public class FrmAktionenPositionenController
 		// TableView aktualisieren
 		tblvwChoraktionen.getSortOrder().clear();
 		tblvwChoraktionen.setItems(oblist_aktionen);
-		lblFilterTab1Anzahl.setText(oblist_aktionen.size() + " Aktion(en) gefiltert");
+		lblFilterTab1Anzahl.setText(oblist_aktionen.size() + " gespeicherte Aktivitäten gefunden");
 		// lblFilterTab1Anzahl.setText(oblist_aktionen + " Literatureinträge");
 		// leerenTabelleAktionenPositionen();
 	}

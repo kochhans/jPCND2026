@@ -401,8 +401,7 @@ public class FrmStartController implements Initializable
 	{
 		System.out.println("Scene1 wird angezeigt");
 		// Hier deine Scene-spezifische Initialisierung
-		
-    
+
 		initView();
 
 	}
@@ -437,12 +436,29 @@ public class FrmStartController implements Initializable
 			updateCombosLitItems();
 			// Felder auf dem ersten Rgeister leeren
 			clearLitEingabefelder();
-			checkUpdates();
-//			// ===== Update-Check nur 1x pro Sitzung =====
-//			if(ValuesGlobals.updatecheck==true){
-//				checkUpdates();
-//				ValuesGlobals.updatecheck=false;
-//			}
+//			checkUpdates();
+			// ===== Update-Check nur 1x pro Sitzung =====
+			if (ValuesGlobals.updatecheck == true)
+			{
+				checkUpdates();
+
+				ValuesGlobals.updatecheck = false;
+			}
+			else
+			{
+				if (ValuesGlobals.updatebuttonvisible == true)
+				{
+					btnUpdaten.setVisible(true);
+					lblUpdateinfo.setVisible(true);
+					lblUpdateinfo.setText(ValuesGlobals.updatetext);
+				}
+				else
+				{
+					btnUpdaten.setVisible(false);
+					lblUpdateinfo.setVisible(false);
+				}
+
+			}
 
 			// Alle TableViews in rootPane durchgehen und Spalten fixieren
 			rootStart.lookupAll(".table-view").forEach(tv -> ((TableView<?>) tv).getColumns().forEach(col -> col.setReorderable(false)));
@@ -461,6 +477,7 @@ public class FrmStartController implements Initializable
 		System.out.println("(3) checkUpdates()");
 		btnUpdaten.setVisible(false);
 		men40.setVisible(false);
+
 		try
 		{
 			String infotext = "";
@@ -507,12 +524,16 @@ public class FrmStartController implements Initializable
 				btnUpdaten.setVisible(false);
 				men40.setVisible(false);
 				lblUpdateinfo.setVisible(false);
+				ValuesGlobals.updatebuttonvisible = false;
+				ValuesGlobals.updatetext = "";
 			}
 			else
 			{
 				men40.setVisible(true);
 				lblUpdateinfo.setVisible(true);
 				lblUpdateinfo.setText(infotext);
+				ValuesGlobals.updatebuttonvisible = true;
+				ValuesGlobals.updatetext = infotext;
 			}
 		}
 		catch (Exception e)
@@ -557,43 +578,44 @@ public class FrmStartController implements Initializable
 //		cbxFilterNotenmappe.getEditor().setText(ConfigManager.loadFilterStartNoma());
 //		cbxFilterBibel.getEditor().setText(ConfigManager.loadFilterStartBib());
 //		cbxFilterGesangbuch.getEditor().setText(ConfigManager.loadFilterStartGesangbuch());
-		
+
 		// --------- Filterstatus holen
-	    FilterState f = FilterState.get();
-	    
-	    txtFilterTitel.setText(f.titel);
-	    cbxFilterStueckart.getEditor().setText(f.stueckart);
-	    txtFilterEdit.setText(f.edition);
-	    txtFilterKomp.setText(f.komponist);
-	    txtFilterDicht.setText(f.dichter);
-	    txtFilterEditVerlag.setText(f.verlag);
-	    cbxFilterWochenlied.getEditor().setText(f.wochenlied);
-	    cbxFilterThema.getEditor().setText(f.thema);
-	    cbxFilterNotenmappe.getEditor().setText(f.notenmappe);
-	    cbxFilterBibel.getEditor().setText(f.bibel);
-	    cbxFilterGesangbuch.getEditor().setText(f.gesangbuch);
-	    // ----------------------------------
-		
-		
+		FilterState f = FilterState.get();
+
+		txtFilterTitel.setText(f.titel);
+		cbxFilterStueckart.getEditor().setText(f.stueckart);
+		txtFilterEdit.setText(f.edition);
+		txtFilterKomp.setText(f.komponist);
+		txtFilterDicht.setText(f.dichter);
+		txtFilterEditVerlag.setText(f.verlag);
+		cbxFilterWochenlied.getEditor().setText(f.wochenlied);
+		cbxFilterThema.getEditor().setText(f.thema);
+		cbxFilterNotenmappe.getEditor().setText(f.notenmappe);
+		cbxFilterBibel.getEditor().setText(f.bibel);
+		cbxFilterGesangbuch.getEditor().setText(f.gesangbuch);
+		// ----------------------------------
+
 		lblFilterFortschrittsinfo.setText("Bitte Filterkriterien eingeben ...");
 		filtern(0);
 
 	}
-// Filter speichern beim ändern der Scene	
-	private void saveFilterToState() {
-	    FilterState f = FilterState.get();
 
-	    f.titel = txtFilterTitel.getText();
-	    f.stueckart = cbxFilterStueckart.getEditor().getText();
-	    f.edition = txtFilterEdit.getText();
-	    f.komponist = txtFilterKomp.getText();
-	    f.dichter = txtFilterDicht.getText();
-	    f.verlag = txtFilterEditVerlag.getText();
-	    f.wochenlied = cbxFilterWochenlied.getEditor().getText();
-	    f.thema = cbxFilterThema.getEditor().getText();
-	    f.notenmappe = cbxFilterNotenmappe.getEditor().getText();
-	    f.bibel = cbxFilterBibel.getEditor().getText();
-	    f.gesangbuch = cbxFilterGesangbuch.getEditor().getText();
+// Filter speichern beim ändern der Scene	
+	private void saveFilterToState()
+	{
+		FilterState f = FilterState.get();
+
+		f.titel = txtFilterTitel.getText();
+		f.stueckart = cbxFilterStueckart.getEditor().getText();
+		f.edition = txtFilterEdit.getText();
+		f.komponist = txtFilterKomp.getText();
+		f.dichter = txtFilterDicht.getText();
+		f.verlag = txtFilterEditVerlag.getText();
+		f.wochenlied = cbxFilterWochenlied.getEditor().getText();
+		f.thema = cbxFilterThema.getEditor().getText();
+		f.notenmappe = cbxFilterNotenmappe.getEditor().getText();
+		f.bibel = cbxFilterBibel.getEditor().getText();
+		f.gesangbuch = cbxFilterGesangbuch.getEditor().getText();
 	}
 // ===================================================================================
 
@@ -726,8 +748,10 @@ public class FrmStartController implements Initializable
 		tblvwColEditJahr.setCellValueFactory(cd -> cd.getValue().edjahrProperty());
 		tblvwColEditHrsg.setCellValueFactory(cd -> cd.getValue().hrsgProperty());
 		tblvwColEditGrafik.setCellValueFactory(cd -> cd.getValue().titelgrafikpfadProperty());
-		//tblvwColEditEingabe.setCellValueFactory(cd -> cd.getValue().erfasstProperty());
-		//tblvwColEditEingabe.setCellValueFactory(cd -> cd.getValue().eingabezeitpunktProperty());
+		// tblvwColEditEingabe.setCellValueFactory(cd ->
+		// cd.getValue().erfasstProperty());
+		// tblvwColEditEingabe.setCellValueFactory(cd ->
+		// cd.getValue().eingabezeitpunktProperty());
 		tblvwColEditEingabe.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getEingabezeitpunkt().substring(0, 10)));
 		tblvwColEditArt.setCellValueFactory(cd -> cd.getValue().edartProperty());
 	}
@@ -1127,14 +1151,15 @@ public class FrmStartController implements Initializable
 	}
 
 	@FXML
-	private void btnAktivitaeten_OnClick(ActionEvent event) throws Exception {
+	private void btnAktivitaeten_OnClick(ActionEvent event) throws Exception
+	{
 
 		saveFilterToState(); // ALLE Filter speichern
-	    btnUpdaten.setVisible(false);
+		btnUpdaten.setVisible(false);
 
-	    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-	    SceneManager.showAktionen(stage);
+		SceneManager.showAktionen(stage);
 	}
 
 //######## TabBereich Lieder Stücke	
@@ -1552,7 +1577,8 @@ public class FrmStartController implements Initializable
 			controller.init(stModalwindow); // init in zugeh. EditController!
 
 			stModalwindow.initModality(Modality.APPLICATION_MODAL);
-			stModalwindow.initOwner(((Node) event.getSource()).getScene().getWindow());
+			stModalwindow.initOwner(btnUpdaten.getScene().getWindow());
+			// stModalwindow.initOwner(((Node) event.getSource()).getScene().getWindow());
 			stModalwindow.setTitle("Tage für Wochenlieder bearbeiten...");
 			stModalwindow.setResizable(false);
 			stModalwindow.initOwner(btnUpdaten.getScene().getWindow());
@@ -1705,8 +1731,8 @@ public class FrmStartController implements Initializable
 		}
 
 		String litgrafikedit = txtLitEditTitelgrafikpfad.getText();
-		
-		//--Nummer----------------------------------------------
+
+		// --Nummer----------------------------------------------
 		Integer litnummeredit = 0;
 		String litnummerzusedit = txtLitEditNrzus.getText();
 		try
@@ -1714,7 +1740,7 @@ public class FrmStartController implements Initializable
 			if (!(txtLitEditNr.getText().equals("")))
 			{
 				litnummeredit = Integer.parseInt(txtLitEditNr.getText());
-				
+
 			}
 			else
 			{
@@ -1727,12 +1753,13 @@ public class FrmStartController implements Initializable
 			e.printStackTrace();
 			txtLitDbCheck.setText("Original ADB");
 		}
-		
-		if(txtLitEditNrzus.getText().length()>29) {
+
+		if (txtLitEditNrzus.getText().length() > 29)
+		{
 			Msgbox.show("Eingabe Nummern-Zusatz ...", "Die Eingabe ist zu lang und wird auf 30 Zeichen gekürzt");
-			litnummerzusedit=litnummerzusedit.substring(0, 28);			
+			litnummerzusedit = litnummerzusedit.substring(0, 28);
 		}
-		//-- Seitenzahl ---------------------------------------------------------
+		// -- Seitenzahl ---------------------------------------------------------
 		Integer litseiteedit = 0;
 		String litseitezusedit = txtLitEditSeitezus.getText();
 		if (!(txtLitEditSeite.getText().equals("")))
@@ -1743,9 +1770,10 @@ public class FrmStartController implements Initializable
 		{
 			litseiteedit = 0;
 		}
-		if(txtLitEditSeitezus.getText().length()>29) {
+		if (txtLitEditSeitezus.getText().length() > 29)
+		{
 			Msgbox.show("Eingabe Seite-Zusatz ...", "Die Eingabe ist zu lang und wird auf 30 Zeichen gekürzt");
-			litseitezusedit=litseitezusedit.substring(0, 28);			
+			litseitezusedit = litseitezusedit.substring(0, 28);
 		}
 
 		// --
@@ -2035,16 +2063,17 @@ public class FrmStartController implements Initializable
 	public void btnNaSpeichern_OnClick(ActionEvent event) throws Exception
 	{
 		String lt = "", kt = "", hrsg = "", verlag = "", beschr = "", edart = "",
-				bestnr = "", grafik = "", editjahr = "", schwierig = "", erfasst = "", db = "", idcheck = "", ltalt="";
+				bestnr = "", grafik = "", editjahr = "", schwierig = "", erfasst = "", db = "", idcheck = "", ltalt = "";
 		int idAlt = 0;
 		int idNeuEdit = 0;
-		
+
 		// tblvwEditionen.getSortOrder().clear();
 		EditionenlisteModel selected = tblvwEditionen.getSelectionModel().getSelectedItem();
-		if(selected !=null) {
-			ltalt= selected.getLt();
+		if (selected != null)
+		{
+			ltalt = selected.getLt();
 		}
-		
+
 		if ((txtNaEditLang.getText() == "") || (txtNaEditKurz.getText() == ""))
 		{
 			Msgbox.show("Eingabe unvollständig...", "Bitte geben Sie eine eindeutige Bezeichnung\n"
@@ -2109,7 +2138,8 @@ public class FrmStartController implements Initializable
 			{
 				db = ValuesGlobals.privatEingabeedit;
 			}
-			dbStart().setNotenausgabeEditSpeichern(lt, kt, verlag, hrsg, bestnr, edart, editjahr, schwierig, grafik, beschr, erfasst, db, idAlt, ltalt); // ( kt, verlag, hrsg, bestnr,
+			dbStart().setNotenausgabeEditSpeichern(lt, kt, verlag, hrsg, bestnr, edart, editjahr, schwierig, grafik, beschr, erfasst, db, idAlt, ltalt); // ( kt, verlag, hrsg,
+																																							// bestnr,
 			idNeuEdit = idAlt;
 		}
 		// neu einlesen und Tabelle scrollen
@@ -2300,7 +2330,6 @@ public class FrmStartController implements Initializable
 			controller.setDb(dbVerlag());
 			controller.setStage(stModalwindow);
 
-
 			stModalwindow.setOnCloseRequest(e -> {
 				e.consume();
 				try
@@ -2416,7 +2445,6 @@ public class FrmStartController implements Initializable
 
 		stModalwindow.showAndWait();
 	}
-
 
 ////############################### Drucken #############################################
 //	 Drucken aus dem Hauptfenster...
@@ -3000,6 +3028,12 @@ public class FrmStartController implements Initializable
 	@FXML
 	public void men01Beenden_OnClick()
 	{
+
+		if (!Msgbox.yesno("Programm beenden", "Möchten Sie das Programm wirklich beenden?"))
+		{
+			return;
+		}
+
 //		ConfigManager.saveFilterStartTitel(txtFilterTitel.getText());
 //		ConfigManager.saveFilterStartStckart(cbxFilterStueckart.getEditor().getText());
 //		ConfigManager.saveFilterStartEdition(txtFilterEdit.getText());
@@ -3034,7 +3068,7 @@ public class FrmStartController implements Initializable
 
 		// 🔹 Owner setzen → KEIN extra Taskleisten-Icon mehr
 		stModalwindow.initOwner(btnUpdaten.getScene().getWindow()); // aus beliebigem Steuerelement holen
-		
+
 		// 🔹 Modalität
 		stModalwindow.initModality(Modality.APPLICATION_MODAL);
 

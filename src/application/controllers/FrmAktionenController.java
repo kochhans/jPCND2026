@@ -377,6 +377,18 @@ public class FrmAktionenController
 			checkUpdates();
 			ValuesGlobals.updatecheck=false;
 		}
+		else {
+			if(ValuesGlobals.updatebuttonvisible==true) {
+				btnUpdaten.setVisible(true);
+				lblUpdateinfo.setVisible(true);
+				lblUpdateinfo.setText(ValuesGlobals.updatetext);
+			}
+			else {
+				btnUpdaten.setVisible(false);
+				lblUpdateinfo.setVisible(false);
+			}
+			
+		}
 
 	}
 
@@ -497,6 +509,7 @@ public class FrmAktionenController
 			{
 				infotext += "\nNeue Datenbank-Version: " + versionNeu;
 				btnUpdaten.setVisible(true);
+
 				//men40.setVisible(true);
 				//men40Datenbank.setVisible(true);
 				// lblDbVersion.setText("aktive Datenbank: " +
@@ -512,12 +525,16 @@ public class FrmAktionenController
 				btnUpdaten.setVisible(false);
 				//men40.setVisible(false);
 				lblUpdateinfo.setVisible(false);
+				ValuesGlobals.updatebuttonvisible=false;
+				ValuesGlobals.updatetext="";
 			}
 			else
 			{
 				//men40.setVisible(true);
 				lblUpdateinfo.setVisible(true);
 				lblUpdateinfo.setText(infotext);
+				ValuesGlobals.updatebuttonvisible=true;
+				ValuesGlobals.updatetext=infotext;
 			}
 		}
 		catch (Exception e)
@@ -2741,6 +2758,9 @@ public class FrmAktionenController
 	@FXML
 	public void men01AktionenBeenden_OnClick()
 	{
+        if (!Msgbox.yesno("Programm beenden", "Möchten Sie das Programm wirklich beenden?")) {
+              return;
+        }
 
 		SceneManager.exitApp();
 	}

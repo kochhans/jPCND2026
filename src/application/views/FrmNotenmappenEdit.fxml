@@ -50,9 +50,9 @@
 				<TableView fx:id="tblvwNm" layoutX="11.0" layoutY="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onMouseReleased="#tblvwNoma_OnMouseRel" prefHeight="125.0" prefWidth="449.0" stylesheets="@../styles/application.css">
 					<placeholder><Label text="-" /> </placeholder>
 					<columns>
-						<TableColumn fx:id="tblvwColNmbez" maxWidth="200.0" minWidth="50.0" prefWidth="160.0" text="Notenmappe" />
-						<TableColumn fx:id="tblvwColNmbem" editable="false" maxWidth="300.0" minWidth="80.0" prefWidth="100.0" text="Bemerkungen" />
-						<TableColumn fx:id="tblvwColNmId" maxWidth="70.0" minWidth="20.0" prefWidth="50.0" resizable="false" text="ID" />
+						<TableColumn fx:id="tblvwColNmbez" maxWidth="309.0" minWidth="50.0" prefWidth="309.0" text="Notenmappe" />
+						<TableColumn fx:id="tblvwColNmbem" editable="false" maxWidth="300.0" minWidth="80.0" prefWidth="138.0" text="Bemerkungen" />
+						<TableColumn fx:id="tblvwColNmId" maxWidth="70.0" minWidth="20.0" prefWidth="50.0" resizable="false" text="ID" visible="false" />
 					</columns>
 					<columnResizePolicy>
 						<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -89,18 +89,17 @@
             <TableView fx:id="tblvwNmEditAuswahl" layoutX="603.0" layoutY="187.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onMouseReleased="#tblvwNmEditAuswahl_OnMouseRel" prefHeight="409.0" prefWidth="358.0" stylesheets="@../styles/application.css">
                <placeholder><Label text="-" /> </placeholder>
                <columns>
-                  <TableColumn fx:id="tblvwColNmAuswahlEditon" editable="false" maxWidth="400.0" minWidth="50.0" prefWidth="300.0" text="Notenausgabe/Edition" />
-                  <TableColumn fx:id="tblvwColNmAuswahlVerlag" editable="false" maxWidth="200.0" minWidth="80.0" prefWidth="100.0" text="Verlag" />
+                  <TableColumn fx:id="tblvwColNmAuswahlEditon" editable="false" maxWidth="400.0" minWidth="50.0" prefWidth="264.0" text="Notenausgabe/Edition" />
+                  <TableColumn fx:id="tblvwColNmAuswahlVerlag" editable="false" maxWidth="200.0" minWidth="62.0" prefWidth="92.0" text="Verlag" />
                   <TableColumn fx:id="tblvwColNmAuswahlId" editable="false" maxWidth="50.0" minWidth="20.0" prefWidth="30.0" resizable="false" text="ID" visible="false" />
                </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <TextField fx:id="txtFilterNomaEdition" layoutX="666.0" layoutY="58.0" prefHeight="26.0" prefWidth="185.0" />
-            <TextField fx:id="txtFilterNomaVerlag" layoutX="667.0" layoutY="91.0" prefHeight="26.0" prefWidth="185.0" />
-            <Label alignment="CENTER_RIGHT" layoutX="604.0" layoutY="67.0" prefHeight="18.0" prefWidth="53.0" text="Notenedit." />
-            <Label alignment="CENTER_RIGHT" layoutX="600.0" layoutY="95.0" prefHeight="18.0" prefWidth="53.0" text="Verlag" />
+            <TextField fx:id="txtFilterNomaEdition" layoutX="658.0" layoutY="58.0" prefHeight="28.0" prefWidth="204.0" />
+            <TextField fx:id="txtFilterNomaVerlag" layoutX="659.0" layoutY="91.0" prefHeight="28.0" prefWidth="204.0" />
+            <Label alignment="CENTER_RIGHT" layoutX="582.0" layoutY="97.0" prefHeight="18.0" prefWidth="69.0" text="Filter Verlag" />
             <TextField fx:id="txtNmInhaltEditAnzahl" layoutX="367.0" layoutY="475.0" prefHeight="26.0" prefWidth="62.0" />
             <TextField fx:id="txtNmInhaltEditLo2" layoutX="88.0" layoutY="542.0" prefHeight="26.0" prefWidth="111.0" />
             <TextField fx:id="txtNmInhaltEditLo1" layoutX="86.0" layoutY="508.0" prefHeight="26.0" prefWidth="343.0" />
@@ -142,7 +141,7 @@
 									    </graphic>
 								        <tooltip><Tooltip text="Filter entfernen ..." /> </tooltip>           
             </Button>
-				<HBox layoutX="858.0" layoutY="61.0" prefHeight="118.0" prefWidth="98.0" style="-fx-border-color: white; -fx-alignment: CENTER;">
+				<HBox layoutX="871.0" layoutY="61.0" prefHeight="118.0" prefWidth="98.0" style="-fx-border-color: white; -fx-alignment: CENTER;">
                <children>
                   <ImageView fx:id="imgNomaGrafik" fitHeight="109.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
                </children></HBox>
@@ -155,22 +154,12 @@
             <Label alignment="CENTER_RIGHT" layoutX="-1.0" layoutY="546.0" prefHeight="18.0" prefWidth="83.0" text="z.B. Schrank" />
             <Label alignment="CENTER_RIGHT" layoutX="207.0" layoutY="546.0" prefHeight="18.0" prefWidth="53.0" text="z.B. Regal" />
             <Label alignment="CENTER_RIGHT" layoutX="9.0" layoutY="138.0" prefHeight="18.0" prefWidth="98.0" text="Notenmappe" />
-            <Button fx:id="btnNomaEditWeg" layoutX="540.0" layoutY="302.0" mnemonicParsing="false" onAction="#btnNomaEditWeg_OnClick" prefHeight="46.0" prefWidth="62.0">
- 										<graphic>
-									        <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
-									            <image> <Image url="@/icons/javafx/btn_nachrechts32x32.png" /> </image>
-									        </ImageView>
-									    </graphic>
+            <Button fx:id="btnNomaEditWeg" layoutX="540.0" layoutY="302.0" mnemonicParsing="false" onAction="#btnNomaEditWeg_OnClick" prefHeight="46.0" prefWidth="62.0" styleClass="button-loeschen" text="&gt;&gt;&gt;">
 								        <tooltip><Tooltip text="Editionen aus der Notenmappe entfernen ..." /> </tooltip>     			
    			
    			</Button>         
             
-            <Button fx:id="btnNomaEditHinzu" layoutX="540.0" layoutY="250.0" mnemonicParsing="false" onAction="#btnNomaEditHinzu_OnClick" prefHeight="46.0" prefWidth="62.0">
-  										<graphic>
-									        <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
-									            <image> <Image url="@/icons/javafx/btn_nachlinks32x32.png" /> </image>
-									        </ImageView>
-									    </graphic>
+            <Button fx:id="btnNomaEditHinzu" layoutX="540.0" layoutY="250.0" mnemonicParsing="false" onAction="#btnNomaEditHinzu_OnClick" prefHeight="46.0" prefWidth="62.0" styleClass="button-speichern" text="&lt;&lt;&lt;">
 								        <tooltip><Tooltip text="Editionen zur Notenmappe hinzufügen ..." /> </tooltip>               
             </Button>
 
@@ -180,7 +169,7 @@
                </font></Label>
             <Label layoutX="603.0" layoutY="11.0" prefHeight="25.0" prefWidth="251.0" text="Notenausgaben" />
             <Label layoutX="19.0" layoutY="225.0" prefHeight="25.0" prefWidth="185.0" text="Inhalt der Mappe" />
-            <Label alignment="CENTER_RIGHT" layoutX="600.0" layoutY="50.0" prefHeight="18.0" prefWidth="53.0" text="Filter" />
+            <Label alignment="CENTER_RIGHT" layoutX="582.0" layoutY="58.0" prefHeight="32.0" prefWidth="76.0" text="Filter Notenausgabe" wrapText="true" />
 
 			</children>
 		</AnchorPane>

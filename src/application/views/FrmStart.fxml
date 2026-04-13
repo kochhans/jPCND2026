@@ -44,14 +44,17 @@
 						</Menu>
 						<Menu fx:id="men20" mnemonicParsing="false" text="Basisdaten">
 							<items>
-                        		<MenuItem mnemonicParsing="false" text="Autoren..." />
-                       		 	<MenuItem mnemonicParsing="false" text="Verlage..." />
-								<MenuItem fx:id="men02BasisStucekarten" mnemonicParsing="false" text="Stückarten..." />
-                        		<MenuItem mnemonicParsing="false" text="Editionsarten..." />
+                        		<MenuItem mnemonicParsing="false" onAction="#btnKomponistEdit_OnClick" text="Autoren..." />
+                       		 	<MenuItem mnemonicParsing="false" onAction="#btnVerlagEdit_OnClick" text="Verlage..." />
+								<MenuItem fx:id="men02BasisStucekarten" mnemonicParsing="false" onAction="#btnStueckartEdit_OnClick" text="Stückarten..." />
+                        		<MenuItem mnemonicParsing="false" onAction="#btnEdionsartEdit_OnClick" text="Editionsarten..." />
+                        <SeparatorMenuItem mnemonicParsing="false" />
                         		<MenuItem mnemonicParsing="false" onAction="#btnStckThemaEdit_OnClick" text="Themen..." />
                        			<MenuItem mnemonicParsing="false" onAction="#btnStckGesbEdit_OnClick" text="Gesangbücher..." />
                         		<MenuItem mnemonicParsing="false" onAction="#btnStckWoliEdit_OnClick" text="Wochenlieder..." />
                         		<MenuItem mnemonicParsing="false" onAction="#btnStckBibEdit_OnClick" text="Bibelbücher..." />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#NomaEdit_OnClick" text="Notenmappen..." />
 							</items>
 						</Menu>
 						<Menu fx:id="men30" mnemonicParsing="false" text="Infos">
@@ -74,9 +77,15 @@
 				<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="83.0" prefWidth="1000.0" spacing="10.0" style="-fx-background-color: #CBD5E8;">
 					<children>
 						<AnchorPane prefHeight="85.0" prefWidth="998.0" style="-fx-background-color: #CBD5E8;" HBox.hgrow="ALWAYS">
-							<children>
+							<children>                          
+                        
+                        
+                        
+                        
+                        
+                        <Label fx:id="lblUpdateinfo" alignment="TOP_LEFT" layoutX="552.0" layoutY="2.0" prefHeight="40.0" prefWidth="438.0" styleClass="label-rotklein" text="Updateinfo ..." textAlignment="RIGHT" wrapText="true" AnchorPane.rightAnchor="10.0" />
                         <Label fx:id="lblStatusPdf" layoutX="565.0" layoutY="9.0" prefHeight="17.0" prefWidth="110.0" text="PDF wird erstellt ..." textFill="#c90a0a" visible="false" />
-                        <ProgressBar fx:id="progressPdf" layoutX="435.0" layoutY="9.0" prefHeight="18.0" prefWidth="121.0" progress="0.0" visible="false" />
+                        <ProgressBar fx:id="progressPdf" layoutX="424.0" layoutY="5.0" prefHeight="18.0" prefWidth="121.0" progress="0.0" visible="false" />
 								<ImageView fitHeight="63.0" fitWidth="91.0" layoutX="24.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="24.0">
 									<image>
 										<Image url="@/icons/javafx/jpcnd-150.png" />
@@ -147,7 +156,7 @@
                         </Button>
                         
                         <Label layoutX="339.0" layoutY="31.0" prefHeight="40.0" prefWidth="91.0" text="Filterergebnisse sammeln" wrapText="true" />
-                        <Button fx:id="btnAktivitaeten" layoutX="546.0" layoutY="26.0" mnemonicParsing="false" onAction="#btnAktivitaeten_OnClick" prefHeight="46.0" prefWidth="158.0" styleClass="button-neu" text="Chor-Aktivitäten" wrapText="true">
+                        <Button fx:id="btnAktivitaeten" layoutX="764.0" layoutY="18.0" mnemonicParsing="false" onAction="#btnAktivitaeten_OnClick" prefHeight="54.0" prefWidth="158.0" styleClass="button-neu" text="Chor-Aktivitäten" wrapText="true" AnchorPane.rightAnchor="78.0">
 										<graphic>
 									        <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
 									            <image> <Image url="@/icons/javafx/jpcnd-aktionen-0150.png" /> </image>
@@ -161,9 +170,19 @@
                         
                         
                         
-                        <Button fx:id="btnUpdaten" layoutX="688.0" layoutY="42.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#btnUpdaten_OnClick" prefHeight="30.0" prefWidth="158.0" styleClass="button-loeschen" text="Datenbank-Update..." textFill="#c90a0a" AnchorPane.rightAnchor="133.0" />
-                        <Button fx:id="btnBeenden" layoutX="861.0" layoutY="42.0" onAction="#men01Beenden_OnClick" prefHeight="30.0" prefWidth="121.0" styleClass="button-neu" text="jPCND beenden" AnchorPane.rightAnchor="9.0" />
-                        <Label fx:id="lblUpdateinfo" alignment="TOP_LEFT" layoutX="696.0" layoutY="4.0" prefHeight="40.0" prefWidth="274.0" styleClass="label-rotklein" text="Updateinfo ..." textAlignment="RIGHT" wrapText="true" AnchorPane.rightAnchor="8.0" />
+                        <Button fx:id="btnUpdaten" layoutX="552.0" layoutY="41.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#btnUpdaten_OnClick" prefHeight="32.0" prefWidth="158.0" styleClass="buttonklein" text="Datenbank-Update..." textFill="#c90a0a" AnchorPane.rightAnchor="290.0" />
+                        <Button fx:id="btnBeenden" layoutX="928.0" layoutY="18.0" onAction="#men01Beenden_OnClick" prefHeight="54.0" prefWidth="58.0" AnchorPane.rightAnchor="14.0">
+                           <graphic>
+                              <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
+                                 <image>
+                                    <Image url="@/icons/javafx/application-exit_32x32_OpIcLibStd011.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Programm beenden ..." />
+                           </tooltip>
+                        </Button>
 							</children>
 						</AnchorPane>
 					</children>
@@ -222,6 +241,14 @@
 						<!-- ############################################################################## -->
 						<!-- Tab Literatur -->
 						<Tab fx:id="tabregLiteratur" onSelectionChanged="#handleTabChanged" text="Literatur-Details">
+                             <graphic>
+    							<ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+        							<image>
+            							<Image url="@/icons/javafx/bookmark-new-4_32x32.png" />
+        							</image>
+    							</ImageView>
+							</graphic>      						
+						
 							<content>
 								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="481.0" prefWidth="1000.0">
 									<children>
@@ -340,10 +367,20 @@
 									</children>
 								</AnchorPane>
 							</content>
+							
 						</Tab>
 						<!-- ############################################################################## -->
 						<!-- Tab Notenausgaben -->
 						<Tab fx:id="tabregNotenausgaben" onSelectionChanged="#handleTabChanged" text="Notenausgaben">
+                             <graphic>
+    							<ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+        							<image>
+            							<Image url="@/icons/javafx/book_open_fatcow32x32.png" />
+        							</image>
+    							</ImageView>
+							</graphic>  						
+						
+						
 							<content>
 								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="481.0" prefWidth="1000.0">
 									<children>
@@ -415,7 +452,7 @@
 										<Label alignment="CENTER_RIGHT" layoutX="517.0" layoutY="259.0" prefHeight="18.0" prefWidth="45.0" text="BestNr." AnchorPane.bottomAnchor="111.0" AnchorPane.rightAnchor="438.0">
 
 										</Label>
-										<Label alignment="CENTER_RIGHT" layoutX="510.0" layoutY="221.0" prefHeight="25.0" prefWidth="56.0" text="Art" wrapText="true" AnchorPane.bottomAnchor="141.0" AnchorPane.rightAnchor="438.0">
+										<Label alignment="CENTER_RIGHT" layoutX="510.0" layoutY="221.0" prefHeight="25.0" prefWidth="56.0" text="Edit.-Art" wrapText="true" AnchorPane.bottomAnchor="141.0" AnchorPane.rightAnchor="438.0">
 
 										</Label>
 										<Label layoutX="8.0" layoutY="317.0" prefHeight="15.0" prefWidth="91.0" text="Beschreibung" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="8.0">
@@ -449,6 +486,16 @@
 						<!-- ############################################################################## -->
 						<!-- Tab Stücke/Lieder -->
 						<Tab fx:id="tabregStck" onSelectionChanged="#handleTabChanged" text="Stücke-/Lieder-Informationen">
+                             <graphic>
+    							<ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+        							<image>
+            							<Image url="@/icons/javafx/audio-x-generic_opicstdlib32x32.png" />
+        							</image>
+    							</ImageView>
+							</graphic>  							
+						
+						
+						
 							<content>
 								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="481.0" prefWidth="1000.0">
 									<children>

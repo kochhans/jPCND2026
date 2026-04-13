@@ -29,14 +29,39 @@
       <AnchorPane prefHeight="63.0" prefWidth="1280.0" style="-fx-background-color: #C0C0C0;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="btnZurueck" layoutX="1126.0" layoutY="17.0" onAction="#btnZurueck_OnClick" prefHeight="29.0" prefWidth="131.0" text="Zurück" AnchorPane.rightAnchor="23.0" />
-            <Label fx:id="lblAktionBeschreibung" layoutX="1001.0" layoutY="25.0" prefHeight="14.0" prefWidth="50.0" text="Akt. -ID" AnchorPane.rightAnchor="214.0" />
-            <Label fx:id="lblAktionDatum" layoutX="23.0" layoutY="37.0" prefHeight="19.0" prefWidth="1251.0" text="Label">
+            <Label fx:id="lblAktionDatum" layoutX="23.0" layoutY="37.0" prefHeight="19.0" prefWidth="632.0" text="Label">
                <styleClass>
                   <String fx:value="label-title2" />
-                  <String fx:value="schriftgelb" />
+                  <String fx:value="schriftweiss" />
                </styleClass></Label>
             <Label layoutX="23.0" layoutY="9.0" prefHeight="23.0" prefWidth="232.0" styleClass="label-title" text="Aktivitäten bearbeiten ..." />
-            <TextField fx:id="txtCaId" alignment="CENTER" disable="true" editable="false" layoutX="1061.0" layoutY="21.0" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: #C0C0C0;" styleClass="label" AnchorPane.rightAnchor="161.0" />
+            <TextField fx:id="txtCaId" alignment="CENTER" disable="true" editable="false" layoutX="288.0" layoutY="10.0" prefHeight="22.0" prefWidth="58.0" style="-fx-background-color: #C0C0C0;" styleClass="label" />
+            <Button fx:id="btnFilterAn" focusTraversable="false" layoutX="702.0" layoutY="9.0" mnemonicParsing="false" onAction="#btnFilterAn_OnClick" prefHeight="46.0" prefWidth="83.0">
+               <graphic>
+                  <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
+                     <image>
+                        <Image url="@/icons/javafx/btn_filter32x32.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <tooltip>
+                  <Tooltip text="Filtern ..." />
+               </tooltip>
+            </Button>
+            <Button fx:id="btnFilterAus" focusTraversable="false" layoutX="789.0" layoutY="9.0" mnemonicParsing="false" onAction="#btnFilterAus_OnClick" prefHeight="46.0" prefWidth="83.0">
+               <graphic>
+                  <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
+                     <image>
+                        <Image url="@/icons/javafx/btn_filter_delete32x32.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <tooltip>
+                  <Tooltip text="Filter entfernen ..." />
+               </tooltip>
+            </Button>
+            <Label fx:id="lblFilterTab0Anzahl" layoutX="877.0" layoutY="9.0" prefHeight="25.0" prefWidth="243.0" styleClass="schriftblaugrau" text="kein Filter aktiv" textFill="#808080" />
+            <Label fx:id="lblFilterTab1Anzahl" layoutX="876.0" layoutY="34.0" prefHeight="25.0" prefWidth="246.0" styleClass="schriftweiss" text="kein Filter aktiv" textFill="#808080" />
          </children></AnchorPane>
    </top>
    <center>
@@ -208,34 +233,9 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="517.0" prefWidth="684.0" style="-fx-background-color: #CBD5E8;">
                                  <children>
-                                    <Button fx:id="btnFilterAn" focusTraversable="false" layoutX="15.0" layoutY="151.0" mnemonicParsing="false" onAction="#btnFilterAn_OnClick" prefHeight="46.0" prefWidth="83.0">
-                                       <graphic>
-                                          <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
-                                             <image>
-                                                <Image url="@/icons/javafx/btn_filter32x32.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <tooltip>
-                                          <Tooltip text="Filtern ..." />
-                                       </tooltip>
-                                    </Button>
-                                    <Button fx:id="btnFilterAus" focusTraversable="false" layoutX="110.0" layoutY="151.0" mnemonicParsing="false" onAction="#btnFilterAus_OnClick" prefHeight="46.0" prefWidth="83.0">
-                                       <graphic>
-                                          <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
-                                             <image>
-                                                <Image url="@/icons/javafx/btn_filter_delete32x32.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <tooltip>
-                                          <Tooltip text="Filter entfernen ..." />
-                                       </tooltip>
-                                    </Button>
                                     <Label layoutX="18.0" layoutY="9.0" prefHeight="17.0" prefWidth="75.0" text="Stücktitel" textFill="#6b6b6b" />
                                     <Label layoutX="18.0" layoutY="97.0" prefHeight="17.0" prefWidth="139.0" text="Notenausgabe (lang)" textFill="#6b6b6b" />
                                     <Label layoutX="472.0" layoutY="9.0" prefHeight="17.0" prefWidth="49.0" text="Thema" textFill="#6b6b6b" />
-                                    <Label fx:id="lblFilterTab0Anzahl" layoutX="207.0" layoutY="174.0" prefHeight="25.0" prefWidth="462.0" text="kein Filter aktiv" textFill="#808080" />
                                     <Label layoutX="472.0" layoutY="53.0" prefHeight="17.0" prefWidth="58.0" text="WoLied" textFill="#6b6b6b" />
                                     <Label layoutX="262.0" layoutY="9.0" prefHeight="17.0" prefWidth="94.0" text="Ko/Bea" textFill="#6b6b6b" />
                                     <Label layoutX="18.0" layoutY="53.0" prefHeight="17.0" prefWidth="63.0" text="Stück-Art" textFill="#6b6b6b" />
@@ -251,7 +251,7 @@
                                     <ComboBox fx:id="cbxFilterThema" editable="true" layoutX="472.0" layoutY="27.0" prefHeight="30.0" prefWidth="195.0" />
                                     <ComboBox fx:id="cbxFilterWochenlied" editable="true" layoutX="472.0" layoutY="69.0" prefHeight="30.0" prefWidth="195.0" />
                                     <ComboBox fx:id="cbxFilterNotenmappe" editable="true" layoutX="472.0" layoutY="115.0" prefHeight="30.0" prefWidth="195.0" />
-                                    <TableView fx:id="tblvwLiteratur" focusTraversable="false" layoutY="205.0" onMouseClicked="#handleTblvwLiteratur_OnMouseClicked" prefHeight="207.0" prefWidth="678.0" style="-fx-selection-bar: #AAC4DF; -fx-selection-bar-non-focused: #AAC4DF;" stylesheets="@../styles/application.css" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="205.0">
+                                    <TableView fx:id="tblvwLiteratur" focusTraversable="false" layoutY="151.0" onMouseClicked="#handleTblvwLiteratur_OnMouseClicked" prefHeight="261.0" prefWidth="678.0" style="-fx-selection-bar: #AAC4DF; -fx-selection-bar-non-focused: #AAC4DF;" stylesheets="@../styles/application.css" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="151.0">
                                        <placeholder>
                                           <Label text="--" />
                                        </placeholder>
@@ -327,30 +327,6 @@
                                     <Label layoutX="162.0" layoutY="9.0" prefHeight="17.0" prefWidth="63.0" text="Aktion" textFill="#6b6b6b" />
                                     <Label layoutX="162.0" layoutY="67.0" prefHeight="17.0" prefWidth="63.0" text="Ort" textFill="#6b6b6b" />
                                     <Label layoutX="428.0" layoutY="9.0" prefHeight="17.0" prefWidth="63.0" text="Gruppe" textFill="#6b6b6b" />
-                                    <Button fx:id="btnFiltergespAn" focusTraversable="false" layoutX="15.0" layoutY="122.0" mnemonicParsing="false" onAction="#btnFiltergespAn_OnClick" prefHeight="46.0" prefWidth="83.0">
-                                       <graphic>
-                                          <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
-                                             <image>
-                                                <Image url="@/icons/javafx/btn_filter32x32.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <tooltip>
-                                          <Tooltip text="Filtern ..." />
-                                       </tooltip>
-                                    </Button>
-                                    <Button fx:id="btnFiltergespAus" focusTraversable="false" layoutX="110.0" layoutY="122.0" mnemonicParsing="false" onAction="#btnFiltergespAus_OnClick" prefHeight="46.0" prefWidth="83.0">
-                                       <graphic>
-                                          <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
-                                             <image>
-                                                <Image url="@/icons/javafx/btn_filter_delete32x32.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <tooltip>
-                                          <Tooltip text="Filter entfernen ..." />
-                                       </tooltip>
-                                    </Button>
                                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="32.0" layoutX="412.0" layoutY="83.0" opacity="0.12" stroke="BLACK" strokeType="INSIDE" width="269.0" />
                                     <RadioButton fx:id="radFilterProben" focusTraversable="false" layoutX="415.0" layoutY="90.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Proben">
                                        <toggleGroup>
@@ -359,8 +335,7 @@
                                     </RadioButton>
                                     <RadioButton fx:id="radFilterAuff" focusTraversable="false" layoutX="514.0" layoutY="90.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Auftritte" toggleGroup="$ogrFiltergespeichert" />
                                     <RadioButton fx:id="radFilterAlles" focusTraversable="false" layoutX="618.0" layoutY="90.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" selected="true" text="alles" toggleGroup="$ogrFiltergespeichert" />
-                                    <Label fx:id="lblFilterTab1Anzahl" layoutX="207.0" layoutY="145.0" prefHeight="25.0" prefWidth="355.0" text="kein Filter aktiv" textFill="#808080" />
-                                    <TableView fx:id="tblvwChoraktionen" focusTraversable="false" layoutX="8.0" layoutY="179.0" onMousePressed="#handletblvwAktionenliste_onmouse_clicked" prefHeight="220.0" prefWidth="678.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="179.0">
+                                    <TableView fx:id="tblvwChoraktionen" focusTraversable="false" layoutX="8.0" layoutY="123.0" onMousePressed="#handletblvwAktionenliste_onmouse_clicked" prefHeight="276.0" prefWidth="678.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="123.0">
                                        <columns>
                                           <TableColumn fx:id="tblvwAktionenCol0" editable="false" minWidth="20.0" prefWidth="40.0" text="Datum" />
                                           <TableColumn fx:id="tblvwAktionenCol1" prefWidth="100.0" text="Aktivität" />
