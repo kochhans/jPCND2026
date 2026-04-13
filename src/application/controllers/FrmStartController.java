@@ -441,6 +441,7 @@ public class FrmStartController implements Initializable
 			if (ValuesGlobals.updatecheck == true)
 			{
 				checkUpdates();
+				
 
 				ValuesGlobals.updatecheck = false;
 			}
@@ -529,11 +530,13 @@ public class FrmStartController implements Initializable
 			}
 			else
 			{
+				
+				ValuesGlobals.updatebuttonvisible = true;
+				ValuesGlobals.updatetext = infotext;
 				men40.setVisible(true);
 				lblUpdateinfo.setVisible(true);
 				lblUpdateinfo.setText(infotext);
-				ValuesGlobals.updatebuttonvisible = true;
-				ValuesGlobals.updatetext = infotext;
+
 			}
 		}
 		catch (Exception e)

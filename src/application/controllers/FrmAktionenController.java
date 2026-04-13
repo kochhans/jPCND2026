@@ -375,6 +375,9 @@ public class FrmAktionenController
 		// ===== Update-Check nur 1x pro Sitzung =====
 		if(ValuesGlobals.updatecheck==true){
 			checkUpdates();
+			btnUpdaten.setVisible(true);
+			lblUpdateinfo.setVisible(true);
+			lblUpdateinfo.setText(ValuesGlobals.updatetext);			
 			ValuesGlobals.updatecheck=false;
 		}
 		else {
@@ -2500,7 +2503,7 @@ public class FrmAktionenController
 		dialogStage.setHeight(screenBounds.getHeight() * 0.8);
 		dialogStage.setX((screenBounds.getWidth() - dialogStage.getWidth()) / 2);
 		dialogStage.setY((screenBounds.getHeight() - dialogStage.getHeight()) / 2);
-		dialogStage.setMinWidth(1280);
+		dialogStage.setMinWidth(1240);
 		dialogStage.setMinHeight(720);
 		// --------------------
 		controller.onShow(caid); // init in zugeh. EditController!

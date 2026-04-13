@@ -146,7 +146,7 @@ public class StartupManager {
             System.out.println(ValuesGlobals.progPfadGrafik);
 
             // 🔹 Dummy Scene setzen (wichtig für SceneManager)
-            Scene scene = new Scene(new StackPane(), 1200, 720);
+            Scene scene = new Scene(new StackPane(), 1240, 780);
             scene.getStylesheets().add(
                     getClass().getResource("/application/styles/application.css").toExternalForm());
 
@@ -162,8 +162,8 @@ public class StartupManager {
             primaryStage.setWidth(screenBounds.getWidth() * 0.9);
             primaryStage.setHeight(screenBounds.getHeight() * 0.9);
             primaryStage.centerOnScreen();
-            primaryStage.setMinWidth(1200);
-            primaryStage.setMinHeight(720);
+            primaryStage.setMinWidth(1240);
+            primaryStage.setMinHeight(780);
 
             // 🔹 SceneManager initialisieren (entscheidet selbst, welche Scene geladen wird)
             DatabaseControllerAktionen dbController = new DatabaseControllerAktionen();

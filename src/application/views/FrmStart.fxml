@@ -26,11 +26,11 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.SearchableComboBox?>
 
-<AnchorPane id="rootStart" fx:id="rootStart" onKeyPressed="#handleKeyPressOk" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #CBD5E8;" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.FrmStartController">
+<AnchorPane id="rootStart" fx:id="rootStart" minHeight="780.0" minWidth="1240.0" onKeyPressed="#handleKeyPressOk" prefHeight="780.0" prefWidth="1240.0" style="-fx-background-color: #CBD5E8;" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.FrmStartController">
 	<children>
-		<VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" style="-fx-background-color: #CBD5E8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+		<VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #CBD5E8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<children>
-				<MenuBar prefHeight="23.0" prefWidth="1000.0" style="-fx-background-color: #f4f4f4;" VBox.vgrow="NEVER">
+				<MenuBar prefHeight="23.0" style="-fx-background-color: #f4f4f4;" VBox.vgrow="NEVER">
 					<menus>
 						<Menu fx:id="men10" mnemonicParsing="false" text="Datei">
 							<items>
@@ -74,31 +74,31 @@
 						</menus>
 				</MenuBar>
 				
-				<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="83.0" prefWidth="1000.0" spacing="10.0" style="-fx-background-color: #CBD5E8;">
+				<HBox maxHeight="80.0" maxWidth="1.7976931348623157E308" minHeight="80.0" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="80.0" prefWidth="1240.0" style="-fx-background-color: #CBD5E8;">
 					<children>
-						<AnchorPane prefHeight="85.0" prefWidth="998.0" style="-fx-background-color: #CBD5E8;" HBox.hgrow="ALWAYS">
+						<AnchorPane maxHeight="80.0" minHeight="80.0" minWidth="1240.0" prefHeight="80.0" prefWidth="1240.0" style="-fx-background-color: #CBD5E8;" HBox.hgrow="ALWAYS">
 							<children>                          
                         
                         
                         
                         
                         
-                        <Label fx:id="lblUpdateinfo" alignment="TOP_LEFT" layoutX="552.0" layoutY="2.0" prefHeight="40.0" prefWidth="438.0" styleClass="label-rotklein" text="Updateinfo ..." textAlignment="RIGHT" wrapText="true" AnchorPane.rightAnchor="10.0" />
+                        <Label fx:id="lblUpdateinfo" alignment="BOTTOM_LEFT" layoutX="792.0" layoutY="1.0" prefHeight="40.0" prefWidth="208.0" styleClass="label-rotklein" text="Updateinfo ..." textAlignment="RIGHT" wrapText="true" AnchorPane.rightAnchor="240.0" />
                         <Label fx:id="lblStatusPdf" layoutX="565.0" layoutY="9.0" prefHeight="17.0" prefWidth="110.0" text="PDF wird erstellt ..." textFill="#c90a0a" visible="false" />
                         <ProgressBar fx:id="progressPdf" layoutX="424.0" layoutY="5.0" prefHeight="18.0" prefWidth="121.0" progress="0.0" visible="false" />
-								<ImageView fitHeight="63.0" fitWidth="91.0" layoutX="24.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="24.0">
+								<ImageView fitHeight="54.0" fitWidth="70.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="12.0">
 									<image>
 										<Image url="@/icons/javafx/jpcnd-150.png" />
 									</image>
 								</ImageView>
-								<Label fx:id="lblHaupttitel" layoutX="121.0" layoutY="-2.0" maxHeight="41.0" maxWidth="655.0" minHeight="30.0" minWidth="181.0" prefHeight="32.0" prefWidth="297.0" styleClass="label-title" text="Literatur-Gesamtliste">
+								<Label fx:id="lblHaupttitel" layoutX="86.0" maxHeight="41.0" maxWidth="655.0" minHeight="30.0" minWidth="181.0" prefHeight="32.0" prefWidth="297.0" styleClass="label-title" text="Literatur-Gesamtliste">
 
 									<padding>
 										<Insets left="5.0" />
 									</padding>
 								</Label>
 
-								<Button fx:id="btnFilterAus" focusTraversable="false" layoutX="186.0" layoutY="25.0" mnemonicParsing="false" onAction="#btnFilterAus_OnClick" prefHeight="32.0" prefWidth="32.0" styleClass="button-icon" text="">
+								<Button fx:id="btnFilterAus" focusTraversable="false" layoutX="186.0" layoutY="28.0" mnemonicParsing="false" onAction="#btnFilterAus_OnClick" prefHeight="32.0" prefWidth="32.0" styleClass="button-icon" text="">
 									    <graphic>
 									        <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
 									            <image> <Image url="@/icons/javafx/btn_filter_delete32x32.png" /> </image>
@@ -116,7 +116,7 @@
                            </font>
 
 								</CheckBox>
-								<Button fx:id="btnFilterAn" defaultButton="true" focusTraversable="false" layoutX="126.0" layoutY="25.0" mnemonicParsing="false" onAction="#btnFilterAn_OnClick" prefHeight="32.0" prefWidth="32.0">
+								<Button fx:id="btnFilterAn" defaultButton="true" focusTraversable="false" layoutX="126.0" layoutY="28.0" mnemonicParsing="false" onAction="#btnFilterAn_OnClick" prefHeight="32.0" prefWidth="32.0">
 										<graphic>
 									        <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
 									            <image> <Image url="@/icons/javafx/btn_filter32x32.png" /> </image>
@@ -126,7 +126,7 @@
 								
 								</Button>
 								
-								<Button fx:id="btnListenLeer" contentDisplay="CENTER" focusTraversable="false" layoutX="246.0" layoutY="25.0" mnemonicParsing="false" onAction="#btnListenLeer_OnClick" prefHeight="32.0" prefWidth="32.0">
+								<Button fx:id="btnListenLeer" contentDisplay="CENTER" focusTraversable="false" layoutX="246.0" layoutY="28.0" mnemonicParsing="false" onAction="#btnListenLeer_OnClick" prefHeight="32.0" prefWidth="32.0">
 										<graphic>
 									        <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
 									            <image> <Image url="@/icons/javafx/btn_listeleeren32x32.png" /> </image>
@@ -136,7 +136,7 @@
 								</Button>
                         
                         
-                        <Button fx:id="btnListeDrucken" contentDisplay="CENTER" focusTraversable="false" layoutX="424.0" layoutY="26.0" mnemonicParsing="false" onAction="#btnListeDrucken_OnClick" prefHeight="32.0" prefWidth="32.0">
+                        <Button fx:id="btnListeDrucken" contentDisplay="CENTER" focusTraversable="false" layoutX="424.0" layoutY="29.0" mnemonicParsing="false" onAction="#btnListeDrucken_OnClick" prefHeight="32.0" prefWidth="32.0">
 										<graphic>
 									        <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
 									            <image> <Image url="@/icons/javafx/btn_pdfdruck32x32.png" /> </image>
@@ -146,7 +146,7 @@
                         </Button>
                         
                         
-                        <Button fx:id="btnListeDruckenVerz" focusTraversable="false" layoutX="485.0" layoutY="26.0" mnemonicParsing="false" onAction="#btnListeDruckenVerz_OnClick" prefHeight="32.0" prefWidth="32.0">
+                        <Button fx:id="btnListeDruckenVerz" focusTraversable="false" layoutX="485.0" layoutY="29.0" mnemonicParsing="false" onAction="#btnListeDruckenVerz_OnClick" prefHeight="32.0" prefWidth="32.0">
 										<graphic>
 									        <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
 									            <image> <Image url="@/icons/javafx/btn_folderpage32x32.png" /> </image>
@@ -156,7 +156,7 @@
                         </Button>
                         
                         <Label layoutX="339.0" layoutY="31.0" prefHeight="40.0" prefWidth="91.0" text="Filterergebnisse sammeln" wrapText="true" />
-                        <Button fx:id="btnAktivitaeten" layoutX="764.0" layoutY="18.0" mnemonicParsing="false" onAction="#btnAktivitaeten_OnClick" prefHeight="54.0" prefWidth="158.0" styleClass="button-neu" text="Chor-Aktivitäten" wrapText="true" AnchorPane.rightAnchor="78.0">
+                        <Button fx:id="btnAktivitaeten" layoutX="1004.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnAktivitaeten_OnClick" prefHeight="54.0" prefWidth="158.0" styleClass="button-neu" text="Chor-Aktivitäten" wrapText="true" AnchorPane.rightAnchor="78.0">
 										<graphic>
 									        <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
 									            <image> <Image url="@/icons/javafx/jpcnd-aktionen-0150.png" /> </image>
@@ -170,8 +170,8 @@
                         
                         
                         
-                        <Button fx:id="btnUpdaten" layoutX="552.0" layoutY="41.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#btnUpdaten_OnClick" prefHeight="32.0" prefWidth="158.0" styleClass="buttonklein" text="Datenbank-Update..." textFill="#c90a0a" AnchorPane.rightAnchor="290.0" />
-                        <Button fx:id="btnBeenden" layoutX="928.0" layoutY="18.0" onAction="#men01Beenden_OnClick" prefHeight="54.0" prefWidth="58.0" AnchorPane.rightAnchor="14.0">
+                        <Button fx:id="btnUpdaten" layoutX="792.0" layoutY="42.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#btnUpdaten_OnClick" prefHeight="32.0" prefWidth="158.0" styleClass="buttonklein" text="Datenbank-Update..." textFill="#c90a0a" AnchorPane.rightAnchor="290.0" />
+                        <Button fx:id="btnBeenden" layoutX="1168.0" layoutY="21.0" onAction="#men01Beenden_OnClick" prefHeight="54.0" prefWidth="58.0" AnchorPane.rightAnchor="14.0">
                            <graphic>
                               <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
                                  <image>
@@ -189,11 +189,8 @@
 					<VBox.margin>
 						<Insets />
 					</VBox.margin>
-					<padding>
-						<Insets bottom="5.0" top="5.0" />
-					</padding>
 				</HBox>
-				<HBox minHeight="160.0" prefHeight="160.0" prefWidth="1000.0" style="-fx-background-color: #EEEEEE;">
+				<HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="160.0" prefHeight="160.0" prefWidth="1240.0" style="-fx-background-color: #EEEEEE;" VBox.vgrow="ALWAYS">
 					<children>
 						<AnchorPane maxHeight="162.0" minHeight="126.0" prefHeight="162.0" prefWidth="1000.0" style="-fx-background-color: #EEEEEE;">
 							<children>
@@ -236,7 +233,7 @@
 					</children>
 				</HBox>
 
-				<TabPane fx:id="tabpaneStartfenster" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="1000.0" style="-fx-background-color: #c8c8c8;" tabClosingPolicy="UNAVAILABLE" tabMinWidth="150.0" VBox.vgrow="ALWAYS">
+				<TabPane fx:id="tabpaneStartfenster" focusTraversable="false" prefHeight="70.0" prefWidth="1280.0" style="-fx-background-color: #c8c8c8;" tabClosingPolicy="UNAVAILABLE" tabMinWidth="150.0" VBox.vgrow="ALWAYS">
 					<tabs>
 						<!-- ############################################################################## -->
 						<!-- Tab Literatur -->

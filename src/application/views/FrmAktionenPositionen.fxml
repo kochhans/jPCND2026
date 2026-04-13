@@ -24,9 +24,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1280.0" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.FrmAktionenPositionenController">
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1240.0" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.FrmAktionenPositionenController">
    <top>
-      <AnchorPane prefHeight="63.0" prefWidth="1280.0" style="-fx-background-color: #C0C0C0;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="63.0" prefWidth="1240.0" style="-fx-background-color: #C0C0C0;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="btnZurueck" layoutX="1126.0" layoutY="17.0" onAction="#btnZurueck_OnClick" prefHeight="29.0" prefWidth="131.0" text="Zurück" AnchorPane.rightAnchor="23.0" />
             <Label fx:id="lblAktionDatum" layoutX="23.0" layoutY="37.0" prefHeight="19.0" prefWidth="632.0" text="Label">
@@ -65,9 +65,9 @@
          </children></AnchorPane>
    </top>
    <center>
-      <SplitPane dividerPositions="0.4624413145539906" prefHeight="160.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.46050552922590837" prefHeight="637.0" prefWidth="1243.0" BorderPane.alignment="CENTER">
         <items>
-          <AnchorPane minHeight="300.0" minWidth="580.0" prefHeight="635.0" prefWidth="600.0">
+          <AnchorPane minHeight="300.0" minWidth="490.0" prefHeight="635.0" prefWidth="580.0">
                <children>
                   <SplitPane dividerPositions="0.5876623376623377" layoutX="1.0" layoutY="8.0" minHeight="200.0" orientation="VERTICAL" prefHeight="300.0" prefWidth="550.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
@@ -92,43 +92,43 @@
                               </TableView>
                            </children>
                         </AnchorPane>
-                      <AnchorPane maxHeight="400.0" minHeight="400.0" minWidth="535.0" prefHeight="400.0" prefWidth="578.0" SplitPane.resizableWithParent="false">
+                      <AnchorPane maxHeight="400.0" minHeight="344.0" minWidth="535.0" prefHeight="344.0" prefWidth="586.0" SplitPane.resizableWithParent="false">
                            <children>
-                              <TextField fx:id="txtPosProgpkt" layoutX="20.0" layoutY="52.0" prefHeight="28.0" prefWidth="167.0" />
-                              <TextField fx:id="txtPosStckTitel" layoutX="204.0" layoutY="52.0" prefHeight="28.0" prefWidth="254.0" />
-                              <TextField fx:id="txtPosNotenausgabe" layoutX="20.0" layoutY="98.0" prefHeight="28.0" prefWidth="170.0" />
-                              <TextField fx:id="txtPosSeite" alignment="CENTER" layoutX="204.0" layoutY="98.0" prefHeight="28.0" prefWidth="79.0" />
-                              <TextField fx:id="txtPosNr" alignment="CENTER" layoutX="298.0" layoutY="98.0" prefHeight="28.0" prefWidth="67.0" />
-                              <TextField fx:id="txtPosTonart" alignment="CENTER" layoutX="378.0" layoutY="98.0" prefHeight="28.0" prefWidth="78.0" />
-                              <TextField fx:id="txtPosKomponist" layoutX="20.0" layoutY="146.0" prefHeight="28.0" prefWidth="205.0" />
-                              <TextField fx:id="txtPosBearbeiter" layoutX="235.0" layoutY="146.0" prefHeight="28.0" prefWidth="221.0" />
-                              <TextField fx:id="txtPosStueckart" layoutX="20.0" layoutY="191.0" prefHeight="28.0" prefWidth="206.0" />
-                              <TextField fx:id="txtPosDauermin" alignment="CENTER" layoutX="235.0" layoutY="191.0" prefHeight="28.0" prefWidth="60.0" />
-                              <TextField fx:id="txtPosDauersec" alignment="CENTER" layoutX="307.0" layoutY="191.0" prefHeight="28.0" prefWidth="60.0" />
-                              <TextField fx:id="txtPosBesetzung" layoutX="20.0" layoutY="235.0" prefHeight="28.0" prefWidth="438.0" />
-                              <TextArea fx:id="txtBemerkungen" focusTraversable="false" layoutX="20.0" layoutY="281.0" prefHeight="69.0" prefWidth="438.0" />
-                              <Label layoutX="20.0" layoutY="38.0" text="Hinweis" />
-                              <Label layoutX="204.0" layoutY="38.0" prefHeight="14.0" prefWidth="177.0" text="Stücktitel bzw. Zwischentext" />
-                              <Label layoutX="20.0" layoutY="84.0" prefHeight="14.0" prefWidth="143.0" text="Notenausgabe (Kürzel)" />
-                              <Label layoutX="204.0" layoutY="84.0" text="Seite" />
-                              <Label layoutX="295.0" layoutY="84.0" text="Nummer" />
-                              <Label layoutX="20.0" layoutY="176.0" text="Stück-Art" />
-                              <Label layoutX="20.0" layoutY="132.0" prefHeight="14.0" prefWidth="77.0" text="Komponist/in" />
-                              <Label layoutX="235.0" layoutY="132.0" prefHeight="14.0" prefWidth="77.0" text="Bearbeiter/in" />
-                              <Label layoutX="378.0" layoutY="84.0" prefHeight="14.0" prefWidth="45.0" text="Tonart" />
-                              <Label layoutX="235.0" layoutY="177.0" prefHeight="14.0" prefWidth="60.0" text="Dauer min" />
-                              <Label layoutX="308.0" layoutY="177.0" prefHeight="14.0" prefWidth="60.0" text="Dauer sec" />
-                              <Label fx:id="lblZeilebearbeiten" layoutX="20.0" layoutY="7.0" prefHeight="19.0" prefWidth="434.0" text="...">
+                              <TextField fx:id="txtPosProgpkt" layoutX="20.0" layoutY="39.0" prefHeight="28.0" prefWidth="167.0" />
+                              <TextField fx:id="txtPosStckTitel" layoutX="204.0" layoutY="39.0" prefHeight="28.0" prefWidth="254.0" />
+                              <TextField fx:id="txtPosNotenausgabe" layoutX="20.0" layoutY="85.0" prefHeight="28.0" prefWidth="170.0" />
+                              <TextField fx:id="txtPosSeite" alignment="CENTER" layoutX="204.0" layoutY="85.0" prefHeight="28.0" prefWidth="79.0" />
+                              <TextField fx:id="txtPosNr" alignment="CENTER" layoutX="298.0" layoutY="85.0" prefHeight="28.0" prefWidth="67.0" />
+                              <TextField fx:id="txtPosTonart" alignment="CENTER" layoutX="378.0" layoutY="85.0" prefHeight="28.0" prefWidth="78.0" />
+                              <TextField fx:id="txtPosKomponist" layoutX="20.0" layoutY="130.0" prefHeight="28.0" prefWidth="205.0" />
+                              <TextField fx:id="txtPosBearbeiter" layoutX="235.0" layoutY="130.0" prefHeight="28.0" prefWidth="221.0" />
+                              <TextField fx:id="txtPosStueckart" layoutX="20.0" layoutY="179.0" prefHeight="28.0" prefWidth="206.0" />
+                              <TextField fx:id="txtPosDauermin" alignment="CENTER" layoutX="235.0" layoutY="179.0" prefHeight="28.0" prefWidth="60.0" />
+                              <TextField fx:id="txtPosDauersec" alignment="CENTER" layoutX="307.0" layoutY="179.0" prefHeight="28.0" prefWidth="60.0" />
+                              <TextField fx:id="txtPosBesetzung" layoutX="20.0" layoutY="225.0" prefHeight="44.0" prefWidth="205.0" />
+                              <TextArea fx:id="txtBemerkungen" focusTraversable="false" layoutX="235.0" layoutY="225.0" prefHeight="44.0" prefWidth="334.0" />
+                              <Label layoutX="20.0" layoutY="25.0" text="Hinweis" />
+                              <Label layoutX="204.0" layoutY="25.0" prefHeight="14.0" prefWidth="177.0" text="Stücktitel bzw. Zwischentext" />
+                              <Label layoutX="20.0" layoutY="71.0" prefHeight="14.0" prefWidth="143.0" text="Notenausgabe (Kürzel)" />
+                              <Label layoutX="204.0" layoutY="71.0" text="Seite" />
+                              <Label layoutX="295.0" layoutY="71.0" text="Nummer" />
+                              <Label layoutX="20.0" layoutY="164.0" text="Stück-Art" />
+                              <Label layoutX="20.0" layoutY="116.0" prefHeight="14.0" prefWidth="77.0" text="Komponist/in" />
+                              <Label layoutX="235.0" layoutY="116.0" prefHeight="14.0" prefWidth="77.0" text="Bearbeiter/in" />
+                              <Label layoutX="378.0" layoutY="71.0" prefHeight="14.0" prefWidth="45.0" text="Tonart" />
+                              <Label layoutX="235.0" layoutY="164.0" prefHeight="14.0" prefWidth="60.0" text="Dauer min" />
+                              <Label layoutX="308.0" layoutY="164.0" prefHeight="14.0" prefWidth="60.0" text="Dauer sec" />
+                              <Label fx:id="lblZeilebearbeiten" layoutX="20.0" layoutY="2.0" prefHeight="24.0" prefWidth="549.0" text="...">
                                  <styleClass>
                                     <String fx:value="label-gn" />
-                                    <String fx:value="label-title2" />
+                                    <String fx:value="label-title" />
                                  </styleClass></Label>
                               
-                              <Button fx:id="btnPosSpeichern" focusTraversable="false" layoutX="472.0" layoutY="91.0" mnemonicParsing="false" onAction="#btnPosSpeichern_OnKlick" prefHeight="30.0" prefWidth="34.0">
+                              <Button fx:id="btnPosSpeichern" focusTraversable="false" layoutX="20.0" layoutY="277.0" mnemonicParsing="false" onAction="#btnPosSpeichern_OnKlick" prefHeight="34.0" prefWidth="34.0">
 	                            <graphic>
-	                              <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+	                              <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
 	                                 <image>
-	                                    <Image url="@/icons/javafx/accept_16x16.png" />
+	                                    <Image url="@/icons/javafx/accept_32x32.png" />
 	                                 </image>
 	                              </ImageView>
 	                           </graphic>
@@ -137,12 +137,12 @@
 	                           </tooltip>                             
                               </Button>
                               
-                              <Button fx:id="btnPosLeeren" focusTraversable="false" layoutX="471.0" layoutY="50.0" mnemonicParsing="false" onAction="#btnPosLeeren_OnClick" prefHeight="30.0" prefWidth="28.0">
+                              <Button fx:id="btnPosLeeren" focusTraversable="false" layoutX="92.0" layoutY="277.0" mnemonicParsing="false" onAction="#btnPosLeeren_OnClick" prefHeight="34.0" prefWidth="34.0">
                               
                                <graphic>
-	                              <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+	                              <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
 	                                 <image>
-	                                    <Image url="@/icons/javafx/table_edit16x16.png" />
+	                                    <Image url="@/icons/javafx/table_edit32x32.png" />
 	                                 </image>
 	                              </ImageView>
 	                           </graphic>
@@ -153,10 +153,10 @@
                               
                               
                               
-                              <Button fx:id="btnPosLoeschen" focusTraversable="false" layoutX="519.0" layoutY="91.0" mnemonicParsing="false" onAction="#btnPosLoeschen_OnClick">
+                              <Button fx:id="btnPosLoeschen" focusTraversable="false" layoutX="352.0" layoutY="277.0" mnemonicParsing="false" onAction="#btnPosLoeschen_OnClick">
 								<graphic>
-									<ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
-										<image> <Image url="@/icons/javafx/cross16x16.png" /> </image>
+									<ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
+										<image> <Image url="@/icons/javafx/cross32x32.png" /> </image>
 									</ImageView>
 								</graphic>
 								<tooltip>
@@ -164,10 +164,10 @@
 								</tooltip>                              
                               </Button> 
                               
-                              <Button fx:id="btnPosHoch" focusTraversable="false" layoutX="471.0" layoutY="11.0" mnemonicParsing="false" onAction="#btnPosHoch_OnClick" prefHeight="30.0" prefWidth="34.0">
+                              <Button fx:id="btnPosHoch" focusTraversable="false" layoutX="226.0" layoutY="277.0" mnemonicParsing="false" onAction="#btnPosHoch_OnClick" prefHeight="34.0" prefWidth="34.0">
                                  <graphic>
-									<ImageView fitHeight="24" fitWidth="24" preserveRatio="true">
-										<image> <Image url="@/icons/javafx/icons8-pfeilaufwaerts-24x24.png" /> </image>
+									<ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
+										<image> <Image url="@/icons/javafx/icons8-pfeilaufwaerts-32x32.png" /> </image>
 									</ImageView>
 								</graphic>
 								<tooltip>
@@ -176,10 +176,10 @@
                              </Button>                               
                               
                               
-                              <Button fx:id="btnPosRunter" focusTraversable="false" layoutX="519.0" layoutY="11.0" mnemonicParsing="false" onAction="#btnPosRunter_OnClick" prefHeight="30.0" prefWidth="21.0">
+                              <Button fx:id="btnPosRunter" focusTraversable="false" layoutX="287.0" layoutY="277.0" mnemonicParsing="false" onAction="#btnPosRunter_OnClick" prefHeight="34.0" prefWidth="34.0">
                                 <graphic>
-									<ImageView fitHeight="24" fitWidth="24" preserveRatio="true">
-										<image> <Image url="@/icons/javafx/icons8-pfeilabwaerts-24x24.png" /> </image>
+									<ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
+										<image> <Image url="@/icons/javafx/icons8-pfeilabwaerts-32x32.png" /> </image>
 									</ImageView>
 								</graphic>
 								<tooltip>
@@ -188,30 +188,34 @@
                              </Button>                               
                               
                               
-                              <Label layoutX="20.0" layoutY="267.0" text="Bemerkungen " />
-                              <CheckBox fx:id="chkProgZwischentext" disable="true" layoutX="375.0" layoutY="187.0" mnemonicParsing="false" onMouseClicked="#chkProgZwischentext_OnMouseClicked" prefHeight="19.0" prefWidth="153.0" text="Zwischentext" />
-                              <CheckBox fx:id="chkProgQuellePcnd" disable="true" layoutX="375.0" layoutY="209.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="169.0" text="Quelle PCND" />
+                              <Label layoutX="235.0" layoutY="210.0" text="Bemerkungen " />
+                              <CheckBox fx:id="chkProgZwischentext" disable="true" layoutX="376.0" layoutY="175.0" mnemonicParsing="false" onMouseClicked="#chkProgZwischentext_OnMouseClicked" prefHeight="19.0" prefWidth="153.0" styleClass="label-rotklein" text="Zwischentext" />
+                              <CheckBox fx:id="chkProgQuellePcnd" disable="true" layoutX="376.0" layoutY="193.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="93.0" text="Quelle PCND">
+                                 <styleClass>
+                                    <String fx:value="label" />
+                                    <String fx:value="schriftblaugrau" />
+                                 </styleClass></CheckBox>
                               <TextField fx:id="txtPosLitId" disable="true" editable="false" layoutX="468.0" layoutY="145.0" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: #F4F4F4; -fx-border-color: #F4F4F4;">
                                  <font>
                                     <Font size="8.0" />
                                  </font></TextField>
-                              <Label layoutX="20.0" layoutY="220.0" text="Besetzung" />
-                              <Label alignment="CENTER_RIGHT" disable="true" layoutX="371.0" layoutY="38.0" prefHeight="14.0" prefWidth="81.0" text="LitId" />
-                              <Rectangle arcHeight="1.0" arcWidth="1.0" fill="WHITE" focusTraversable="true" height="116.0" layoutX="466.0" layoutY="235.0" stroke="#bfbbbb" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="6.0" strokeType="INSIDE" width="99.0" />
-                              <ImageView fx:id="imgNaTitelgrafik" fitHeight="107.0" fitWidth="89.0" layoutX="471.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true" />
-                              <Button fx:id="btnNaGrafikwahl" focusTraversable="false" layoutX="467.0" layoutY="355.0" mnemonicParsing="false" onAction="#btnNaGrafikwahl_OnClick" prefHeight="29.0" prefWidth="98.0" styleClass="button-neu" text="Titelgrafik..." />
-                              <TextField fx:id="txtPosTitelgrafik" alignment="CENTER_RIGHT" disable="true" editable="false" focusTraversable="false" layoutX="19.0" layoutY="355.0" prefHeight="29.0" prefWidth="439.0" style="-fx-background-color: #F4F4F4; -fx-border-color: #F4F4F4;" styleClass="label">
+                              <Label layoutX="20.0" layoutY="210.0" text="Besetzung" />
+                              <Label alignment="CENTER_RIGHT" disable="true" layoutX="371.0" layoutY="25.0" prefHeight="14.0" prefWidth="81.0" text="LitId" />
+                              <Rectangle arcHeight="1.0" arcWidth="1.0" fill="WHITE" focusTraversable="true" height="116.0" layoutX="472.0" layoutY="40.0" stroke="#bfbbbb" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="6.0" strokeType="INSIDE" width="99.0" />
+                              <ImageView fx:id="imgNaTitelgrafik" fitHeight="107.0" fitWidth="89.0" layoutX="478.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" />
+                              <Button fx:id="btnNaGrafikwahl" focusTraversable="false" layoutX="473.0" layoutY="168.0" mnemonicParsing="false" onAction="#btnNaGrafikwahl_OnClick" prefHeight="29.0" prefWidth="98.0" styleClass="button-neu" text="Titelgrafik..." />
+                              <TextField fx:id="txtPosTitelgrafik" alignment="CENTER_RIGHT" disable="true" editable="false" focusTraversable="false" layoutX="472.0" layoutY="192.0" prefHeight="29.0" prefWidth="100.0" style="-fx-background-color: #F4F4F4; -fx-border-color: #F4F4F4;" styleClass="label">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets></TextField>
-                              <Button fx:id="btnPosLeerenAnhaengen" focusTraversable="false" layoutX="519.0" layoutY="50.0" mnemonicParsing="false" onAction="#btnPosLeerenAnhaengen_OnClick" prefHeight="30.0" prefWidth="28.0">
+                              <Button fx:id="btnPosLeerenAnhaengen" focusTraversable="false" layoutX="158.0" layoutY="277.0" mnemonicParsing="false" onAction="#btnPosLeerenAnhaengen_OnClick" prefHeight="30.0" prefWidth="28.0">
                                  <graphic>
-                                    <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+                                    <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
                                        <image>
-                                          <Image url="@/icons/javafx/table_add16x16.png" />
+                                          <Image url="@/icons/javafx/table_add32x32.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
