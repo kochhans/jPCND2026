@@ -1207,7 +1207,7 @@ public class FrmAktionenController
 		btnAktionDuplizieren.setDisable(true);
 		btnAktionDrucken1.setDisable(true);
 		chkDuplikatInclTitel.setDisable(true);
-		lblAktionAktuell.setDisable(true);
+		//lblAktionAktuell.setDisable(true);
 	}
 	
 	@FXML
