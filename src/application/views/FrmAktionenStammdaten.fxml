@@ -47,9 +47,9 @@
                <tabs>
                   <Tab fx:id="tabStammdatenPersonen" text="Stammdaten Personen">
                      <graphic>
-                        <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+                        <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
                            <image>
-                              <Image url="@/icons/javafx/regtab_stammpers16x16_update_contact_info.png" />
+                              <Image url="@/icons/javafx/update_contact_info32x32.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -166,7 +166,7 @@
                      <graphic>
                         <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
                            <image>
-                              <Image url="@/icons/javafx/regtab_import16x16_table_add.png" />
+                              <Image url="@/icons/javafx/table_add16x16.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -177,7 +177,7 @@
                                  <graphic>
                                     <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
                                        <image>
-                                          <Image url="@/icons/javafx/btnImportcsv32x32_table_row_insert.png" />
+                                          <Image url="@/icons/javafx/table_row_insert32x32.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -188,7 +188,7 @@
                                  <graphic>
                                     <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
                                        <image>
-                                          <Image url="@/icons/javafx/btnImportcsv32x32_table_row_insert.png" />
+                                          <Image url="@/icons/javafx/table_row_insert32x32.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>

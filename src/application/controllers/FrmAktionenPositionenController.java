@@ -108,7 +108,7 @@ public class FrmAktionenPositionenController
 	private Label lblZeilebearbeiten;
 	@FXML
 	private Button btnPosSpeichern, btnPosLoeschen, btnPosHoch,
-			btnPosRunter, btnPosLeeren, btnPosLeerenAnhaengen, btnNaGrafikwahl;
+			btnPosRunter, btnPosLeeren, btnPosLeerenAnhaengen, btnNaGrafikwahl, btnPosgespielt;
 	@FXML
 	FileChooser fileAuswahlbox = new FileChooser();
 	@FXML
@@ -505,7 +505,7 @@ public class FrmAktionenPositionenController
 	@FXML
 	public void anzeigenAktioneninfo(int caid)
 	{
-		System.out.println("anzeigtenAktioneninfo -- aktuelle Aktion " + caid);
+		//System.out.println("anzeigtenAktioneninfo -- aktuelle Aktion " + caid);
 		AktionenEinzelnPerId aktion = db.getAktionPerId(caid);
 		String aktionInfo = "";
 		if (aktion != null)
@@ -515,13 +515,13 @@ public class FrmAktionenPositionenController
 			{
 				aktionInfo += aktion.getCatreffpunkt().toString() + " | ";
 			}
-			System.out.println("anzeigtenAktioneninfo -- aktuelle Aktion " + aktionInfo);
+			//System.out.println("anzeigtenAktioneninfo -- aktuelle Aktion " + aktionInfo);
 			// aktionInfo="";
 			aktionInfo += aktion.getCabeschreibung() + " | ";
 			aktionInfo += aktion.getCagruppe() + " | ";
 			aktionInfo += aktion.getCaaktionsort() + " | ";
 			lblAktionDatum.setText(aktionInfo);
-			System.out.println("anzeigtenAktioneninfo -- aktuelle Aktion " + aktionInfo);
+			//System.out.println("anzeigtenAktioneninfo -- aktuelle Aktion " + aktionInfo);
 		}
 	}
 
@@ -967,6 +967,14 @@ public class FrmAktionenPositionenController
 			tblvwAktionPositionen.getSelectionModel().select(markierterIndex);
 			// tblvwAktionPositionen.scrollTo(markierterIndex);
 		}
+	}
+	
+	// POSITION LEEREN und unten anhängen (NEUER DS)
+	@FXML
+	private void btnPosgespielt_OnClick(ActionEvent event) throws Exception
+	{
+		Msgbox.show("Schon gespielt ...", "Dieses Stück wurde schon gespielt ...");
+
 	}
 
 	@FXML // Titelgrafikpfad auswählen...

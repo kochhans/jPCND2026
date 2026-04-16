@@ -98,6 +98,12 @@
     -fx-font-weight: bold;
 	
 }
+
+.label-title3{
+    -fx-font-size: 10pt;
+    -fx-font-weight: bold;
+	
+}
 .label-rot {
     -fx-font-size: 10pt;
     
@@ -123,13 +129,20 @@
 	-fx-text-fill: white;
 }
 
-.schriftblaugrau{
-	-fx-text-fill: #6989B3;
+.schriftgruen{
+	-fx-text-fill: #1B8F3D;
 }
+
+.schriftblaugrau{
+	-fx-text-fill: #516A8A;
+}
+
 
 .schriftgelb{
 	-fx-text-fill: yellow;
 }
+
+
 /*Pesudoklassen für Laufzeitumschaltung*/
 .label:blau	{
 	-fx-text-fill: #1686D9;	

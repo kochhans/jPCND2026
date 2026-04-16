@@ -8,9 +8,9 @@ public class ValuesGlobals
 	// ###### ALLG. EINSTELLUNG #########
 	public static int progAdmin = 1; // 0 oder 1
 	public static String progTitel = "jPCND ";
-	public static String progVersion = "Version 1.26.0413";//"Version 1.26.0125"
+	public static String progVersion = "Version 1.26.0416";//"Version 1.26.0125"
 	public static String dbVersion ="";
-	//public static String dbStructureVersion ="";
+	//public static StrinMg dbStructureVersion ="";
 	public static String Versionsinfo = "JRT: " + System.getProperty("java.runtime.version") + " // JFX: " + System.getProperty("javafx.version");
 	public static Color defaultBackgroundColor = new Color(0.1, 0.1, 0.1, 1);
 	public static Font headlineFont = new Font(20);
@@ -19,7 +19,8 @@ public class ValuesGlobals
 			+ "https://creativecommons.org/licenses/by/4.0/\n"
 			+ "FatCow Farm Fresh Icons 03.29.2013, v3.5.0 \n"
 			+ "Creative Commons Attribution 3.0 License.\r\n"
-			+ "http://creativecommons.org/licenses/by/3.0/us/";
+			+ "http://creativecommons.org/licenses/by/3.0/us/\n"
+			+ "\nOpen Icon Library";
 	
 	// ###### PFADE #########
 	public static String dbPfad = ""; // Kompletter Pfad der Datenbank mit Datenbankdatei z.B. C:\daten\jpcnd.db3
@@ -78,8 +79,8 @@ public class ValuesGlobals
 	public static String Uebergabewert1 = "";
 	public static String Uebergabewert2 = "";
 	public static boolean updatecheck = true;
-	public static String updatetext = "";
-	public static boolean updatebuttonvisible = false;
+	public static String updateprogramm = "";
+	public static String updatedatenbank = "";
 
 //	public static void init()
 //	{

@@ -21,7 +21,7 @@ import application.SceneManager;
 import application.ValuesGlobals;
 
 import application.dbupdate.DatabaseMergeController;
-
+import application.dbupdate.DatabaseUpdaten;
 import application.models.AutorenlisteModel;
 import application.models.BibellisteModel;
 import application.models.EditionenlisteComboModel;
@@ -114,7 +114,7 @@ public class FrmStartController implements Initializable
 	@FXML
 	private Label lblStatusPdf, lblUpdateinfo;
 	@FXML
-	private Button btnListeDruckenVerz, btnUpdaten;
+	private Button btnListeDruckenVerz;// , btnUpdaten;
 
 //MENUES----------------------
 	@FXML
@@ -392,7 +392,7 @@ public class FrmStartController implements Initializable
 	public void initialize(URL arg0, ResourceBundle arg1)
 	{
 		System.out.println("(1) initialize - FrmStart 01");
-		btnUpdaten.setVisible(false);
+		// btnUpdaten.setVisible(false);
 		lblUpdateinfo.setVisible(false);
 		// men40.setVisible(false);
 	}
@@ -439,28 +439,39 @@ public class FrmStartController implements Initializable
 //			checkUpdates();
 			// ===== Update-Check nur 1x pro Sitzung =====
 			if (ValuesGlobals.updatecheck == true)
-			{
-				checkUpdates();
-				
-
+			{ // beim Starten werden Updates geprüft
+				checkUpdatesStart();
 				ValuesGlobals.updatecheck = false;
 			}
 			else
-			{
-				if (ValuesGlobals.updatebuttonvisible == true)
+			{ // ab 2. Mal übernehmen von Globalwerten
+				men40Datenbank.setVisible(false);
+				men40Programm.setVisible(false);
+				lblUpdateinfo.setVisible(false);
+				if (ValuesGlobals.updateprogramm.equals("") && ValuesGlobals.updatedatenbank.equals(""))
 				{
-					btnUpdaten.setVisible(true);
-					lblUpdateinfo.setVisible(true);
-					lblUpdateinfo.setText(ValuesGlobals.updatetext);
+					// kein Update -Menü unsichtbar und lbl unsichtbar
+					men40.setVisible(false);
+
 				}
 				else
 				{
-					btnUpdaten.setVisible(false);
-					lblUpdateinfo.setVisible(false);
+					// Update nötig, welches?
+
+					if (!ValuesGlobals.updateprogramm.isEmpty())
+					{ // kein Programmupdate
+						men40Programm.setVisible(true);
+						
+					}
+					if (!ValuesGlobals.updatedatenbank.isEmpty())
+					{
+						lblUpdateinfo.setText(ValuesGlobals.updateprogramm + "\n" + ValuesGlobals.updatedatenbank);
+						men40Datenbank.setVisible(true);
+						lblUpdateinfo.setVisible(true);
+					}
+					men40.setVisible(true);
 				}
-
 			}
-
 			// Alle TableViews in rootPane durchgehen und Spalten fixieren
 			rootStart.lookupAll(".table-view").forEach(tv -> ((TableView<?>) tv).getColumns().forEach(col -> col.setReorderable(false)));
 			// Filterwerte laden
@@ -473,15 +484,17 @@ public class FrmStartController implements Initializable
 		}
 	}
 
-	private void checkUpdates()
+	private void checkUpdatesStart()
 	{
-		System.out.println("(3) checkUpdates()");
-		btnUpdaten.setVisible(false);
+		System.out.println("(3) checkUpdatesStart()");
+		// btnUpdaten.setVisible(false);
 		men40.setVisible(false);
-
+		men40Programm.setVisible(false);
+		men40Datenbank.setVisible(false);
 		try
 		{
-			String infotext = "";
+			String infotextdb = "";
+			String infotextprog = "";
 			String versionNeu;
 
 			versionNeu = ToolsUpdateChecker.checkForUpdatesUniversell("prog");
@@ -491,53 +504,53 @@ public class FrmStartController implements Initializable
 				{
 					lblUpdateinfo.setText("KEINE INTERNETVERBINDUNG VORHANDEN\nVersionscheck nicht möglich");
 					lblUpdateinfo.setVisible(true);
-					return;
+					return; // sofort abbrechen, wenn keine Internetverbindung da ist
 				}
 				else
-				{
-					infotext = "Neue Programm-Version: " + versionNeu + " ";
-					men40.setVisible(true);
+				{// Programm ist neu
+					infotextprog = "Neues Programm verfügbar:  " + versionNeu + "  ";
 					men40Programm.setVisible(true);
+					ValuesGlobals.updateprogramm = infotextprog;
+					lblUpdateinfo.setText(infotextprog);
 				}
 			}
 			else
-			{
+			{// Programm ist nicht neu
 				men40Programm.setVisible(false);
+				lblUpdateinfo.setVisible(false);
+				ValuesGlobals.updateprogramm = "";
 			}
 
 			versionNeu = ToolsUpdateChecker.checkForUpdatesUniversell("db");
 			if (!versionNeu.isEmpty())
-			{
-				infotext += "\nNeue Datenbank-Version: " + versionNeu;
-				btnUpdaten.setVisible(true);
-				men40.setVisible(true);
+			{ // neue Datenbank
+				infotextdb += "Neue Datenbank verfügbar:  " + versionNeu + "  ";
 				men40Datenbank.setVisible(true);
-				// lblDbVersion.setText("aktive Datenbank: " +
-				// DatabaseVersionUtil.getLocalDatabaseVersion());
+				ValuesGlobals.updatedatenbank = infotextdb;
+
 			}
 			else
-			{
+			{ // keine neue Datenbank
 				men40Datenbank.setVisible(false);
+				ValuesGlobals.updatedatenbank = "";
 			}
 
-			if (infotext.isEmpty())
+			if (infotextdb.isEmpty() && infotextprog.isEmpty())
 			{
-				btnUpdaten.setVisible(false);
+				// btnUpdaten.setVisible(false);
 				men40.setVisible(false);
 				lblUpdateinfo.setVisible(false);
-				ValuesGlobals.updatebuttonvisible = false;
-				ValuesGlobals.updatetext = "";
+				ValuesGlobals.updatecheck = false;
+				ValuesGlobals.updateprogramm = "";
+				ValuesGlobals.updatedatenbank = "";
 			}
 			else
 			{
-				
-				ValuesGlobals.updatebuttonvisible = true;
-				ValuesGlobals.updatetext = infotext;
 				men40.setVisible(true);
 				lblUpdateinfo.setVisible(true);
-				lblUpdateinfo.setText(infotext);
-
+				lblUpdateinfo.setText(infotextprog + "\n" + infotextdb);
 			}
+
 		}
 		catch (Exception e)
 		{
@@ -545,8 +558,7 @@ public class FrmStartController implements Initializable
 		}
 		finally
 		{
-			// lblDbVersion.setText("aktive Datenbank: " +
-			// DatabaseVersionUtil.getLocalDatabaseVersion());
+			ValuesGlobals.updatecheck = false;
 		}
 	}
 
@@ -1137,7 +1149,7 @@ public class FrmStartController implements Initializable
 			stModalwindow.setOnCloseRequest(e -> { // verbessert 01.2026
 			});
 			stModalwindow.setTitle("Notenmappen bearbeiten...");
-			stModalwindow.initOwner(btnUpdaten.getScene().getWindow());
+			stModalwindow.initOwner(btnBeenden.getScene().getWindow());
 			stModalwindow.setResizable(false);
 			stModalwindow.getIcons().add(new Image("/icons/javafx/werkzeug.png"));
 			stModalwindow.setScene(new Scene(root));
@@ -1158,7 +1170,7 @@ public class FrmStartController implements Initializable
 	{
 
 		saveFilterToState(); // ALLE Filter speichern
-		btnUpdaten.setVisible(false);
+		// btnUpdaten.setVisible(false);
 
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -1410,7 +1422,7 @@ public class FrmStartController implements Initializable
 			});
 			stModalwindow.setTitle("Themen für Lieder/Stücke bearbeiten...");
 			stModalwindow.setResizable(false);
-			stModalwindow.initOwner(btnUpdaten.getScene().getWindow());
+			stModalwindow.initOwner(btnBeenden.getScene().getWindow());
 			stModalwindow.getIcons().add(new Image("/icons/javafx/werkzeug.png"));
 			stModalwindow.setScene(new Scene(root));
 			stModalwindow.initModality(Modality.APPLICATION_MODAL);
@@ -1474,7 +1486,7 @@ public class FrmStartController implements Initializable
 			stModalwindow.setResizable(false);
 			stModalwindow.getIcons().add(new Image("/icons/javafx/werkzeug.png"));
 			stModalwindow.setScene(new Scene(root));
-			stModalwindow.initOwner(btnUpdaten.getScene().getWindow());
+			stModalwindow.initOwner(btnBeenden.getScene().getWindow());
 			stModalwindow.initModality(Modality.APPLICATION_MODAL);
 			stModalwindow.setUserData(stModalwindow);
 			stModalwindow.showAndWait(); // Warten, bis das Fenster wieder geschlossen wird...
@@ -1533,7 +1545,7 @@ public class FrmStartController implements Initializable
 			// stModalwindow.setHeight(520);
 			// stModalwindow.setWidth(815);
 			stModalwindow.setResizable(false);
-			stModalwindow.initOwner(btnUpdaten.getScene().getWindow());
+			stModalwindow.initOwner(btnBeenden.getScene().getWindow());
 			stModalwindow.getIcons().add(new Image("/icons/javafx/werkzeug.png"));
 			stModalwindow.setScene(new Scene(root));
 			stModalwindow.initModality(Modality.APPLICATION_MODAL);
@@ -1580,11 +1592,10 @@ public class FrmStartController implements Initializable
 			controller.init(stModalwindow); // init in zugeh. EditController!
 
 			stModalwindow.initModality(Modality.APPLICATION_MODAL);
-			stModalwindow.initOwner(btnUpdaten.getScene().getWindow());
+			stModalwindow.initOwner(btnBeenden.getScene().getWindow());
 			// stModalwindow.initOwner(((Node) event.getSource()).getScene().getWindow());
 			stModalwindow.setTitle("Tage für Wochenlieder bearbeiten...");
 			stModalwindow.setResizable(false);
-			stModalwindow.initOwner(btnUpdaten.getScene().getWindow());
 			stModalwindow.getIcons().add(new Image("/icons/javafx/werkzeug.png"));
 			stModalwindow.setScene(new Scene(root));
 			stModalwindow.setOnCloseRequest(e -> stModalwindow.close());
@@ -1982,7 +1993,7 @@ public class FrmStartController implements Initializable
 
 			});
 			stModalwindow.setUserData(stModalwindow);
-			stModalwindow.initOwner(btnUpdaten.getScene().getWindow());
+			stModalwindow.initOwner(btnBeenden.getScene().getWindow());
 			stModalwindow.setTitle("Autorinnen und Autoren bearbeiten...");
 			stModalwindow.setResizable(false);
 			stModalwindow.getIcons().add(new Image("/icons/javafx/werkzeug.png"));
@@ -2023,7 +2034,7 @@ public class FrmStartController implements Initializable
 
 			Stage stModalwindow = new Stage();
 			// 🔹 Owner setzen → KEIN extra Taskleisten-Icon mehr
-			stModalwindow.initOwner(btnUpdaten.getScene().getWindow());
+			stModalwindow.initOwner(btnBeenden.getScene().getWindow());
 			controller.setDb(dbStueckart());
 			controller.init(stModalwindow); // init() baut DB auf und lädt Tabelle
 			stModalwindow.setWidth(740);
@@ -2350,7 +2361,7 @@ public class FrmStartController implements Initializable
 			stModalwindow.setResizable(false);
 			stModalwindow.getIcons().add(new Image("/icons/javafx/werkzeug.png"));
 			stModalwindow.setScene(scene);
-			stModalwindow.initOwner(btnUpdaten.getScene().getWindow());
+			stModalwindow.initOwner(btnBeenden.getScene().getWindow());
 			stModalwindow.initModality(Modality.APPLICATION_MODAL);
 			stModalwindow.setUserData(stModalwindow);
 			stModalwindow.showAndWait(); // Warten, bis das Fenster wieder geschlossen wird...
@@ -2399,7 +2410,7 @@ public class FrmStartController implements Initializable
 			});
 			stModalwindow.setTitle("Editionsarten bearbeiten...");
 			stModalwindow.setResizable(false);
-			stModalwindow.initOwner(btnUpdaten.getScene().getWindow());
+			stModalwindow.initOwner(btnBeenden.getScene().getWindow());
 			stModalwindow.getIcons().add(new Image("/icons/javafx/werkzeug.png"));
 			stModalwindow.setScene(scene);
 			stModalwindow.initModality(Modality.APPLICATION_MODAL);
@@ -2415,38 +2426,10 @@ public class FrmStartController implements Initializable
 	}
 
 //############################### Updaten #############################################
-	@FXML
-	public void btnUpdaten_OnClick() throws IOException
+	public void fctUpdaten() throws IOException
 	{
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/application/dbupdate/DatabaseMergeView.fxml"));
-		Parent root = fxmlLoader.load();
+		DatabaseUpdaten.fctDatabaseupdate(btnBeenden.getScene().getWindow());
 
-		Stage stModalwindow = new Stage();
-		Scene scene = new Scene(root);
-
-		DatabaseMergeController controller = fxmlLoader.getController();
-		controller.setStage(stModalwindow);
-
-		stModalwindow.setTitle("Update der Datenbank...");
-		stModalwindow.setResizable(false);
-
-		// 🔹 Owner setzen → KEIN extra Taskleisten-Icon mehr
-		stModalwindow.initOwner(btnUpdaten.getScene().getWindow());
-
-		// 🔹 Modalität
-		stModalwindow.initModality(Modality.APPLICATION_MODAL);
-
-		// 🔹 Icons aus zentraler Klasse (empfohlen)
-		stModalwindow.getIcons().setAll(application.AppIcons.getIcons());
-
-		stModalwindow.setScene(scene);
-
-		stModalwindow.setOnCloseRequest(e -> {
-			e.consume();
-			stModalwindow.close();
-		});
-
-		stModalwindow.showAndWait();
 	}
 
 ////############################### Drucken #############################################
@@ -3070,7 +3053,7 @@ public class FrmStartController implements Initializable
 		stModalwindow.setHeight(340);
 
 		// 🔹 Owner setzen → KEIN extra Taskleisten-Icon mehr
-		stModalwindow.initOwner(btnUpdaten.getScene().getWindow()); // aus beliebigem Steuerelement holen
+		stModalwindow.initOwner(btnBeenden.getScene().getWindow()); // aus beliebigem Steuerelement holen
 
 		// 🔹 Modalität
 		stModalwindow.initModality(Modality.APPLICATION_MODAL);
@@ -3211,7 +3194,7 @@ public class FrmStartController implements Initializable
 	@FXML
 	public void men40Datenbank_OnClick() throws IOException
 	{
-		btnUpdaten_OnClick();
+		fctUpdaten();
 	}
 
 //+++++++++Ende Menüleiste ++++++++++++

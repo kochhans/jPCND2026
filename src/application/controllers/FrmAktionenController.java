@@ -74,6 +74,7 @@ import application.database.SQLiteImporter;
 import application.database.SQLiteImporterPersonen;
 import application.database.SQLiteImporterPositionen;
 import application.dbupdate.DatabaseMergeController;
+import application.dbupdate.DatabaseUpdaten;
 import application.models.AktionenListeModel;
 import application.models.AktionenListePersonenModel;
 import application.models.AktionenListePositionenModel;
@@ -100,6 +101,9 @@ public class FrmAktionenController
 	// ----------------------------
 	@FXML
 	private MenuItem men01AktionenBeenden, men02StdatPersonen;
+	
+	@FXML
+	private MenuItem men40, men40Programm, men40Datenbank;
 	// ----------------------------
 	// (1) Kopfbereich
 	// ----------------------------
@@ -124,7 +128,7 @@ public class FrmAktionenController
 	private RadioButton radFilterProben, radFilterAuff, radFilterAlles;
 	// BUTTONS---------------------
 	@FXML
-	private Button btnFilterAn, btnFilterAus, btnAktionDrucken1, btnZuNotenarchiv, btnUpdaten, btnStammdaten;
+	private Button btnFilterAn, btnFilterAus, btnAktionDrucken1, btnZuNotenarchiv,  btnStammdaten;//btnUpdaten,
 
 	// IMPORT---------------------
 	@FXML
@@ -373,24 +377,38 @@ public class FrmAktionenController
 		initTabPanes();
 		initData();
 		// ===== Update-Check nur 1x pro Sitzung =====
-		if(ValuesGlobals.updatecheck==true){
-			checkUpdates();
-			btnUpdaten.setVisible(true);
-			lblUpdateinfo.setVisible(true);
-			lblUpdateinfo.setText(ValuesGlobals.updatetext);			
-			ValuesGlobals.updatecheck=false;
+		if (ValuesGlobals.updatecheck == true)
+		{ // beim Starten werden Updates geprüft
+			checkUpdatesAktionen();
+			ValuesGlobals.updatecheck = false;
 		}
-		else {
-			if(ValuesGlobals.updatebuttonvisible==true) {
-				btnUpdaten.setVisible(true);
-				lblUpdateinfo.setVisible(true);
-				lblUpdateinfo.setText(ValuesGlobals.updatetext);
+		else
+		{ // ab 2. Mal übernehmen von Globalwerten
+			men40Datenbank.setVisible(false);
+			men40Programm.setVisible(false);
+			lblUpdateinfo.setVisible(false);
+			if (ValuesGlobals.updateprogramm.equals("") && ValuesGlobals.updatedatenbank.equals(""))
+			{
+				// kein Update -Menü unsichtbar und lbl unsichtbar
+				men40.setVisible(false);
+
 			}
-			else {
-				btnUpdaten.setVisible(false);
-				lblUpdateinfo.setVisible(false);
+			else
+			{
+				// Update nötig, welches?
+
+				if (!ValuesGlobals.updateprogramm.isEmpty())
+				{ // kein Programmupdate
+					men40Programm.setVisible(true);
+				}
+				if (!ValuesGlobals.updatedatenbank.isEmpty())
+				{
+					lblUpdateinfo.setText(ValuesGlobals.updateprogramm + "\n" + ValuesGlobals.updatedatenbank);
+					lblUpdateinfo.setVisible(true);
+					men40Datenbank.setVisible(true);
+				}
+				men40.setVisible(true);
 			}
-			
 		}
 
 	}
@@ -476,14 +494,15 @@ public class FrmAktionenController
 
 	}
 	
-	private void checkUpdates()
+	private void checkUpdatesAktionen()
 	{
-		System.out.println("(3) checkUpdates in AktionenSTart()");
-		btnUpdaten.setVisible(false);
-//		men40.setVisible(false);
+		System.out.println("(3) checkUpdatesStart()");
+		// btnUpdaten.setVisible(false);
+		men40.setVisible(false);
 		try
 		{
-			String infotext = "";
+			String infotextdb = "";
+			String infotextprog = "";
 			String versionNeu;
 
 			versionNeu = ToolsUpdateChecker.checkForUpdatesUniversell("prog");
@@ -493,52 +512,53 @@ public class FrmAktionenController
 				{
 					lblUpdateinfo.setText("KEINE INTERNETVERBINDUNG VORHANDEN\nVersionscheck nicht möglich");
 					lblUpdateinfo.setVisible(true);
-					return;
+					return; // sofort abbrechen, wenn keine Internetverbindung da ist
 				}
 				else
-				{
-					infotext = "Neue Programm-Version: " + versionNeu + " ";
-					//men40.setVisible(true);
-					//men40Programm.setVisible(true);
+				{// Programm ist neu
+					infotextprog = "Neues Programm verfügbar:  " + versionNeu + "  ";
+					men40Programm.setVisible(true);
+					ValuesGlobals.updateprogramm = infotextprog;
+					lblUpdateinfo.setText(infotextprog);
 				}
 			}
 			else
-			{
-				//men40Programm.setVisible(false);
+			{// Programm ist nicht neu
+				men40Programm.setVisible(false);
+				lblUpdateinfo.setVisible(false);
+				ValuesGlobals.updateprogramm = "";
 			}
 
 			versionNeu = ToolsUpdateChecker.checkForUpdatesUniversell("db");
 			if (!versionNeu.isEmpty())
-			{
-				infotext += "\nNeue Datenbank-Version: " + versionNeu;
-				btnUpdaten.setVisible(true);
+			{ // neue Datenbank
+				infotextdb += "Neue Datenbank verfügbar:  " + versionNeu + "  ";
+				men40Datenbank.setVisible(true);
+				ValuesGlobals.updatedatenbank = infotextdb;
 
-				//men40.setVisible(true);
-				//men40Datenbank.setVisible(true);
-				// lblDbVersion.setText("aktive Datenbank: " +
-				// DatabaseVersionUtil.getLocalDatabaseVersion());
 			}
 			else
-			{
-				//men40Datenbank.setVisible(false);
+			{ // keine neue Datenbank
+				men40Datenbank.setVisible(false);
+				ValuesGlobals.updatedatenbank = "";
 			}
 
-			if (infotext.isEmpty())
+			if (infotextdb.isEmpty() && infotextprog.isEmpty())
 			{
-				btnUpdaten.setVisible(false);
-				//men40.setVisible(false);
+				// btnUpdaten.setVisible(false);
+				men40.setVisible(false);
 				lblUpdateinfo.setVisible(false);
-				ValuesGlobals.updatebuttonvisible=false;
-				ValuesGlobals.updatetext="";
+				ValuesGlobals.updatecheck = false;
+				ValuesGlobals.updateprogramm = "";
+				ValuesGlobals.updatedatenbank = "";
 			}
 			else
 			{
-				//men40.setVisible(true);
+				men40.setVisible(true);
 				lblUpdateinfo.setVisible(true);
-				lblUpdateinfo.setText(infotext);
-				ValuesGlobals.updatebuttonvisible=true;
-				ValuesGlobals.updatetext=infotext;
+				lblUpdateinfo.setText(infotextprog + "\n" + infotextdb);
 			}
+
 		}
 		catch (Exception e)
 		{
@@ -546,19 +566,48 @@ public class FrmAktionenController
 		}
 		finally
 		{
-			// lblDbVersion.setText("aktive Datenbank: " +
-			// DatabaseVersionUtil.getLocalDatabaseVersion());
+			ValuesGlobals.updatecheck = false;
 		}
 	}
 	//############################### Updaten #############################################
-		@FXML
-		public void btnUpdaten_OnClick() throws IOException
+
+		//############################### Updaten #############################################
+		public void fctUpdaten() throws IOException
 		{
-			Msgbox.show("Updates sind online verfügbar...", "Bitte wechseln Sie zum Programmteil Literatur-Notenarchiv, \n"
-					+ "um die verfügbare Updates einzusehen und zu installieren!");
+			DatabaseUpdaten.fctDatabaseupdate(btnAktionNeu.getScene().getWindow());
+
 		}
 
+		@FXML
+		public void men40Programm_OnAction()
+		{
+			fctWebUpdatesinfo();
+		}
 
+		@FXML
+		public void men40Datenbank_OnAction() throws IOException
+		{
+			fctUpdaten();
+		}	
+		
+		public void fctWebUpdatesinfo()
+		{
+			String textUpdates = "Programmupdates müssen manuell heruntergeladen werden: \n"
+					+ "https://www.pcnd.eu/jpcnd/updates\n\n"
+					+ "Für Datenbankupdates wird eine Schaltfläche im Hauptfenster angezeigt "
+					+ "und können direkt installiert werden."
+					+ "\n\n"
+					+ "Weitere Informationen zum Programm: https://www.pcnd.eu/jpcnd/";
+			try
+			{
+				Msgbox.showUrl("Programmupdates ...", textUpdates);
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
+		
 	// Tabwechsel
 	@FXML
 	public void initTabPanes()
@@ -772,6 +821,12 @@ public class FrmAktionenController
 		tblvwAktionPositionen.getSortOrder().clear();
 		oblist_aktionenpositionenData.master.setAll(db.getAktionenPositionenListeAll(aktuelleAktion));
 	}
+	
+//	private void reloadAktionenPositionen(int caid) {
+//	    oblist_aktionenpositionenData.setAll(
+//	        db.getAktionenPositionenListeAll(caid)
+//	    );
+//	}
 
 	// Aktionen Mitwirkende ----------
 	public void initTblvwMitwirkende()
@@ -997,7 +1052,7 @@ public class FrmAktionenController
 		btnAktionDuplizieren.setDisable(false);
 		btnAktionDrucken1.setDisable(false);
 		chkDuplikatInclTitel.setDisable(false);
-		lblAktionAktuell.setDisable(false);
+		//lblAktionAktuell.setDisable(false);
 
 		leerenEingabenMitwirkende();
 		anzeigenTabelleAktionenPositionen();
@@ -1092,7 +1147,7 @@ public class FrmAktionenController
 	@FXML
 	private void btnStammdaten_OnAction(ActionEvent event) throws Exception
 	{
-		AktionenListeModel selected = tblvwChoraktionen.getSelectionModel().getSelectedItem();
+		oblist_personenData.master.clear();
 
 		try {
 		    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/application/views/FrmAktionenStammdaten.fxml"));
@@ -1699,7 +1754,7 @@ public class FrmAktionenController
 	@FXML
 	private void handleBtnMitwEditNeu_onClick()
 	{
-		// oblist_cvwpersonen = null;
+		//oblist_cvwpersonen = null;
 		// oblist_mitwzugew = null;
 		tblvwPersonenZugewiesen.getSelectionModel().clearSelection();
 		tblvwPersonen.getSelectionModel().clearSelection();
@@ -2510,7 +2565,13 @@ public class FrmAktionenController
 		dialogStage.setScene(new Scene(root));
 		dialogStage.showAndWait(); // wartet bis Fenster geschlossen wird
 		// refresh der notwendigen Combos und Tabellen
-		// updateComboNotenmappeItems(); // Filtercombo aktualisieren
+		// 🔄 TableView sauber neu laden
+		tblvwAktionPositionen.setItems(
+		    FXCollections.observableArrayList(
+		        db.getAktionenPositionenListeAll(caid)
+		    )
+		);
+
 	}
 
 // =======================================================================

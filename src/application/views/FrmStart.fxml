@@ -26,11 +26,11 @@
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.SearchableComboBox?>
 
-<AnchorPane id="rootStart" fx:id="rootStart" minHeight="780.0" minWidth="1240.0" onKeyPressed="#handleKeyPressOk" prefHeight="780.0" prefWidth="1240.0" style="-fx-background-color: #CBD5E8;" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.FrmStartController">
+<AnchorPane id="rootStart" fx:id="rootStart" minHeight="780.0" minWidth="1220.0" onKeyPressed="#handleKeyPressOk" prefHeight="780.0" prefWidth="1220.0" style="-fx-background-color: #CBD5E8;" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.FrmStartController">
 	<children>
 		<VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #CBD5E8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<children>
-				<MenuBar prefHeight="23.0" style="-fx-background-color: #f4f4f4;" VBox.vgrow="NEVER">
+				<MenuBar style="-fx-background-color: #f4f4f4;" VBox.vgrow="NEVER">
 					<menus>
 						<Menu fx:id="men10" mnemonicParsing="false" text="Datei">
 							<items>
@@ -65,7 +65,7 @@
                         		<MenuItem fx:id="men03Lizenz" mnemonicParsing="false" onAction="#men03Lizenz_OnClick" text="Lizenz..." />
 							</items>
 						</Menu>
-                  			<Menu fx:id="men40" mnemonicParsing="false" style="-fx-text-fill: red; -fx-font-weight: bold;" text="Updates sind verfügbar">
+                  			<Menu fx:id="men40" mnemonicParsing="false" style="-fx-text-fill: red; -fx-font-weight: bold;" text=" --  U P D A T E S    sind verfügbar  --">
                   		   	 <items>
        							 <MenuItem fx:id="men40Programm" onAction="#men40Programm_OnClick" text="Programmupdate" />
                         <MenuItem fx:id="men40Datenbank" onAction="#men40Datenbank_OnClick" text="Datenbank aktualisierien ..." />
@@ -74,18 +74,17 @@
 						</menus>
 				</MenuBar>
 				
-				<HBox maxHeight="80.0" maxWidth="1.7976931348623157E308" minHeight="80.0" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="80.0" prefWidth="1240.0" style="-fx-background-color: #CBD5E8;">
+				<HBox maxHeight="80.0" maxWidth="1.7976931348623157E308" minHeight="80.0" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="80.0" prefWidth="1220.0" style="-fx-background-color: #CBD5E8;">
 					<children>
-						<AnchorPane maxHeight="80.0" minHeight="80.0" minWidth="1240.0" prefHeight="80.0" prefWidth="1240.0" style="-fx-background-color: #CBD5E8;" HBox.hgrow="ALWAYS">
+						<AnchorPane maxHeight="80.0" minHeight="80.0" minWidth="1220.0" prefHeight="80.0" prefWidth="1222.0" style="-fx-background-color: #CBD5E8;" HBox.hgrow="ALWAYS">
 							<children>                          
                         
                         
                         
                         
                         
-                        <Label fx:id="lblUpdateinfo" alignment="BOTTOM_LEFT" layoutX="792.0" layoutY="1.0" prefHeight="40.0" prefWidth="208.0" styleClass="label-rotklein" text="Updateinfo ..." textAlignment="RIGHT" wrapText="true" AnchorPane.rightAnchor="240.0" />
-                        <Label fx:id="lblStatusPdf" layoutX="565.0" layoutY="9.0" prefHeight="17.0" prefWidth="110.0" text="PDF wird erstellt ..." textFill="#c90a0a" visible="false" />
-                        <ProgressBar fx:id="progressPdf" layoutX="424.0" layoutY="5.0" prefHeight="18.0" prefWidth="121.0" progress="0.0" visible="false" />
+                        <Label fx:id="lblUpdateinfo" alignment="TOP_RIGHT" layoutX="726.0" layoutY="26.0" prefHeight="46.0" prefWidth="363.0" styleClass="label-rot" text="Updateinfo ..." textAlignment="RIGHT" wrapText="true" AnchorPane.rightAnchor="266.0" />
+                        <ProgressBar fx:id="progressPdf" layoutX="442.0" layoutY="5.0" prefHeight="18.0" prefWidth="121.0" progress="0.0" visible="false" />
 								<ImageView fitHeight="54.0" fitWidth="70.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="12.0">
 									<image>
 										<Image url="@/icons/javafx/jpcnd-150.png" />
@@ -136,7 +135,7 @@
 								</Button>
                         
                         
-                        <Button fx:id="btnListeDrucken" contentDisplay="CENTER" focusTraversable="false" layoutX="424.0" layoutY="29.0" mnemonicParsing="false" onAction="#btnListeDrucken_OnClick" prefHeight="32.0" prefWidth="32.0">
+                        <Button fx:id="btnListeDrucken" contentDisplay="CENTER" focusTraversable="false" layoutX="440.0" layoutY="29.0" mnemonicParsing="false" onAction="#btnListeDrucken_OnClick" prefHeight="32.0" prefWidth="32.0">
 										<graphic>
 									        <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
 									            <image> <Image url="@/icons/javafx/btn_pdfdruck32x32.png" /> </image>
@@ -146,7 +145,7 @@
                         </Button>
                         
                         
-                        <Button fx:id="btnListeDruckenVerz" focusTraversable="false" layoutX="485.0" layoutY="29.0" mnemonicParsing="false" onAction="#btnListeDruckenVerz_OnClick" prefHeight="32.0" prefWidth="32.0">
+                        <Button fx:id="btnListeDruckenVerz" focusTraversable="false" layoutX="501.0" layoutY="29.0" mnemonicParsing="false" onAction="#btnListeDruckenVerz_OnClick" prefHeight="32.0" prefWidth="32.0">
 										<graphic>
 									        <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
 									            <image> <Image url="@/icons/javafx/btn_folderpage32x32.png" /> </image>
@@ -156,22 +155,15 @@
                         </Button>
                         
                         <Label layoutX="339.0" layoutY="31.0" prefHeight="40.0" prefWidth="91.0" text="Filterergebnisse sammeln" wrapText="true" />
-                        <Button fx:id="btnAktivitaeten" layoutX="1004.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnAktivitaeten_OnClick" prefHeight="54.0" prefWidth="158.0" styleClass="button-neu" text="Chor-Aktivitäten" wrapText="true" AnchorPane.rightAnchor="78.0">
+                        <Button fx:id="btnAktivitaeten" layoutX="1005.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnAktivitaeten_OnClick" prefHeight="54.0" prefWidth="182.0" styleClass="button-neu" text="zu Chor- Aktivitäten..." wrapText="true" AnchorPane.rightAnchor="78.0">
 										<graphic>
 									        <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
 									            <image> <Image url="@/icons/javafx/jpcnd-aktionen-0150.png" /> </image>
 									        </ImageView>
 									    </graphic>
 								        <tooltip><Tooltip text="Drucken... (PDF-Seitenansicht)" /> </tooltip>
-                        </Button>                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <Button fx:id="btnUpdaten" layoutX="792.0" layoutY="42.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#btnUpdaten_OnClick" prefHeight="32.0" prefWidth="158.0" styleClass="buttonklein" text="Datenbank-Update..." textFill="#c90a0a" AnchorPane.rightAnchor="290.0" />
-                        <Button fx:id="btnBeenden" layoutX="1168.0" layoutY="21.0" onAction="#men01Beenden_OnClick" prefHeight="54.0" prefWidth="58.0" AnchorPane.rightAnchor="14.0">
+                        </Button>
+                        <Button fx:id="btnBeenden" layoutX="1168.0" layoutY="20.0" onAction="#men01Beenden_OnClick" prefHeight="54.0" prefWidth="58.0" AnchorPane.rightAnchor="14.0">
                            <graphic>
                               <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
                                  <image>
@@ -183,6 +175,7 @@
                               <Tooltip text="Programm beenden ..." />
                            </tooltip>
                         </Button>
+                        <Label fx:id="lblStatusPdf" layoutX="565.0" layoutY="9.0" prefHeight="17.0" prefWidth="228.0" text="PDF wird erstellt ..." textFill="#c90a0a" visible="false" />
 							</children>
 						</AnchorPane>
 					</children>
@@ -190,9 +183,9 @@
 						<Insets />
 					</VBox.margin>
 				</HBox>
-				<HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="160.0" prefHeight="160.0" prefWidth="1240.0" style="-fx-background-color: #EEEEEE;" VBox.vgrow="ALWAYS">
+				<HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="160.0" prefHeight="160.0" prefWidth="1220.0" style="-fx-background-color: #EEEEEE;" VBox.vgrow="ALWAYS">
 					<children>
-						<AnchorPane maxHeight="162.0" minHeight="126.0" prefHeight="162.0" prefWidth="1000.0" style="-fx-background-color: #EEEEEE;">
+						<AnchorPane maxHeight="162.0" minHeight="126.0" prefHeight="160.0" prefWidth="1220.0" style="-fx-background-color: #EEEEEE;" HBox.hgrow="ALWAYS">
 							<children>
 								<Label layoutX="11.0" layoutY="1.0" text=" Titel " textFill="#6b6b6b" AnchorPane.leftAnchor="11.0" />
 								<Label layoutX="11.0" layoutY="92.0" text="Edition" textFill="#6b6b6b" />
@@ -233,7 +226,7 @@
 					</children>
 				</HBox>
 
-				<TabPane fx:id="tabpaneStartfenster" focusTraversable="false" prefHeight="70.0" prefWidth="1280.0" style="-fx-background-color: #c8c8c8;" tabClosingPolicy="UNAVAILABLE" tabMinWidth="150.0" VBox.vgrow="ALWAYS">
+				<TabPane fx:id="tabpaneStartfenster" focusTraversable="false" minWidth="1220.0" prefHeight="70.0" prefWidth="1220.0" style="-fx-background-color: #c8c8c8;" tabClosingPolicy="UNAVAILABLE" tabMinWidth="150.0" VBox.vgrow="ALWAYS">
 					<tabs>
 						<!-- ############################################################################## -->
 						<!-- Tab Literatur -->
@@ -290,12 +283,12 @@
                               <SearchableComboBox fx:id="cbxLitEditBearb" layoutX="82.0" layoutY="313.0" prefHeight="25.0" prefWidth="399.0" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="519.0" />
                               <SearchableComboBox fx:id="cbxLitStueckart" layoutX="82.0" layoutY="345.0" prefHeight="25.0" prefWidth="211.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="707.0" />
 										<TextField fx:id="txtLitEditTonart" alignment="CENTER" layoutX="389.0" layoutY="352.0" prefHeight="26.0" prefWidth="128.0" promptText="Es - D" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="483.0" />
-										<TextField fx:id="txtLitEditSeitezus" alignment="CENTER" layoutX="563.0" layoutY="223.0" prefHeight="26.0" prefWidth="99.0" promptText="25 oben" AnchorPane.bottomAnchor="139.0" AnchorPane.rightAnchor="338.0" />
-										<TextField fx:id="txtLitEditSeite" alignment="CENTER_RIGHT" disable="true" editable="false" layoutX="679.0" layoutY="225.0" prefHeight="25.0" prefWidth="70.0" promptText="25" style="-fx-background-color: #e8e8e8;" AnchorPane.bottomAnchor="139.0" AnchorPane.rightAnchor="251.0" />
-										<TextField fx:id="txtLitEditNrzus" alignment="CENTER" layoutX="669.0" layoutY="248.0" prefHeight="25.0" prefWidth="99.0" promptText="3 A" AnchorPane.bottomAnchor="110.0" AnchorPane.rightAnchor="338.0" />
-										<TextField fx:id="txtLitEditNr" alignment="CENTER_RIGHT" disable="true" editable="false" layoutX="679.0" layoutY="248.0" prefHeight="25.0" prefWidth="70.0" promptText="3" style="-fx-background-color: #e8e8e8;" AnchorPane.bottomAnchor="110.0" AnchorPane.rightAnchor="251.0" />
-                              <TextField fx:id="txtLitEditMin" alignment="CENTER_RIGHT" focusTraversable="false" layoutX="771.0" layoutY="226.0" prefHeight="25.0" prefWidth="63.0" promptText="min" AnchorPane.bottomAnchor="139.0" AnchorPane.rightAnchor="166.0" />
-                              <TextField fx:id="txtLitEditSec" alignment="CENTER_RIGHT" focusTraversable="false" layoutX="771.0" layoutY="248.0" prefHeight="26.0" prefWidth="63.0" promptText="sec" AnchorPane.bottomAnchor="110.0" AnchorPane.rightAnchor="166.0" />
+										<TextField fx:id="txtLitEditSeitezus" alignment="CENTER" layoutX="563.0" layoutY="223.0" prefHeight="28.0" prefWidth="141.0" promptText="25 oben" AnchorPane.bottomAnchor="139.0" AnchorPane.rightAnchor="296.0" />
+										<TextField fx:id="txtLitEditSeite" alignment="CENTER_RIGHT" disable="true" editable="false" layoutX="930.0" layoutY="312.0" prefHeight="25.0" prefWidth="70.0" promptText="25" style="-fx-background-color: #e8e8e8;" AnchorPane.bottomAnchor="139.0" AnchorPane.rightAnchor="220.0" />
+										<TextField fx:id="txtLitEditNrzus" alignment="CENTER" layoutX="669.0" layoutY="248.0" prefHeight="28.0" prefWidth="141.0" promptText="3 A" AnchorPane.bottomAnchor="110.0" AnchorPane.rightAnchor="296.0" />
+										<TextField fx:id="txtLitEditNr" alignment="CENTER_RIGHT" disable="true" editable="false" layoutX="930.0" layoutY="341.0" prefHeight="25.0" prefWidth="70.0" promptText="3" style="-fx-background-color: #e8e8e8;" AnchorPane.bottomAnchor="110.0" AnchorPane.rightAnchor="220.0" />
+                              <TextField fx:id="txtLitEditMin" alignment="CENTER_RIGHT" focusTraversable="false" layoutX="771.0" layoutY="226.0" prefHeight="28.0" prefWidth="49.0" promptText="min" AnchorPane.bottomAnchor="139.0" AnchorPane.rightAnchor="166.0" />
+                              <TextField fx:id="txtLitEditSec" alignment="CENTER_RIGHT" focusTraversable="false" layoutX="771.0" layoutY="248.0" prefHeight="28.0" prefWidth="49.0" promptText="sec" AnchorPane.bottomAnchor="110.0" AnchorPane.rightAnchor="166.0" />
 										<TextArea fx:id="txtaLitEditBesetzung" layoutX="565.0" layoutY="279.0" prefHeight="63.0" prefWidth="295.0" promptText="SSATB; Solotrp. SATB, ...." AnchorPane.bottomAnchor="41.0" AnchorPane.rightAnchor="142.0" />
                               <TextField fx:id="txtLitStckLiedId" alignment="CENTER" disable="true" editable="false" focusTraversable="false" layoutX="927.0" layoutY="219.0" prefHeight="26.0" prefWidth="63.0" visible="false" AnchorPane.bottomAnchor="134.0" AnchorPane.rightAnchor="10.0">
 
@@ -314,10 +307,10 @@
 										<Label alignment="CENTER_RIGHT" layoutX="3.0" layoutY="248.0" prefHeight="15.0" prefWidth="75.0" text="Komponist/in" AnchorPane.bottomAnchor="83.0" AnchorPane.leftAnchor="3.0">
 
 										</Label>
-										<Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="527.0" layoutY="258.0" prefHeight="18.0" prefWidth="34.0" text="Nr." AnchorPane.bottomAnchor="110.0" AnchorPane.rightAnchor="441.0">
+										<Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="745.0" layoutY="347.0" prefHeight="18.0" prefWidth="34.0" text="Nr." AnchorPane.bottomAnchor="114.0" AnchorPane.rightAnchor="441.0">
 
 										</Label>
-										<Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="527.0" layoutY="227.0" prefHeight="18.0" prefWidth="30.0" text="Seite" AnchorPane.bottomAnchor="139.0" AnchorPane.rightAnchor="443.0">
+										<Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="747.0" layoutY="320.0" prefHeight="18.0" prefWidth="30.0" text="Seite" AnchorPane.bottomAnchor="141.0" AnchorPane.rightAnchor="443.0">
 
 										</Label>
 										<Label alignment="CENTER_RIGHT" layoutX="5.0" layoutY="317.40000000000003" prefHeight="15.0" prefWidth="73.0" text="Bearbeiter/in" AnchorPane.bottomAnchor="49.0" AnchorPane.leftAnchor="5.0">
@@ -338,13 +331,13 @@
                               <Label alignment="CENTER_RIGHT" layoutX="15.0" layoutY="356.0" prefHeight="15.0" prefWidth="63.0" text="Stück-Art" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="15.0">
 
                               </Label>
-                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="776.0" layoutY="207.0" prefHeight="18.0" prefWidth="72.0" text="ca. Dauer" textAlignment="CENTER" AnchorPane.bottomAnchor="163.0" AnchorPane.rightAnchor="158.0">
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="999.0" layoutY="298.0" prefHeight="18.0" prefWidth="72.0" text="ca. Dauer" textAlignment="CENTER" AnchorPane.bottomAnchor="163.0" AnchorPane.rightAnchor="149.0">
 
                               </Label>
-                              <Label contentDisplay="RIGHT" layoutX="837.0" layoutY="230.0" prefHeight="18.0" prefWidth="22.0" text="min" AnchorPane.bottomAnchor="139.0" AnchorPane.rightAnchor="141.0">
+                              <Label contentDisplay="RIGHT" layoutX="1057.0" layoutY="318.0" prefHeight="18.0" prefWidth="22.0" text="min" AnchorPane.bottomAnchor="143.0" AnchorPane.rightAnchor="141.0">
 
                               </Label>
-                              <Label layoutX="838.0" layoutY="258.0" prefHeight="18.0" prefWidth="21.0" text="sec" AnchorPane.bottomAnchor="112.0" AnchorPane.rightAnchor="141.0">
+                              <Label layoutX="1058.0" layoutY="347.0" prefHeight="18.0" prefWidth="21.0" text="sec" AnchorPane.bottomAnchor="114.0" AnchorPane.rightAnchor="141.0">
 
                               </Label>
                               <Label alignment="CENTER_RIGHT" layoutX="867.0" layoutY="226.0" prefHeight="15.0" prefWidth="55.0" text="StckId" visible="false" AnchorPane.bottomAnchor="140.0" AnchorPane.rightAnchor="78.0">
@@ -353,7 +346,7 @@
                               <Label alignment="CENTER_RIGHT" layoutX="679.0" layoutY="350.0" prefHeight="15.0" prefWidth="22.0" text="Db" AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="299.0">
 
                               </Label>
-                              <Label layoutX="563.0" layoutY="207.0" prefHeight="18.0" prefWidth="215.0" text="  mit Sonderzeichen       numerisch (Sort.)" AnchorPane.bottomAnchor="163.0" AnchorPane.rightAnchor="221.0">
+                              <Label layoutX="563.0" layoutY="207.0" prefHeight="18.0" prefWidth="215.0" text="  mit Sonderzeichen          numerisch (Sort.)" AnchorPane.bottomAnchor="163.0" AnchorPane.rightAnchor="221.0">
 
                               </Label>
                               <Button fx:id="btnLitZuNotenausgabeRegister" focusTraversable="false" layoutX="485.0" layoutY="254.0" mnemonicParsing="false" onAction="#btnLitZuNotenausgabeRegister_OnClick" prefHeight="25.0" prefWidth="30.0" text="..." AnchorPane.bottomAnchor="109.0" AnchorPane.rightAnchor="485.0" />

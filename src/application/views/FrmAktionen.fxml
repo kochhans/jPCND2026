@@ -29,51 +29,45 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane id="rootScene2" fx:id="rootScene2" minHeight="780.0" minWidth="1240.0" prefHeight="780.0" prefWidth="1240.0" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.FrmAktionenController">
+<AnchorPane id="rootScene2" fx:id="rootScene2" minHeight="780.0" minWidth="1220.0" prefHeight="780.0" prefWidth="1220.0" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.FrmAktionenController">
 	<children>
-		<VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+		<VBox minWidth="1220.0" prefWidth="1220.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<children>
-            <MenuBar prefHeight="23.0" style="-fx-background-color: #f4f4f4;" VBox.vgrow="NEVER">
+            <MenuBar style="-fx-background-color: #f4f4f4;" VBox.vgrow="NEVER">
                <menus>
                   <Menu fx:id="men10" mnemonicParsing="false" text="Datei">
                      <items>
                         <MenuItem fx:id="men01Importieren" mnemonicParsing="false" text="Importieren..." visible="false" />
                         <MenuItem disable="true" mnemonicParsing="false" text="Exportieren..." visible="false" />
-                        <MenuItem fx:id="men01Einstellungen" mnemonicParsing="false" text="Dateipfade...." />
+                        <MenuItem fx:id="men01Einstellungen" disable="true" mnemonicParsing="false" text="Dateipfade...." />
                         <MenuItem fx:id="men01AktionenBeenden" mnemonicParsing="false" onAction="#men01AktionenBeenden_OnClick" text="Beenden" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Stammdaten">
                     <items>
                         <MenuItem fx:id="men02StdatPersonen" mnemonicParsing="false" onAction="#btnStammdaten_OnAction" text="Personen" />
-                      <MenuItem mnemonicParsing="false" text="Daten-IMPORT" />
+                      <MenuItem fx:id="men02StdatImport" mnemonicParsing="false" onAction="#btnStammdaten_OnAction" text="Daten-IMPORT" visible="false" />
                     </items>
                   </Menu>
 
-                  <Menu fx:id="men40" mnemonicParsing="false" style="-fx-text-fill: red; -fx-font-weight: bold;" text="Updates sind verfügbar" visible="false">
+                  <Menu fx:id="men40" mnemonicParsing="false" style="-fx-text-fill: red; -fx-font-weight: bold;" text=" --  U P D A T E S    sind verfügbar  --" visible="false">
                      <items>
-                        <MenuItem fx:id="men40Programm" text="Programmupdate" />
-                        <MenuItem fx:id="men40Datenbank" text="Datenbank aktualisierien ..." />
+                        <MenuItem fx:id="men40Programm" onAction="#men40Programm_OnAction" text="Programmupdate" visible="false" />
+                        <MenuItem fx:id="men40Datenbank" onAction="#men40Datenbank_OnAction" text="Datenbank aktualisierien ..." visible="false" />
                      </items>
                   </Menu>
                </menus>
             </MenuBar>
 				
-				<HBox alignment="CENTER_RIGHT" maxHeight="80.0" maxWidth="1.7976931348623157E308" minHeight="80.0" prefHeight="80.0" prefWidth="1240.0" VBox.vgrow="ALWAYS">
+				<HBox alignment="CENTER_RIGHT" maxHeight="80.0" maxWidth="1.7976931348623157E308" minHeight="80.0" minWidth="1220.0" prefHeight="80.0" prefWidth="1220.0" VBox.vgrow="ALWAYS">
 					<children>
-						<AnchorPane maxHeight="84.0" minHeight="84.0" prefHeight="84.0" prefWidth="1232.0" style="-fx-background-color: #C0C0C0;" HBox.hgrow="ALWAYS">
-                     <children>                             
+						<AnchorPane maxHeight="84.0" minHeight="84.0" minWidth="1220.0" prefHeight="84.0" prefWidth="1220.0" style="-fx-background-color: #C0C0C0;" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="lblUpdateinfo" alignment="TOP_RIGHT" layoutX="681.0" layoutY="26.0" prefHeight="46.0" prefWidth="363.0" styleClass="label-rot" text="Updateinfo ..." textAlignment="RIGHT" wrapText="true" AnchorPane.rightAnchor="266.0" />                        
                         
                         
                         
-                        
-                        
-                        <Button fx:id="btnUpdaten" layoutX="792.0" layoutY="48.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#btnUpdaten_OnClick" opacity="0.78" prefHeight="32.0" prefWidth="158.0" styleClass="button-loeschen" text="Update verfügbar ..." textFill="#c90a0a" AnchorPane.rightAnchor="290.0" />
-                        <Label fx:id="lblUpdateinfo" alignment="BOTTOM_LEFT" layoutX="802.0" layoutY="-3.0" prefHeight="40.0" prefWidth="208.0" styleClass="label-rotklein" text="Updateinfo ..." textAlignment="RIGHT" wrapText="true" AnchorPane.rightAnchor="232.0" />                        
-                        
-                        
-                        
-                        <Label fx:id="lblTitelHinweise" layoutX="86.0" layoutY="41.0" prefHeight="14.0" prefWidth="339.0" text="Aktivitäten bearbeiten und Programmpunkte zuweisen ..." />
+                        <Label fx:id="lblTitelHinweise" layoutX="106.0" layoutY="41.0" prefHeight="14.0" prefWidth="372.0" text="Aktivitäten bearbeiten und Programmpunkte zuweisen ..." />
                         <Label fx:id="lblHaupttitel" layoutX="86.0" layoutY="9.0" maxHeight="41.0" maxWidth="655.0" minHeight="30.0" minWidth="181.0" prefHeight="32.0" prefWidth="428.0" styleClass="label-title" text="Aktivitäten - Proben, Aufführungen, ...">
                            <padding>
                               <Insets left="5.0" />
@@ -85,7 +79,7 @@
                            </image>
                         </ImageView>
                         <Button fx:id="btnInfo" focusTraversable="false" layoutX="1011.0" layoutY="22.0" onAction="#btnInfo_OnClick" prefHeight="29.0" prefWidth="73.0" styleClass="button-neu" text="Info" visible="false" AnchorPane.rightAnchor="156.0" />
-                        <Button fx:id="btnZuNotenarchiv" cancelButton="true" focusTraversable="false" layoutX="1005.0" layoutY="25.0" onAction="#btnZuNotenarchiv_OnClick" prefHeight="54.0" prefWidth="158.0" styleClass="button-neu" text="zum Literatur- Notenarchiv..." wrapText="true" AnchorPane.rightAnchor="77.0">
+                        <Button fx:id="btnZuNotenarchiv" cancelButton="true" focusTraversable="false" layoutX="1005.0" layoutY="20.0" onAction="#btnZuNotenarchiv_OnClick" prefHeight="54.0" prefWidth="182.0" styleClass="button-neu" text="zum Literatur- Notenarchiv..." wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="78.0">
                            <graphic>
                               <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
                                  <image>
@@ -97,7 +91,7 @@
                               <Tooltip text="zum Literatur-Notenarchiv wechseln ..." />
                            </tooltip>
                         </Button>
-                        <Button fx:id="btnBeenden" layoutX="1168.0" layoutY="25.0" onAction="#men01AktionenBeenden_OnClick" prefHeight="54.0" prefWidth="58.0" styleClass="button-neu" AnchorPane.rightAnchor="14.0">
+                        <Button fx:id="btnBeenden" layoutX="1168.0" layoutY="20.0" onAction="#men01AktionenBeenden_OnClick" prefHeight="54.0" prefWidth="58.0" styleClass="button-neu" AnchorPane.rightAnchor="14.0">
                            <graphic>
                               <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
                                  <image>
@@ -116,9 +110,9 @@
 						<Insets />
 					</VBox.margin>
 				</HBox>
-				<HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="100.0" prefWidth="1240.0" VBox.vgrow="ALWAYS">
+				<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="1220.0" prefHeight="100.0" prefWidth="1238.0" VBox.vgrow="ALWAYS">
 					<children>
-						<AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="104.0" prefWidth="1221.0" style="-fx-background-color: #EBEBEB;" HBox.hgrow="ALWAYS">
+						<AnchorPane maxHeight="104.0" minHeight="104.0" prefHeight="104.0" prefWidth="1220.0" HBox.hgrow="ALWAYS">
                      <children>
                         <RadioButton fx:id="radFilterProben" focusTraversable="false" layoutX="24.0" layoutY="32.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="18.0" prefWidth="85.0" selected="true" styleClass="label-filter" text="nur Proben">
                            <toggleGroup>
@@ -161,22 +155,15 @@
                         <Label layoutX="263.0" layoutY="6.0" prefHeight="17.0" prefWidth="63.0" styleClass="label-filter" text="Aktivität" textFill="#6b6b6b" />
                         <Label layoutX="481.0" layoutY="6.0" prefHeight="17.0" prefWidth="63.0" styleClass="label-filter" text="Ort" textFill="#6b6b6b" />
                         <Label layoutX="481.0" layoutY="52.0" prefHeight="17.0" prefWidth="63.0" styleClass="label-filter" text="Gruppe" textFill="#6b6b6b" />
-                        <Label fx:id="lblFilterFortschrittsinfo" layoutX="26.0" layoutY="1.0" prefHeight="25.0" prefWidth="97.0" styleClass="label-title2" text="Filtern..." textFill="#808080" />
+                        <Label fx:id="lblFilterFortschrittsinfo" layoutX="26.0" layoutY="1.0" prefHeight="25.0" prefWidth="97.0" styleClass="label-title3" text="Filtern..." textFill="#808080" />
                         <TextField fx:id="txtFilterKurzbeschr" layoutX="266.0" layoutY="68.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="202.0" styleClass="text-fieldklein" />
                         <Label layoutX="266.0" layoutY="52.0" prefHeight="17.0" prefWidth="228.0" styleClass="label-filter" text="Text enthalten in der Kurzbeschreibung" textFill="#6b6b6b" />
-                        <Button fx:id="btnAktionDrucken1" disable="true" focusTraversable="false" layoutX="1053.0" layoutY="64.0" onAction="#btnAktionDrucken1_OnClick" prefHeight="29.0" prefWidth="175.0" styleClass="label" text="Kompaktdruck" AnchorPane.rightAnchor="12.0">
+                        <Button fx:id="btnAktionDrucken1" disable="true" focusTraversable="false" layoutX="856.0" layoutY="57.0" onAction="#btnAktionDrucken1_OnClick" prefHeight="29.0" prefWidth="117.0" styleClass="label" text="Kompaktdruck">
                            <tooltip>
                               <Tooltip text="Drucken... (PDF-Seitenansicht)" />
                            </tooltip>
                         </Button>
-                        <CheckBox fx:id="chkDuplikatInclTitel" contentDisplay="RIGHT" disable="true" layoutX="1140.0" layoutY="32.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="19.0" prefWidth="77.0" styleClass="label" text="mit Titeln" AnchorPane.rightAnchor="23.0" />
-                        <Button fx:id="btnAktionDuplizieren" disable="true" focusTraversable="false" layoutX="1052.0" layoutY="27.0" onAction="#btnAktionDuplizieren_OnClick" prefHeight="29.0" prefWidth="97.0" styleClass="label" text="duplizieren" AnchorPane.rightAnchor="91.0">
-                           <tooltip>
-                              <Tooltip text="Drucken... (PDF-Seitenansicht)" />
-                           </tooltip>
-                        </Button>
-                        <Label fx:id="lblAktionAktuell" disable="true" layoutX="1128.0" layoutY="5.0" prefHeight="17.0" prefWidth="175.0" text="aktuelle Aktivität..." textFill="#6b6b6b" AnchorPane.rightAnchor="14.0" />
-                        <Button fx:id="btnStammdaten" cancelButton="true" focusTraversable="false" layoutX="928.0" layoutY="64.0" onAction="#btnStammdaten_OnAction" prefHeight="29.0" prefWidth="117.0" text="Stammdaten" wrapText="true" AnchorPane.rightAnchor="195.0">
+                        <Button fx:id="btnStammdaten" cancelButton="true" focusTraversable="false" layoutX="856.0" layoutY="19.0" onAction="#btnStammdaten_OnAction" prefHeight="29.0" prefWidth="117.0" text="Stammdaten" wrapText="true">
                            <styleClass>
                               <String fx:value="button-neu" />
                               <String fx:value="schriftblaugrau" />
@@ -184,23 +171,23 @@
                      </children></AnchorPane>
 					</children>
 				</HBox>
-            <SplitPane dividerPositions="0.5268456375838926" orientation="VERTICAL" prefHeight="721.0" prefWidth="1240.0" VBox.vgrow="ALWAYS">
+            <SplitPane dividerPositions="0.5268456375838926" minWidth="1220.0" orientation="VERTICAL" prefHeight="721.0" prefWidth="1220.0" VBox.vgrow="ALWAYS">
               <items>
-                <AnchorPane maxHeight="1.7976931348623157E308" minHeight="245.0" prefHeight="299.0" prefWidth="1240.0">
+                <AnchorPane maxHeight="1.7976931348623157E308" minHeight="245.0" minWidth="1220.0" prefHeight="299.0" prefWidth="1220.0">
                      <children>
-                        <SplitPane dividerPositions="0.37318255250403876" layoutX="-1.0" layoutY="36.0" prefHeight="328.0" prefWidth="1240.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                        <SplitPane dividerPositions="0.37318255250403876" layoutX="-1.0" layoutY="36.0" minWidth="1220.0" prefHeight="328.0" prefWidth="1220.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                           <items>
                             <AnchorPane minHeight="240.0" minWidth="0.0" prefHeight="297.0" prefWidth="573.0">
                                  <children>
-                                    <TableView fx:id="tblvwChoraktionen" focusTraversable="false" layoutX="14.0" onMousePressed="#handletblvwAktionenliste_onmouse_clicked" prefHeight="315.0" prefWidth="459.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TableView fx:id="tblvwChoraktionen" focusTraversable="false" layoutX="14.0" minWidth="580.0" onMousePressed="#handletblvwAktionenliste_onmouse_clicked" prefHeight="315.0" prefWidth="459.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <columns>
-                                          <TableColumn fx:id="tblvwAktionenCol0" maxWidth="100.0" minWidth="50.0" resizable="false" text="Datum" />
+                                          <TableColumn fx:id="tblvwAktionenCol0" maxWidth="100.0" minWidth="50.0" prefWidth="100.0" resizable="false" text="Datum" />
                                           <TableColumn fx:id="tblvwAktionenCol1" prefWidth="120.0" text="Aktion" />
                                           <TableColumn fx:id="tblvwAktionenCol7" minWidth="30.0" prefWidth="150.0" text="Kurzbeschreibung" />
                                           <TableColumn fx:id="tblvwAktionenCol2" minWidth="20.0" prefWidth="150.0" text="Ort" />
                                           <TableColumn fx:id="tblvwAktionenCol3" minWidth="20.0" prefWidth="120.0" text="Gruppe" />
                                           <TableColumn fx:id="tblvwAktionenCol4" prefWidth="55.0" text="Beginn" visible="false" />
-                                          <TableColumn fx:id="tblvwAktionenCol5" maxWidth="100.0" minWidth="60.0" prefWidth="70.0" resizable="false" text="Treffp" />
+                                          <TableColumn fx:id="tblvwAktionenCol5" maxWidth="100.0" minWidth="50.0" prefWidth="70.0" resizable="false" text="Treffp" />
                                           <TableColumn fx:id="tblvwAktionenCol6" prefWidth="50.0" text="Anw" visible="false" />
                                        </columns>
                                        <columnResizePolicy>
@@ -212,18 +199,19 @@
                                     </TableView>
                                  </children>
                               </AnchorPane>
-                            <AnchorPane maxWidth="800.0" minHeight="190.0" minWidth="635.0" prefHeight="323.0" prefWidth="773.0" style="-fx-background-color: #FFFCC6;">
+                            <AnchorPane maxWidth="660.0" minHeight="190.0" minWidth="660.0" prefHeight="286.0" prefWidth="660.0" style="-fx-background-color: #FFFCC6;">
                                  <children>
+                                    <Label fx:id="lblDatum2" layoutX="14.0" layoutY="5.0" prefHeight="19.0" prefWidth="97.0" styleClass="label-title2" text="Details" />
                                     <ComboBox fx:id="cbxEingabeAktion" editable="true" layoutX="9.0" layoutY="65.0" prefHeight="30.0" prefWidth="355.0" />
                                     <TextField fx:id="txtEingabeKurzbeschr" layoutX="6.0" layoutY="112.0" prefHeight="28.0" prefWidth="355.0" />
                                     <DatePicker fx:id="dpEingabeDatum" layoutX="6.0" layoutY="162.0" prefHeight="28.0" prefWidth="138.0" />
                                     <Spinner fx:id="spEingabeBeginn" layoutX="153.0" layoutY="162.0" prefHeight="28.0" prefWidth="100.0" />
                                     <Spinner fx:id="spEingabeTreffpunkt" layoutX="270.0" layoutY="162.0" prefHeight="28.0" prefWidth="91.0" />
-                                    <ComboBox fx:id="cbxEingabeOrt" editable="true" layoutX="384.0" layoutY="65.0" prefHeight="30.0" prefWidth="238.0" />
-                                    <ComboBox fx:id="cbxEingabeGruppe" editable="true" layoutX="383.0" layoutY="112.0" prefHeight="30.0" prefWidth="238.0" />
-                                    <ComboBox fx:id="cbxEingabeVerantwortlich" editable="true" layoutX="383.0" layoutY="162.0" prefHeight="30.0" prefWidth="238.0" />
-                                    <TextField fx:id="txtEingabeAnzahl" focusTraversable="false" layoutX="536.0" layoutY="32.0" prefHeight="28.0" prefWidth="85.0" />
-                                    <Button fx:id="btnAktionNeu" layoutX="211.0" layoutY="9.0" mnemonicParsing="false" onAction="#btnAktionNeu_OnClick" prefHeight="16.0" prefWidth="16.0" styleClass="button-neu">
+                                    <ComboBox fx:id="cbxEingabeOrt" editable="true" layoutX="371.0" layoutY="65.0" prefHeight="30.0" prefWidth="251.0" />
+                                    <ComboBox fx:id="cbxEingabeGruppe" editable="true" layoutX="368.0" layoutY="112.0" prefHeight="30.0" prefWidth="195.0" />
+                                    <ComboBox fx:id="cbxEingabeVerantwortlich" editable="true" layoutX="370.0" layoutY="162.0" prefHeight="30.0" prefWidth="251.0" />
+                                    <TextField fx:id="txtEingabeAnzahl" focusTraversable="false" layoutX="572.0" layoutY="113.0" prefHeight="28.0" prefWidth="50.0" />
+                                    <Button fx:id="btnAktionNeu" layoutX="308.0" layoutY="9.0" mnemonicParsing="false" onAction="#btnAktionNeu_OnClick" prefHeight="16.0" prefWidth="16.0" styleClass="button-neu">
                                        <graphic>
                                           <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
                                              <image>
@@ -235,7 +223,7 @@
                                           <Tooltip text="Aktion hinzufügen ..." />
                                        </tooltip>
                                     </Button>
-                                    <Button fx:id="btnAktionSpeichern" layoutX="263.0" layoutY="9.0" mnemonicParsing="false" onAction="#btnAktionSpeichern_OnClick" prefHeight="16.0" prefWidth="16.0" styleClass="button-speichern">
+                                    <Button fx:id="btnAktionSpeichern" layoutX="358.0" layoutY="9.0" mnemonicParsing="false" onAction="#btnAktionSpeichern_OnClick" prefHeight="16.0" prefWidth="16.0" styleClass="button-speichern">
                                        <graphic>
                                           <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
                                              <image>
@@ -247,7 +235,7 @@
                                           <Tooltip text="Aktion speichern ..." />
                                        </tooltip>
                                     </Button>
-                                    <Button fx:id="btnAktionLoeschen" layoutX="316.0" layoutY="9.0" mnemonicParsing="false" onAction="#btnAktionLoeschen_OnClick" prefHeight="16.0" prefWidth="16.0" styleClass="button-loeschen" text="">
+                                    <Button fx:id="btnAktionLoeschen" layoutX="404.0" layoutY="9.0" mnemonicParsing="false" onAction="#btnAktionLoeschen_OnClick" prefHeight="16.0" prefWidth="16.0" styleClass="button-loeschen" text="">
                                        <graphic>
                                           <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
                                              <image>
@@ -259,38 +247,43 @@
                                           <Tooltip text="Aktion speichern ..." />
                                        </tooltip>
                                     </Button>
-                                    <TextArea fx:id="txtEingabeZusatzinfos" focusTraversable="false" layoutX="7.0" layoutY="210.0" prefHeight="100.0" prefWidth="756.0" promptText="hier können Zusatzinformationen zur Aktion eingegeben werden" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="210.0" />
-                                    <Label fx:id="lblDatum2" layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="138.0" styleClass="label-title2" text="Details" />
+                                    <TextArea fx:id="txtEingabeZusatzinfos" focusTraversable="false" layoutX="7.0" layoutY="210.0" prefHeight="71.0" prefWidth="614.0" promptText="hier können Zusatzinformationen zur Aktion eingegeben werden" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="39.0" AnchorPane.topAnchor="210.0" />
                                     <Label fx:id="lblDatum1" layoutX="6.0" layoutY="95.0" prefHeight="17.0" prefWidth="99.0" text="Kurzbeschreibung" textFill="#6b6b6b" />
-                                    <Label fx:id="lblGruppe" layoutX="383.0" layoutY="95.0" prefHeight="17.0" prefWidth="195.0" text="Beteiligte (Chor/Gruppe)" textFill="#6b6b6b" />
+                                    <Label fx:id="lblGruppe" layoutX="370.0" layoutY="95.0" prefHeight="17.0" prefWidth="195.0" text="Beteiligte (Chor/Gruppe)" textFill="#6b6b6b" />
                                     <Label fx:id="lblAktion" layoutX="9.0" layoutY="50.0" prefHeight="17.0" prefWidth="180.0" text="Aktivität (als Stichwort für die Liste)" textFill="#6b6b6b" />
-                                    <Label fx:id="lblOrt" layoutX="382.0" layoutY="50.0" prefHeight="17.0" prefWidth="85.0" text="Ort" textFill="#6b6b6b" />
+                                    <Label fx:id="lblOrt" layoutX="379.0" layoutY="50.0" prefHeight="17.0" prefWidth="85.0" text="Ort" textFill="#6b6b6b" />
                                     <Label fx:id="lblDatum" layoutX="6.0" layoutY="144.0" prefHeight="17.0" prefWidth="138.0" text="Datum" textFill="#6b6b6b" />
-                                    <Label fx:id="lblGruppe1" layoutX="384.0" layoutY="146.0" prefHeight="17.0" prefWidth="145.0" text="Verantwortliche(r)" textFill="#6b6b6b" />
-                                    <Label fx:id="lblAnzahl" layoutX="491.0" layoutY="38.0" prefHeight="17.0" prefWidth="42.0" text="Anzahl" textFill="#6b6b6b" />
-                                    <Label layoutX="131.0" layoutY="30.0" prefHeight="17.0" prefWidth="73.0" text="Aufführung" textFill="#6b6b6b" />
-                                    <Label layoutX="44.0" layoutY="30.0" prefHeight="17.0" prefWidth="63.0" text="Probe o.ä." textFill="#6b6b6b" />
-                                    <RadioButton fx:id="radDetailsAuff" focusTraversable="false" layoutX="108.0" layoutY="30.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT">
+                                    <Label fx:id="lblGruppe1" layoutX="374.0" layoutY="144.0" prefHeight="17.0" prefWidth="145.0" text="Verantwortliche(r)" textFill="#6b6b6b" />
+                                    <Label fx:id="lblAnzahl" layoutX="572.0" layoutY="95.0" prefHeight="17.0" prefWidth="42.0" text="Anzahl" textFill="#6b6b6b" />
+                                    <Label layoutX="221.0" layoutY="10.0" prefHeight="17.0" prefWidth="73.0" text="Aufführung" textFill="#6b6b6b" />
+                                    <Label layoutX="144.0" layoutY="10.0" prefHeight="17.0" prefWidth="63.0" text="Probe o.ä." textFill="#6b6b6b" />
+                                    <RadioButton fx:id="radDetailsAuff" focusTraversable="false" layoutX="202.0" layoutY="10.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="ogrProbeAuffuehrung" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="radDetailsProbe" focusTraversable="false" layoutX="14.0" layoutY="29.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" selected="true" toggleGroup="$ogrProbeAuffuehrung" />
+                                    <RadioButton fx:id="radDetailsProbe" focusTraversable="false" layoutX="108.0" layoutY="10.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" selected="true" toggleGroup="$ogrProbeAuffuehrung" />
                                     <Label fx:id="lblTreffpunkt" layoutX="270.0" layoutY="144.0" prefHeight="17.0" prefWidth="97.0" text="Treffpunkt (hh:mm)" textFill="#6b6b6b" />
                                     <Label fx:id="lblBeginn" layoutX="155.0" layoutY="144.0" prefHeight="17.0" prefWidth="97.0" text="Beginn (hh:mm)" textFill="#6b6b6b" />
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="28.0" layoutX="13.0" layoutY="26.0" opacity="0.12" stroke="BLACK" strokeType="INSIDE" width="180.0" />
-                                    <Label layoutX="578.0" layoutY="10.0" prefHeight="17.0" prefWidth="42.0" text="GEMA" textFill="#6b6b6b" />
-                                    <CheckBox fx:id="chkEingabeGema" focusTraversable="false" layoutX="548.0" layoutY="9.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" />
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="28.0" layoutX="82.0" layoutY="5.0" opacity="0.12" stroke="BLACK" strokeType="INSIDE" width="215.0" />
+                                    <Label layoutX="232.0" layoutY="38.0" prefHeight="17.0" prefWidth="42.0" text="GEMA" textFill="#6b6b6b" />
+                                    <CheckBox fx:id="chkEingabeGema" focusTraversable="false" layoutX="202.0" layoutY="37.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" />
                                     <Label layoutX="9.0" layoutY="193.0" prefHeight="17.0" prefWidth="215.0" text="Zusatzinfos " textFill="#6b6b6b" />
+                                    <Button fx:id="btnAktionDuplizieren" disable="true" focusTraversable="false" layoutX="467.0" layoutY="10.0" onAction="#btnAktionDuplizieren_OnClick" prefHeight="29.0" prefWidth="97.0" styleClass="label" text="duplizieren">
+                                       <tooltip>
+                                          <Tooltip text="Drucken... (PDF-Seitenansicht)" />
+                                       </tooltip>
+                                    </Button>
+                                    <CheckBox fx:id="chkDuplikatInclTitel" contentDisplay="RIGHT" disable="true" layoutX="562.0" layoutY="18.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="19.0" prefWidth="77.0" styleClass="label" text="mit Titeln" />
                                  </children>
                               </AnchorPane>
                           </items>
                         </SplitPane>
                      </children>
                   </AnchorPane>
-                <AnchorPane minHeight="272.0" minWidth="0.0" prefHeight="280.0" prefWidth="1238.0">
+                <AnchorPane minHeight="272.0" minWidth="1220.0" prefHeight="280.0" prefWidth="1220.0">
                      <children>
-                        <TabPane fx:id="tabPaneAktionen" maxHeight="1.7976931348623157E308" prefHeight="272.0" prefWidth="1238.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="9999.0" tabMinHeight="30.0" tabMinWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TabPane fx:id="tabPaneAktionen" maxHeight="1.7976931348623157E308" minWidth="1220.0" prefHeight="272.0" prefWidth="1220.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="9999.0" tabMinHeight="30.0" tabMinWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <tabs>
                               <Tab fx:id="tabDetails" text="Programmpunkte">
                                  <graphic>
@@ -304,7 +297,7 @@
                                  <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="221.0" prefWidth="1238.0" style="-fx-background-color: #FFFCC6;">
                                        <children>
-                                          <Button fx:id="btnPosListeBearbeiten" disable="true" layoutX="173.0" layoutY="5.0" mnemonicParsing="false" onAction="#btnPosListeBearbeiten_OnClick" prefHeight="40.0" prefWidth="145.0" styleClass="button-neu" text="Liste editieren ...">
+                                          <Button fx:id="btnPosListeBearbeiten" disable="true" layoutX="173.0" layoutY="5.0" mnemonicParsing="false" onAction="#btnPosListeBearbeiten_OnClick" prefHeight="40.0" prefWidth="180.0" styleClass="button-neu" text="Liste editieren ...">
                                              <graphic>
                                                 <ImageView fitHeight="24.0" fitWidth="24.0" preserveRatio="true">
                                                    <image>
@@ -317,10 +310,10 @@
                                              </tooltip>
                                           </Button>
                                           <Label fx:id="lblDatum21" layoutX="409.0" layoutY="5.0" prefHeight="19.0" prefWidth="112.0" styleClass="label-title2" text="Liste" textFill="#6b6b6b" visible="false" />
-                                          <TableView fx:id="tblvwAktionPositionen" editable="true" focusTraversable="false" layoutY="54.0" maxHeight="1.7976931348623157E308" prefHeight="155.0" prefWidth="1234.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="54.0">
+                                          <TableView fx:id="tblvwAktionPositionen" editable="true" focusTraversable="false" layoutY="54.0" maxHeight="1.7976931348623157E308" prefHeight="155.0" prefWidth="1234.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="54.0">
                                              <columns>
-                                                <TableColumn fx:id="tblvwPosCol0Pos" editable="false" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" resizable="false" sortable="false" text="Pos" />
-                                                <TableColumn fx:id="tblvwPosCol1Art" editable="false" maxWidth="150.0" minWidth="40.0" prefWidth="50.0" sortable="false" text="Hinweis" />
+                                                <TableColumn fx:id="tblvwPosCol0Pos" editable="false" maxWidth="55.0" minWidth="55.0" prefWidth="55.0" resizable="false" sortable="false" text="Pos" />
+                                                <TableColumn fx:id="tblvwPosCol1Art" editable="false" maxWidth="159.0" minWidth="40.0" prefWidth="159.0" sortable="false" text="Hinweis" />
                                                 <TableColumn fx:id="tblvwPosCol2Stcktitel" editable="false" minWidth="50.0" prefWidth="120.0" sortable="false" text="Stück-Titel" />
                                                 <TableColumn fx:id="tblvwPosCol5Stckart" editable="false" minWidth="30.0" prefWidth="50.0" sortable="false" text="Stück-Art" />
                                                 <TableColumn fx:id="tblvwPosCol3Notenausgabe" editable="false" minWidth="50.0" prefWidth="100.0" sortable="false" text="Notenausgabe" />
@@ -392,7 +385,7 @@
                                              <items>
                                                 <AnchorPane minHeight="0.0" minWidth="610.0" prefHeight="158.0" prefWidth="620.0" style="-fx-background-color: #EDEDED;">
                                                    <children>
-                                                      <TableView fx:id="tblvwPersonen" focusTraversable="false" layoutX="6.0" layoutY="134.0" onMouseClicked="#handleTblvwPersonen_onmouseClicked" prefHeight="114.0" prefWidth="602.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="134.0">
+                                                      <TableView fx:id="tblvwPersonen" focusTraversable="false" layoutX="6.0" layoutY="134.0" onMouseClicked="#handleTblvwPersonen_onmouseClicked" prefHeight="114.0" prefWidth="602.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="134.0">
                                                          <columns>
                                                             <TableColumn fx:id="tblcolPersonenChor" editable="false" prefWidth="100.0" sortable="false" text="Chor" />
                                                             <TableColumn fx:id="tblcolPersonenGruppe" editable="false" prefWidth="100.0" sortable="false" text="Gruppe" />
@@ -405,7 +398,7 @@
                                                             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                                          </columnResizePolicy>
                                                       </TableView>
-                                                      <Label layoutX="9.0" layoutY="3.0" prefHeight="25.0" prefWidth="459.0" styleClass="label-title2" text="Auswahl aus der Personen-Gesamtliste " wrapText="true" />
+                                                      <Label layoutX="9.0" layoutY="3.0" prefHeight="25.0" prefWidth="459.0" styleClass="label-title3" text="Auswahl aus der Personen-Gesamtliste " wrapText="true" />
                                                       <TextField fx:id="txtMitwFilterName" layoutX="9.0" layoutY="58.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="171.0" />
                                                       <ComboBox fx:id="cbxMitwFilterChor" editable="true" layoutX="189.0" layoutY="58.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="211.0" />
                                                       <Label layoutX="94.0" layoutY="28.0" prefHeight="14.0" prefWidth="190.0" text="Personen-Auswahl" />
@@ -444,9 +437,9 @@
                                                       <Button fx:id="btnMitwEditSpeichern1" focusTraversable="false" layoutX="388.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleBtnMitwEditSpeichern1_onClick" prefHeight="32.0" prefWidth="215.0" styleClass="button-speichern" text="zu Teilnehmerliste hinzufügen" />
                                                    </children>
                                                 </AnchorPane>
-                                                <AnchorPane minHeight="0.0" minWidth="570.0" prefHeight="228.0" prefWidth="593.0" style="-fx-background-color: #FFFCC6;">
+                                                <AnchorPane minHeight="0.0" minWidth="600.0" prefHeight="228.0" prefWidth="590.0" style="-fx-background-color: #FFFCC6;">
                                                    <children>
-                                                      <TableView fx:id="tblvwPersonenZugewiesen" focusTraversable="false" layoutX="159.0" layoutY="61.0" onMouseClicked="#handleTblvwPersonenZugewiesen_onmouseClicked" prefHeight="173.0" prefWidth="445.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="159.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="61.0">
+                                                      <TableView fx:id="tblvwPersonenZugewiesen" focusTraversable="false" layoutX="159.0" layoutY="61.0" onMouseClicked="#handleTblvwPersonenZugewiesen_onmouseClicked" prefHeight="173.0" prefWidth="445.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="159.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="61.0">
                                                          <columns>
                                                             <TableColumn fx:id="tblcolMitwZugewiesenName" editable="false" prefWidth="120.0" text="Name" />
                                                             <TableColumn fx:id="tblcolMitwZugewiesenVorname" editable="false" prefWidth="120.0" text="Vorname" />
@@ -457,7 +450,7 @@
                                                             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                                          </columnResizePolicy>
                                                       </TableView>
-                                                      <Label fx:id="lblMitwirkendeDatensatzaktion" layoutX="160.0" layoutY="37.0" prefHeight="18.0" prefWidth="442.0" styleClass="label-gn" text="Person NEU hinzufügen" />
+                                                      <Label fx:id="lblMitwirkendeDatensatzaktion" layoutX="167.0" layoutY="37.0" prefHeight="18.0" prefWidth="435.0" styleClass="label-gn" text="Person NEU hinzufügen" />
                                                       <TextField fx:id="txtMitwEditName" layoutX="11.0" layoutY="55.0" prefHeight="28.0" prefWidth="138.0" />
                                                       <TextField fx:id="txtMitwEditVorname" layoutX="11.0" layoutY="97.0" prefHeight="28.0" prefWidth="138.0" />
                                                       <TextField fx:id="txtMitwEditStimme" layoutX="11.0" layoutY="144.0" prefHeight="28.0" prefWidth="138.0" />
@@ -502,8 +495,8 @@
                                                       <Label layoutX="11.0" layoutY="81.0" prefHeight="14.0" prefWidth="106.0" text="Edit - Vorname" />
                                                       <Label layoutX="10.0" layoutY="130.0" prefHeight="14.0" prefWidth="77.0" text="Edit - Stimme " />
                                                       <Label layoutX="10.0" layoutY="172.0" prefHeight="14.0" prefWidth="108.0" text="Edit - Instrument" />
-                                                      <Button fx:id="btnMitwEditLoeschen1" focusTraversable="false" layoutX="178.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleBtnMitwEditLoeschen1_onClick" prefHeight="32.0" prefWidth="195.0" styleClass="button-loeschen" text="aus Liste der Aktivität entfernen" />
-                                                      <Label alignment="CENTER_RIGHT" layoutX="375.0" layoutY="3.0" prefHeight="19.0" prefWidth="195.0" styleClass="label-title2" text="Teilnehmer der Aktivität" textFill="#6b6b6b" />
+                                                      <Button fx:id="btnMitwEditLoeschen1" focusTraversable="false" layoutX="165.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleBtnMitwEditLoeschen1_onClick" prefHeight="32.0" prefWidth="208.0" styleClass="button-loeschen" text="aus Aktivität entfernen" />
+                                                      <Label alignment="CENTER_RIGHT" layoutX="375.0" layoutY="3.0" prefHeight="19.0" prefWidth="215.0" styleClass="label-title3" text="Teilnehmer der Aktivität" textFill="#6b6b6b" />
                                                    </children>
                                                 </AnchorPane>
                                              </items>
