@@ -30,7 +30,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane id="rootScene2" fx:id="rootScene2" minHeight="780.0" minWidth="1220.0" prefHeight="780.0" prefWidth="1220.0" style="-fx-background-color: #BABABA;" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.FrmAktionenController">
+<AnchorPane id="rootScene2" fx:id="rootScene2" minHeight="780.0" minWidth="1220.0" prefHeight="780.0" prefWidth="1220.0" style="-fx-background-color: #7f7f7f;" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.FrmAktionenController">
 	<children>
 		<VBox minWidth="1220.0" prefWidth="1220.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<children>
@@ -62,17 +62,29 @@
 				
 				<HBox alignment="CENTER_RIGHT" maxHeight="80.0" maxWidth="1.7976931348623157E308" minHeight="80.0" minWidth="1220.0" prefHeight="80.0" prefWidth="1220.0" style="-fx-background-color: #BABABA;" VBox.vgrow="ALWAYS">
 					<children>
-						<AnchorPane maxHeight="84.0" minHeight="84.0" prefHeight="84.0" prefWidth="1220.0" style="-fx-background-color: #BABABA;" HBox.hgrow="ALWAYS">
+						<AnchorPane maxHeight="84.0" minHeight="84.0" prefHeight="84.0" prefWidth="1220.0" style="-fx-background-color: #7F7F7F;" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label fx:id="lblUpdateinfo" alignment="TOP_RIGHT" layoutX="681.0" layoutY="26.0" prefHeight="46.0" prefWidth="363.0" styleClass="label-rot" text="Updateinfo ..." textAlignment="RIGHT" wrapText="true" AnchorPane.rightAnchor="266.0" />                        
+                        <Label fx:id="lblUpdateinfo" alignment="TOP_RIGHT" layoutX="681.0" layoutY="26.0" prefHeight="46.0" prefWidth="428.0" text="Updateinfo ..." textAlignment="RIGHT" wrapText="true" AnchorPane.rightAnchor="266.0">
+                           <styleClass>
+                              <String fx:value="label-title3" />
+                              <String fx:value="schriftrothell" />
+                           </styleClass></Label>                        
                         
                         
                         
-                        <Label fx:id="lblTitelHinweise" layoutX="106.0" layoutY="41.0" prefHeight="14.0" prefWidth="372.0" text="Aktivitäten bearbeiten und Programmpunkte zuweisen ..." />
-                        <Label fx:id="lblHaupttitel" layoutX="86.0" layoutY="9.0" maxHeight="41.0" maxWidth="655.0" minHeight="30.0" minWidth="181.0" prefHeight="32.0" prefWidth="428.0" styleClass="label-title" text="Aktivitäten - Proben, Aufführungen, ...">
+                        <Label fx:id="lblTitelHinweise" layoutX="94.0" layoutY="41.0" prefHeight="15.0" prefWidth="384.0" text="anlegen, bearbeiten und Titelliste erstellen">
+                           <styleClass>
+                              <String fx:value="label" />
+                              <String fx:value="schriftweiss" />
+                           </styleClass></Label>
+                        <Label fx:id="lblHaupttitel" layoutX="86.0" layoutY="9.0" maxHeight="41.0" maxWidth="655.0" minHeight="30.0" minWidth="181.0" prefHeight="32.0" prefWidth="428.0" text="Aktivitäten - Proben, Aufführungen, ...">
                            <padding>
                               <Insets left="5.0" />
                            </padding>
+                           <styleClass>
+                              <String fx:value="label-title" />
+                              <String fx:value="schriftweiss" />
+                           </styleClass>
                         </Label>
                         <ImageView fitHeight="54.0" fitWidth="70.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="11.0">
                            <image>
@@ -113,7 +125,7 @@
 				</HBox>
 				<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="100.0" minWidth="1220.0" prefHeight="100.0" prefWidth="1220.0" style="-fx-background-color: #BABABA;" VBox.vgrow="ALWAYS">
 					<children>
-						<AnchorPane maxHeight="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="1220.0" style="-fx-background-color: #BABABA;">
+						<AnchorPane maxHeight="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="1220.0" style="-fx-background-color: #7F7F7F;">
                      <children>
                         <RadioButton fx:id="radFilterProben" focusTraversable="false" layoutX="24.0" layoutY="32.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="18.0" prefWidth="85.0" selected="true" text="nur Proben">
                            <toggleGroup>
@@ -121,32 +133,56 @@
                            </toggleGroup>
                            <styleClass>
                               <String fx:value="label" />
-                              <String fx:value="schriftweiss" />
+                              <String fx:value="schriftgelb" />
                            </styleClass>
                         </RadioButton>
                         <RadioButton fx:id="radFilterAlles" focusTraversable="false" layoutX="24.0" layoutY="71.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="18.0" prefWidth="50.0" text="alles" toggleGroup="$ogrFilterProbeAuffAlles">
                            <styleClass>
                               <String fx:value="label" />
-                              <String fx:value="schriftweiss" />
+                              <String fx:value="schriftgelb" />
                            </styleClass></RadioButton>
                         <RadioButton fx:id="radFilterAuff" focusTraversable="false" layoutX="24.0" layoutY="51.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="18.0" prefWidth="85.0" text="nur Auffüh." toggleGroup="$ogrFilterProbeAuffAlles">
                            <styleClass>
                               <String fx:value="label" />
-                              <String fx:value="schriftweiss" />
+                              <String fx:value="schriftgelb" />
                            </styleClass></RadioButton>
                         <ComboBox fx:id="cbxFilterOrt" editable="true" layoutX="481.0" layoutY="25.0" maxHeight="25.0" maxWidth="-Infinity" minHeight="25.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="202.0" styleClass="text-fieldklein" />
                         <ComboBox fx:id="cbxFilterGruppe" editable="true" layoutX="481.0" layoutY="66.0" maxHeight="25.0" maxWidth="-Infinity" minHeight="25.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="202.0" styleClass="text-fieldklein" />
                         <DatePicker fx:id="dpFilterDatumVon" layoutX="126.0" layoutY="25.0" maxHeight="25.0" maxWidth="-Infinity" minHeight="25.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="131.0" styleClass="text-fieldklein" />
                         <DatePicker fx:id="dpFilterDatumBis" layoutX="126.0" layoutY="68.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="131.0" styleClass="text-fieldklein" />
                         <ComboBox fx:id="cbxFilterAktion" editable="true" layoutX="266.0" layoutY="25.0" maxHeight="25.0" maxWidth="-Infinity" minHeight="25.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="202.0" styleClass="text-fieldklein" />
-                        <Label layoutX="128.0" layoutY="52.0" prefHeight="17.0" prefWidth="63.0" text="bis..." textFill="#6b6b6b" />
-                        <Label layoutX="128.0" layoutY="6.0" prefHeight="17.0" prefWidth="138.0" text="Datum von..." textFill="#6b6b6b" />
-                        <Label layoutX="263.0" layoutY="6.0" prefHeight="17.0" prefWidth="63.0" text="Aktivität" textFill="#6b6b6b" />
-                        <Label layoutX="481.0" layoutY="6.0" prefHeight="17.0" prefWidth="63.0" text="Ort" textFill="#6b6b6b" />
-                        <Label layoutX="481.0" layoutY="52.0" prefHeight="17.0" prefWidth="63.0" text="Gruppe" textFill="#6b6b6b" />
+                        <Label layoutX="128.0" layoutY="52.0" prefHeight="17.0" prefWidth="63.0" text="bis..." textFill="#6b6b6b">
+                           <styleClass>
+                              <String fx:value="label" />
+                              <String fx:value="schriftgelb" />
+                           </styleClass></Label>
+                        <Label layoutX="128.0" layoutY="6.0" prefHeight="17.0" prefWidth="138.0" text="Datum von..." textFill="#6b6b6b">
+                           <styleClass>
+                              <String fx:value="label" />
+                              <String fx:value="schriftgelb" />
+                           </styleClass></Label>
+                        <Label layoutX="263.0" layoutY="6.0" prefHeight="17.0" prefWidth="63.0" text="Aktivität" textFill="#6b6b6b">
+                           <styleClass>
+                              <String fx:value="label" />
+                              <String fx:value="schriftgelb" />
+                           </styleClass></Label>
+                        <Label layoutX="481.0" layoutY="6.0" prefHeight="17.0" prefWidth="63.0" text="Ort" textFill="#6b6b6b">
+                           <styleClass>
+                              <String fx:value="label" />
+                              <String fx:value="schriftgelb" />
+                           </styleClass></Label>
+                        <Label layoutX="481.0" layoutY="52.0" prefHeight="17.0" prefWidth="63.0" text="Gruppe" textFill="#6b6b6b">
+                           <styleClass>
+                              <String fx:value="label" />
+                              <String fx:value="schriftgelb" />
+                           </styleClass></Label>
                         <Label fx:id="lblFilterFortschrittsinfo" layoutX="26.0" layoutY="1.0" prefHeight="25.0" prefWidth="97.0" styleClass="label-title3" text="Filtern..." textFill="#808080" />
                         <TextField fx:id="txtFilterKurzbeschr" layoutX="266.0" layoutY="68.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="202.0" styleClass="text-fieldklein" />
-                        <Label layoutX="266.0" layoutY="52.0" prefHeight="17.0" prefWidth="228.0" text="Text enthalten in der Kurzbeschreibung" textFill="#6b6b6b" />
+                        <Label layoutX="266.0" layoutY="52.0" prefHeight="17.0" prefWidth="228.0" text="Text enthalten in der Kurzbeschreibung" textFill="#6b6b6b">
+                           <styleClass>
+                              <String fx:value="label" />
+                              <String fx:value="schriftgelb" />
+                           </styleClass></Label>
                         <Button fx:id="btnFilterAus" focusTraversable="false" layoutX="753.0" layoutY="37.0" mnemonicParsing="false" onAction="#btnFilterAus_OnClick" prefHeight="40.0" prefWidth="40.0" styleClass="button-icon" text="">
                            <graphic>
                               <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
@@ -176,7 +212,8 @@
                               <String fx:value="button-neu" />
                               <String fx:value="schriftblaugrau" />
                            </styleClass></Button>
-                        <Line endX="862.5" layoutX="-22.0" layoutY="1.0" startX="22.0" stroke="#545454" />
+                        <Line endX="840.0" stroke="#fffcbb" />
+                        <Line endX="840.0" startX="840.0" startY="100.0" stroke="#fffcbb" />
                      </children></AnchorPane>
 					</children>
 				</HBox>
@@ -190,7 +227,7 @@
                           
                             <AnchorPane minHeight="240.0" minWidth="0.0" prefHeight="297.0" prefWidth="573.0">
                                  <children>
-                                    <TableView fx:id="tblvwChoraktionen" focusTraversable="false" layoutX="14.0" minWidth="580.0" onMousePressed="#handletblvwAktionenliste_onmouse_clicked" prefHeight="315.0" prefWidth="459.0" style="-fx-background-color: #e0e0e0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TableView fx:id="tblvwChoraktionen" focusTraversable="false" layoutX="14.0" minWidth="580.0" onMousePressed="#handletblvwAktionenliste_onmouse_clicked" prefHeight="315.0" prefWidth="459.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <columns>
                                           <TableColumn fx:id="tblvwAktionenCol0" maxWidth="100.0" minWidth="50.0" prefWidth="100.0" resizable="false" text="Datum" />
                                           <TableColumn fx:id="tblvwAktionenCol1" prefWidth="120.0" text="Aktion" />
@@ -214,6 +251,8 @@
                               
                             <AnchorPane maxWidth="660.0" minHeight="190.0" minWidth="660.0" prefHeight="286.0" prefWidth="660.0" style="-fx-background-color: #e0e0e0;">
                                  <children>
+                                    
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="25.0" layoutX="6.0" layoutY="25.0" opacity="0.12" stroke="BLACK" strokeType="INSIDE" styleClass="label" width="215.0" />
                                     <Label fx:id="lblDatum2" layoutX="8.0" layoutY="2.0" prefHeight="25.0" prefWidth="167.0" styleClass="label-title3" text="Aktivität Details" wrapText="true" />
                                     <ComboBox fx:id="cbxEingabeAktion" editable="true" layoutX="6.0" layoutY="65.0" prefHeight="30.0" prefWidth="355.0" />
                                     <TextField fx:id="txtEingabeKurzbeschr" layoutX="6.0" layoutY="113.0" prefHeight="28.0" prefWidth="355.0" />
@@ -227,23 +266,15 @@
                                     <TextArea fx:id="txtEingabeZusatzinfos" focusTraversable="false" layoutX="6.0" layoutY="210.0" prefHeight="71.0" prefWidth="540.0" promptText="hier können Zusatzinformationen zur Aktion eingegeben werden" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="113.0" AnchorPane.topAnchor="210.0" />
                                     <Label fx:id="lblDatum1" layoutX="11.0" layoutY="95.0" prefHeight="17.0" prefWidth="99.0" text="Kurzbeschreibung" textFill="#6b6b6b" />
                                     <Label fx:id="lblGruppe" layoutX="374.0" layoutY="95.0" prefHeight="17.0" prefWidth="195.0" text="Beteiligte (Chor/Gruppe)" textFill="#6b6b6b" />
-                                    <Label fx:id="lblAktion" layoutX="11.0" layoutY="50.0" prefHeight="17.0" prefWidth="180.0" text="Aktivität (als Stichwort für die Liste)" textFill="#6b6b6b" />
+                                    <Label fx:id="lblAktion" layoutX="11.0" layoutY="50.0" prefHeight="17.0" prefWidth="238.0" text="Aktivität (als Stichwort für die Liste)" textFill="#6b6b6b" />
                                     <Label fx:id="lblOrt" layoutX="374.0" layoutY="50.0" prefHeight="17.0" prefWidth="85.0" text="Ort" textFill="#6b6b6b" />
                                     <Label fx:id="lblDatum" layoutX="11.0" layoutY="144.0" prefHeight="17.0" prefWidth="138.0" text="Datum" textFill="#6b6b6b" />
                                     <Label fx:id="lblGruppe1" layoutX="374.0" layoutY="144.0" prefHeight="17.0" prefWidth="145.0" text="Verantwortliche(r)" textFill="#6b6b6b" />
                                     <Label fx:id="lblAnzahl" layoutX="572.0" layoutY="95.0" prefHeight="17.0" prefWidth="42.0" text="Anzahl" textFill="#6b6b6b" />
                                     <Label layoutX="117.0" layoutY="29.0" prefHeight="17.0" prefWidth="73.0" text="Aufführung" textFill="#6b6b6b" />
-                                    <Label layoutX="15.0" layoutY="29.0" prefHeight="17.0" prefWidth="70.0" text="Probe o.ä." textFill="#6b6b6b" />
-                                    
-                                    <RadioButton fx:id="radDetailsAuff" focusTraversable="false" layoutX="190.0" layoutY="29.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT">
-                                       <toggleGroup>
-                                          <ToggleGroup fx:id="ogrProbeAuffuehrung" />
-                                       </toggleGroup>
-                                    </RadioButton>
-                                    
-                                    <RadioButton fx:id="radDetailsProbe" focusTraversable="false" layoutX="85.0" layoutY="28.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" selected="true" toggleGroup="$ogrProbeAuffuehrung" />
-                                    <Label fx:id="lblTreffpunkt" layoutX="270.0" layoutY="144.0" prefHeight="17.0" prefWidth="97.0" text="Treffpunkt (hh:mm)" textFill="#6b6b6b" />
-                                    <Label fx:id="lblBeginn" layoutX="155.0" layoutY="144.0" prefHeight="17.0" prefWidth="97.0" text="Beginn (hh:mm)" textFill="#6b6b6b" />
+                                    <Label layoutX="11.0" layoutY="29.0" prefHeight="17.0" prefWidth="73.0" text="Probe o.ä." textFill="#6b6b6b" />
+                                    <Label fx:id="lblTreffpunkt" layoutX="270.0" layoutY="144.0" prefHeight="17.0" prefWidth="100.0" text="Treffp. (hh:mm)" textFill="#6b6b6b" />
+                                    <Label fx:id="lblBeginn" layoutX="155.0" layoutY="144.0" prefHeight="17.0" prefWidth="109.0" text="Beginn (hh:mm)" textFill="#6b6b6b" />
                                     <Label alignment="CENTER_RIGHT" layoutX="547.0" layoutY="211.0" prefHeight="17.0" prefWidth="42.0" text="GEMA" textFill="#6b6b6b" AnchorPane.rightAnchor="71.0" />
                                     
                                     <CheckBox fx:id="chkEingabeGema" focusTraversable="false" layoutX="601.0" layoutY="210.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" AnchorPane.rightAnchor="40.0" />
@@ -289,8 +320,6 @@
                                        </tooltip>
                                     </Button>
                                     
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="25.0" layoutX="4.0" layoutY="25.0" opacity="0.12" stroke="BLACK" strokeType="INSIDE" width="215.0" />
-                                    
                                     <Button fx:id="btnAktionDuplizieren" focusTraversable="false" layoutX="502.0" layoutY="8.0" onAction="#btnAktionDuplizieren_OnClick" prefHeight="42.0" prefWidth="54.0">
                                          <graphic>
                                             <ImageView fitHeight="28.0" fitWidth="28.0" preserveRatio="true">
@@ -319,6 +348,14 @@
                                        </tooltip>
                                     </Button>
                                     
+                                    <RadioButton fx:id="radDetailsAuff" focusTraversable="false" layoutX="189.0" layoutY="29.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="ogrProbeAuffuehrung" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                    
+                                    <RadioButton fx:id="radDetailsProbe" focusTraversable="false" layoutX="80.0" layoutY="29.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" selected="true" toggleGroup="$ogrProbeAuffuehrung" />
+                                    
                                  </children>
                               </AnchorPane>
                           </items>
@@ -327,7 +364,7 @@
                   </AnchorPane>
                 <AnchorPane minHeight="272.0" minWidth="1220.0" prefHeight="280.0" prefWidth="1220.0">
                      <children>
-                        <TabPane fx:id="tabPaneAktionen" maxHeight="1.7976931348623157E308" minWidth="1220.0" prefHeight="272.0" prefWidth="1220.0" style="-fx-background-color: #BABABA;" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="9999.0" tabMinHeight="30.0" tabMinWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TabPane fx:id="tabPaneAktionen" maxHeight="1.7976931348623157E308" minWidth="1220.0" prefHeight="272.0" prefWidth="1220.0" style="-fx-background-color: #e0e0e0;" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="9999.0" tabMinHeight="30.0" tabMinWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <tabs>
                               <Tab fx:id="tabDetails" text="Programmpunkte">
                                  <graphic>
@@ -339,7 +376,7 @@
     							</graphic>                                
                               
                                  <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="221.0" prefWidth="1238.0" style="-fx-background-color: #F7F7F7;">
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="221.0" prefWidth="1238.0" style="-fx-background-color: #C4C4C4;">
                                        <children>
                                           <Button fx:id="btnPosListeBearbeiten" disable="true" layoutX="173.0" layoutY="5.0" mnemonicParsing="false" onAction="#btnPosListeBearbeiten_OnClick" prefHeight="40.0" prefWidth="180.0" styleClass="button-neu" text="Liste editieren ...">
                                              <graphic>
@@ -354,7 +391,7 @@
                                              </tooltip>
                                           </Button>
                                           <Label fx:id="lblDatum21" layoutX="409.0" layoutY="5.0" prefHeight="19.0" prefWidth="112.0" styleClass="label-title2" text="Liste" textFill="#6b6b6b" visible="false" />
-                                          <TableView fx:id="tblvwAktionPositionen" editable="true" focusTraversable="false" layoutY="54.0" maxHeight="1.7976931348623157E308" prefHeight="155.0" prefWidth="1234.0" style="-fx-background-color: #e0e0e0;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="54.0">
+                                          <TableView fx:id="tblvwAktionPositionen" editable="true" focusTraversable="false" layoutY="54.0" maxHeight="1.7976931348623157E308" prefHeight="155.0" prefWidth="1234.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="54.0">
                                              <columns>
                                                 <TableColumn fx:id="tblvwPosCol0Pos" editable="false" maxWidth="55.0" minWidth="55.0" prefWidth="55.0" resizable="false" sortable="false" text="Pos" />
                                                 <TableColumn fx:id="tblvwPosCol1Art" editable="false" maxWidth="159.0" minWidth="40.0" prefWidth="159.0" sortable="false" text="Hinweis" />
@@ -427,9 +464,9 @@
                                        <children>
                                           <SplitPane dividerPositions="0.49754098360655735" layoutX="5.0" layoutY="14.0" minWidth="-Infinity" prefHeight="239.0" prefWidth="1234.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                              <items>
-                                                <AnchorPane minHeight="0.0" minWidth="610.0" prefHeight="158.0" prefWidth="620.0" style="-fx-background-color: #F7F7F7;">
+                                                <AnchorPane minHeight="0.0" minWidth="610.0" prefHeight="158.0" prefWidth="620.0" style="-fx-background-color: #C4C4C4;">
                                                    <children>
-                                                      <TableView fx:id="tblvwPersonen" focusTraversable="false" layoutX="6.0" layoutY="134.0" onMouseClicked="#handleTblvwPersonen_onmouseClicked" prefHeight="114.0" prefWidth="602.0" style="-fx-background-color: #e0e0e0;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="134.0">
+                                                      <TableView fx:id="tblvwPersonen" focusTraversable="false" layoutX="6.0" layoutY="134.0" onMouseClicked="#handleTblvwPersonen_onmouseClicked" prefHeight="114.0" prefWidth="602.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="134.0">
                                                          <columns>
                                                             <TableColumn fx:id="tblcolPersonenChor" editable="false" prefWidth="100.0" sortable="false" text="Chor" />
                                                             <TableColumn fx:id="tblcolPersonenGruppe" editable="false" prefWidth="100.0" sortable="false" text="Gruppe" />
@@ -442,17 +479,17 @@
                                                             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                                          </columnResizePolicy>
                                                       </TableView>
-                                                      <Label layoutX="9.0" layoutY="3.0" prefHeight="25.0" prefWidth="459.0" styleClass="label-title3" text="Auswahl aus der Personen-Gesamtliste " wrapText="true" />
+                                                      <Label layoutX="9.0" layoutY="3.0" prefHeight="25.0" prefWidth="459.0" styleClass="label-title3" text="Personen-Gesamtliste " wrapText="true" />
                                                       <TextField fx:id="txtMitwFilterName" layoutX="9.0" layoutY="58.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="171.0" />
                                                       <ComboBox fx:id="cbxMitwFilterChor" editable="true" layoutX="189.0" layoutY="58.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="211.0" />
-                                                      <Label layoutX="94.0" layoutY="28.0" prefHeight="14.0" prefWidth="190.0" text="Personen-Auswahl" />
+                                                      <Label layoutX="10.0" layoutY="25.0" prefHeight="15.0" prefWidth="138.0" text="Auswahl ..." />
                                                       <ComboBox fx:id="cbxMitwFilterGruppe" editable="true" layoutX="188.0" layoutY="100.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="212.0" />
                                                       <TextField fx:id="txtMitwFilterInstrument" layoutX="414.0" layoutY="58.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="171.0" />
                                                       <TextField fx:id="txtMitwFilterStimme" layoutX="414.0" layoutY="100.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="171.0" />
-                                                      <Label layoutX="9.0" layoutY="42.0" prefHeight="14.0" prefWidth="91.0" styleClass="label-filter" text="Filter-Nachname" />
-                                                      <Label layoutX="189.0" layoutY="42.0" prefHeight="14.0" prefWidth="77.0" styleClass="label-filter" text="Filter-Chor" />
-                                                      <Label layoutX="414.0" layoutY="84.0" prefHeight="14.0" prefWidth="80.0" styleClass="label-filter" text="Filter-Stimme" />
-                                                      <Label layoutX="188.0" layoutY="84.0" prefHeight="14.0" prefWidth="91.0" styleClass="label-filter" text="Filter-Gruppe" />
+                                                      <Label layoutX="9.0" layoutY="42.0" prefHeight="14.0" prefWidth="91.0" text="Filter-Nachname" />
+                                                      <Label layoutX="189.0" layoutY="42.0" prefHeight="14.0" prefWidth="77.0" text="Filter-Chor" />
+                                                      <Label layoutX="414.0" layoutY="84.0" prefHeight="14.0" prefWidth="80.0" text="Filter-Stimme" />
+                                                      <Label layoutX="188.0" layoutY="84.0" prefHeight="14.0" prefWidth="91.0" text="Filter-Gruppe" />
                                                       <Button fx:id="btnMitwFilterEin" focusTraversable="false" layoutX="9.0" layoutY="87.0" mnemonicParsing="false" onAction="#handleBtnMitwFilterEin_onCick" prefHeight="40.0" prefWidth="40.0">
                                                          <graphic>
                                                             <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
@@ -477,13 +514,13 @@
                                                             <Tooltip text="Personenliste -- alles anzeigen" />
                                                          </tooltip>
                                                       </Button>
-                                                      <Label layoutX="414.0" layoutY="42.0" prefHeight="14.0" prefWidth="107.0" styleClass="label-filter" text="Filter - Instrument" />
-                                                      <Button fx:id="btnMitwEditSpeichern1" focusTraversable="false" layoutX="388.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleBtnMitwEditSpeichern1_onClick" prefHeight="32.0" prefWidth="215.0" styleClass="button-speichern" text="zu Teilnehmerliste hinzufügen" />
+                                                      <Label layoutX="414.0" layoutY="42.0" prefHeight="14.0" prefWidth="107.0" text="Filter - Instrument" />
+                                                      <Button fx:id="btnMitwEditSpeichern1" focusTraversable="false" layoutX="388.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleBtnMitwEditSpeichern1_onClick" prefHeight="32.0" prefWidth="215.0" text="zu Teilnehmerliste hinzufügen" />
                                                    </children>
                                                 </AnchorPane>
-                                                <AnchorPane minHeight="0.0" minWidth="600.0" prefHeight="228.0" prefWidth="590.0" style="-fx-background-color: #F7F7F7;">
+                                                <AnchorPane minHeight="0.0" minWidth="600.0" prefHeight="228.0" prefWidth="590.0" style="-fx-background-color: #C4C4C4;">
                                                    <children>
-                                                      <TableView fx:id="tblvwPersonenZugewiesen" focusTraversable="false" layoutX="159.0" layoutY="61.0" onMouseClicked="#handleTblvwPersonenZugewiesen_onmouseClicked" prefHeight="173.0" prefWidth="445.0" style="-fx-background-color: #e0e0e0;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="159.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="61.0">
+                                                      <TableView fx:id="tblvwPersonenZugewiesen" focusTraversable="false" layoutX="159.0" layoutY="61.0" onMouseClicked="#handleTblvwPersonenZugewiesen_onmouseClicked" prefHeight="173.0" prefWidth="445.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="159.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="61.0">
                                                          <columns>
                                                             <TableColumn fx:id="tblcolMitwZugewiesenName" editable="false" prefWidth="120.0" text="Name" />
                                                             <TableColumn fx:id="tblcolMitwZugewiesenVorname" editable="false" prefWidth="120.0" text="Vorname" />
@@ -494,7 +531,7 @@
                                                             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                                          </columnResizePolicy>
                                                       </TableView>
-                                                      <Label fx:id="lblMitwirkendeDatensatzaktion" layoutX="167.0" layoutY="39.0" prefHeight="18.0" prefWidth="435.0" styleClass="label-gn" text="Person NEU hinzufügen" />
+                                                      <Label fx:id="lblMitwirkendeDatensatzaktion" layoutX="167.0" layoutY="39.0" prefHeight="18.0" prefWidth="435.0" text="Person NEU hinzufügen" />
                                                       <TextField fx:id="txtMitwEditName" layoutX="11.0" layoutY="66.0" prefHeight="28.0" prefWidth="138.0" />
                                                       <TextField fx:id="txtMitwEditVorname" layoutX="11.0" layoutY="110.0" prefHeight="28.0" prefWidth="138.0" />
                                                       <TextField fx:id="txtMitwEditStimme" layoutX="11.0" layoutY="154.0" prefHeight="28.0" prefWidth="138.0" />
@@ -558,7 +595,7 @@
         							</ImageView>
     							</graphic>                                
                                  <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F7F7F7;">
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #C4C4C4;">
                                        <children>
                                           <Button fx:id="btnAktionDrucken1Liste" alignment="CENTER" contentDisplay="TEXT_ONLY" focusTraversable="false" layoutX="16.0" layoutY="43.0" onAction="#btnAktionDrucken1Liste_OnCLick" prefHeight="46.0" prefWidth="228.0" text="markierte Aktion mit  Positionen" wrapText="true">
                                              <tooltip>
@@ -581,7 +618,7 @@
                                                 <Tooltip text="Ordnerinhalt mit den gespeicherten PDF-Dateien anzeigen" />
                                              </tooltip>
                                           </Button>
-                                          <Label fx:id="lblDruckreportsAnzahl" layoutX="337.0" layoutY="16.0" prefHeight="18.0" prefWidth="335.0" styleClass="label-gn" text="x REPORTS sind gespeichert" textFill="#6b6b6b" />
+                                          <Label fx:id="lblDruckreportsAnzahl" alignment="CENTER" layoutX="324.0" layoutY="16.0" prefHeight="18.0" prefWidth="228.0" text="x REPORTS sind gespeichert" textFill="#6b6b6b" />
                                           <Label fx:id="lblDrucken1" layoutX="21.0" layoutY="177.0" prefHeight="17.0" prefWidth="190.0" text="Drucken ..." textFill="#6b6b6b" visible="false" />
                                           <ProgressBar fx:id="pbDrucken1" layoutX="22.0" layoutY="194.0" prefHeight="20.0" prefWidth="215.0" progress="0.0" visible="false" />
                                        </children>

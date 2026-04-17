@@ -63,7 +63,7 @@
 }
 
 .text-field:focused, .text-area:focused{
-    -fx-background-color: #E0E0E0;
+    -fx-background-color: #FFFCBB;/*#E0E0E0; /*#AAC4DF;*/
     -fx-border-color: #812323;
 }
 
@@ -79,11 +79,11 @@
     -fx-font-size: 8pt;
 }
 .text-fieldklein:focused{
-    -fx-background-color: #E0E0E0;
+    -fx-background-color: #FFFCBB;/*#E0E0E0; /*#AAC4DF;*/
     -fx-border-color: #812323;
 }
 .label{
-    -fx-font-size: 8pt;
+    -fx-font-size: 9pt;
     -fx-font-weight: normal;
 	-fx-text-fill: black;	
 }
@@ -139,7 +139,10 @@
 
 
 .schriftgelb{
-	-fx-text-fill: yellow;
+	-fx-text-fill: #FFFCBB;
+}	
+.schriftrothell	{
+	-fx-text-fill: #FFD054;	
 }
 
 
@@ -153,6 +156,8 @@
 .label:gruen	{
 	-fx-text-fill: #18A31A;	
 }
+
+
 
 
 .update-menu {
@@ -170,7 +175,7 @@
 }
 
 .combo-box:focused, .combo-box .text-field:focused {
-    -fx-background-color: #E0E0E0; /*#AAC4DF;*/
+    -fx-background-color: #FFFCBB;/*#E0E0E0; /*#AAC4DF;*/
     -fx-border-color: #812323;
     -fx-border-width: 1.0px;
 }
@@ -183,20 +188,20 @@
 }
 
 .combo-boxklein:focused, .combo-boxklein .text-fieldklein:focused {
-    -fx-background-color: #E0E0E0; /*#AAC4DF;*/
+    -fx-background-color: #FFFCBB;/*#E0E0E0; /*#AAC4DF;*/
     -fx-border-color: #812323;
     -fx-border-width: 1.0px;
 }
 
 .combo-box .list-view {
-    -fx-background-color: #E0E0E0;
+    -fx-background-color: #FFFCBB;/*#E0E0E0; /*#AAC4DF;*/
     -fx-border-color: #6D6D6D;   
     -fx-border-width: 0.5px; 
     -fx-font-size: 10pt;
 }
 .combo-focused,
 .combo-focused .text-field {
-    -fx-background-color: #E0E0E0;
+    -fx-background-color: #FFFCBB;/*#E0E0E0; /*#AAC4DF;*/
     -fx-border-color: #812323;
     -fx-border-width: 1.0px;
 }

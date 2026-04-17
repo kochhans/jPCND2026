@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -9,17 +10,25 @@
 
 <BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.FrmAktionenCvwImportController">
    <top>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="1000.0" style="-fx-background-color: #f0f0f0;" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="105.0" prefWidth="1000.0" style="-fx-background-color: #7f7f7f;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="btnZurueck" layoutX="849.0" layoutY="23.0" onAction="#btnZurueck_OnClick" prefHeight="29.0" prefWidth="131.0" text="Zurück" AnchorPane.rightAnchor="20.0" />
-            <Label fx:id="lblAktionDatum" layoutX="23.0" layoutY="38.0" prefHeight="19.0" prefWidth="233.0" styleClass="label-title2" text="Label" />
-            <Label layoutX="23.0" layoutY="9.0" prefHeight="23.0" prefWidth="359.0" styleClass="label-title" text="Import aus der CVW-Datenbank" />
+            <Label fx:id="lblAktionDatum" layoutX="23.0" layoutY="38.0" prefHeight="19.0" prefWidth="233.0" text="Label">
+               <styleClass>
+                  <String fx:value="label-title3" />
+                  <String fx:value="schriftweiss" />
+               </styleClass></Label>
+            <Label layoutX="23.0" layoutY="9.0" prefHeight="23.0" prefWidth="359.0" text="Import aus der CVW-Datenbank">
+               <styleClass>
+                  <String fx:value="label-title" />
+                  <String fx:value="schriftweiss" />
+               </styleClass></Label>
          </children></AnchorPane>
    </top>
    <center>
-      <AnchorPane prefHeight="583.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="504.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="tblVwCvwPersonen" layoutX="8.0" layoutY="5.0" prefHeight="490.0" prefWidth="985.0">
+            <TableView fx:id="tblVwCvwPersonen" layoutX="8.0" layoutY="5.0" prefHeight="595.0" prefWidth="985.0">
               <columns>
                   <TableColumn fx:id="colPechor" prefWidth="120.0" text="Chor" />
                   <TableColumn fx:id="colPegruppe" prefWidth="100.0" text="Gruppe" />
