@@ -5,10 +5,11 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
@@ -127,6 +128,9 @@ public class FrmAktionenStammdatenController
 	private Button btnFilterAn, btnFilterAus;
 	@FXML
 	private TabPane tabPanePosFilter;
+	
+	@FXML
+	private CheckBox chkMehrfachauswahl;	
 
 // ####################################################################################################
 	// Tblvw-Binding
@@ -155,6 +159,7 @@ public class FrmAktionenStammdatenController
 	{ // kein Datenzugriff hier, nur UI
 		oblist_personencvwimportData.bind(tblvwCvwPersonenImport);
 		tblvwCvwPersonenImport.setFixedCellSize(26);
+		tblvwCvwPersonenImport.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 	}
 
 	@FXML
@@ -322,17 +327,29 @@ public class FrmAktionenStammdatenController
 	@FXML
 	public void btnStammPersLoeschen_onClick() throws Exception
 	{
-		CvwPersonenModel selected = tblvwCvwPersonenImport.getSelectionModel().getSelectedItem();
-		if (selected == null)
-		{
-			Msgbox.show("Person löschen ...", "Bitte markieren Sie eine Zeile, die gelöscht wereden soll!");
-			return;
+
+	    ObservableList<CvwPersonenModel> selectedList =
+	        FXCollections.observableArrayList(
+	            tblvwCvwPersonenImport.getSelectionModel().getSelectedItems()
+	        );
+
+	    if (selectedList.isEmpty())
+	    {
+	        Msgbox.show("Person löschen ...", "Bitte markieren Sie mindestens eine Zeile!");
+	        return;
+	    }
+		if (!Msgbox.yesno("SS","Wirklich " + selectedList.size() + " Einträge löschen?")) {
+		    return;
 		}
 
-		db.deleteCvwPerson(selected.getPekeyid());
-		anzeigenTableCvwPersonenImport(0);
-		leerenStammdatenPers();
-		// anzeigenCombosTabPersonen();
+	    // 👉 mehrere oder eine – egal
+	    for (CvwPersonenModel person : selectedList)
+	    {
+	        db.deleteCvwPerson(person.getPekeyid());
+	    }
+
+	    anzeigenTableCvwPersonenImport(0);
+	    leerenStammdatenPers();
 	}
 
 	@FXML
@@ -408,24 +425,52 @@ public class FrmAktionenStammdatenController
 	@FXML
 	void handletblvwCvwPersonenImport_onmouseClicked()
 	{
-		CvwPersonenModel selected = tblvwCvwPersonenImport.getSelectionModel().getSelectedItem();
-		if (selected == null)
-			return;
+	    // 👉 Nur im SINGLE-Modus reagieren!
+	    if (tblvwCvwPersonenImport.getSelectionModel().getSelectionMode() != SelectionMode.SINGLE) {
+	        return; // im Mehrfachmodus nichts tun
+	    }
 
-		// -------------------- Textfelder --------------------
-		txtPersStammChor.setText(selected.getPechor());
-		txtPersStammGruppe.setText(selected.getPegruppe());
-		txtPersStammInstrument.setText(selected.getPeinstrument());
-		txtPersStammMail.setText(selected.getPemail());
-		txtPersStammName.setText(selected.getPename());
-		txtPersStammStimme.setText(selected.getPestimme());
-		txtPersStammTelefon.setText(selected.getPetelefon());
-		txtPersStammVorname.setText(selected.getPevname());
-		txtPersStammId.setText(Integer.toString(selected.getPekeyid()));
+	    CvwPersonenModel selected = tblvwCvwPersonenImport.getSelectionModel().getSelectedItem();
+	    if (selected == null)
+	        return;
 
-		// -------------------- Tabs aktivieren --------------------
+	    txtPersStammChor.setText(selected.getPechor());
+	    txtPersStammGruppe.setText(selected.getPegruppe());
+	    txtPersStammInstrument.setText(selected.getPeinstrument());
+	    txtPersStammMail.setText(selected.getPemail());
+	    txtPersStammName.setText(selected.getPename());
+	    txtPersStammStimme.setText(selected.getPestimme());
+	    txtPersStammTelefon.setText(selected.getPetelefon());
+	    txtPersStammVorname.setText(selected.getPevname());
+	    txtPersStammId.setText(Integer.toString(selected.getPekeyid()));
 	}
 
+	@FXML
+	void chkMehrfachauswahl_OnAction()
+	{
+	    if(chkMehrfachauswahl.isSelected()) {
+	    	handleMehrfachmodusEin();
+	    	
+	    }
+	    else
+	    {
+	    	handleMehrfachmodusAus();
+	    }
+	}
+	
+	@FXML
+	void handleMehrfachmodusEin()
+	{
+	    tblvwCvwPersonenImport.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+	}
+	
+	@FXML
+	void handleMehrfachmodusAus()
+	{
+	    tblvwCvwPersonenImport.getSelectionModel().clearSelection();
+	    tblvwCvwPersonenImport.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+	}
+// -------------------- Tabs aktivieren --------------------
 	// ===============================================================================================
 	// Tableview in Tab0 LITERATUR - Daten in Textfelder übergeben
 	// ===============================================================================================
