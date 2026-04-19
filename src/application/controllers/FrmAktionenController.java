@@ -1140,9 +1140,11 @@ public class FrmAktionenController
 		ConfigManager.saveFilterAktion(cbxFilterAktion.getEditor().getText());
 		ConfigManager.saveFilterAktionOrt(cbxFilterOrt.getEditor().getText());
 		ConfigManager.saveFilterAktionGruppe(cbxFilterGruppe.getEditor().getText());
+		ConfigManager.saveFilterAktionBeschreibung(txtFilterKurzbeschr.getText());
 
 		ConfigManager.saveFilterGruppe(cbxMitwFilterGruppe.getEditor().getText());
 		ConfigManager.saveFilterChor(cbxMitwFilterChor.getEditor().getText());
+
 	}
 	
 
@@ -2640,6 +2642,7 @@ public class FrmAktionenController
 		cbxFilterOrt.setValue(null);
 		cbxFilterOrt.getEditor().setText("");
 		radFilterAlles.setSelected(true);
+		txtFilterKurzbeschr.setText("");
 
 	}
 
@@ -3105,6 +3108,7 @@ public class FrmAktionenController
 		cbxFilterAktion.getEditor().setText(ConfigManager.loadFilterAktion());
 		cbxFilterOrt.getEditor().setText(ConfigManager.loadFilterAktionOrt());
 		cbxFilterGruppe.getEditor().setText(ConfigManager.loadFilterAktionGruppe());
+		txtFilterKurzbeschr.setText(ConfigManager.loadFilterAktionBeschreibung());
 
 	}
 

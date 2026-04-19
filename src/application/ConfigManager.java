@@ -348,6 +348,15 @@ public class ConfigManager
 	    save();
 	}
 	
+	public static String loadFilterAktionBeschreibung() {
+	    return props.getProperty("filter.aktionbeschr", "");
+	}
+
+	public static void saveFilterAktionBeschreibung(String value) {
+	    props.setProperty("filter.aktionbeschr", value != null ? value : "");
+	    save();
+	}
+	
 	
 	
 	
