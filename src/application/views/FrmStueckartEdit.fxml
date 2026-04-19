@@ -16,10 +16,15 @@
 	<children>
 		<AnchorPane layoutY="72.0" maxHeight="486.0" maxWidth="794.0" minHeight="316.0" minWidth="460.0" prefHeight="316.0" prefWidth="721.0" style="-fx-background-color: #F0F0F0;">
 			<children>
+            <Label fx:id="lblStueckauswahl1" alignment="CENTER_RIGHT" layoutX="330.0" layoutY="98.0" prefHeight="15.0" prefWidth="108.0" text="Stück-Art">
+               <font>
+                  <Font name="System Italic" size="10.0" />
+               </font>
+            </Label>
             <TableView fx:id="tblVwListeAlle" layoutX="15.0" layoutY="61.0" onMousePressed="#handletblVwListeAlle_OnMouseClicked" prefHeight="211.0" prefWidth="358.0"> <!--onMouseClicked="#handletblVwThemenAlle_on_MouseClick" onMouseReleased="#handletblVwThemenAlle_on_MouseRel"-->
               <columns>
                 <TableColumn fx:id="tblvwCol1" editable="false" maxWidth="300.0" prefWidth="200.0" resizable="false" text="Stück-Art Bezeichnung" />
-                  <TableColumn fx:id="tblvwCol5" editable="false" maxWidth="100.0" prefWidth="90.0" resizable="false" text="DB" />
+                  <TableColumn fx:id="tblvwCol5" editable="false" maxWidth="100.0" prefWidth="90.0" resizable="false" text="Db" />
                   <TableColumn fx:id="tblvwCol6" editable="false" maxWidth="50.0" prefWidth="40.0" resizable="false" text="id" />
               </columns>
                <columnResizePolicy>
@@ -32,18 +37,13 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="442.0" layoutY="61.0" prefHeight="20.0" prefWidth="250.0" text="Datensätze neu anlegen, bearbeiten, löschen." wrapText="true">
+            <Label layoutX="442.0" layoutY="61.0" prefHeight="20.0" prefWidth="269.0" text="Datensätze neu anlegen, bearbeiten, löschen." wrapText="true">
                <font>
                   <Font name="System Italic" size="10.0" />
                </font>
             </Label>
-            <Label fx:id="lblStueckauswahl1" alignment="CENTER_RIGHT" layoutX="370.0" layoutY="98.0" prefHeight="15.0" prefWidth="62.0" text="Stück-Art">
-               <font>
-                  <Font name="System Italic" size="10.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtEingabezeile2" disable="true" editable="false" layoutX="506.0" layoutY="133.0" prefHeight="25.0" prefWidth="98.0" />
-            <Label fx:id="lblStueckauswahl1112" alignment="CENTER_RIGHT" layoutX="460.0" layoutY="138.0" prefHeight="15.0" prefWidth="40.0" text="DB">
+            <TextField fx:id="txtEingabezeile2" disable="true" editable="false" layoutX="489.0" layoutY="133.0" prefHeight="25.0" prefWidth="98.0" />
+            <Label fx:id="lblStueckauswahl1112" alignment="CENTER_RIGHT" layoutX="443.0" layoutY="138.0" prefHeight="15.0" prefWidth="40.0" text="Db">
                <font>
                   <Font name="System Italic" size="10.0" />
                </font>
@@ -52,7 +52,7 @@
             <Button fx:id="btnSpeichern" layoutX="603.0" layoutY="168.0" mnemonicParsing="false" onAction="#btnSpeichern_OnClick" prefHeight="25.0" prefWidth="85.0" text="speichern" textFill="#2e9758" />
             <Button fx:id="btnNeu" layoutX="603.0" layoutY="202.0" mnemonicParsing="false" onAction="#btnNeu_OnClick" prefHeight="25.0" prefWidth="85.0" text="neu" />
             <Button fx:id="btnLoeschen" layoutX="603.0" layoutY="236.0" mnemonicParsing="false" onAction="#btnLoeschen_OnClick" prefHeight="25.0" prefWidth="85.0" text="löschen" textFill="RED" />
-            <Label fx:id="lblStueckauswahl11111" alignment="CENTER_RIGHT" layoutX="600.0" layoutY="138.0" prefHeight="15.0" prefWidth="40.0" text="id">
+            <Label fx:id="lblStueckauswahl11111" alignment="CENTER_RIGHT" layoutX="593.0" layoutY="138.0" prefHeight="15.0" prefWidth="40.0" text="id">
                <font>
                   <Font name="System Italic" size="10.0" />
                </font>
@@ -67,7 +67,7 @@
 		</AnchorPane>
 		<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="721.0" style="-fx-background-color: #7f7f7f;">
 			<children>
-				<Label fx:id="lblHaupttitel" layoutX="68.0" maxHeight="41.0" maxWidth="655.0" minHeight="30.0" minWidth="181.0" prefHeight="32.0" prefWidth="386.0" text="Stücke-Arten" textFill="#046972">
+				<Label fx:id="lblHaupttitel" layoutX="68.0" maxHeight="41.0" maxWidth="655.0" minHeight="30.0" minWidth="181.0" prefHeight="32.0" prefWidth="386.0" text="Stück-Arten" textFill="#046972">
 					<font>
 						<Font name="System Bold" size="20.0" />
 					</font>
@@ -94,7 +94,7 @@
                </styleClass>
             </Label>
             <Button fx:id="btnZurueck" layoutX="587.0" layoutY="15.0" mnemonicParsing="false" onAction="#btnZurueck_OnClick" prefHeight="32.0" prefWidth="98.0" text="zurück..." textFill="#2525f5" />
-            <ImageView fitHeight="48.0" fitWidth="62.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="48.0" fitWidth="62.0" layoutX="5.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@/icons/javafx/media-optical-5.png" />
                </image>

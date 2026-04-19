@@ -53,24 +53,24 @@
                   <Font name="System Italic" size="10.0" />
                </font>
             </Label>
-            <Label layoutX="19.0" layoutY="281.0" prefHeight="57.0" prefWidth="265.0" text="Für jedes Lied/Stück können beliebig viele Gesangbücher zugewiesen werden. Diese sind in den Filterfunktionen verfügbar." wrapText="true">
+            <Label alignment="TOP_LEFT" layoutX="19.0" layoutY="306.0" prefHeight="106.0" prefWidth="265.0" text="Für jedes Lied/Stück können beliebig viele Gesangbücher zugewiesen werden. &#10;Diese sind in den Filterfunktionen verfügbar." wrapText="true">
                <font>
                   <Font name="System Italic" size="10.0" />
                </font>
             </Label>
-            <Label fx:id="lblAuswahl12" alignment="CENTER_RIGHT" layoutX="343.0" layoutY="384.0" prefHeight="15.0" prefWidth="76.0" text="Gesangbuch">
+            <Label fx:id="lblAuswahl12" alignment="CENTER_RIGHT" layoutX="284.0" layoutY="384.0" prefHeight="15.0" prefWidth="135.0" text="Gesangbuch">
                <font>
                   <Font name="System Italic" size="10.0" />
                </font>
             </Label>
             <TextField fx:id="txtEingabezeile1" layoutX="426.0" layoutY="409.0" prefHeight="25.0" prefWidth="107.0" />
-            <Label fx:id="lblAuswahl121" alignment="CENTER_RIGHT" layoutX="343.0" layoutY="414.0" prefHeight="15.0" prefWidth="76.0" text="Kürzel">
+            <Label fx:id="lblAuswahl121" alignment="CENTER_RIGHT" layoutX="284.0" layoutY="414.0" prefHeight="15.0" prefWidth="135.0" text="Kürzel">
                <font>
                   <Font name="System Italic" size="10.0" />
                </font>
             </Label>
             <TextField fx:id="txtEingabezeile3" layoutX="426.0" layoutY="440.0" prefHeight="25.0" prefWidth="358.0" />
-            <Label fx:id="lblAuswahl1211" alignment="CENTER_RIGHT" layoutX="343.0" layoutY="445.0" prefHeight="15.0" prefWidth="76.0" text="Bemerkungen">
+            <Label fx:id="lblAuswahl1211" alignment="CENTER_RIGHT" layoutX="284.0" layoutY="445.0" prefHeight="15.0" prefWidth="135.0" text="Bemerkungen">
                <font>
                   <Font name="System Italic" size="10.0" />
                </font>
@@ -79,7 +79,7 @@
             <Button fx:id="btnSpeichern" layoutX="604.0" layoutY="481.0" mnemonicParsing="false" onAction="#btnSpeichern_OnClick" prefHeight="25.0" prefWidth="85.0" text="speichern" textFill="#06a803" />
             <Button fx:id="btnLoeschen" layoutX="698.0" layoutY="481.0" mnemonicParsing="false" onAction="#btnLoeschen_OnClick" prefHeight="25.0" prefWidth="85.0" text="löschen" textFill="#f80000" />
             <Button fx:id="btnNeu" layoutX="509.0" layoutY="481.0" mnemonicParsing="false" onAction="#btnNeu_OnClick" prefHeight="25.0" prefWidth="85.0" text="neu" />
-            <Label fx:id="lblAuswahl1212" alignment="CENTER_RIGHT" layoutX="614.0" layoutY="414.0" prefHeight="15.0" prefWidth="69.0" text="Quelle">
+            <Label fx:id="lblAuswahl1212" alignment="CENTER_RIGHT" layoutX="563.0" layoutY="414.0" prefHeight="15.0" prefWidth="115.0" text="Quelle">
                <font>
                   <Font name="System Italic" size="10.0" />
                </font>
@@ -123,17 +123,17 @@
             </ImageView>
 			</children>
 		</AnchorPane>
-      <Button fx:id="btnZurueck2" layoutX="15.0" layoutY="316.0" mnemonicParsing="false" onAction="#btnZurueck_OnClick" prefHeight="32.0" prefWidth="223.0" text="Zuordnung speichern und schließen" textFill="#2525f5">
+      <Button fx:id="btnZurueck2" layoutX="15.0" layoutY="316.0" mnemonicParsing="false" onAction="#btnZurueck_OnClick" prefHeight="48.0" prefWidth="223.0" text="Zuordnung speichern &#10;und schließen" textAlignment="CENTER" textFill="#2525f5">
          <font>
             <Font size="10.0" />
          </font></Button>
-      <TextField fx:id="txtEingabeNummer" alignment="CENTER" layoutX="256.0" layoutY="242.0" prefHeight="25.0" prefWidth="76.0" promptText="298" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="256.0" layoutY="219.0" prefHeight="25.0" prefWidth="76.0" text="Nummer" textAlignment="CENTER" wrapText="true">
+      <TextField fx:id="txtEingabeNummer" alignment="CENTER" layoutX="256.0" layoutY="250.0" prefHeight="25.0" prefWidth="76.0" promptText="298" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="256.0" layoutY="227.0" prefHeight="25.0" prefWidth="76.0" text="Nummer" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="System Italic" size="10.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="256.0" layoutY="268.0" prefHeight="32.0" prefWidth="76.0" text="z.B. 298" textAlignment="CENTER" wrapText="true">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="256.0" layoutY="276.0" prefHeight="32.0" prefWidth="76.0" styleClass="schr" text="z.B. 298" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="System Italic" size="10.0" />
          </font>

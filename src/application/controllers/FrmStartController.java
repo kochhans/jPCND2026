@@ -1167,7 +1167,7 @@ public class FrmStartController implements Initializable
 
 	@FXML
 	private void btnAktivitaeten_OnClick(ActionEvent event) throws Exception
-	{
+	{ 
 
 		saveFilterToState(); // ALLE Filter speichern
 		// btnUpdaten.setVisible(false);
@@ -3014,24 +3014,11 @@ public class FrmStartController implements Initializable
 	@FXML
 	public void men01Beenden_OnClick()
 	{
-
+		saveFilterToState();
 		if (!Msgbox.yesno("Programm beenden", "Möchten Sie das Programm wirklich beenden?"))
 		{
 			return;
 		}
-
-//		ConfigManager.saveFilterStartTitel(txtFilterTitel.getText());
-//		ConfigManager.saveFilterStartStckart(cbxFilterStueckart.getEditor().getText());
-//		ConfigManager.saveFilterStartEdition(txtFilterEdit.getText());
-//		ConfigManager.saveFilterStartKomponist(txtFilterKomp.getText());
-//		ConfigManager.saveFilterStartDichter(txtFilterDicht.getText());
-//		ConfigManager.saveFilterStartVerlag(txtFilterEditVerlag.getText());
-//		ConfigManager.saveFilterStartWoli(cbxFilterWochenlied.getEditor().getText());
-//		ConfigManager.saveFilterStartThema(cbxFilterThema.getEditor().getText());
-//		ConfigManager.saveFilterStartNoma(cbxFilterNotenmappe.getEditor().getText());
-//		ConfigManager.saveFilterStartBib(cbxFilterBibel.getEditor().getText());
-//		ConfigManager.saveFilterStartGesangbuch(cbxFilterGesangbuch.getEditor().getText());
-
 		SceneManager.exitApp();
 	}
 

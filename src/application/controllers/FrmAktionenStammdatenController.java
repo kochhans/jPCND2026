@@ -158,7 +158,7 @@ public class FrmAktionenStammdatenController
 	}
 
 	@FXML
-	public void onShow() throws Exception
+	public void onShow(String woher) throws Exception
 	{// Hier die Scene-spezifische Initialisierung
 		if (db == null)
 		{
@@ -166,6 +166,14 @@ public class FrmAktionenStammdatenController
 		}
 		initTabPanes();
 		initData();
+		
+		
+		if ("personen".equals(woher)) {
+		    tabPaneStammdaten.getSelectionModel().select(tabStammdatenPersonen);
+		}
+		else if ("import".equals(woher)) {
+		    tabPaneStammdaten.getSelectionModel().select(tabImportieren);
+		}
 	}
 
 	private void initData() throws Exception

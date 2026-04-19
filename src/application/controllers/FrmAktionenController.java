@@ -1125,7 +1125,16 @@ public class FrmAktionenController
 	@FXML
 	private void btnZuNotenarchiv_OnClick(ActionEvent event) throws IOException
 	{
+		speichereAktionenfilter();
 
+		System.out.println("Zurückbutton in Scene 2 betätigt");
+
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		SceneManager.showStart(stage); // 👈 echte Wiederherstellung
+	}
+	
+	private void speichereAktionenfilter() {
 		ConfigManager.saveFilterAktionDatumvon(dpFilterDatumVon.getEditor().getText());
 		ConfigManager.saveFilterAktionDatumbis(dpFilterDatumBis.getEditor().getText());
 		ConfigManager.saveFilterAktion(cbxFilterAktion.getEditor().getText());
@@ -1134,18 +1143,18 @@ public class FrmAktionenController
 
 		ConfigManager.saveFilterGruppe(cbxMitwFilterGruppe.getEditor().getText());
 		ConfigManager.saveFilterChor(cbxMitwFilterChor.getEditor().getText());
-		System.out.println("Zurückbutton in Scene 2 betätigt");
-
-		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-		SceneManager.showStart(stage); // 👈 echte Wiederherstellung
 	}
-	
-
 	
 
 	@FXML
 	private void btnStammdaten_OnAction(ActionEvent event) throws Exception
+	{
+		openStammdaten("personen");
+	
+	}	
+
+	@FXML
+	private void openStammdaten(String woher)
 	{
 		oblist_personenData.master.clear();
 
@@ -1155,7 +1164,8 @@ public class FrmAktionenController
 			FrmAktionenStammdatenController controller = fxmlLoader.getController();
 			controller.setDbControllerAktionen(this.db);
 			// ✅ Owner aus dem Button holen
-			Stage owner = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			Stage owner = (Stage) rootScene2.getScene().getWindow();
+			//Stage owner = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Choraktionen - Liste");
 			dialogStage.getIcons().add(new Image("/icons/javafx/werkzeug.png"));
@@ -1172,7 +1182,7 @@ public class FrmAktionenController
 			dialogStage.setMinHeight(600);
 			dialogStage.setResizable(false);
 			// --------------------
-			controller.onShow(); // init in zugeh. EditController!
+			controller.onShow(woher); // init in zugeh. EditController!
 			dialogStage.setScene(new Scene(root));
 			dialogStage.showAndWait(); // wartet bis Fenster geschlossen wird
 		} catch (Exception e) {
@@ -1331,7 +1341,7 @@ public class FrmAktionenController
 		    }
 
 		    // Datum auf heute setzen
-		    datum = LocalDate.now().plusDays(7);
+		    //datum = LocalDate.now().plusDays(0);
 		}
 
 		// Save direkt mit LocalDate und LocalTime
@@ -2566,11 +2576,13 @@ public class FrmAktionenController
 		dialogStage.showAndWait(); // wartet bis Fenster geschlossen wird
 		// refresh der notwendigen Combos und Tabellen
 		// 🔄 TableView sauber neu laden
-		tblvwAktionPositionen.setItems(
-		    FXCollections.observableArrayList(
-		        db.getAktionenPositionenListeAll(caid)
-		    )
-		);
+//		tblvwAktionPositionen.setItems(
+//		    FXCollections.observableArrayList(
+//		        db.getAktionenPositionenListeAll(caid)
+//		    )
+//		);
+		
+		anzeigenTabelleAktionenPositionen();
 
 	}
 
@@ -2825,9 +2837,20 @@ public class FrmAktionenController
         if (!Msgbox.yesno("Programm beenden", "Möchten Sie das Programm wirklich beenden?")) {
               return;
         }
-
+        speichereAktionenfilter();
 		SceneManager.exitApp();
 	}
+	@FXML
+	public void men02StdatPersonen_OnAction() throws Exception
+	{
+		openStammdaten("personen");
+		}
+	
+	@FXML
+	public void men02StdatImport_OnAction() throws Exception
+	{
+		openStammdaten("import");
+		}
 	
 // --------------------------------------------------------------------------------
 // Hilfsmethoden für Steuerelemente -----------------------------------------------

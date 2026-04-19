@@ -56,13 +56,13 @@
                   <Font name="System Italic" size="10.0" />
                </font>
             </Label>
-            <Label layoutX="19.0" layoutY="244.0" prefHeight="57.0" prefWidth="265.0" text="Für jedes Lied/Stück können beliebig viele Themen zugewiesen werden. Die Themen sind in den Filterfunktionen verfügbar." wrapText="true">
+            <Label alignment="TOP_LEFT" layoutX="19.0" layoutY="255.0" prefHeight="109.0" prefWidth="274.0" text="Für jedes Lied/Stück können beliebig viele Themen zugewiesen werden. &#10;&#10;Die Themen sind in den Filterfunktionen verfügbar." wrapText="true">
                <font>
                   <Font name="System Italic" size="10.0" />
                </font>
             </Label>
-            <Button fx:id="btnZurueck2" layoutX="15.0" layoutY="200.0" mnemonicParsing="false" onAction="#btnZurueck_OnClick" prefHeight="32.0" prefWidth="274.0" text="Zuordnung speichern und schließen" textFill="#2525f5" />
-            <Label fx:id="lblStueckauswahl1" layoutX="343.0" layoutY="415.0" prefHeight="15.0" prefWidth="85.0" text="Thema editieren">
+            <Button fx:id="btnZurueck2" layoutX="15.0" layoutY="200.0" mnemonicParsing="false" onAction="#btnZurueck_OnClick" prefHeight="48.0" prefWidth="274.0" text="Zuordnung speichern &#10;und schließen" textFill="#2525f5" />
+            <Label fx:id="lblStueckauswahl1" alignment="CENTER_RIGHT" layoutX="276.0" layoutY="415.0" prefHeight="15.0" prefWidth="142.0" text="Thema editieren">
                <font>
                   <Font name="System Italic" size="10.0" />
                </font>
@@ -99,7 +99,7 @@
                </styleClass>
             </Label>
             <Button fx:id="btnZurueck" layoutX="638.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnZurueck_OnClick" prefHeight="32.0" prefWidth="98.0" text="zurück..." textFill="#2525f5" />
-            <ImageView fitHeight="48.0" fitWidth="62.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="48.0" fitWidth="62.0" layoutX="6.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@/icons/javafx/themen.png" />
                </image>
