@@ -40,6 +40,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
+
+import application.ConfigManager;
+import application.FilterState;
 import application.ValuesGlobals;
 import application.models.AktionenEinzelnPerId;
 import application.models.AktionenListeModel;
@@ -238,11 +241,9 @@ public class FrmAktionenPositionenController
 		btnPosLeeren.setDisable(true);
 		btnPosLoeschen.setDisable(true);
 		btnNaGrafikwahl.setDisable(true);
-		
+
 	}
-		
-		
-		
+
 	@FXML
 	public void onShow(int caid) throws Exception
 	{// Hier die Scene-spezifische Initialisierung
@@ -284,13 +285,16 @@ public class FrmAktionenPositionenController
 		posAlleSperren(0);
 		initFilterfelderGespAktionen();
 		filternAktionen();
-		System.out.println("tblvwAktionPositionen1 = " + tblvwAktionPositionen1);
-		System.out.println("Controller Instanz: " + this);
+		restoreFilterAktionenPositionen();
+
+		// System.out.println("tblvwAktionPositionen1 = " + tblvwAktionPositionen1);
+		// System.out.println("Controller Instanz: " + this);
 		// alle Tableviews Spalten unverschiebbar machen
 		tblvwAktionPositionen.getColumns().forEach(col -> col.setReorderable(false));
 		tblvwAktionPositionen1.getColumns().forEach(col -> col.setReorderable(false));
 		tblvwChoraktionen.getColumns().forEach(col -> col.setReorderable(false));
 		tblvwChoraktionenAufgef.getColumns().forEach(col -> col.setReorderable(false));
+
 	}
 
 	@FXML
@@ -341,6 +345,7 @@ public class FrmAktionenPositionenController
 	@FXML
 	private void btnZurueck_OnClick(ActionEvent event) throws Exception
 	{
+		speichereFilterAktionenPositionen();
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // aktuelle Stage rausfinden
 		stage.close(); // stage schließen
 	}
@@ -505,7 +510,7 @@ public class FrmAktionenPositionenController
 	@FXML
 	public void anzeigenAktioneninfo(int caid)
 	{
-		//System.out.println("anzeigtenAktioneninfo -- aktuelle Aktion " + caid);
+		// System.out.println("anzeigtenAktioneninfo -- aktuelle Aktion " + caid);
 		AktionenEinzelnPerId aktion = db.getAktionPerId(caid);
 		String aktionInfo = "";
 		if (aktion != null)
@@ -515,13 +520,13 @@ public class FrmAktionenPositionenController
 			{
 				aktionInfo += aktion.getCatreffpunkt().toString() + " | ";
 			}
-			//System.out.println("anzeigtenAktioneninfo -- aktuelle Aktion " + aktionInfo);
+			// System.out.println("anzeigtenAktioneninfo -- aktuelle Aktion " + aktionInfo);
 			// aktionInfo="";
 			aktionInfo += aktion.getCabeschreibung() + " | ";
 			aktionInfo += aktion.getCagruppe() + " | ";
 			aktionInfo += aktion.getCaaktionsort() + " | ";
 			lblAktionDatum.setText(aktionInfo);
-			//System.out.println("anzeigtenAktioneninfo -- aktuelle Aktion " + aktionInfo);
+			// System.out.println("anzeigtenAktioneninfo -- aktuelle Aktion " + aktionInfo);
 		}
 	}
 
@@ -657,27 +662,28 @@ public class FrmAktionenPositionenController
 		{
 			// nicht unten angefügt als neuer DS, dann immer neuerDatensatz an Cursor
 			posBearbStatus = 3;
-			
+
 			if (chkProgZwischentext.isSelected())
-			{ //...als Zwischentext
+			{ // ...als Zwischentext
 				lblZeilebearbeitenSetzen(5);
 			}
 			else
-			{ //..als Literatur
-			lblZeilebearbeitenSetzen(4);				
+			{ // ..als Literatur
+				lblZeilebearbeitenSetzen(4);
 			}
 		}
-		else {
+		else
+		{
 			// nicht unten angefügt als neuer DS, dann immer neuerDatensatz an Cursor
 			posBearbStatus = 4;
-			
+
 			if (chkProgZwischentext.isSelected())
-			{ //...als Zwischentext
+			{ // ...als Zwischentext
 				lblZeilebearbeitenSetzen(7);
 			}
 			else
-			{ //..als Literatur
-			lblZeilebearbeitenSetzen(6);				
+			{ // ..als Literatur
+				lblZeilebearbeitenSetzen(6);
 			}
 		}
 
@@ -773,7 +779,7 @@ public class FrmAktionenPositionenController
 		posBearbStatus = 3;
 		tblvwLiteratur.getSelectionModel().clearSelection();
 		btnNaGrafikwahl.setDisable(true);
-		//tblvwAktionPositionen.getSelectionModel().clearSelection();
+		// tblvwAktionPositionen.getSelectionModel().clearSelection();
 	}
 
 	// POSITION LEEREN und unten anhängen (NEUER DS)
@@ -859,7 +865,7 @@ public class FrmAktionenPositionenController
 
 		if (markierterIndex == 0 && richtung == 2)
 		{// oben und hoch gedrückt?
-			
+
 			return;
 		}
 		if ((markierterIndex == (anzahlPos - 1)) && richtung == 1)
@@ -874,7 +880,7 @@ public class FrmAktionenPositionenController
 			idDarueber = darueber.getCapoId();
 			db.setVerschiebenPosNr(idAktuell, posnrAktuell + -1);
 			db.setVerschiebenPosNr(idDarueber, posnrAktuell);
-			//btnPosRunter.setDisable(false);
+			// btnPosRunter.setDisable(false);
 		}
 		else if (richtung == 1)
 		{// runter
@@ -885,7 +891,7 @@ public class FrmAktionenPositionenController
 			idDarunter = darunter.getCapoId();
 			db.setVerschiebenPosNr(idAktuell, posnrAktuell + 1);
 			db.setVerschiebenPosNr(idDarunter, posnrAktuell);
-			//btnPosHoch.setDisable(false);
+			// btnPosHoch.setDisable(false);
 		}
 		anzeigenTabelleAktionenPositionen(Integer.parseInt(txtCaId.getText()));
 		// selektierte Zeile wieder markieren
@@ -968,7 +974,7 @@ public class FrmAktionenPositionenController
 			// tblvwAktionPositionen.scrollTo(markierterIndex);
 		}
 	}
-	
+
 	// POSITION LEEREN und unten anhängen (NEUER DS)
 	@FXML
 	private void btnPosgespielt_OnClick(ActionEvent event) throws Exception
@@ -1091,7 +1097,7 @@ public class FrmAktionenPositionenController
 			lblZeilebearbeiten.setStyle("-fx-text-fill: #C75A51;");
 			break;
 		case 2:
-			lblZeilebearbeiten.setText("Zeile verschoben - neuer Eintrag vor Zeile " + (posAktuell +1) + "");
+			lblZeilebearbeiten.setText("Zeile verschoben - neuer Eintrag vor Zeile " + (posAktuell + 1) + "");
 			lblZeilebearbeiten.setStyle("-fx-text-fill: #808080;");
 			break;
 		case 3:
@@ -1618,6 +1624,60 @@ public class FrmAktionenPositionenController
 		oblist_aktionenpos1.clear();
 	}
 
+	private void speichereFilterAktionenPositionen()
+	{
+		// Register aus gespeicherten Aktivitäten
+		ConfigManager.saveFilterAktionPosDatumvon(dpFilterDatumVon.getEditor().getText());
+		ConfigManager.saveFilterAktionPosDatumbis(dpFilterDatumBis.getEditor().getText());
+		ConfigManager.saveFilterAktionPos(cbxFilterAktion.getEditor().getText());
+		ConfigManager.saveFilterAktionPosOrt(cbxFilterOrt.getEditor().getText());
+		ConfigManager.saveFilterAktionPosGruppe(cbxFilterGruppe.getEditor().getText());
+		// Register aus Literaturdaten (synchron mit Notenarchiv)
+		FilterState f = FilterState.get();
+		f.titel = txtFilterTitel.getText();
+		f.stueckart = cbxFilterStueckart.getEditor().getText();
+		f.edition = txtFilterEdit.getText();
+		f.komponist = txtFilterKomp.getText();
+		f.dichter = txtFilterDicht.getText();
+		f.verlag = txtFilterEditVerlag.getText();
+		f.wochenlied = cbxFilterWochenlied.getEditor().getText();
+		f.thema = cbxFilterThema.getEditor().getText();
+		f.notenmappe = cbxFilterNotenmappe.getEditor().getText();
+
+	}
+
+	public void restoreFilterAktionenPositionen() throws Exception
+	{ // Filterwerte wieder holen aus Prop
+
+		dpFilterDatumVon.getEditor().setText(ConfigManager.loadFilterAktionPosDatumvon());
+		dpFilterDatumBis.getEditor().setText(ConfigManager.loadFilterAktionPosDatumbis());
+		cbxFilterAktion.getEditor().setText(ConfigManager.loadFilterAktionPos());
+		cbxFilterOrt.getEditor().setText(ConfigManager.loadFilterAktionPosOrt());
+		cbxFilterGruppe.getEditor().setText(ConfigManager.loadFilterAktionPosGruppe());
+
+		// --------- Filterstatus holen
+		FilterState f = FilterState.get();
+
+		txtFilterTitel.setText(f.titel);
+		cbxFilterStueckart.getEditor().setText(f.stueckart);
+		txtFilterEdit.setText(f.edition);
+		txtFilterKomp.setText(f.komponist);
+		txtFilterDicht.setText(f.dichter);
+		txtFilterEditVerlag.setText(f.verlag);
+		cbxFilterWochenlied.getEditor().setText(f.wochenlied);
+		cbxFilterThema.getEditor().setText(f.thema);
+		cbxFilterNotenmappe.getEditor().setText(f.notenmappe);
+
+		filtern(0);
+
+		filternAktionen();
+
+		Platform.runLater(dpFilterDatumVon::requestFocus);
+		Platform.runLater(dpFilterDatumBis::requestFocus);
+		Platform.runLater(btnFilterAn::requestFocus);
+
+	}
+
 	// ===============================================================================================
 	// Tableview in Tab0 LITERATUR - Daten in Textfelder übergeben
 	// ===============================================================================================
@@ -1832,12 +1892,14 @@ public class FrmAktionenPositionenController
 	public void btnFilterAn_OnClick(ActionEvent event) throws Exception
 	{
 		int tabAktiv = 0;
-		tabAktiv=tabPanePosFilter.getSelectionModel().getSelectedIndex();
+		tabAktiv = tabPanePosFilter.getSelectionModel().getSelectedIndex();
 		System.out.println(tabAktiv);
-		if(tabAktiv==0) {
+		if (tabAktiv == 0)
+		{
 			filtern(0);
 		}
-		else if(tabAktiv==1){
+		else if (tabAktiv == 1)
+		{
 			filternAktionen();
 		}
 	}
@@ -1846,15 +1908,17 @@ public class FrmAktionenPositionenController
 	public void btnFilterAus_OnClick(ActionEvent event) throws Exception
 	{
 		int tabAktiv = 0;
-		tabAktiv=tabPanePosFilter.getSelectionModel().getSelectedIndex();
+		tabAktiv = tabPanePosFilter.getSelectionModel().getSelectedIndex();
 		System.out.println(tabAktiv);
-		if(tabAktiv==0) {
+		if (tabAktiv == 0)
+		{
 			clearFilterfelder();
 		}
-		else if(tabAktiv==1){
+		else if (tabAktiv == 1)
+		{
 			clearFilterfelderAktionen();
 		}
-		
+
 //		try
 //		{
 //			clearFilterfelder();

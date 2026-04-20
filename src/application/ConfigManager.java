@@ -357,6 +357,55 @@ public class ConfigManager
 	    save();
 	}
 	
+	// ----------------------------------------
+	// AktionenPositionen-Filter
+	// ----------------------------------------	
+	public static String loadFilterAktionPosDatumvon() {
+	    return props.getProperty("filter.aktionposdatvon", "");
+	}
+
+	public static void saveFilterAktionPosDatumvon(String value) {
+	    props.setProperty("filter.aktionposdatvon", value != null ? value : "");
+	    save();
+	}
+	
+	public static String loadFilterAktionPosDatumbis() {
+	    return props.getProperty("filter.aktionposdatbis", "");
+	}
+
+	public static void saveFilterAktionPosDatumbis(String value) {
+	    props.setProperty("filter.aktionposdatbis", value != null ? value : "");
+	    save();
+	}	
+	
+	
+	
+	public static String loadFilterAktionPos() {
+	    return props.getProperty("filter.aktionpos", "");
+	}
+
+	public static void saveFilterAktionPos(String value) {
+	    props.setProperty("filter.aktionpos", value != null ? value : "");
+	    save();
+	}
+	
+	public static String loadFilterAktionPosOrt() {
+	    return props.getProperty("filter.aktionposort", "");
+	}
+
+	public static void saveFilterAktionPosOrt(String value) {
+	    props.setProperty("filter.aktionposort", value != null ? value : "");
+	    save();
+	}
+	
+	public static String loadFilterAktionPosGruppe() {
+	    return props.getProperty("filter.aktionposgruppe", "");
+	}
+
+	public static void saveFilterAktionPosGruppe(String value) {
+	    props.setProperty("filter.aktionposgruppe", value != null ? value : "");
+	    save();
+	}
 	
 	
 	
