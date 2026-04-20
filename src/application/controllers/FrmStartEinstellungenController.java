@@ -57,7 +57,7 @@ public class FrmStartEinstellungenController
 	@FXML
 	private void initialize()
 	{
-
+		lblTabellenueberschrift.setVisible(false);
 		// vorhandenen Pfad laden
 		String cfg = ConfigManager.loadDBPath();
 		if (cfg != null)
@@ -221,7 +221,7 @@ public class FrmStartEinstellungenController
 	            Platform.exit();
 	            return;
 	        }
-
+	        lblTabellenueberschrift.setVisible(true);
 	        lblTabellenueberschrift.setText(
 	                "Die Datenbank wird nun heruntergeladen und entpackt. Bitte warten..."
 	        );

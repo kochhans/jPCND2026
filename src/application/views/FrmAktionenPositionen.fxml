@@ -272,20 +272,20 @@
                                     <Label layoutX="18.0" layoutY="97.0" prefHeight="17.0" prefWidth="205.0" text="Notenausgabe (lang)" textFill="#6b6b6b" />
                                     <Label layoutX="472.0" layoutY="9.0" prefHeight="17.0" prefWidth="107.0" text="Thema" textFill="#6b6b6b" />
                                     <Label layoutX="472.0" layoutY="53.0" prefHeight="17.0" prefWidth="142.0" text="Wochenlied zu..." textFill="#6b6b6b" />
-                                    <Label layoutX="262.0" layoutY="9.0" prefHeight="17.0" prefWidth="120.0" text="Ko/Bea" textFill="#6b6b6b" />
+                                    <Label layoutX="262.0" layoutY="9.0" prefHeight="17.0" prefWidth="181.0" text="KomponistIn/BearbeiterIn " textFill="#6b6b6b" />
                                     <Label layoutX="18.0" layoutY="53.0" prefHeight="17.0" prefWidth="101.0" text="Stück-Art" textFill="#6b6b6b" />
                                     <Label layoutX="472.0" layoutY="97.0" prefHeight="17.0" prefWidth="124.0" text="Notenmappe" textFill="#6b6b6b" />
                                     <Label layoutX="262.0" layoutY="97.0" prefHeight="17.0" prefWidth="126.0" text="Verlag" textFill="#6b6b6b" />
                                     <Label layoutX="262.0" layoutY="53.0" prefHeight="17.0" prefWidth="128.0" text="Dichter/in" textFill="#6b6b6b" />
-                                    <TextField fx:id="txtFilterTitel" layoutX="18.0" layoutY="27.0" prefHeight="28.0" prefWidth="223.0" />
-                                    <ComboBox fx:id="cbxFilterStueckart" editable="true" layoutX="18.0" layoutY="69.0" prefHeight="30.0" prefWidth="223.0" />
-                                    <TextField fx:id="txtFilterEdit" layoutX="18.0" layoutY="115.0" prefHeight="28.0" prefWidth="223.0" />
-                                    <TextField fx:id="txtFilterKomp" layoutX="260.0" layoutY="27.0" prefHeight="28.0" prefWidth="185.0" />
-                                    <TextField fx:id="txtFilterDicht" layoutX="260.0" layoutY="71.0" prefHeight="28.0" prefWidth="185.0" />
-                                    <TextField fx:id="txtFilterEditVerlag" layoutX="260.0" layoutY="115.0" prefHeight="28.0" prefWidth="185.0" />
-                                    <ComboBox fx:id="cbxFilterThema" editable="true" layoutX="472.0" layoutY="25.0" prefHeight="30.0" prefWidth="195.0" />
-                                    <ComboBox fx:id="cbxFilterWochenlied" editable="true" layoutX="472.0" layoutY="69.0" prefHeight="30.0" prefWidth="195.0" />
-                                    <ComboBox fx:id="cbxFilterNotenmappe" editable="true" layoutX="472.0" layoutY="114.0" prefHeight="30.0" prefWidth="195.0" />
+                                    <TextField fx:id="txtFilterTitel" layoutX="18.0" layoutY="27.0" prefHeight="28.0" prefWidth="223.0" styleClass="filter-field" />
+                                    <ComboBox fx:id="cbxFilterStueckart" editable="true" layoutX="18.0" layoutY="69.0" prefHeight="30.0" prefWidth="223.0" styleClass="filter-field" />
+                                    <TextField fx:id="txtFilterEdit" layoutX="18.0" layoutY="115.0" prefHeight="28.0" prefWidth="223.0" styleClass="filter-field" />
+                                    <TextField fx:id="txtFilterKomp" layoutX="260.0" layoutY="27.0" prefHeight="28.0" prefWidth="185.0" styleClass="filter-field" />
+                                    <TextField fx:id="txtFilterDicht" layoutX="260.0" layoutY="71.0" prefHeight="28.0" prefWidth="185.0" styleClass="filter-field" />
+                                    <TextField fx:id="txtFilterEditVerlag" layoutX="260.0" layoutY="115.0" prefHeight="28.0" prefWidth="185.0" styleClass="filter-field" />
+                                    <ComboBox fx:id="cbxFilterThema" editable="true" layoutX="472.0" layoutY="25.0" prefHeight="30.0" prefWidth="195.0" styleClass="filter-field" />
+                                    <ComboBox fx:id="cbxFilterWochenlied" editable="true" layoutX="472.0" layoutY="69.0" prefHeight="30.0" prefWidth="195.0" styleClass="filter-field" />
+                                    <ComboBox fx:id="cbxFilterNotenmappe" editable="true" layoutX="472.0" layoutY="114.0" prefHeight="30.0" prefWidth="195.0" styleClass="filter-field" />
                                     <TableView fx:id="tblvwLiteratur" focusTraversable="false" layoutY="151.0" minWidth="571.0" onMouseClicked="#handleTblvwLiteratur_OnMouseClicked" prefHeight="261.0" prefWidth="668.0" style="-fx-selection-bar: #AAC4DF; -fx-selection-bar-non-focused: #AAC4DF;" stylesheets="@../styles/application.css" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="151.0">
                                        <placeholder>
                                           <Label text="--" />
@@ -352,11 +352,11 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="690.0" prefWidth="682.0" style="-fx-background-color: #e0e0e0;">
                                  <children>
-                                    <DatePicker fx:id="dpFilterDatumVon" layoutX="14.0" layoutY="27.0" prefHeight="19.0" prefWidth="138.0" />
-                                    <DatePicker fx:id="dpFilterDatumBis" layoutX="14.0" layoutY="82.0" prefHeight="32.0" prefWidth="138.0" />
-                                    <ComboBox fx:id="cbxFilterAktion" editable="true" layoutX="162.0" layoutY="27.0" prefHeight="30.0" prefWidth="242.0" />
-                                    <ComboBox fx:id="cbxFilterOrt" editable="true" layoutX="161.0" layoutY="83.0" prefHeight="32.0" prefWidth="244.0" />
-                                    <ComboBox fx:id="cbxFilterGruppe" editable="true" layoutX="428.0" layoutY="27.0" prefHeight="30.0" prefWidth="201.0" />
+                                    <DatePicker fx:id="dpFilterDatumVon" layoutX="14.0" layoutY="27.0" prefHeight="19.0" prefWidth="138.0" styleClass="filter-field" />
+                                    <DatePicker fx:id="dpFilterDatumBis" layoutX="14.0" layoutY="82.0" prefHeight="32.0" prefWidth="138.0" styleClass="filter-field" />
+                                    <ComboBox fx:id="cbxFilterAktion" editable="true" layoutX="162.0" layoutY="27.0" prefHeight="30.0" prefWidth="242.0" styleClass="filter-field" />
+                                    <ComboBox fx:id="cbxFilterOrt" editable="true" layoutX="161.0" layoutY="83.0" prefHeight="32.0" prefWidth="244.0" styleClass="filter-field" />
+                                    <ComboBox fx:id="cbxFilterGruppe" editable="true" layoutX="428.0" layoutY="27.0" prefHeight="30.0" prefWidth="201.0" styleClass="filter-field" />
                                     <Label layoutX="30.0" layoutY="67.0" prefHeight="17.0" prefWidth="58.0" text="bis..." textFill="#6b6b6b" />
                                     <Label layoutX="18.0" layoutY="9.0" prefHeight="17.0" prefWidth="94.0" text="Datum von..." textFill="#6b6b6b" />
                                     <Label layoutX="162.0" layoutY="9.0" prefHeight="17.0" prefWidth="63.0" text="Aktion" textFill="#6b6b6b" />

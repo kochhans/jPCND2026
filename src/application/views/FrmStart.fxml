@@ -29,7 +29,7 @@
 
 <AnchorPane id="rootStart" fx:id="rootStart" minHeight="780.0" minWidth="1220.0" onKeyPressed="#handleKeyPressOk" prefHeight="780.0" prefWidth="1220.0" style="-fx-background-color: #609899;" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.FrmStartController">
 	<children>
-		<VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #CBD5E8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+		<VBox minWidth="1120.0" prefWidth="1220.0" style="-fx-background-color: #CBD5E8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<children>
 				<MenuBar style="-fx-background-color: #f4f4f4;" VBox.vgrow="NEVER">
 					<menus>
@@ -75,26 +75,26 @@
 						</menus>
 				</MenuBar>
 				
-				<HBox maxHeight="80.0" maxWidth="1.7976931348623157E308" minHeight="80.0" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="80.0" prefWidth="1220.0" style="-fx-background-color: #CBD5E8;">
+				<HBox maxHeight="80.0" maxWidth="1.7976931348623157E308" minHeight="80.0" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="80.0" prefWidth="1220.0" style="-fx-background-color: #CBD5E8;" VBox.vgrow="ALWAYS">
 					<children>
-						<AnchorPane maxHeight="80.0" minHeight="80.0" minWidth="1220.0" prefHeight="80.0" prefWidth="1222.0" style="-fx-background-color: #609899;" HBox.hgrow="ALWAYS">
+						<AnchorPane maxHeight="84.0" minHeight="36.0" minWidth="1220.0" prefHeight="41.0" prefWidth="1220.0" style="-fx-background-color: #609899;" HBox.hgrow="ALWAYS">
 							<children>                          
                         
                         
                         
                         
                         
-                        <Label fx:id="lblUpdateinfo" layoutX="804.0" layoutY="29.0" prefHeight="46.0" prefWidth="228.0" style="-fx-background-color: #DE6C6E;" text="Updateinfo ...&#10;..." wrapText="true" AnchorPane.rightAnchor="188.0">
+                        <Label fx:id="lblUpdateinfo" layoutX="765.0" layoutY="27.0" prefHeight="46.0" prefWidth="213.0" style="-fx-background-color: #DE6C6E;" text="Updateinfo ...&#10;..." wrapText="true" AnchorPane.rightAnchor="242.0">
                            <padding>
                               <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
                            </padding></Label>
-                        <ProgressBar fx:id="progressPdf" layoutX="442.0" layoutY="5.0" prefHeight="18.0" prefWidth="121.0" progress="0.0" visible="false" />
-								<ImageView fitHeight="54.0" fitWidth="70.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="12.0">
+                        <ProgressBar fx:id="progressPdf" layoutX="522.0" layoutY="5.0" prefHeight="18.0" prefWidth="121.0" progress="0.0" visible="false" />
+								<ImageView fitHeight="75.0" fitWidth="118.0" layoutX="10.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
 									<image>
 										<Image url="@/icons/javafx/jpcnd-150.png" />
 									</image>
 								</ImageView>
-								<Label fx:id="lblHaupttitel" layoutX="86.0" maxHeight="41.0" maxWidth="655.0" minHeight="30.0" minWidth="181.0" prefHeight="32.0" prefWidth="363.0" text="Literatur-Gesamtliste">
+								<Label fx:id="lblHaupttitel" layoutX="132.0" maxHeight="41.0" maxWidth="655.0" minHeight="30.0" minWidth="181.0" prefHeight="32.0" prefWidth="363.0" text="Literatur-Gesamtliste">
 
 									<padding>
 										<Insets left="5.0" />
@@ -105,7 +105,7 @@
                            </styleClass>
 								</Label>
 
-								<Button fx:id="btnFilterAus" focusTraversable="false" layoutX="152.0" layoutY="28.0" mnemonicParsing="false" onAction="#btnFilterAus_OnClick" prefHeight="32.0" prefWidth="32.0" styleClass="button-icon" text="">
+								<Button fx:id="btnFilterAus" focusTraversable="false" layoutX="206.0" layoutY="28.0" mnemonicParsing="false" onAction="#btnFilterAus_OnClick" prefHeight="32.0" prefWidth="32.0" styleClass="button-icon" text="">
 									    <graphic>
 									        <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
 									            <image> <Image url="@/icons/javafx/btn_filter_delete32x32.png" /> </image>
@@ -114,13 +114,13 @@
 								        <tooltip><Tooltip text="Filterfelder leeren" /> </tooltip>
 								</Button>
 								
-								<CheckBox fx:id="chkFilterSammeln" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" graphicTextGap="1.0" layoutX="279.0" layoutY="31.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="26.0">
+								<CheckBox fx:id="chkFilterSammeln" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" graphicTextGap="1.0" layoutX="337.0" layoutY="33.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="26.0">
                            <font>
                               <Font size="10.0" />
                            </font>
 
 								</CheckBox>
-								<Button fx:id="btnFilterAn" defaultButton="true" focusTraversable="false" layoutX="92.0" layoutY="28.0" mnemonicParsing="false" onAction="#btnFilterAn_OnClick" prefHeight="32.0" prefWidth="32.0">
+								<Button fx:id="btnFilterAn" defaultButton="true" focusTraversable="false" layoutX="146.0" layoutY="28.0" mnemonicParsing="false" onAction="#btnFilterAn_OnClick" prefHeight="32.0" prefWidth="32.0">
 										<graphic>
 									        <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
 									            <image> <Image url="@/icons/javafx/btn_filter32x32.png" /> </image>
@@ -130,7 +130,7 @@
 								
 								</Button>
 								
-								<Button fx:id="btnListenLeer" contentDisplay="CENTER" focusTraversable="false" layoutX="212.0" layoutY="28.0" mnemonicParsing="false" onAction="#btnListenLeer_OnClick" prefHeight="32.0" prefWidth="32.0">
+								<Button fx:id="btnListenLeer" contentDisplay="CENTER" focusTraversable="false" layoutX="266.0" layoutY="28.0" mnemonicParsing="false" onAction="#btnListenLeer_OnClick" prefHeight="32.0" prefWidth="32.0">
 										<graphic>
 									        <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
 									            <image> <Image url="@/icons/javafx/btn_listeleeren32x32.png" /> </image>
@@ -140,7 +140,7 @@
 								</Button>
                         
                         
-                        <Button fx:id="btnListeDrucken" contentDisplay="CENTER" focusTraversable="false" layoutX="449.0" layoutY="29.0" mnemonicParsing="false" onAction="#btnListeDrucken_OnClick" prefHeight="32.0" prefWidth="32.0">
+                        <Button fx:id="btnListeDrucken" contentDisplay="CENTER" focusTraversable="false" layoutX="524.0" layoutY="29.0" mnemonicParsing="false" onAction="#btnListeDrucken_OnClick" prefHeight="32.0" prefWidth="32.0">
 										<graphic>
 									        <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
 									            <image> <Image url="@/icons/javafx/btn_pdfdruck32x32.png" /> </image>
@@ -150,7 +150,7 @@
                         </Button>
                         
                         
-                        <Button fx:id="btnListeDruckenVerz" focusTraversable="false" layoutX="510.0" layoutY="29.0" mnemonicParsing="false" onAction="#btnListeDruckenVerz_OnClick" prefHeight="32.0" prefWidth="32.0">
+                        <Button fx:id="btnListeDruckenVerz" focusTraversable="false" layoutX="585.0" layoutY="29.0" mnemonicParsing="false" onAction="#btnListeDruckenVerz_OnClick" prefHeight="32.0" prefWidth="32.0">
 										<graphic>
 									        <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
 									            <image> <Image url="@/icons/javafx/btn_folderpage32x32.png" /> </image>
@@ -159,22 +159,22 @@
 								        <tooltip><Tooltip text="Drucken... (PDF-Seitenansicht)" /> </tooltip>
                         </Button>
                         
-                        <Label layoutX="305.0" layoutY="31.0" prefHeight="40.0" prefWidth="131.0" text="Filterergebnisse sammeln" wrapText="true">
+                        <Label layoutX="363.0" layoutY="33.0" prefHeight="40.0" prefWidth="131.0" text="Filterergebnisse sammeln" wrapText="true">
                            <styleClass>
                               <String fx:value="label" />
                               <String fx:value="schriftweiss" />
                            </styleClass></Label>
-                        <Button fx:id="btnAktivitaeten" alignment="CENTER_RIGHT" contentDisplay="GRAPHIC_ONLY" graphicTextGap="10.0" layoutX="1005.0" layoutY="29.0" mnemonicParsing="false" onAction="#btnAktivitaeten_OnClick" prefHeight="32.0" prefWidth="32.0" styleClass="button-neu" wrapText="true" AnchorPane.rightAnchor="98.0">
+                        <Button fx:id="btnAktivitaeten" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="1011.0" layoutY="27.0" minHeight="-Infinity" mnemonicParsing="false" onAction="#btnAktivitaeten_OnClick" prefHeight="48.0" prefWidth="118.0" styleClass="button-neu" textAlignment="CENTER" AnchorPane.rightAnchor="91.0">
 										<graphic>
-									        <ImageView fitHeight="32" fitWidth="35.0" nodeOrientation="INHERIT" preserveRatio="true">
+									        <ImageView fitHeight="32.0" fitWidth="32.0" nodeOrientation="INHERIT" preserveRatio="true">
 									            <image> <Image url="@/icons/javafx/jpcnd-aktionen-32.png" /> </image>
 									        </ImageView>
 									    </graphic>
 								        <tooltip><Tooltip text="Choraktivitäten ..." /> </tooltip>
                         </Button>
-                        <Button fx:id="btnBeenden" layoutX="1168.0" layoutY="29.0" onAction="#men01Beenden_OnClick" prefHeight="32.0" prefWidth="32.0" AnchorPane.rightAnchor="14.0">
+                        <Button fx:id="btnBeenden" layoutX="1148.0" layoutY="27.0" minHeight="-Infinity" onAction="#men01Beenden_OnClick" prefHeight="48.0" prefWidth="48.0" AnchorPane.rightAnchor="14.0">
                            <graphic>
-                              <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
+                              <ImageView fitHeight="32.0" fitWidth="32.0" preserveRatio="true">
                                  <image>
                                     <Image url="@/icons/javafx/application-exit_32x32_OpIcLibStd011.png" />
                                  </image>
@@ -184,9 +184,9 @@
                               <Tooltip text="Programm beenden ..." />
                            </tooltip>
                         </Button>
-                        <Label fx:id="lblStatusPdf" layoutX="565.0" layoutY="9.0" prefHeight="17.0" prefWidth="228.0" text="PDF wird erstellt ..." textFill="#c90a0a" visible="false" />
-                        <Label alignment="CENTER" layoutX="1044.0" layoutY="8.0" prefHeight="17.0" prefWidth="96.0" styleClass="schriftweiss" text="Choraktionen" textAlignment="CENTER" textFill="#6b6b6b" AnchorPane.rightAnchor="80.0" />
-                        <Label alignment="CENTER" layoutX="1134.0" layoutY="8.0" prefHeight="17.0" prefWidth="86.0" styleClass="schriftweiss" text="Beenden" textAlignment="CENTER" textFill="#6b6b6b" AnchorPane.rightAnchor="0.0" />
+                        <Label fx:id="lblStatusPdf" layoutX="655.0" layoutY="7.0" prefHeight="17.0" prefWidth="378.0" styleClass="schriftweiss" text="PDF wird erstellt ..." textFill="#c90a0a" visible="false" />
+                        <Label alignment="CENTER" layoutX="994.0" layoutY="7.0" prefHeight="17.0" prefWidth="152.0" styleClass="schriftweiss" text="zu Choraktionen ..." textAlignment="CENTER" textFill="#6b6b6b" AnchorPane.rightAnchor="75.0" />
+                        <Label alignment="CENTER" layoutX="1134.0" layoutY="7.0" prefHeight="17.0" prefWidth="91.0" styleClass="schriftweiss" text="Beenden" textAlignment="CENTER" textFill="#6b6b6b" AnchorPane.rightAnchor="0.0" />
 							</children>
 						</AnchorPane>
 					</children>
@@ -196,7 +196,7 @@
 				</HBox>
 				<HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="160.0" prefHeight="160.0" prefWidth="1220.0" style="-fx-background-color: #EEEEEE;" VBox.vgrow="ALWAYS">
 					<children>
-						<AnchorPane maxHeight="162.0" minHeight="126.0" prefHeight="160.0" prefWidth="1220.0" style="-fx-background-color: #609899;" HBox.hgrow="ALWAYS">
+						<AnchorPane maxHeight="162.0" minHeight="162.0" prefHeight="162.0" prefWidth="1220.0" style="-fx-background-color: #609899;" HBox.hgrow="ALWAYS">
 							<children>
 								<Label layoutX="11.0" layoutY="3.0" text=" Titel " textFill="#6b6b6b" AnchorPane.leftAnchor="11.0">
                            <styleClass>
@@ -253,26 +253,26 @@
                               <String fx:value="label" />
                               <String fx:value="schriftgelb" />
                            </styleClass></Label>
-								<TextField fx:id="txtFilterTitel" layoutX="10.0" layoutY="20.0" prefHeight="25.0" prefWidth="262.0" AnchorPane.leftAnchor="10.0" />
-                        <ComboBox fx:id="cbxFilterStueckart" editable="true" layoutX="11.0" layoutY="63.0" prefHeight="25.0" prefWidth="260.0" />
-								<TextField fx:id="txtFilterEdit" layoutX="11.0" layoutY="110.0" prefHeight="25.0" prefWidth="260.0" />
-								<TextField fx:id="txtFilterKomp" layoutX="281.0" layoutY="20.0" prefHeight="25.0" prefWidth="251.0" />
-								<TextField fx:id="txtFilterDicht" layoutX="282.0" layoutY="65.0" prefHeight="25.0" prefWidth="251.0" />
-								<TextField fx:id="txtFilterEditVerlag" layoutX="282.0" layoutY="110.0" prefHeight="25.0" prefWidth="251.0" />
-                        <ComboBox fx:id="cbxFilterWochenlied" editable="true" layoutX="544.0" layoutY="18.0" prefHeight="25.0" prefWidth="236.0" />
-                        <ComboBox fx:id="cbxFilterThema" editable="true" layoutX="544.0" layoutY="63.0" prefHeight="25.0" prefWidth="236.0" />
-                        <ComboBox fx:id="cbxFilterBibel" disable="true" editable="true" layoutX="795.0" layoutY="18.0" prefHeight="25.0" prefWidth="182.0" promptText="z.B.: Matth" />
-                        <ComboBox fx:id="cbxFilterGesangbuch" disable="true" editable="true" layoutX="795.0" layoutY="63.0" prefHeight="25.0" prefWidth="182.0" promptText="z.B.: Ev" />
-                        <ComboBox fx:id="cbxFilterNotenmappe" editable="true" layoutX="544.0" layoutY="109.0" onMouseClicked="#Nomafilter_OnClick" prefHeight="25.0" prefWidth="388.0" />
+								<TextField fx:id="txtFilterTitel" layoutX="10.0" layoutY="20.0" prefHeight="25.0" prefWidth="262.0" styleClass="filter-field" AnchorPane.leftAnchor="10.0" />
+                        <ComboBox fx:id="cbxFilterStueckart" editable="true" layoutX="11.0" layoutY="63.0" prefHeight="25.0" prefWidth="260.0" styleClass="filter-field" />
+								<TextField fx:id="txtFilterEdit" layoutX="11.0" layoutY="110.0" prefHeight="25.0" prefWidth="260.0" styleClass="filter-field" />
+								<TextField fx:id="txtFilterKomp" layoutX="281.0" layoutY="20.0" prefHeight="25.0" prefWidth="251.0" styleClass="filter-field" />
+								<TextField fx:id="txtFilterDicht" layoutX="282.0" layoutY="65.0" prefHeight="25.0" prefWidth="251.0" styleClass="filter-field" />
+								<TextField fx:id="txtFilterEditVerlag" layoutX="282.0" layoutY="110.0" prefHeight="25.0" prefWidth="251.0" styleClass="filter-field" />
+                        <ComboBox fx:id="cbxFilterWochenlied" editable="true" layoutX="544.0" layoutY="18.0" prefHeight="25.0" prefWidth="236.0" styleClass="filter-field" />
+                        <ComboBox fx:id="cbxFilterThema" editable="true" layoutX="544.0" layoutY="63.0" prefHeight="25.0" prefWidth="236.0" styleClass="filter-field" />
+                        <ComboBox fx:id="cbxFilterBibel" disable="true" editable="true" layoutX="795.0" layoutY="18.0" prefHeight="25.0" prefWidth="182.0" promptText="z.B.: Matth" styleClass="filter-field" />
+                        <ComboBox fx:id="cbxFilterGesangbuch" disable="true" editable="true" layoutX="795.0" layoutY="63.0" prefHeight="25.0" prefWidth="182.0" promptText="z.B.: Ev" styleClass="filter-field" />
+                        <ComboBox fx:id="cbxFilterNotenmappe" editable="true" layoutX="544.0" layoutY="109.0" onMouseClicked="#Nomafilter_OnClick" prefHeight="25.0" prefWidth="388.0" styleClass="filter-field" />
 								<Button fx:id="btnNotenmappen" focusTraversable="false" layoutX="945.0" layoutY="108.0" mnemonicParsing="false" onAction="#NomaEdit_OnClick" prefHeight="26.0" prefWidth="34.0" text="..." />
-                        <CheckBox fx:id="chkDsBearbeiten" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" graphicTextGap="1.0" layoutX="1100.0" layoutY="107.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#chkDsBearbeiten_OnChanged" prefHeight="32.0" prefWidth="18.0" text="Daten bearbeiten" textAlignment="CENTER" textFill="#c90a0a">
+                        <CheckBox fx:id="chkDsBearbeiten" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" graphicTextGap="1.0" layoutX="993.0" layoutY="105.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#chkDsBearbeiten_OnChanged" prefHeight="32.0" prefWidth="18.0" text="Daten bearbeiten" textAlignment="CENTER" textFill="#c90a0a">
                            <padding>
                               <Insets top="5.0" />
                            </padding>
                         </CheckBox>
                         <Label fx:id="lblFilterFortschrittsinfo" layoutX="10.0" layoutY="136.0" prefHeight="25.0" prefWidth="925.0" text="Daten werden geladen -- Bitte warten ..." textFill="#808080">
                            <styleClass>
-                              <String fx:value="schriftweiss" />
+                              <String fx:value="schriftgelb" />
                               <String fx:value="label-title3" />
                            </styleClass></Label>
                         <Label layoutX="65.0" layoutY="3.0" prefHeight="15.0" prefWidth="213.0" text="(Filtern auch mit Platzhalter % )" textFill="#6b6b6b">
@@ -284,7 +284,7 @@
                               <String fx:value="schriftgelb" />
                            </styleClass>
                         </Label>
-                        <Label alignment="CENTER" contentDisplay="TOP" layoutX="997.0" layoutY="105.0" prefHeight="40.0" prefWidth="113.0" text="Daten bearbeiten zulassen" wrapText="true">
+                        <Label alignment="CENTER" contentDisplay="TOP" layoutX="1021.0" layoutY="103.0" prefHeight="40.0" prefWidth="113.0" text="Daten bearbeiten freigeben" wrapText="true">
                            <styleClass>
                               <String fx:value="label" />
                               <String fx:value="schriftgelb" />

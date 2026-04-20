@@ -63,7 +63,7 @@
 }
 
 .text-field:focused, .text-area:focused{
-    -fx-background-color: #FFFCBB;/*#E0E0E0; /*#AAC4DF;*/
+    -fx-background-color: #EBEBEB;/*#E0E0E0; /*#AAC4DF;*/
     -fx-border-color: #812323;
 }
 
@@ -79,7 +79,7 @@
     -fx-font-size: 8pt;
 }
 .text-fieldklein:focused{
-    -fx-background-color: #FFFCBB;/*#E0E0E0; /*#AAC4DF;*/
+    -fx-background-color: #EBEBEB;/*#E0E0E0; /*#AAC4DF;*/
     -fx-border-color: #812323;
 }
 .label{
@@ -175,39 +175,83 @@
 }
 
 .combo-box:focused, .combo-box .text-field:focused {
-    -fx-background-color: #FFFCBB;/*#E0E0E0; /*#AAC4DF;*/
+    -fx-background-color: #EBEBEB;/*#E0E0E0; /*#AAC4DF;*/
     -fx-border-color: #812323;
     -fx-border-width: 1.0px;
 }
 
+
 .combo-boxklein, .combo-boxklein .text-fieldklein {
-    -fx-background-color: white;
+    -fx-background-color:white; 
     -fx-border-color: #6D6D6D;
     -fx-border-width: 0.5px; 
     -fx-font-size: 6pt;
 }
 
 .combo-boxklein:focused, .combo-boxklein .text-fieldklein:focused {
-    -fx-background-color: #FFFCBB;/*#E0E0E0; /*#AAC4DF;*/
+    -fx-background-color: #EBEBEB;/*#E0E0E0; /*#AAC4DF;*/
     -fx-border-color: #812323;
     -fx-border-width: 1.0px;
 }
 
 .combo-box .list-view {
-    -fx-background-color: #FFFCBB;/*#E0E0E0; /*#AAC4DF;*/
+    -fx-background-color: #EBEBEB;/*#E0E0E0; /*#AAC4DF;*/
     -fx-border-color: #6D6D6D;   
     -fx-border-width: 0.5px; 
     -fx-font-size: 10pt;
 }
 .combo-focused,
 .combo-focused .text-field {
-    -fx-background-color: #FFFCBB;/*#E0E0E0; /*#AAC4DF;*/
+    -fx-background-color: #EBEBEB;/*#E0E0E0; /*#AAC4DF;*/
     -fx-border-color: #812323;
     -fx-border-width: 1.0px;
 }
 .combo-box:showing,
 .combo-box:showing .text-field {
-    -fx-background-color: #E0E0E0;
+    -fx-background-color: #EBEBEB;
+    -fx-border-color: #812323;
+}
+
+/* für DatePicker */
+.date-picker,
+.date-picker .text-field {
+    -fx-background-color: white;
+}
+
+/* Fokus */
+.date-picker:focused,
+.date-picker .text-field:focused {
+    -fx-background-color: #EBEBEB;
+    -fx-border-color: #812323;
+}
+
+/* =========================
+   Filterfelder (gelb)
+   ========================= */
+.filter-field {
+    -fx-background-color: #FEFFE1;
+}
+
+/* Optional: Fokus leicht stärker */
+.filter-field:focused {
+    -fx-background-color: #FEFFE1;
+    -fx-border-color: #812323;
+}
+.combo-box.filter-field,
+.combo-box.filter-field .text-field {
+    -fx-background-color: #FEFFE1;
+}
+
+/* Filter-Style auch für DatePicker */
+.date-picker.filter-field,
+.date-picker.filter-field .text-field {
+    -fx-background-color: #FEFFE1;
+}
+
+/* Fokus */
+.date-picker.filter-field:focused,
+.date-picker.filter-field .text-field:focused {
+    -fx-background-color: #FEFFE1;
     -fx-border-color: #812323;
 }
 

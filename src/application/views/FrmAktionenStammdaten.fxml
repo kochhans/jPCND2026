@@ -16,13 +16,14 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" style="-fx-background-color: #c8c8c8;" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.FrmAktionenStammdatenController">
 	<children>
 		<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="950.0" style="-fx-background-color: #7f7f7f;">
 			<children>
-				<Label fx:id="lblHaupttitel" layoutX="87.0" maxHeight="41.0" maxWidth="655.0" minHeight="30.0" minWidth="181.0" prefHeight="32.0" prefWidth="579.0" text="Stammdaten" textFill="#046972">
+				<Label fx:id="lblHaupttitel" layoutX="87.0" maxHeight="41.0" maxWidth="655.0" minHeight="30.0" minWidth="181.0" prefHeight="32.0" prefWidth="579.0" text="Stammdaten importieren und bearbeiten" textFill="#046972">
 					<font>
 						<Font name="System Bold" size="20.0" />
 					</font>
@@ -39,10 +40,10 @@
                   <Font name="System Italic" size="16.0" />
                </font>
             </Label>
-            <Button fx:id="btnZurueck" layoutX="757.0" layoutY="15.0" mnemonicParsing="false" onAction="#btnZurueck_OnClick" prefHeight="32.0" prefWidth="98.0" text="zurück..." />
+            <Button fx:id="btnZurueck" layoutX="757.0" layoutY="15.0" mnemonicParsing="false" onAction="#btnZurueck_OnClick" prefHeight="32.0" prefWidth="98.0" text="zurück..." AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="23.0" />
             <ImageView fitHeight="48.0" fitWidth="62.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@/icons/javafx/media-optical-5.png" />
+                  <Image url="@/icons/javafx/table_row_insert32x32.png" />
                </image>
             </ImageView>
 			</children>
@@ -62,7 +63,7 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="489.0" prefWidth="904.0" style="-fx-background-color: #c4c4c4;">
                            <children>
-                              <TableView fx:id="tblvwCvwPersonenImport" layoutX="6.0" layoutY="173.0" onMouseClicked="#handletblvwCvwPersonenImport_onmouseClicked" prefHeight="307.0" prefWidth="941.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="173.0">
+                              <TableView fx:id="tblvwCvwPersonenImport" layoutX="6.0" layoutY="187.0" onMouseClicked="#handletblvwCvwPersonenImport_onmouseClicked" prefHeight="293.0" prefWidth="941.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="187.0">
                                  <columns>
                                     <TableColumn fx:id="colPechor" minWidth="50.0" prefWidth="120.0" text="Chor" />
                                     <TableColumn fx:id="colPegruppe" minWidth="50.0" prefWidth="100.0" text="Gruppe" />
@@ -80,23 +81,23 @@
                                  </columnResizePolicy>
                               </TableView>
                               <Label layoutX="11.0" layoutY="19.0" prefHeight="19.0" prefWidth="279.0" styleClass="label-title2" text="Stammdaten Personen" textFill="#6b6b6b" />
-                              <TextField fx:id="txtPersStammChor" layoutX="270.0" layoutY="138.0" prefHeight="28.0" prefWidth="168.0" />
-                              <Label layoutX="278.0" layoutY="124.0" prefHeight="14.0" prefWidth="145.0" text="Chor" />
-                              <TextField fx:id="txtPersStammGruppe" layoutX="448.0" layoutY="138.0" prefHeight="28.0" prefWidth="228.0" />
-                              <Label layoutX="448.0" layoutY="124.0" prefHeight="14.0" prefWidth="50.0" text="Gruppe" />
-                              <TextField fx:id="txtPersStammName" layoutX="270.0" layoutY="91.0" prefHeight="28.0" prefWidth="171.0" />
-                              <TextField fx:id="txtPersStammVorname" layoutX="447.0" layoutY="91.0" prefHeight="28.0" prefWidth="228.0" />
-                              <Label layoutX="277.0" layoutY="76.0" prefHeight="14.0" prefWidth="32.0" text="Name" />
-                              <Label layoutX="448.0" layoutY="76.0" prefHeight="14.0" prefWidth="50.0" text="Vorname" />
-                              <TextField fx:id="txtPersStammStimme" layoutX="683.0" layoutY="138.0" prefHeight="28.0" prefWidth="110.0" />
-                              <TextField fx:id="txtPersStammInstrument" layoutX="798.0" layoutY="138.0" prefHeight="28.0" prefWidth="130.0" />
-                              <Label layoutX="688.0" layoutY="126.0" prefHeight="14.0" prefWidth="44.0" text="Stimme" />
-                              <Label layoutX="802.0" layoutY="126.0" prefHeight="14.0" prefWidth="44.0" text="Instr." />
-                              <TextField fx:id="txtPersStammTelefon" layoutX="683.0" layoutY="91.0" prefHeight="28.0" prefWidth="108.0" />
-                              <TextField fx:id="txtPersStammMail" layoutX="798.0" layoutY="91.0" prefHeight="28.0" prefWidth="130.0" />
-                              <Label layoutX="802.0" layoutY="77.0" prefHeight="14.0" prefWidth="44.0" text="Mail" />
-                              <Label layoutX="684.0" layoutY="77.0" prefHeight="14.0" prefWidth="50.0" text="Telefon" />
-                              <Button fx:id="btnStammPersSpeichern" focusTraversable="false" layoutX="64.0" layoutY="64.0" mnemonicParsing="false" onAction="#btnStammPersSpeichern_onClick" prefHeight="41.0" prefWidth="42.0" styleClass="button-loeschen" text="" textFill="#e10000">
+                              <TextField fx:id="txtPersStammChor" layoutX="270.0" layoutY="140.0" prefHeight="28.0" prefWidth="168.0" />
+                              <Label layoutX="278.0" layoutY="126.0" prefHeight="14.0" prefWidth="145.0" text="Chor" />
+                              <TextField fx:id="txtPersStammGruppe" layoutX="448.0" layoutY="140.0" prefHeight="28.0" prefWidth="228.0" />
+                              <Label layoutX="448.0" layoutY="126.0" prefHeight="14.0" prefWidth="50.0" text="Gruppe" />
+                              <TextField fx:id="txtPersStammName" layoutX="270.0" layoutY="93.0" prefHeight="28.0" prefWidth="171.0" />
+                              <TextField fx:id="txtPersStammVorname" layoutX="447.0" layoutY="93.0" prefHeight="28.0" prefWidth="228.0" />
+                              <Label layoutX="277.0" layoutY="78.0" prefHeight="14.0" prefWidth="32.0" text="Name" />
+                              <Label layoutX="448.0" layoutY="78.0" prefHeight="14.0" prefWidth="50.0" text="Vorname" />
+                              <TextField fx:id="txtPersStammStimme" layoutX="683.0" layoutY="140.0" prefHeight="28.0" prefWidth="110.0" />
+                              <TextField fx:id="txtPersStammInstrument" layoutX="798.0" layoutY="140.0" prefHeight="28.0" prefWidth="130.0" />
+                              <Label layoutX="688.0" layoutY="127.0" prefHeight="14.0" prefWidth="44.0" text="Stimme" />
+                              <Label layoutX="802.0" layoutY="127.0" prefHeight="14.0" prefWidth="44.0" text="Instr." />
+                              <TextField fx:id="txtPersStammTelefon" layoutX="683.0" layoutY="93.0" prefHeight="28.0" prefWidth="108.0" />
+                              <TextField fx:id="txtPersStammMail" layoutX="798.0" layoutY="93.0" prefHeight="28.0" prefWidth="130.0" />
+                              <Label layoutX="802.0" layoutY="79.0" prefHeight="14.0" prefWidth="44.0" text="Mail" />
+                              <Label layoutX="684.0" layoutY="79.0" prefHeight="14.0" prefWidth="50.0" text="Telefon" />
+                              <Button fx:id="btnStammPersSpeichern" focusTraversable="false" layoutX="64.0" layoutY="79.0" mnemonicParsing="false" onAction="#btnStammPersSpeichern_onClick" prefHeight="41.0" prefWidth="42.0" styleClass="button-loeschen" text="" textFill="#e10000">
                                  <graphic>
                                     <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
                                        <image>
@@ -108,7 +109,7 @@
                                     <Tooltip text="Datensatz speichern ..." />
                                  </tooltip>
                               </Button>
-                              <Button fx:id="btnStammPersLoeschen" focusTraversable="false" layoutX="115.0" layoutY="65.0" mnemonicParsing="false" onAction="#btnStammPersLoeschen_onClick" prefHeight="40.0" prefWidth="42.0" styleClass="button-loeschen" text="" textFill="#e10000">
+                              <Button fx:id="btnStammPersLoeschen" focusTraversable="false" layoutX="115.0" layoutY="80.0" mnemonicParsing="false" onAction="#btnStammPersLoeschen_onClick" prefHeight="40.0" prefWidth="42.0" styleClass="button-loeschen" text="" textFill="#e10000">
                                  <graphic>
                                     <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
                                        <image>
@@ -120,7 +121,7 @@
                                     <Tooltip text="Datensatz löschen ..." />
                                  </tooltip>
                               </Button>
-                              <Button fx:id="btnStammPersNeu" focusTraversable="false" layoutX="14.0" layoutY="63.0" mnemonicParsing="false" onAction="#btnStammPersNeu_onClick" prefHeight="40.0" prefWidth="42.0" styleClass="button-loeschen" text="" textFill="#e10000">
+                              <Button fx:id="btnStammPersNeu" focusTraversable="false" layoutX="14.0" layoutY="80.0" mnemonicParsing="false" onAction="#btnStammPersNeu_onClick" prefHeight="40.0" prefWidth="42.0" styleClass="button-loeschen" text="" textFill="#e10000">
                                  <graphic>
                                     <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
                                        <image>
@@ -132,16 +133,20 @@
                                     <Tooltip text="Datensatz neu anlegen ..." />
                                  </tooltip>
                               </Button>
-                              <TextField fx:id="txtPersStammId" alignment="CENTER" disable="true" editable="false" layoutX="181.0" layoutY="78.0" prefHeight="28.0" prefWidth="52.0" />
-                              <CheckBox fx:id="chkMehrfachauswahl" layoutX="18.0" layoutY="108.0" mnemonicParsing="false" onAction="#chkMehrfachauswahl_OnAction" prefHeight="48.0" prefWidth="195.0" text="Mehrfachauswahl &#10;zum Löschen" wrapText="true" />
-                              <Label fx:id="lblAnzahlFilter" layoutX="14.0" layoutY="154.0" prefHeight="15.0" prefWidth="244.0" styleClass="schriftgruen" text="0 Personen gefiltert" />
-                              <Label layoutX="272.0" layoutY="17.0" prefHeight="14.0" prefWidth="91.0" styleClass="schriftweiss" text="Filter-Nachname" />
-                              <Label layoutX="448.0" layoutY="17.0" prefHeight="14.0" prefWidth="77.0" styleClass="schriftweiss" text="Filter-Chor" />
-                              <Label layoutX="648.0" layoutY="17.0" prefHeight="14.0" prefWidth="91.0" styleClass="schriftweiss" text="Filter-Gruppe" />
-                              <ComboBox fx:id="cbxPersFilterChor" editable="true" layoutX="448.0" layoutY="34.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="195.0" />
-                              <ComboBox fx:id="cbxPersFilterGruppe" editable="true" layoutX="649.0" layoutY="34.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="180.0" />
-                              <TextField fx:id="txtPersFilterName" layoutX="272.0" layoutY="34.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="167.0" />
-                              <Button fx:id="btnStammPersFilterAn" focusTraversable="false" layoutX="842.0" layoutY="32.0" mnemonicParsing="false" onAction="#btnStammPersFilterAn_onClick" prefHeight="16.0" prefWidth="16.0" styleClass="button-loeschen" text="" textFill="#e10000">
+                              <TextField fx:id="txtPersStammId" alignment="CENTER" disable="true" editable="false" layoutX="174.0" layoutY="89.0" prefHeight="28.0" prefWidth="52.0" />
+                              <CheckBox fx:id="chkMehrfachauswahl" layoutX="18.0" layoutY="121.0" mnemonicParsing="false" onAction="#chkMehrfachauswahl_OnAction" prefHeight="48.0" prefWidth="195.0" text="Mehrfachauswahl &#10;zum Löschen" wrapText="true" />
+                              <Label fx:id="lblAnzahlFilter" layoutX="14.0" layoutY="168.0" prefHeight="15.0" prefWidth="244.0" text="0 Personen gefiltert">
+                                 <styleClass>
+                                    <String fx:value="schriftgruen" />
+                                    <String fx:value="label-title3" />
+                                 </styleClass></Label>
+                              <Label layoutX="272.0" layoutY="11.0" prefHeight="14.0" prefWidth="91.0" styleClass="schriftweiss" text="Filter-Nachname" />
+                              <Label layoutX="448.0" layoutY="11.0" prefHeight="14.0" prefWidth="77.0" styleClass="schriftweiss" text="Filter-Chor" />
+                              <Label layoutX="648.0" layoutY="11.0" prefHeight="14.0" prefWidth="91.0" styleClass="schriftweiss" text="Filter-Gruppe" />
+                              <ComboBox fx:id="cbxPersFilterChor" editable="true" layoutX="448.0" layoutY="28.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="195.0" />
+                              <ComboBox fx:id="cbxPersFilterGruppe" editable="true" layoutX="649.0" layoutY="28.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="180.0" />
+                              <TextField fx:id="txtPersFilterName" layoutX="272.0" layoutY="28.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="167.0" />
+                              <Button fx:id="btnStammPersFilterAn" focusTraversable="false" layoutX="842.0" layoutY="24.0" mnemonicParsing="false" onAction="#btnStammPersFilterAn_onClick" prefHeight="16.0" prefWidth="16.0" styleClass="button-loeschen" text="" textFill="#e10000">
                                  <graphic>
                                     <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
                                        <image>
@@ -153,7 +158,7 @@
                                     <Tooltip text="filtern ..." />
                                  </tooltip>
                               </Button>
-                              <Button fx:id="btnStammPersFilterAus" focusTraversable="false" layoutX="886.0" layoutY="32.0" mnemonicParsing="false" onAction="#btnStammPersFilterAus_onClick" prefHeight="16.0" prefWidth="16.0" styleClass="button-loeschen" text="" textFill="#e10000">
+                              <Button fx:id="btnStammPersFilterAus" focusTraversable="false" layoutX="886.0" layoutY="24.0" mnemonicParsing="false" onAction="#btnStammPersFilterAus_onClick" prefHeight="16.0" prefWidth="16.0" styleClass="button-loeschen" text="" textFill="#e10000">
                                  <graphic>
                                     <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
                                        <image>
@@ -165,6 +170,7 @@
                                     <Tooltip text="alle zeigen ..." />
                                  </tooltip>
                               </Button>
+                              <Line endX="844.0" layoutX="106.0" layoutY="71.0" startX="-100.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -180,7 +186,7 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #f2f2f2;">
                            <children>
-                              <Button fx:id="btnImportCsv" contentDisplay="RIGHT" focusTraversable="false" layoutX="21.0" layoutY="62.0" mnemonicParsing="false" onAction="#btnImportCsv_OnClick" prefHeight="46.0" prefWidth="315.0" styleClass="button-neu" text="Choraktivitäten und Positionen (PCND CA)" textFill="#e10000">
+                              <Button fx:id="btnImportCsv" contentDisplay="RIGHT" focusTraversable="false" layoutX="22.0" layoutY="150.0" mnemonicParsing="false" onAction="#btnImportCsv_OnClick" prefHeight="73.0" prefWidth="315.0" styleClass="button-neu" text="PCND CA&#10;Choraktivitäten&#10;Positionen&#10;Teilnehmende" textFill="#e10000">
                                  <graphic>
                                     <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
                                        <image>
@@ -191,7 +197,9 @@
                               </Button>
                               <Label fx:id="lblImportStatus" layoutX="424.0" layoutY="15.0" prefHeight="18.0" prefWidth="503.0" styleClass="label-rot" text="Label" visible="false" />
                               <ProgressBar fx:id="pbImport" layoutX="422.0" layoutY="42.0" prefHeight="20.0" prefWidth="514.0" progress="0.0" visible="false" />
-                              <Button fx:id="btnImportPersonen" contentDisplay="RIGHT" focusTraversable="false" layoutX="21.0" layoutY="131.0" mnemonicParsing="false" onAction="#handleBtnImportPersonen_onClick" prefHeight="46.0" prefWidth="316.0" styleClass="button-neu" text="Personendaten aus CVW" textFill="#e10000">
+                              <Label layoutX="14.0" layoutY="19.0" prefHeight="19.0" prefWidth="374.0" styleClass="label-title2" text="Importieren von Datensätzen aus ..." textFill="#6b6b6b" />
+                              <Label alignment="TOP_LEFT" layoutX="364.0" layoutY="67.0" prefHeight="83.0" prefWidth="328.0" styleClass="label-rot" text="Der Import von Daten aus den Programmen PCND Choraktivitäten (CA) und Chorverwaltung (CVW) muss durch EXPORT der Daten aus diesen Programmen vorbereitet werden!" wrapText="true" />
+                              <Button fx:id="btnImportPersonen" contentDisplay="RIGHT" focusTraversable="false" layoutX="22.0" layoutY="62.0" mnemonicParsing="false" onAction="#handleBtnImportPersonen_onClick" prefHeight="73.0" prefWidth="314.0" styleClass="button-neu" text="PCND Chorverwaltung &#10;Personendaten" textFill="#e10000">
                                  <graphic>
                                     <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
                                        <image>
@@ -200,9 +208,6 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Label layoutX="14.0" layoutY="19.0" prefHeight="19.0" prefWidth="385.0" styleClass="label-title2" text="Daten aus PCND CA und CWV importieren ..." textFill="#6b6b6b" />
-                              <Label alignment="TOP_LEFT" layoutX="366.0" layoutY="62.0" prefHeight="83.0" prefWidth="284.0" styleClass="label-rot" text="Der Import von Daten aus den Programmen PCND Choraktivitäten (CA) und Chorverwaltung (CVW) muss durch EXPORT der Daten aus diesen Programmen vorbereitet werden!" wrapText="true" />
-                              <Label alignment="TOP_LEFT" layoutX="366.0" layoutY="145.0" prefHeight="48.0" prefWidth="284.0" text="Anleitung zum EXPORT finden sich auf der Webseite www.pcnd.eu" wrapText="true" />
                            </children>
                         </AnchorPane>
                      </content>

@@ -11,15 +11,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0" prefWidth="721.0" style="-fx-background-color: #c8c8c8;" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.FrmStartEinstellungenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="258.0" prefWidth="721.0" style="-fx-background-color: #c8c8c8;" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.FrmStartEinstellungenController">
 	<children>
-		<AnchorPane layoutY="72.0" maxHeight="486.0" maxWidth="794.0" minHeight="232.0" minWidth="460.0" prefHeight="232.0" prefWidth="721.0" style="-fx-background-color: #F0F0F0;">
+		<AnchorPane layoutY="72.0" maxHeight="486.0" maxWidth="794.0" minHeight="182.0" minWidth="460.0" prefHeight="182.0" prefWidth="721.0" style="-fx-background-color: #F0F0F0;">
 			<children>
             <TextField fx:id="txtDatenbankpfad" layoutX="176.0" layoutY="29.0" prefHeight="30.0" prefWidth="434.0" promptText="bitte auswählen....">
                <font>
                   <Font name="Courier New Bold" size="12.0" />
                </font></TextField>
-            <Label layoutX="12.0" layoutY="31.0" prefHeight="20.0" prefWidth="161.0" text="aktueller Datenbankpfad" wrapText="true">
+            <Label layoutX="12.0" layoutY="25.0" prefHeight="20.0" prefWidth="161.0" text="aktueller Datenbankpfad" wrapText="true">
                <font>
                   <Font name="System Italic" size="10.0" />
                </font>
@@ -56,19 +56,24 @@
                </font></TextField>
             <Button fx:id="btnDatenimport" layoutX="500.0" layoutY="257.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="161.0" text="neue Daten importieren..." visible="false" />
             <Button fx:id="btnBackuppfadWaehlen" layoutX="633.0" layoutY="77.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="48.0" text="..." />
-            <Button fx:id="btnZurueck" layoutX="490.0" layoutY="178.0" mnemonicParsing="false" onAction="#btnZurueck_OnClick" prefHeight="32.0" prefWidth="191.0" styleClass="button-speichern" text="speichern und zurück" textFill="#07861d" />
-            <ProgressBar fx:id="progressBar" layoutX="176.0" layoutY="194.0" prefHeight="18.0" prefWidth="285.0" progress="0.0" />
+            <Button fx:id="btnZurueck" layoutX="501.0" layoutY="120.0" mnemonicParsing="false" onAction="#btnZurueck_OnClick" prefHeight="32.0" prefWidth="191.0" styleClass="button-speichern" text="speichern und zurück" textFill="#07861d" />
+            <ProgressBar fx:id="progressBar" layoutX="15.0" layoutY="127.0" prefHeight="18.0" prefWidth="447.0" progress="0.0" />
             <Label fx:id="lblStatus" layoutX="176.0" layoutY="143.0" prefHeight="20.0" prefWidth="434.0" text="Download...." visible="false" wrapText="true">
                <font>
                   <Font name="System Italic" size="10.0" />
                </font>
             </Label>
-            <Label layoutX="12.0" layoutY="49.0" prefHeight="20.0" prefWidth="161.0" text="und Pfad für PDF-Ausdrucke" wrapText="true">
+            <Label layoutX="12.0" layoutY="44.0" prefHeight="20.0" prefWidth="161.0" text="und Pfad für PDF-Ausdrucke" wrapText="true">
                <font>
                   <Font name="System Italic" size="10.0" />
                </font>
             </Label>
-            <Button fx:id="btnAbbruchZurueck" layoutX="492.0" layoutY="135.0" mnemonicParsing="false" onAction="#btnAbbruchZurueck_OnClick" prefHeight="32.0" prefWidth="191.0" styleClass="button-loeschen" text="abbrechen und zurück" textFill="RED" />
+            <Label fx:id="lblTabellenueberschrift" layoutX="15.0" layoutY="152.0" prefHeight="18.0" prefWidth="679.0" text="Label">
+               <styleClass>
+                  <String fx:value="schriftrothell" />
+                  <String fx:value="label-title3" />
+               </styleClass>
+            </Label>
 
 			</children>
 		</AnchorPane>
@@ -101,6 +106,7 @@
                   <Image url="@/icons/javafx/folders_explorer_fatcow32x32.png" />
                </image>
             </ImageView>
+            <Button fx:id="btnAbbruchZurueck" layoutX="501.0" layoutY="21.0" mnemonicParsing="false" onAction="#btnAbbruchZurueck_OnClick" prefHeight="32.0" prefWidth="191.0" styleClass="button-loeschen" text="abbrechen und zurück" textFill="RED" />
 			</children>
 		</AnchorPane>
 	</children>

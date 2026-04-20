@@ -606,11 +606,12 @@ public class FrmAktionenStammdatenController
 			CSVImporterCVWResult result = task.getValue();
 
 			Msgbox.show("Personen-Import abgeschlossen",
-					"Neu eingefügt: " + result.inserted + "\n" +
-							"Aktualisiert: " + result.updated + "\n" +
-							"Unverändert: " + result.unchanged + "\n\n" +
-							"Gesamt: " +
-							(result.inserted + result.updated + result.unchanged));
+				    "Neu eingefügt: " + result.inserted + "\n" +
+				    "Aktualisiert: " + result.updated + "\n" +
+				    "Unverändert: " + result.unchanged + "\n" +
+				    
+				    "Gesamt: " +
+				    (result.inserted + result.updated + result.unchanged));
 			try
 			{
 				anzeigenTableCvwPersonenImport(0);

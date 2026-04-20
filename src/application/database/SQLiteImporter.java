@@ -9,8 +9,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class SQLiteImporter {
 
@@ -190,6 +193,203 @@ public class SQLiteImporter {
 //            pstmt.executeBatch();
 //        }
 //    }
+//    public static CSVImporterCVWResult insertCvwPersonen(List<CvwPersonenModel> list) throws SQLException {
+//
+//        int inserted = 0;
+//        int updated = 0;
+//        int unchanged = 0;
+//
+//        String selectSql = """
+//            SELECT pe_instrument, pe_stimme, pe_telefon, pe_mail
+//            FROM tblChorPersonen
+//            WHERE pe_name = ?
+//              AND pe_vorname = ?
+//              AND pe_chor = ?
+//              AND pe_gruppe = ?
+//            """;
+//
+//        String insertSql = """
+//            INSERT INTO tblChorPersonen (
+//                pe_id, pe_name, pe_vorname, pe_instrument, pe_chor,
+//                pe_stimme, pe_gruppe, pe_telefon, pe_mail
+//            )
+//            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+//            """;
+//
+//        String updateSql = """
+//            UPDATE tblChorPersonen SET
+//                pe_instrument = ?,
+//                pe_stimme = ?,
+//                pe_telefon = ?,
+//                pe_mail = ?
+//            WHERE pe_name = ?
+//              AND pe_vorname = ?
+//              AND pe_chor = ?
+//              AND pe_gruppe = ?
+//            """;
+//
+//        try (Connection conn = DBManager.getConnection();
+//             PreparedStatement selectStmt = conn.prepareStatement(selectSql);
+//             PreparedStatement insertStmt = conn.prepareStatement(insertSql);
+//             PreparedStatement updateStmt = conn.prepareStatement(updateSql)) {
+//
+//            conn.setAutoCommit(false);
+//
+//            for (CvwPersonenModel a : list) {
+//
+//                // ---- Existiert Person?
+//                selectStmt.setString(1, a.getPename());
+//                selectStmt.setString(2, a.getPevname());
+//                selectStmt.setString(3, a.getPechor());
+//                selectStmt.setString(4, a.getPegruppe());
+//
+//                ResultSet rs = selectStmt.executeQuery();
+//
+//                if (!rs.next()) {
+//                    // ===== INSERT =====
+//                    insertStmt.setInt(1, a.getPeid());
+//                    insertStmt.setString(2, a.getPename());
+//                    insertStmt.setString(3, a.getPevname());
+//                    insertStmt.setString(4, a.getPeinstrument());
+//                    insertStmt.setString(5, a.getPechor());
+//                    insertStmt.setString(6, a.getPestimme());
+//                    insertStmt.setString(7, a.getPegruppe());
+//                    insertStmt.setString(8, a.getPetelefon());
+//                    insertStmt.setString(9, a.getPemail());
+//                    insertStmt.executeUpdate();
+//                    inserted++;
+//                }
+//                else {
+//                    // ===== Vergleich =====
+//                    boolean changed =
+//                            !Objects.equals(rs.getString("pe_instrument"), a.getPeinstrument()) ||
+//                            !Objects.equals(rs.getString("pe_stimme"), a.getPestimme()) ||
+//                            !Objects.equals(rs.getString("pe_telefon"), a.getPetelefon()) ||
+//                            !Objects.equals(rs.getString("pe_mail"), a.getPemail());
+//
+//                    if (changed) {
+//                        // ===== UPDATE =====
+//                        updateStmt.setString(1, a.getPeinstrument());
+//                        updateStmt.setString(2, a.getPestimme());
+//                        updateStmt.setString(3, a.getPetelefon());
+//                        updateStmt.setString(4, a.getPemail());
+//                        updateStmt.setString(5, a.getPename());
+//                        updateStmt.setString(6, a.getPevname());
+//                        updateStmt.setString(7, a.getPechor());
+//                        updateStmt.setString(8, a.getPegruppe());
+//                        updateStmt.executeUpdate();
+//                        updated++;
+//                    } else {
+//                        unchanged++;
+//                    }
+//                }
+//            }
+//
+//            conn.commit();
+//        }
+//
+//
+//        return new CSVImporterCVWResult(inserted, updated, unchanged);
+//    }
+//    public static CSVImporterCVWResult insertCvwPersonen(List<CvwPersonenModel> list) throws SQLException {
+//
+//    	
+//        int inserted = 0;
+//        int updated = 0;
+//        int unchanged = 0;
+//        int skipped = 0; // 👈 HIER deklarieren
+//        
+//
+//        // ===== CSV bereinigen =====
+//        Set<Integer> seen = new HashSet<>();
+//        List<CvwPersonenModel> cleanList = new ArrayList<>();
+//        List<Integer> skippedIds = new ArrayList<>();
+//        for (CvwPersonenModel a : list) {
+//            if (!seen.add(a.getPeid())) {
+//                skipped++; // 👈 HIER erhöhen
+//                skippedIds.add(a.getPeid());               
+//                System.out.println("Doppelte ID übersprungen: " + a.getPeid());
+//                continue;
+//            }
+//            cleanList.add(a);
+//        }
+//
+//        list = cleanList;
+//
+//        String selectSql = """
+//            SELECT pe_instrument, pe_stimme, pe_telefon, pe_mail
+//            FROM tblChorPersonen
+//            WHERE pe_id = ?
+//            """;
+//
+//        String upsertSql = """
+//            INSERT INTO tblChorPersonen (
+//                pe_id, pe_name, pe_vorname, pe_instrument, pe_chor,
+//                pe_stimme, pe_gruppe, pe_telefon, pe_mail
+//            )
+//            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+//            ON CONFLICT(pe_id) DO UPDATE SET
+//                pe_instrument = excluded.pe_instrument,
+//                pe_stimme     = excluded.pe_stimme,
+//                pe_telefon    = excluded.pe_telefon,
+//                pe_mail       = excluded.pe_mail
+//            """;
+//
+//        try (Connection conn = DBManager.getConnection();
+//             PreparedStatement selectStmt = conn.prepareStatement(selectSql);
+//             PreparedStatement upsertStmt = conn.prepareStatement(upsertSql)) {
+//
+//            conn.setAutoCommit(false);
+//
+//            for (CvwPersonenModel a : list) {
+//
+//                String instrument = norm(a.getPeinstrument());
+//                String stimme    = norm(a.getPestimme());
+//                String telefon   = norm(a.getPetelefon());
+//                String mail      = norm(a.getPemail());
+//
+//                selectStmt.setInt(1, a.getPeid());
+//                ResultSet rs = selectStmt.executeQuery();
+//
+//                if (!rs.next()) {
+//                    inserted++;
+//                } else {
+//                    boolean changed =
+//                            !norm(rs.getString("pe_instrument")).equals(instrument) ||
+//                            !norm(rs.getString("pe_stimme")).equals(stimme) ||
+//                            !norm(rs.getString("pe_telefon")).equals(telefon) ||
+//                            !norm(rs.getString("pe_mail")).equals(mail);
+//
+//                    if (changed) updated++;
+//                    else unchanged++;
+//                }
+//
+//                // UPSERT (immer ausführen, aber sicher)
+//                upsertStmt.setInt(1, a.getPeid());
+//                upsertStmt.setString(2, norm(a.getPename()));
+//                upsertStmt.setString(3, norm(a.getPevname()));
+//                upsertStmt.setString(4, instrument);
+//                upsertStmt.setString(5, norm(a.getPechor()));
+//                upsertStmt.setString(6, stimme);
+//                upsertStmt.setString(7, norm(a.getPegruppe()));
+//                upsertStmt.setString(8, telefon);
+//                upsertStmt.setString(9, mail);
+//
+//                //upsertStmt.addBatch();
+//                try {
+//                    upsertStmt.addBatch();
+//                } catch (SQLException e) {
+//                    System.out.println("Fehler bei ID " + a.getPeid() + ": " + e.getMessage());
+//                    continue; // 👉 nächster Datensatz
+//                }
+//            }
+//
+//            upsertStmt.executeBatch();
+//            conn.commit();
+//        }
+//
+//        return new CSVImporterCVWResult(inserted, updated, unchanged, skipped);
+//    }
     public static CSVImporterCVWResult insertCvwPersonen(List<CvwPersonenModel> list) throws SQLException {
 
         int inserted = 0;
@@ -197,94 +397,90 @@ public class SQLiteImporter {
         int unchanged = 0;
 
         String selectSql = """
-            SELECT pe_instrument, pe_stimme, pe_telefon, pe_mail
+            SELECT pe_instrument, pe_telefon, pe_mail
             FROM tblChorPersonen
-            WHERE pe_name = ?
-              AND pe_vorname = ?
+            WHERE pe_id = ?
               AND pe_chor = ?
               AND pe_gruppe = ?
+              AND pe_stimme = ?
             """;
 
-        String insertSql = """
+        String upsertSql = """
             INSERT INTO tblChorPersonen (
-                pe_id, pe_name, pe_vorname, pe_instrument, pe_chor,
-                pe_stimme, pe_gruppe, pe_telefon, pe_mail
+                pe_id, pe_name, pe_vorname, pe_instrument,
+                pe_chor, pe_stimme, pe_gruppe,
+                pe_telefon, pe_mail
             )
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """;
-
-        String updateSql = """
-            UPDATE tblChorPersonen SET
-                pe_instrument = ?,
-                pe_stimme = ?,
-                pe_telefon = ?,
-                pe_mail = ?
-            WHERE pe_name = ?
-              AND pe_vorname = ?
-              AND pe_chor = ?
-              AND pe_gruppe = ?
+            ON CONFLICT(pe_id, pe_chor, pe_gruppe, pe_stimme)
+            DO UPDATE SET
+                pe_instrument = excluded.pe_instrument,
+                pe_telefon    = excluded.pe_telefon,
+                pe_mail       = excluded.pe_mail
             """;
 
         try (Connection conn = DBManager.getConnection();
              PreparedStatement selectStmt = conn.prepareStatement(selectSql);
-             PreparedStatement insertStmt = conn.prepareStatement(insertSql);
-             PreparedStatement updateStmt = conn.prepareStatement(updateSql)) {
+             PreparedStatement upsertStmt = conn.prepareStatement(upsertSql)) {
 
             conn.setAutoCommit(false);
 
             for (CvwPersonenModel a : list) {
 
-                // ---- Existiert Person?
-                selectStmt.setString(1, a.getPename());
-                selectStmt.setString(2, a.getPevname());
-                selectStmt.setString(3, a.getPechor());
-                selectStmt.setString(4, a.getPegruppe());
+                // ===== normalisierte Werte =====
+                int id        = a.getPeid();
+                String name   = norm(a.getPename());
+                String vname  = norm(a.getPevname());
+                String chor   = norm(a.getPechor());
+                String gruppe = norm(a.getPegruppe());
+                String stimme = norm(a.getPestimme());
+                String instr  = norm(a.getPeinstrument());
+                String tel    = norm(a.getPetelefon());
+                String mail   = norm(a.getPemail());
+
+                // ===== EXISTIERT SCHON? =====
+                selectStmt.setInt(1, id);
+                selectStmt.setString(2, chor);
+                selectStmt.setString(3, gruppe);
+                selectStmt.setString(4, stimme);
 
                 ResultSet rs = selectStmt.executeQuery();
 
                 if (!rs.next()) {
-                    // ===== INSERT =====
-                    insertStmt.setInt(1, a.getPeid());
-                    insertStmt.setString(2, a.getPename());
-                    insertStmt.setString(3, a.getPevname());
-                    insertStmt.setString(4, a.getPeinstrument());
-                    insertStmt.setString(5, a.getPechor());
-                    insertStmt.setString(6, a.getPestimme());
-                    insertStmt.setString(7, a.getPegruppe());
-                    insertStmt.setString(8, a.getPetelefon());
-                    insertStmt.setString(9, a.getPemail());
-                    insertStmt.executeUpdate();
                     inserted++;
-                }
-                else {
-                    // ===== Vergleich =====
+                } else {
                     boolean changed =
-                            !Objects.equals(rs.getString("pe_instrument"), a.getPeinstrument()) ||
-                            !Objects.equals(rs.getString("pe_stimme"), a.getPestimme()) ||
-                            !Objects.equals(rs.getString("pe_telefon"), a.getPetelefon()) ||
-                            !Objects.equals(rs.getString("pe_mail"), a.getPemail());
+                            !norm(rs.getString("pe_instrument")).equals(instr) ||
+                            !norm(rs.getString("pe_telefon")).equals(tel) ||
+                            !norm(rs.getString("pe_mail")).equals(mail);
 
-                    if (changed) {
-                        // ===== UPDATE =====
-                        updateStmt.setString(1, a.getPeinstrument());
-                        updateStmt.setString(2, a.getPestimme());
-                        updateStmt.setString(3, a.getPetelefon());
-                        updateStmt.setString(4, a.getPemail());
-                        updateStmt.setString(5, a.getPename());
-                        updateStmt.setString(6, a.getPevname());
-                        updateStmt.setString(7, a.getPechor());
-                        updateStmt.setString(8, a.getPegruppe());
-                        updateStmt.executeUpdate();
-                        updated++;
-                    } else {
-                        unchanged++;
-                    }
+                    if (changed) updated++;
+                    else unchanged++;
                 }
+
+                // ===== UPSERT =====
+                upsertStmt.setInt(1, id);
+                upsertStmt.setString(2, name);
+                upsertStmt.setString(3, vname);
+                upsertStmt.setString(4, instr);
+                upsertStmt.setString(5, chor);
+                upsertStmt.setString(6, stimme);
+                upsertStmt.setString(7, gruppe);
+                upsertStmt.setString(8, tel);
+                upsertStmt.setString(9, mail);
+
+                upsertStmt.addBatch();
             }
 
+            upsertStmt.executeBatch();
             conn.commit();
         }
 
         return new CSVImporterCVWResult(inserted, updated, unchanged);
+    }
+    //Helper-Methode für den CSV-Import
+    private static String norm(String s) {
+        if (s == null) return "";
+        return s.trim();
     }
 }

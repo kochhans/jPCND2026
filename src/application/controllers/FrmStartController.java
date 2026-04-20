@@ -847,7 +847,7 @@ public class FrmStartController implements Initializable
 
 				tblvwLiteratur.setItems(oblist_lit);
 				tblvwLiteratur.getSortOrder().add(tblvwColTitel);
-				lblFilterFortschrittsinfo.setText(oblist_lit.size() + " Literatureinträge gefiltert (maximal " + ValuesGlobals.filtermax + ")");
+				lblFilterFortschrittsinfo.setText(oblist_lit.size() + " Literatureinträge gefiltert);// (maximal " + ValuesGlobals.filtermax + ")");
 
 				Platform.runLater(new Runnable()
 				{
@@ -2719,8 +2719,7 @@ public class FrmStartController implements Initializable
 			lblHaupttitel.setText("Literatur - Gesamtliste");
 			lblFilterFortschrittsinfo.setText(oblist_lit.size() + " Literatureinträge angezeigt (maximal " + ValuesGlobals.filtermax + ")");
 
-			// Fokus setzen
-			Platform.runLater(() -> txtFilterTitel.requestFocus());
+
 
 			// Textfelder
 			txtFilterTitel.setDisable(false);
@@ -2737,6 +2736,9 @@ public class FrmStartController implements Initializable
 			cbxFilterBibel.setDisable(true);
 			cbxFilterGesangbuch.setDisable(true);
 			btnNotenmappen.setDisable(false);
+			
+			// Fokus setzen
+			Platform.runLater(() -> txtFilterTitel.requestFocus());
 
 			break;
 
@@ -2746,7 +2748,7 @@ public class FrmStartController implements Initializable
 			lblHaupttitel.setText("Notenausgaben");
 			lblFilterFortschrittsinfo.setText(oblist_edit.size() + " Editionen (Notenausgaben) gefiltert (maximal " + ValuesGlobals.filtermax + ")");
 
-			Platform.runLater(() -> txtFilterEdit.requestFocus());
+
 
 			txtFilterTitel.setDisable(true);
 			txtFilterKomp.setDisable(true);
@@ -2761,6 +2763,8 @@ public class FrmStartController implements Initializable
 			cbxFilterBibel.setDisable(true);
 			cbxFilterGesangbuch.setDisable(true);
 			btnNotenmappen.setDisable(false);
+			// Fokus setzen
+			Platform.runLater(() -> txtFilterEdit.requestFocus());
 			break;
 
 		case 2: // Stücke/Lieder
@@ -2769,7 +2773,7 @@ public class FrmStartController implements Initializable
 			lblHaupttitel.setText("Stücke/Lieder");
 			lblFilterFortschrittsinfo.setText(oblist_st.size() + " Stücke und Lieder gefiltert (maximal " + ValuesGlobals.filtermax + ")");
 
-			Platform.runLater(() -> txtFilterTitel.requestFocus());
+
 
 			txtFilterTitel.setDisable(false);
 			txtFilterKomp.setDisable(true);
@@ -2784,6 +2788,7 @@ public class FrmStartController implements Initializable
 			cbxFilterBibel.setDisable(false);
 			cbxFilterGesangbuch.setDisable(false);
 			btnNotenmappen.setDisable(true);
+			Platform.runLater(() -> txtFilterTitel.requestFocus());
 			break;
 		}
 		if (filterGesetzt == true)
@@ -3075,7 +3080,7 @@ public class FrmStartController implements Initializable
 				+ "Weitere Informationen zum Programm: https://www.pcnd.eu/jpcnd/";
 		try
 		{
-			Msgbox.showUrl("Programmupdates ...", textUpdates);
+			Msgbox.show("Programmupdates ...", textUpdates);
 		}
 		catch (Exception e)
 		{
