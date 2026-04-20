@@ -110,7 +110,7 @@ public class FrmAktionenController
 
 	// LABELS---------------------
 	@FXML
-	private Label lblHaupttitel, lblTitelHinweise, lblAktionAktuell, lblUpdateinfo;
+	private Label lblHaupttitel, lblTitelHinweise, lblAktionAktuell, lblUpdateinfo, lblFilterAnzahl;
 
 	// COMBOBOXEN -----------------
 	@FXML
@@ -220,11 +220,11 @@ public class FrmAktionenController
 			tblvwPosCol6Komp, tblvwPosCol7Besetzung, tblvwPosCol8Anmerkungen;
 
 	// ----------------------------
-	// (3.2) Tab Mitwirkende
+	// (3.2) Tab Teilnehmer
 	// ----------------------------
 	// LABELS---------------------
 	@FXML
-	private Label lblMitwirkendeDatensatzaktion;
+	private Label lblMitwirkendeDatensatzaktion, lblAktionTeilnehmerliste, lblPersonenGesamtliste;
 	@FXML
 	private TextField txtMitwEditName, txtMitwEditVorname, txtMitwEditStimme, txtMitwEditInstrument,
 			txtMitwFilterName, txtMitwFilterStimme, txtMitwFilterInstrument;
@@ -847,6 +847,7 @@ public class FrmAktionenController
 			return;
 		}
 		aktionid = selected.getCaid();
+
 		// ---------------- Lade Daten aus DB ----------------
 		try
 		{
@@ -859,7 +860,9 @@ public class FrmAktionenController
 				// tblvwPersonenZugewiesen.getSelectionModel().clearSelection();
 				// tblvwPersonenZugewiesen.getSelectionModel().select(0);
 				// tblvwPersonenZugewiesen.scrollTo(0);
+
 			}
+			lblAktionTeilnehmerliste.setText("Teilnehmerliste [ " + String.valueOf(oblist_aktionenpersonenData.master.size()) + " ]");			
 		}
 		catch (SQLException e)
 		{
@@ -911,6 +914,8 @@ public class FrmAktionenController
 			// tblvwPersonen.getItems().setAll(daten); alt!!!
 
 			oblist_personenData.master.setAll(daten);
+			lblPersonenGesamtliste.setText("Personen-Gesamtliste [ " + String.valueOf(oblist_personenData.master.size()) + " ]");
+
 		}
 		catch (SQLException e)
 		{
@@ -1368,6 +1373,7 @@ public class FrmAktionenController
 	void btnAktionLoeschen_OnClick(ActionEvent event) throws Exception
 	{
 		String selectedtext = "";
+		int markierterIndex = tblvwChoraktionen.getSelectionModel().getSelectedIndex();
 		// int indexVorher = 0;
 		int loeschenId = 0;
 		AktionenListeModel selected = tblvwChoraktionen.getSelectionModel().getSelectedItem();
@@ -1386,9 +1392,22 @@ public class FrmAktionenController
 		}
 		db.deleteAktion(loeschenId);
 		anzeigenTabelleAktionen();
-		// anzeigenTabelle(null, indexVorher - 1);
 		refreshComboBoxes();
 		btnAktionNeu_OnClick(event);
+
+		//Selektion setzen
+		ObservableList<AktionenListeModel> items = tblvwChoraktionen.getItems();
+		if (!items.isEmpty())
+		{
+			if (markierterIndex >= items.size())
+			{
+				markierterIndex = items.size() - 1;
+			}
+			tblvwChoraktionen.getSelectionModel().select(markierterIndex);
+			//tblvwChoraktionen.scrollTo(markierterIndex);
+		}
+		
+		
 	}
 
 	@FXML
@@ -1760,6 +1779,7 @@ public class FrmAktionenController
 		db.saveAktionenPerson(aktionId, personId, capename, capevorname, capestimme, capeinstrument);
 		anzeigenTblvwMitwirkende();
 		handleBtnMitwEditNeu_onClick();
+		
 
 	}
 
@@ -2378,6 +2398,8 @@ public class FrmAktionenController
 				filterAktionGruppe, filterArt, filterAktionenBeschreibung);
 		// ObservableList auffüllen
 		oblist_aktionenData.master.setAll(listaktionen);
+		
+		lblFilterAnzahl.setText(" " + String.valueOf(oblist_aktionenData.master.size()) + " gefiltert");
 		leerenTabelleAktionenPositionen();
 	}
 
@@ -2540,6 +2562,7 @@ public class FrmAktionenController
 			tblvwAktionPositionen.getSelectionModel().select(markierterIndex);
 			tblvwAktionPositionen.scrollTo(markierterIndex);
 		}
+
 	}
 
 	@FXML

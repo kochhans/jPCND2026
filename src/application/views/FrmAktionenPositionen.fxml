@@ -64,8 +64,16 @@
                   <Tooltip text="Filter entfernen ..." />
                </tooltip>
             </Button>
-            <Label fx:id="lblFilterTab0Anzahl" layoutX="828.0" layoutY="9.0" prefHeight="25.0" prefWidth="243.0" styleClass="schriftgelb" text="kein Filter aktiv" textFill="#808080" />
-            <Label fx:id="lblFilterTab1Anzahl" layoutX="827.0" layoutY="34.0" prefHeight="25.0" prefWidth="246.0" styleClass="schriftgelb" text="kein Filter aktiv" textFill="#808080" />
+            <Label fx:id="lblFilterTab0Anzahl" layoutX="828.0" layoutY="9.0" prefHeight="25.0" prefWidth="243.0" text="kein Filter aktiv" textFill="#808080">
+               <styleClass>
+                  <String fx:value="schriftgelb" />
+                  <String fx:value="label-title3" />
+               </styleClass></Label>
+            <Label fx:id="lblFilterTab1Anzahl" layoutX="827.0" layoutY="34.0" prefHeight="25.0" prefWidth="246.0" text="kein Filter aktiv" textFill="#808080">
+               <styleClass>
+                  <String fx:value="schriftgelb" />
+                  <String fx:value="label-title3" />
+               </styleClass></Label>
          </children></AnchorPane>
    </top>
    <center>

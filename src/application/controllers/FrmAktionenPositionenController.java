@@ -1091,7 +1091,7 @@ public class FrmAktionenPositionenController
 			lblZeilebearbeiten.setStyle("-fx-text-fill: #C75A51;");
 			break;
 		case 2:
-			lblZeilebearbeiten.setText("Zeile verschoben - neuer Eintrag vor Zeile " + posAktuell + "");
+			lblZeilebearbeiten.setText("Zeile verschoben - neuer Eintrag vor Zeile " + (posAktuell +1) + "");
 			lblZeilebearbeiten.setStyle("-fx-text-fill: #808080;");
 			break;
 		case 3:

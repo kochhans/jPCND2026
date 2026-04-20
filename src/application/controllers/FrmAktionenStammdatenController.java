@@ -34,6 +34,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.prefs.Preferences;
+
+import application.ValuesGlobals;
 import application.database.CSVImporterAktionen;
 import application.database.CSVImporterCVW;
 import application.database.CSVImporterCVWResult;
@@ -91,7 +93,7 @@ public class FrmAktionenStammdatenController
 	@FXML
 	private ProgressBar pbImport;
 	@FXML
-	private Label lblImportStatus;
+	private Label lblImportStatus, lblAnzahlFilter;
 
 	@FXML
 	private ComboBox<CvwPersonenComboChorModel> cbxPersFilterChor;
@@ -128,9 +130,9 @@ public class FrmAktionenStammdatenController
 	private Button btnFilterAn, btnFilterAus;
 	@FXML
 	private TabPane tabPanePosFilter;
-	
+
 	@FXML
-	private CheckBox chkMehrfachauswahl;	
+	private CheckBox chkMehrfachauswahl;
 
 // ####################################################################################################
 	// Tblvw-Binding
@@ -158,7 +160,7 @@ public class FrmAktionenStammdatenController
 	public void initialize()
 	{ // kein Datenzugriff hier, nur UI
 		oblist_personencvwimportData.bind(tblvwCvwPersonenImport);
-		tblvwCvwPersonenImport.setFixedCellSize(26);
+		lblAnzahlFilter.setText("0 Personen gefiltert");
 		tblvwCvwPersonenImport.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 	}
 
@@ -171,13 +173,14 @@ public class FrmAktionenStammdatenController
 		}
 		initTabPanes();
 		initData();
-		
-		
-		if ("personen".equals(woher)) {
-		    tabPaneStammdaten.getSelectionModel().select(tabStammdatenPersonen);
+
+		if ("personen".equals(woher))
+		{
+			tabPaneStammdaten.getSelectionModel().select(tabStammdatenPersonen);
 		}
-		else if ("import".equals(woher)) {
-		    tabPaneStammdaten.getSelectionModel().select(tabImportieren);
+		else if ("import".equals(woher))
+		{
+			tabPaneStammdaten.getSelectionModel().select(tabImportieren);
 		}
 	}
 
@@ -328,28 +331,44 @@ public class FrmAktionenStammdatenController
 	public void btnStammPersLoeschen_onClick() throws Exception
 	{
 
-	    ObservableList<CvwPersonenModel> selectedList =
-	        FXCollections.observableArrayList(
-	            tblvwCvwPersonenImport.getSelectionModel().getSelectedItems()
-	        );
+		ObservableList<CvwPersonenModel> selectedList = FXCollections.observableArrayList(
+				tblvwCvwPersonenImport.getSelectionModel().getSelectedItems());
+		int markierterIndex = tblvwCvwPersonenImport.getSelectionModel().getSelectedIndex();
 
-	    if (selectedList.isEmpty())
-	    {
-	        Msgbox.show("Person löschen ...", "Bitte markieren Sie mindestens eine Zeile!");
-	        return;
-	    }
-		if (!Msgbox.yesno("SS","Wirklich " + selectedList.size() + " Einträge löschen?")) {
-		    return;
+		if (selectedList.isEmpty())
+		{
+			Msgbox.show("Person löschen ...", "Bitte markieren Sie mindestens eine Zeile!");
+			return;
+		}
+		if (selectedList.size() > 1)
+		{
+			if (!Msgbox.yesno("SS", "Wirklich " + selectedList.size() + " Einträge löschen?"))
+			{
+				return;
+			}
 		}
 
-	    // 👉 mehrere oder eine – egal
-	    for (CvwPersonenModel person : selectedList)
-	    {
-	        db.deleteCvwPerson(person.getPekeyid());
-	    }
+		// 👉 mehrere oder eine – egal
+		for (CvwPersonenModel person : selectedList)
+		{
+			db.deleteCvwPerson(person.getPekeyid());
+		}
 
-	    anzeigenTableCvwPersonenImport(0);
-	    leerenStammdatenPers();
+		anzeigenTableCvwPersonenImport(0);
+		leerenStammdatenPers();
+
+		// Selektion setzen
+		ObservableList<CvwPersonenModel> items = tblvwCvwPersonenImport.getItems();
+		if (!items.isEmpty())
+		{
+			if (markierterIndex >= items.size())
+			{
+				markierterIndex = items.size() - 1;
+			}
+			tblvwCvwPersonenImport.getSelectionModel().select(markierterIndex);
+
+		}
+
 	}
 
 	@FXML
@@ -425,50 +444,52 @@ public class FrmAktionenStammdatenController
 	@FXML
 	void handletblvwCvwPersonenImport_onmouseClicked()
 	{
-	    // 👉 Nur im SINGLE-Modus reagieren!
-	    if (tblvwCvwPersonenImport.getSelectionModel().getSelectionMode() != SelectionMode.SINGLE) {
-	        return; // im Mehrfachmodus nichts tun
-	    }
+		// 👉 Nur im SINGLE-Modus reagieren!
+		if (tblvwCvwPersonenImport.getSelectionModel().getSelectionMode() != SelectionMode.SINGLE)
+		{
+			return; // im Mehrfachmodus nichts tun
+		}
 
-	    CvwPersonenModel selected = tblvwCvwPersonenImport.getSelectionModel().getSelectedItem();
-	    if (selected == null)
-	        return;
+		CvwPersonenModel selected = tblvwCvwPersonenImport.getSelectionModel().getSelectedItem();
+		if (selected == null)
+			return;
 
-	    txtPersStammChor.setText(selected.getPechor());
-	    txtPersStammGruppe.setText(selected.getPegruppe());
-	    txtPersStammInstrument.setText(selected.getPeinstrument());
-	    txtPersStammMail.setText(selected.getPemail());
-	    txtPersStammName.setText(selected.getPename());
-	    txtPersStammStimme.setText(selected.getPestimme());
-	    txtPersStammTelefon.setText(selected.getPetelefon());
-	    txtPersStammVorname.setText(selected.getPevname());
-	    txtPersStammId.setText(Integer.toString(selected.getPekeyid()));
+		txtPersStammChor.setText(selected.getPechor());
+		txtPersStammGruppe.setText(selected.getPegruppe());
+		txtPersStammInstrument.setText(selected.getPeinstrument());
+		txtPersStammMail.setText(selected.getPemail());
+		txtPersStammName.setText(selected.getPename());
+		txtPersStammStimme.setText(selected.getPestimme());
+		txtPersStammTelefon.setText(selected.getPetelefon());
+		txtPersStammVorname.setText(selected.getPevname());
+		txtPersStammId.setText(Integer.toString(selected.getPekeyid()));
 	}
 
 	@FXML
 	void chkMehrfachauswahl_OnAction()
 	{
-	    if(chkMehrfachauswahl.isSelected()) {
-	    	handleMehrfachmodusEin();
-	    	
-	    }
-	    else
-	    {
-	    	handleMehrfachmodusAus();
-	    }
+		if (chkMehrfachauswahl.isSelected())
+		{
+			handleMehrfachmodusEin();
+
+		}
+		else
+		{
+			handleMehrfachmodusAus();
+		}
 	}
-	
+
 	@FXML
 	void handleMehrfachmodusEin()
 	{
-	    tblvwCvwPersonenImport.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		tblvwCvwPersonenImport.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 	}
-	
+
 	@FXML
 	void handleMehrfachmodusAus()
 	{
-	    tblvwCvwPersonenImport.getSelectionModel().clearSelection();
-	    tblvwCvwPersonenImport.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		tblvwCvwPersonenImport.getSelectionModel().clearSelection();
+		tblvwCvwPersonenImport.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 	}
 // -------------------- Tabs aktivieren --------------------
 	// ===============================================================================================
@@ -497,11 +518,9 @@ public class FrmAktionenStammdatenController
 		}
 	}
 
-
 	// ============================================================
 	// Button-Handling rechte Seite Tab 1 - gespeicherte Aktionen
 	// ===========================================================
-
 
 	public void anzeigenTableCvwPersonenImport(int pekeyid)
 	{
@@ -514,16 +533,19 @@ public class FrmAktionenStammdatenController
 			String filcvwpersonchor = "";
 			String filcvwpersongruppe = "";
 			String filcvwpersonstimme = "";
+			int filteranzahl = 0;
 			filcvwpersonname = txtPersFilterName.getText();
-			//filcvwpersoninstrument = txtPersFilterInstrument.getText();
+			// filcvwpersoninstrument = txtPersFilterInstrument.getText();
 			filcvwpersonchor = cbxPersFilterChor.getEditor().getText();
 			filcvwpersongruppe = cbxPersFilterGruppe.getEditor().getText();
 			// filcvwpersonstimme = txtPersFilterStimme.getText();
 
 			List<CvwPersonenModel> daten = db.getPersonenListeAll(
 					filcvwpersonname, filcvwpersonvname, filcvwpersoninstrument, filcvwpersonchor, filcvwpersongruppe, filcvwpersonstimme);
-			//oblist_personenData.master.setAll(daten);
+			// oblist_personenData.master.setAll(daten);
 			oblist_personencvwimportData.master.setAll(daten);
+			filteranzahl = oblist_personencvwimportData.master.size();
+			lblAnzahlFilter.setText(String.valueOf(filteranzahl) + " Personen gefiltert.");
 			// ObservableList<CvwPersonenModel> items = tblvwCvwPersonenImport.getItems();
 			// alt!!!!!
 			// items.setAll(daten);
@@ -923,7 +945,7 @@ public class FrmAktionenStammdatenController
 			List<AktionenListeModel> baseList,
 			Function<AktionenListeModel, String> extractor, boolean autoopen)
 	{
-		
+
 		List<String> items = baseList.stream()
 				.map(extractor)
 				.filter(Objects::nonNull)
