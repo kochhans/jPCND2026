@@ -678,7 +678,10 @@ public class FrmAktionenController
 		int anzahl = countPdfFiles(pdfDir);
 
 		// 👉 Label setzen
-		lblDruckreportsAnzahl.setText(anzahl + " gespeicherte REPORTS im Ordner");
+
+				lblDruckreportsAnzahl.setText(anzahl + " gespeicherte REPORTS im Ordner");
+
+		
 	}
 
 	// ==================================================================================
@@ -1473,7 +1476,11 @@ public class FrmAktionenController
 	@FXML
 	private void btnAktionDrucken1_OnClick(ActionEvent event) throws Exception
 	{
+		int anzahlPdfs = 0;
 		fctAblaufplanDrucken(2); // Nur Musikstücke mit Zusatzangaben
+		
+		// 👉 Anzahl der PDFs ermitteln
+
 
 	}
 
@@ -1513,7 +1520,7 @@ public class FrmAktionenController
 		AktionenListeModel aktion = tblvwChoraktionen.getSelectionModel().getSelectedItem();
 		if (aktion == null)
 		{
-			Msgbox.show("Ablaufplan kompakt drucken ...", "Bitte wählen Sie eine Aktion aus, die gedruckt werdenb soll.");
+			Msgbox.show("Ablaufplan kompakt drucken ...", "Bitte wählen Sie eine Aktion aus, die gedruckt werden soll.");
 			return;
 		}
 		// 1) Optionen erstellen
@@ -2574,6 +2581,11 @@ public class FrmAktionenController
 		speichereAktionenfilter();
 		SceneManager.exitApp();
 	}
+	@FXML
+	public void men01Einstellungen_OnAction() throws Exception
+	{
+		Msgbox.show("Dateipfade ändern ...", "Bitte wählen Sie die Funktion zum Ändern der Dateipfade im Programmteil NOTENARCHIV aus!");
+	}
 
 	@FXML
 	public void men02StdatPersonen_OnAction() throws Exception
@@ -2586,6 +2598,8 @@ public class FrmAktionenController
 	{
 		openStammdaten("import");
 	}
+	
+	
 
 // --------------------------------------------------------------------------------
 // Hilfsmethoden für Steuerelemente -----------------------------------------------

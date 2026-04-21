@@ -40,7 +40,7 @@
                      <items>
                         <MenuItem fx:id="men01Importieren" mnemonicParsing="false" text="Importieren..." visible="false" />
                         <MenuItem disable="true" mnemonicParsing="false" text="Exportieren..." visible="false" />
-                        <MenuItem fx:id="men01Einstellungen" disable="true" mnemonicParsing="false" text="Dateipfade...." />
+                        <MenuItem fx:id="men01Einstellungen" mnemonicParsing="false" onAction="#men01Einstellungen_OnAction" text="Dateipfade...." />
                         <MenuItem fx:id="men01AktionenBeenden" mnemonicParsing="false" onAction="#men01AktionenBeenden_OnClick" text="Beenden" />
                      </items>
                   </Menu>

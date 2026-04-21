@@ -1,0 +1,104 @@
+############## Paketinhalt vor Verbesserung 2026-04-21 ############
+pinguin@h-vpc-mint1:~/Schreibtisch/jpcnd-macos-arm64.app$ ls -R
+.:
+Contents
+
+./Contents:
+Info.plist  Java  MacOS  Runtime
+
+./Contents/Java:
+javafx  jpcnd.jar  jpcnd_lib
+
+./Contents/Java/javafx:
+macos-arm64
+
+./Contents/Java/javafx/macos-arm64:
+libdecora_sse.dylib      libjavafx_font.dylib   libprism_common.dylib
+libfxplugins.dylib       libjavafx_iio.dylib    libprism_es2.dylib
+libglass.dylib           libjfxmedia_avf.dylib  libprism_sw.dylib
+libglib-lite.dylib       libjfxmedia.dylib
+libgstreamer-lite.dylib  libjfxwebkit.dylib
+
+./Contents/Java/jpcnd_lib:
+com.github.librepdf.openpdf_1.3.30.jar  controlsfx-11.2.1.jar
+com.google.gson_2.10.1.jar              mysql-connector-java-8.0.23.jar
+commons-codec-1.21.0.jar                slf4j-api-2.0.7.jar
+commons-csv-1.14.1.jar                  slf4j-simple-2.0.7.jar
+commons-io-2.21.0.jar                   sqlite-jdbc-3.46.0.0.jar
+
+./Contents/MacOS:
+jpcnd
+
+./Contents/Runtime:
+jre
+
+./Contents/Runtime/jre:
+bin  conf  lib  release
+
+./Contents/Runtime/jre/bin:
+jar        javap      jdeps   jlink        jps         jstatd
+jarsigner  jcmd       jfr     jmap         jrunscript  jwebserver
+java       jconsole   jhsdb   jmod         jshell      keytool
+javac      jdb        jimage  jnativescan  jstack      rmiregistry
+javadoc    jdeprscan  jinfo   jpackage     jstat       serialver
+
+./Contents/Runtime/jre/conf:
+jaxp.properties                  management      sound.properties
+jaxp-strict.properties.template  net.properties
+logging.properties               security
+
+./Contents/Runtime/jre/conf/management:
+jmxremote.access  jmxremote.password.template  management.properties
+
+./Contents/Runtime/jre/conf/security:
+java.security  policy
+
+./Contents/Runtime/jre/conf/security/policy:
+limited  README.txt  unlimited
+
+./Contents/Runtime/jre/conf/security/policy/limited:
+default_local.policy  default_US_export.policy  exempt_local.policy
+
+./Contents/Runtime/jre/conf/security/policy/unlimited:
+default_local.policy  default_US_export.policy
+
+./Contents/Runtime/jre/lib:
+classlist                  libjaas.dylib              libosxsecurity.dylib
+ct.sym                     libjava.dylib              libosxui.dylib
+fontconfig.bfc             libjavajpeg.dylib          libprefs.dylib
+fontconfig.properties.src  libjawt.dylib              librmi.dylib
+jfr                        libjdwp.dylib              libsaproc.dylib
+jrt-fs.jar                 libjimage.dylib            libsleef.dylib
+jspawnhelper               libjli.dylib               libsplashscreen.dylib
+jvm.cfg                    libjsig.dylib              libsyslookup.dylib
+libattach.dylib            libjsound.dylib            libverify.dylib
+libawt.dylib               liblcms.dylib              libzip.dylib
+libawt_lwawt.dylib         libmanagement_agent.dylib  modules
+libdt_socket.dylib         libmanagement.dylib        psfontj2d.properties
+libextnet.dylib            libmanagement_ext.dylib    psfont.properties.ja
+libfontmanager.dylib       libmlib_image.dylib        security
+libfreetype.dylib          libnet.dylib               server
+libinstrument.dylib        libnio.dylib               shaders.metallib
+libj2gss.dylib             libosxapp.dylib            src.zip
+libj2pcsc.dylib            libosx.dylib               tzdb.dat
+libj2pkcs11.dylib          libosxkrb5.dylib
+
+./Contents/Runtime/jre/lib/jfr:
+default.jfc  profile.jfc
+
+./Contents/Runtime/jre/lib/security:
+blocked.certs  cacerts  public_suffix_list.dat
+
+./Contents/Runtime/jre/lib/server:
+classes_coh.jsa  classes_nocoops_coh.jsa  libjsig.dylib
+classes.jsa      classes_nocoops.jsa      libjvm.dylib
+pinguin@h-vpc-mint1:~/Schreibtisch/jpcnd-macos-arm64.app$ 
+
+##################################################################
+LÖSUNGSTEST:
+java --module-path lib/javafx --add-modules javafx.controls, javafx.fxml, javafx.web -jar 
+####################################################################
+
+
+
+

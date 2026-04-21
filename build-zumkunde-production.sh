@@ -2,6 +2,7 @@
 # =====================================================
 # jPCND BUILD SYSTEM - PRODUCTION LEVEL 3 (CLEAN)
 # Linux ZIP + macOS .app Bundle + LATEST artifacts
+# Version 2026-04-21
 # =====================================================
 
 set -euo pipefail
@@ -90,6 +91,11 @@ build_linux() {
 # MAC APP BUNDLE
 # =====================================================
 build_macos_app() {
+    local ARCH="${1:-}"
+		[ -n "$ARCH" ] || { echo "❌ ARCH fehlt"; exit 1; }
+
+    echo "DEBUG: ARCH=$ARCH"
+    echo "DEBUG: RUNTIME_ROOT=$RUNTIME_ROOT"
 
     local ARCH="$1"
 
@@ -117,11 +123,12 @@ build_macos_app() {
     mkdir -p "$CONTENTS/Java/jpcnd_lib"
     mkdir -p "$CONTENTS/Java/javafx"
     mkdir -p "$CONTENTS/Runtime"
+    mkdir -p "$CONTENTS/Java/javafx_jars"
 
     # ----------------------------
     # LAUNCHER
     # ----------------------------
-    cat > "$CONTENTS/MacOS/jpcnd" <<EOF
+cat > "$CONTENTS/MacOS/jpcnd" <<EOF
 #!/bin/bash
 DIR="\$(cd "\$(dirname "\$0")" && pwd)"
 
@@ -133,8 +140,9 @@ else
 fi
 
 exec "\$JAVA_BIN" \\
-  --module-path "\$DIR/../Java/javafx/$ARCH" \\
+  --module-path "\$DIR/../Java/javafx_jars" \\
   --add-modules javafx.controls,javafx.fxml,javafx.graphics,javafx.media,javafx.web \\
+  -Djava.library.path="\$DIR/../Java/javafx/$ARCH" \\
   -jar "\$DIR/../Java/jpcnd.jar"
 EOF
 
@@ -152,25 +160,53 @@ EOF
         echo "❌ JavaFX fehlt: $ARCH"
         exit 1
     fi
+    
+    # ----------------------------
+    # JavaFX JARs (Module!) hinzufügen
+    # ----------------------------    
 
-		# ----------------------------
-		# Runtime CLEAN FIX v2 (robust)
-		# ----------------------------
-		
-		RUNTIME_SRC="$RUNTIME_ROOT/$ARCH"
-		
-		# finde echte JDK root (Home ist entscheidend)
-		if [ -d "$RUNTIME_SRC/jre/Contents/Home" ]; then
-		    RUNTIME_SRC="$RUNTIME_SRC/jre/Contents/Home"
-		elif [ -d "$RUNTIME_SRC/Contents/Home" ]; then
-		    RUNTIME_SRC="$RUNTIME_SRC/Contents/Home"
-		elif [ -d "$RUNTIME_SRC/jre" ]; then
-		    RUNTIME_SRC="$RUNTIME_SRC/jre"
-		fi
-		
-		mkdir -p "$CONTENTS/Runtime/jre"
-		
-		cp -R "$RUNTIME_SRC/"* "$CONTENTS/Runtime/jre/"
+	cp "$FX_ROOT/javafx.base.jar"      "$CONTENTS/Java/javafx_jars/"
+	cp "$FX_ROOT/javafx.controls.jar"  "$CONTENTS/Java/javafx_jars/"
+	cp "$FX_ROOT/javafx.fxml.jar"      "$CONTENTS/Java/javafx_jars/"
+	cp "$FX_ROOT/javafx.graphics.jar"  "$CONTENTS/Java/javafx_jars/"
+	cp "$FX_ROOT/javafx.media.jar"     "$CONTENTS/Java/javafx_jars/"
+	cp "$FX_ROOT/javafx.web.jar"       "$CONTENTS/Java/javafx_jars/"
+    
+	# ----------------------------
+	# Runtime AUTO DETECT + FLAT PACK (FIX2)
+	# ----------------------------
+	
+	RUNTIME_SRC="${RUNTIME_ROOT}/${ARCH}"
+	JAVA_HOME=""
+	if [ ! -d "$RUNTIME_SRC" ]; then
+    echo "❌ Runtime-Ordner fehlt: $RUNTIME_SRC"
+    exit 1
+fi
+	
+	if [ -d "$RUNTIME_SRC/Contents/Home" ]; then
+	    JAVA_HOME="$RUNTIME_SRC/Contents/Home"
+	elif [ -d "$RUNTIME_SRC/jre/Contents/Home" ]; then
+	    JAVA_HOME="$RUNTIME_SRC/jre/Contents/Home"
+	elif [ -d "$RUNTIME_SRC/jre/bin" ]; then
+	    JAVA_HOME="$RUNTIME_SRC/jre"
+	elif [ -x "$RUNTIME_SRC/bin/java" ]; then
+	    JAVA_HOME="$RUNTIME_SRC"
+	fi
+	
+	if [ -z "$JAVA_HOME" ] || [ ! -x "$JAVA_HOME/bin/java" ]; then
+	    echo "❌ Kein gültiges Java Runtime gefunden: $RUNTIME_SRC"
+	    exit 1
+	fi
+	
+	echo "☕ Java erkannt: $JAVA_HOME"
+	
+	RUNTIME_TARGET="$CONTENTS/Runtime/jre"
+	mkdir -p "$RUNTIME_TARGET"
+	
+	cp -R "$JAVA_HOME/bin" "$RUNTIME_TARGET/"
+	cp -R "$JAVA_HOME/lib" "$RUNTIME_TARGET/"
+	cp -R "$JAVA_HOME/conf" "$RUNTIME_TARGET/" 2>/dev/null || true
+	cp -R "$JAVA_HOME/release" "$RUNTIME_TARGET/" 2>/dev/null || true
 
     # ----------------------------
     # Info.plist
@@ -230,4 +266,5 @@ echo "VERSION: $BUILD_VERSION"
 echo "===================================="
 
 # optional DMG step
+echo "=========== OPTIONAL ============"
 bash ./build-dmg.sh || true
