@@ -89,19 +89,19 @@
                               <TextField fx:id="txtPersStammChor" layoutX="270.0" layoutY="140.0" prefHeight="28.0" prefWidth="168.0" />
                               <Label layoutX="278.0" layoutY="126.0" prefHeight="14.0" prefWidth="145.0" text="Chor" />
                               <TextField fx:id="txtPersStammGruppe" layoutX="448.0" layoutY="140.0" prefHeight="28.0" prefWidth="228.0" />
-                              <Label layoutX="448.0" layoutY="126.0" prefHeight="14.0" prefWidth="50.0" text="Gruppe" />
+                              <Label layoutX="448.0" layoutY="126.0" prefHeight="15.0" prefWidth="191.0" text="Gruppe" />
                               <TextField fx:id="txtPersStammName" layoutX="270.0" layoutY="93.0" prefHeight="28.0" prefWidth="171.0" />
                               <TextField fx:id="txtPersStammVorname" layoutX="447.0" layoutY="93.0" prefHeight="28.0" prefWidth="228.0" />
-                              <Label layoutX="277.0" layoutY="78.0" prefHeight="14.0" prefWidth="32.0" text="Name" />
-                              <Label layoutX="448.0" layoutY="78.0" prefHeight="14.0" prefWidth="50.0" text="Vorname" />
+                              <Label layoutX="277.0" layoutY="78.0" prefHeight="15.0" prefWidth="158.0" text="Name" />
+                              <Label layoutX="448.0" layoutY="78.0" prefHeight="15.0" prefWidth="207.0" text="Vorname" />
                               <TextField fx:id="txtPersStammStimme" layoutX="683.0" layoutY="140.0" prefHeight="28.0" prefWidth="110.0" />
                               <TextField fx:id="txtPersStammInstrument" layoutX="798.0" layoutY="140.0" prefHeight="28.0" prefWidth="130.0" />
-                              <Label layoutX="688.0" layoutY="127.0" prefHeight="14.0" prefWidth="44.0" text="Stimme" />
-                              <Label layoutX="802.0" layoutY="127.0" prefHeight="14.0" prefWidth="44.0" text="Instr." />
+                              <Label layoutX="688.0" layoutY="127.0" prefHeight="15.0" prefWidth="98.0" text="Stimme" />
+                              <Label layoutX="802.0" layoutY="127.0" prefHeight="15.0" prefWidth="126.0" text="Instrument" />
                               <TextField fx:id="txtPersStammTelefon" layoutX="683.0" layoutY="93.0" prefHeight="28.0" prefWidth="108.0" />
                               <TextField fx:id="txtPersStammMail" layoutX="798.0" layoutY="93.0" prefHeight="28.0" prefWidth="130.0" />
-                              <Label layoutX="802.0" layoutY="79.0" prefHeight="14.0" prefWidth="44.0" text="Mail" />
-                              <Label layoutX="684.0" layoutY="79.0" prefHeight="14.0" prefWidth="50.0" text="Telefon" />
+                              <Label layoutX="802.0" layoutY="79.0" prefHeight="15.0" prefWidth="128.0" text="Mail" />
+                              <Label layoutX="684.0" layoutY="79.0" prefHeight="15.0" prefWidth="107.0" text="Telefon" />
                               <Button fx:id="btnStammPersSpeichern" focusTraversable="false" layoutX="64.0" layoutY="79.0" mnemonicParsing="false" onAction="#btnStammPersSpeichern_onClick" prefHeight="41.0" prefWidth="42.0" styleClass="button-loeschen" text="" textFill="#e10000">
                                  <graphic>
                                     <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
@@ -140,14 +140,14 @@
                               </Button>
                               <TextField fx:id="txtPersStammId" alignment="CENTER" disable="true" editable="false" layoutX="174.0" layoutY="89.0" prefHeight="28.0" prefWidth="52.0" />
                               <CheckBox fx:id="chkMehrfachauswahl" layoutX="18.0" layoutY="121.0" mnemonicParsing="false" onAction="#chkMehrfachauswahl_OnAction" prefHeight="48.0" prefWidth="195.0" text="Mehrfachauswahl &#10;zum Löschen" wrapText="true" />
-                              <Label fx:id="lblAnzahlFilter" layoutX="14.0" layoutY="168.0" prefHeight="15.0" prefWidth="244.0" text="0 Personen gefiltert">
+                              <Label fx:id="lblAnzahlFilter" layoutX="14.0" layoutY="168.0" prefHeight="18.0" prefWidth="418.0" text="0 Personen gefiltert">
                                  <styleClass>
                                     <String fx:value="schriftgruen" />
                                     <String fx:value="label-title3" />
                                  </styleClass></Label>
-                              <Label layoutX="272.0" layoutY="11.0" prefHeight="14.0" prefWidth="91.0" styleClass="schriftweiss" text="Filter-Nachname" />
-                              <Label layoutX="448.0" layoutY="11.0" prefHeight="14.0" prefWidth="77.0" styleClass="schriftweiss" text="Filter-Chor" />
-                              <Label layoutX="648.0" layoutY="11.0" prefHeight="14.0" prefWidth="91.0" styleClass="schriftweiss" text="Filter-Gruppe" />
+                              <Label layoutX="272.0" layoutY="11.0" prefHeight="15.0" prefWidth="149.0" styleClass="schriftgelb" text="Filter-Nachname" />
+                              <Label layoutX="448.0" layoutY="11.0" prefHeight="15.0" prefWidth="169.0" styleClass="schriftgelb" text="Filter-Chor" />
+                              <Label layoutX="648.0" layoutY="11.0" prefHeight="15.0" prefWidth="166.0" styleClass="schriftgelb" text="Filter-Gruppe" />
                               <ComboBox fx:id="cbxPersFilterChor" editable="true" layoutX="448.0" layoutY="28.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="195.0" />
                               <ComboBox fx:id="cbxPersFilterGruppe" editable="true" layoutX="649.0" layoutY="28.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="180.0" />
                               <TextField fx:id="txtPersFilterName" layoutX="272.0" layoutY="28.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="167.0" />

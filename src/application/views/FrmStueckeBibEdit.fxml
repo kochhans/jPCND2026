@@ -52,7 +52,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="lblAuswahl" layoutX="23.0" layoutY="14.0" prefHeight="15.0" prefWidth="436.0" text="gewähltes Lied/Stück-Titel">
+            <Label fx:id="lblAuswahl" layoutX="23.0" layoutY="14.0" prefHeight="15.0" prefWidth="780.0" text="gewähltes Lied/Stück-Titel">
                <font>
                   <Font name="System Italic" size="10.0" />
                </font>
@@ -97,7 +97,7 @@
 		</AnchorPane>
 		<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="826.0" style="-fx-background-color: #7f7f7f;">
 			<children>
-				<Label fx:id="lblHaupttitel" layoutX="68.0" maxHeight="41.0" maxWidth="655.0" minHeight="30.0" minWidth="181.0" prefHeight="32.0" prefWidth="265.0" text="Bibelstellen..." textFill="#046972">
+				<Label fx:id="lblHaupttitel" layoutX="68.0" maxHeight="41.0" maxWidth="655.0" minHeight="30.0" minWidth="181.0" prefHeight="32.0" prefWidth="265.0" text="Bibelstellen" textFill="#046972">
 					<font>
 						<Font name="System Bold" size="20.0" />
 					</font>

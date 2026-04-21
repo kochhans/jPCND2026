@@ -147,7 +147,7 @@
                               <String fx:value="label" />
                               <String fx:value="schriftgelb" />
                            </styleClass></RadioButton>
-                        <RadioButton fx:id="radFilterAuff" focusTraversable="false" layoutX="17.0" layoutY="51.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="18.0" prefWidth="118.0" text="nur Aufführ." toggleGroup="$ogrFilterProbeAuffAlles">
+                        <RadioButton fx:id="radFilterAuff" focusTraversable="false" layoutX="17.0" layoutY="51.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="18.0" prefWidth="152.0" text="nur Aufführungen" toggleGroup="$ogrFilterProbeAuffAlles">
                            <styleClass>
                               <String fx:value="label" />
                               <String fx:value="schriftgelb" />
@@ -157,11 +157,6 @@
                         <DatePicker fx:id="dpFilterDatumVon" layoutX="166.0" layoutY="25.0" maxHeight="25.0" maxWidth="-Infinity" minHeight="25.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="131.0" styleClass="filter-field" />
                         <DatePicker fx:id="dpFilterDatumBis" layoutX="166.0" layoutY="68.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="131.0" styleClass="filter-field" />
                         <ComboBox fx:id="cbxFilterAktion" editable="true" layoutX="306.0" layoutY="25.0" maxHeight="25.0" maxWidth="-Infinity" minHeight="25.0" minWidth="-Infinity" prefHeight="25.0" prefWidth="202.0" styleClass="filter-field" />
-                        <Label layoutX="168.0" layoutY="52.0" prefHeight="17.0" prefWidth="63.0" text="bis..." textFill="#6b6b6b">
-                           <styleClass>
-                              <String fx:value="label" />
-                              <String fx:value="schriftgelb" />
-                           </styleClass></Label>
                         <Label layoutX="168.0" layoutY="6.0" prefHeight="17.0" prefWidth="138.0" text="Datum von..." textFill="#6b6b6b">
                            <styleClass>
                               <String fx:value="label" />
@@ -188,7 +183,7 @@
                               <String fx:value="schriftgelb" />
                            </styleClass></Label>
                         <TextField fx:id="txtFilterKurzbeschr" layoutX="306.0" layoutY="68.0" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="202.0" styleClass="filter-field" />
-                        <Label layoutX="306.0" layoutY="52.0" prefHeight="17.0" prefWidth="228.0" text="Text enthalten in der Kurzbeschreibung" textFill="#6b6b6b">
+                        <Label layoutX="306.0" layoutY="52.0" prefHeight="17.0" prefWidth="202.0" text="Kurzbeschreibung" textFill="#6b6b6b">
                            <styleClass>
                               <String fx:value="label" />
                               <String fx:value="schriftgelb" />
@@ -225,6 +220,11 @@
                               <String fx:value="label-title3" />
                            </styleClass>
                         </Label>
+                        <Label layoutX="168.0" layoutY="52.0" prefHeight="17.0" prefWidth="63.0" text="bis..." textFill="#6b6b6b">
+                           <styleClass>
+                              <String fx:value="label" />
+                              <String fx:value="schriftgelb" />
+                           </styleClass></Label>
                      </children></AnchorPane>
 					</children>
 				</HBox>
@@ -275,13 +275,13 @@
                                     <ComboBox fx:id="cbxEingabeVerantwortlich" editable="true" layoutX="370.0" layoutY="162.0" prefHeight="30.0" prefWidth="251.0" />
                                     <TextField fx:id="txtEingabeAnzahl" focusTraversable="false" layoutX="572.0" layoutY="113.0" prefHeight="28.0" prefWidth="50.0" />
                                     <TextArea fx:id="txtEingabeZusatzinfos" focusTraversable="false" layoutX="6.0" layoutY="210.0" prefHeight="71.0" prefWidth="524.0" promptText="hier können Zusatzinformationen zur Aktion eingegeben werden" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="210.0" />
-                                    <Label fx:id="lblDatum1" layoutX="11.0" layoutY="95.0" prefHeight="17.0" prefWidth="99.0" text="Kurzbeschreibung" textFill="#6b6b6b" />
+                                    <Label fx:id="lblDatum1" layoutX="11.0" layoutY="95.0" prefHeight="17.0" prefWidth="202.0" text="Kurzbeschreibung" textFill="#6b6b6b" />
                                     <Label fx:id="lblGruppe" layoutX="374.0" layoutY="95.0" prefHeight="17.0" prefWidth="195.0" text="Beteiligte (Chor/Gruppe)" textFill="#6b6b6b" />
                                     <Label fx:id="lblAktion" layoutX="11.0" layoutY="50.0" prefHeight="17.0" prefWidth="238.0" text="Aktivität (als Stichwort für die Liste)" textFill="#6b6b6b" />
                                     <Label fx:id="lblOrt" layoutX="374.0" layoutY="50.0" prefHeight="17.0" prefWidth="85.0" text="Ort" textFill="#6b6b6b" />
                                     <Label fx:id="lblDatum" layoutX="11.0" layoutY="144.0" prefHeight="17.0" prefWidth="138.0" text="Datum" textFill="#6b6b6b" />
                                     <Label fx:id="lblGruppe1" layoutX="374.0" layoutY="144.0" prefHeight="17.0" prefWidth="145.0" text="Verantwortliche(r)" textFill="#6b6b6b" />
-                                    <Label fx:id="lblAnzahl" layoutX="572.0" layoutY="95.0" prefHeight="17.0" prefWidth="42.0" text="Anzahl" textFill="#6b6b6b" />
+                                    <Label fx:id="lblAnzahl" layoutX="572.0" layoutY="95.0" prefHeight="17.0" prefWidth="63.0" text="Anzahl" textFill="#6b6b6b" />
                                     <Label layoutX="117.0" layoutY="29.0" prefHeight="17.0" prefWidth="73.0" text="Aufführung" textFill="#6b6b6b" />
                                     <Label layoutX="11.0" layoutY="29.0" prefHeight="17.0" prefWidth="73.0" text="Probe o.ä." textFill="#6b6b6b" />
                                     <Label fx:id="lblTreffpunkt" layoutX="270.0" layoutY="144.0" prefHeight="17.0" prefWidth="100.0" text="Treffp. (hh:mm)" textFill="#6b6b6b" />
@@ -405,7 +405,7 @@
                                           <TableView fx:id="tblvwAktionPositionen" editable="true" focusTraversable="false" layoutY="54.0" maxHeight="1.7976931348623157E308" prefHeight="155.0" prefWidth="1234.0" style="-fx-background-color: #F5F5F5;" stylesheets="@../styles/application.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="54.0">
                                              <columns>
                                                 <TableColumn fx:id="tblvwPosCol0Pos" editable="false" maxWidth="55.0" minWidth="55.0" prefWidth="55.0" resizable="false" sortable="false" text="Pos" />
-                                                <TableColumn fx:id="tblvwPosCol1Art" editable="false" maxWidth="159.0" minWidth="40.0" prefWidth="159.0" sortable="false" text="Hinweis" />
+                                                <TableColumn fx:id="tblvwPosCol1Art" editable="false" maxWidth="150.0" minWidth="40.0" prefWidth="100.0" sortable="false" text="Hinweis" />
                                                 <TableColumn fx:id="tblvwPosCol2Stcktitel" editable="false" minWidth="50.0" prefWidth="120.0" sortable="false" text="Stück-Titel" />
                                                 <TableColumn fx:id="tblvwPosCol5Stckart" editable="false" minWidth="30.0" prefWidth="50.0" sortable="false" text="Stück-Art" />
                                                 <TableColumn fx:id="tblvwPosCol3Notenausgabe" editable="false" minWidth="50.0" prefWidth="100.0" sortable="false" text="Notenausgabe" />

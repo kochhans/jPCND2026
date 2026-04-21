@@ -28,13 +28,23 @@
    <top>
       <AnchorPane prefHeight="59.0" prefWidth="1240.0" style="-fx-background-color: #a1a1a1;" BorderPane.alignment="CENTER">
          <children>
+            <Label fx:id="lblFilterTab0Anzahl" layoutX="828.0" layoutY="9.0" prefHeight="25.0" prefWidth="395.0" text="kein Filter aktiv" textFill="#808080">
+               <styleClass>
+                  <String fx:value="schriftgelb" />
+                  <String fx:value="label-title3" />
+               </styleClass></Label>
+            <Label fx:id="lblFilterTab1Anzahl" layoutX="827.0" layoutY="34.0" prefHeight="25.0" prefWidth="395.0" text="kein Filter aktiv" textFill="#808080">
+               <styleClass>
+                  <String fx:value="schriftgelb" />
+                  <String fx:value="label-title3" />
+               </styleClass></Label>
             <Label fx:id="lblAktionDatum" layoutX="23.0" layoutY="37.0" prefHeight="19.0" prefWidth="614.0" text="Label">
                <styleClass>
                   <String fx:value="label-title3" />
                   <String fx:value="schriftweiss" />
                </styleClass></Label>
             <Button fx:id="btnZurueck" layoutX="1077.0" layoutY="18.0" onAction="#btnZurueck_OnClick" prefHeight="29.0" prefWidth="131.0" text="Zurück" AnchorPane.rightAnchor="33.0" />
-            <Label layoutX="23.0" layoutY="9.0" prefHeight="23.0" prefWidth="229.0" text="Aktivitäten bearbeiten ...">
+            <Label layoutX="23.0" layoutY="9.0" prefHeight="23.0" prefWidth="494.0" text="Aktivitäten bearbeiten">
                <styleClass>
                   <String fx:value="label-title" />
                   <String fx:value="schriftweiss" />
@@ -64,16 +74,6 @@
                   <Tooltip text="Filter entfernen ..." />
                </tooltip>
             </Button>
-            <Label fx:id="lblFilterTab0Anzahl" layoutX="828.0" layoutY="9.0" prefHeight="25.0" prefWidth="243.0" text="kein Filter aktiv" textFill="#808080">
-               <styleClass>
-                  <String fx:value="schriftgelb" />
-                  <String fx:value="label-title3" />
-               </styleClass></Label>
-            <Label fx:id="lblFilterTab1Anzahl" layoutX="827.0" layoutY="34.0" prefHeight="25.0" prefWidth="246.0" text="kein Filter aktiv" textFill="#808080">
-               <styleClass>
-                  <String fx:value="schriftgelb" />
-                  <String fx:value="label-title3" />
-               </styleClass></Label>
          </children></AnchorPane>
    </top>
    <center>
@@ -88,7 +88,7 @@
                               <TableView fx:id="tblvwAktionPositionen" focusTraversable="false" layoutX="22.0" onMouseClicked="#handleTblvwAktionPositionen_onmouse_clicked" style="-fx-selection-bar-non-focused: AAC4DF; -fx-selection-bar: #AAC4DF;" styleClass="..\styles\application.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="5.0">
                                  <columns>
                                     <TableColumn fx:id="tblvwPosCol0Pos" editable="false" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" sortable="false" text="Pos" />
-                                    <TableColumn fx:id="tblvwPosCol1Art" editable="false" minWidth="20.0" sortable="false" text="Hinweis" />
+                                    <TableColumn fx:id="tblvwPosCol1Art" editable="false" minWidth="20.0" prefWidth="60.0" sortable="false" text="Hinweis" />
                                     <TableColumn fx:id="tblvwPosCol2Stcktitel" editable="false" prefWidth="100.0" sortable="false" text="Stück-Titel" />
                                     <TableColumn fx:id="tblvwPosCol5Stckart" editable="false" prefWidth="50.0" sortable="false" text="Stück-Art" visible="false" />
                                     <TableColumn fx:id="tblvwPosCol3Notenausgabe" editable="false" prefWidth="100.0" sortable="false" text="Notenausgabe" />
@@ -232,8 +232,8 @@
                                  </tooltip>
                               </Button>
                               <Label alignment="CENTER" layoutX="8.0" layoutY="384.0" prefHeight="15.0" prefWidth="76.0" text="in Liste sp." />
-                              <Label alignment="CENTER" layoutX="109.0" layoutY="384.0" prefHeight="15.0" prefWidth="60.0" text="einfügen" />
-                              <Label alignment="CENTER" layoutX="167.0" layoutY="384.0" prefHeight="15.0" prefWidth="61.0" text="anhängen" />
+                              <Label alignment="CENTER" layoutX="102.0" layoutY="384.0" prefHeight="15.0" prefWidth="67.0" text="einfügen" />
+                              <Label alignment="CENTER" layoutX="167.0" layoutY="384.0" prefHeight="15.0" prefWidth="69.0" text="anhängen" />
                               <Label alignment="CENTER" layoutX="238.0" layoutY="384.0" prefHeight="15.0" prefWidth="117.0" text="Zeile verschieben" />
                               <Label alignment="CENTER" layoutX="369.0" layoutY="384.0" prefHeight="15.0" prefWidth="62.0" text="Pos. entf." />
                               <Label alignment="CENTER" layoutX="110.0" layoutY="397.0" prefHeight="15.0" prefWidth="112.0" text="neu" />
