@@ -361,6 +361,7 @@ public class FrmAktionenPositionenController
 	{
 		// ---------------- PosNr ----------------
 		tblvwPosCol0Pos.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getCapoPos()));
+		tblvwPosCol0Pos.setStyle("-fx-alignment: CENTER;");
 		// ---------------- Bemerkungen zur Zeile ----------------
 		tblvwPosCol1Art.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(
 				cellData.getValue().getCapoSonstiges() != null ? cellData.getValue().getCapoSonstiges() : ""));
@@ -373,9 +374,11 @@ public class FrmAktionenPositionenController
 		// ---------------- Nummer Seite ----------------
 		tblvwPosCol4Nr.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(
 				cellData.getValue().getCapoNr() != null ? cellData.getValue().getCapoNr() : ""));
+		tblvwPosCol4Nr.setStyle("-fx-alignment: CENTER;");
 		// ---------------- Nummer Seite ----------------
 		tblvwPosCol4S.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(
 				cellData.getValue().getCapoSeite() != null ? cellData.getValue().getCapoSeite() : ""));
+		tblvwPosCol4S.setStyle("-fx-alignment: CENTER;");
 		// ---------------- Stueckart ----------------
 		tblvwPosCol5Stckart.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(
 				cellData.getValue().getCapoArt() != null ? cellData.getValue().getCapoArt() : ""));
@@ -464,6 +467,7 @@ public class FrmAktionenPositionenController
 	{
 		// ---------------- PosNr ----------------
 		tblvwPosCol0Pos1.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(cellData.getValue().getCapoPos()));
+		tblvwPosCol0Pos1.setStyle("-fx-alignment: CENTER;");
 		// ---------------- Bemerkungen zur Zeile ----------------
 		tblvwPosCol1Art1.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(
 				cellData.getValue().getCapoSonstiges() != null ? cellData.getValue().getCapoSonstiges() : ""));
@@ -476,9 +480,11 @@ public class FrmAktionenPositionenController
 		// ---------------- Nummer Seite ----------------
 		tblvwPosCol4Nr1.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(
 				cellData.getValue().getCapoNr() != null ? cellData.getValue().getCapoNr() : ""));
+		tblvwPosCol4Nr1.setStyle("-fx-alignment: CENTER;");
 		// ---------------- Nummer Seite ----------------
 		tblvwPosCol4S1.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(
 				cellData.getValue().getCapoSeite() != null ? cellData.getValue().getCapoSeite() : ""));
+		tblvwPosCol4S1.setStyle("-fx-alignment: CENTER;");
 		// ---------------- Stueckart ----------------
 		tblvwPosCol5Stckart1.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(
 				cellData.getValue().getCapoArt() != null ? cellData.getValue().getCapoArt() : ""));

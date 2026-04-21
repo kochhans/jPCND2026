@@ -528,7 +528,6 @@
                                                          </tooltip>
                                                       </Button>
                                                       <Label layoutX="188.0" layoutY="31.0" prefHeight="15.0" prefWidth="167.0" text="Filter - Instrument" />
-                                                      <Button fx:id="btnMitwEditSpeichern1" focusTraversable="false" layoutX="486.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleBtnMitwEditSpeichern1_onClick" prefHeight="32.0" prefWidth="91.0" text="&gt;&gt;&gt;" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane minHeight="0.0" minWidth="600.0" prefHeight="228.0" prefWidth="590.0" style="-fx-background-color: #C4C4C4;">
@@ -549,12 +548,12 @@
                                                          
                                                          
                                                       </TableView>
-                                                      <Label fx:id="lblMitwirkendeDatensatzaktion" layoutX="165.0" layoutY="5.0" prefHeight="42.0" prefWidth="276.0" text="Person NEU hinzufügen" wrapText="true" />
+                                                      <Label fx:id="lblMitwirkendeDatensatzaktion" layoutX="159.0" layoutY="41.0" prefHeight="19.0" prefWidth="439.0" text="Person NEU hinzufügen" wrapText="true" />
                                                       <TextField fx:id="txtMitwEditName" layoutX="11.0" layoutY="66.0" prefHeight="28.0" prefWidth="138.0" />
                                                       <TextField fx:id="txtMitwEditVorname" layoutX="11.0" layoutY="110.0" prefHeight="28.0" prefWidth="138.0" />
                                                       <TextField fx:id="txtMitwEditStimme" layoutX="11.0" layoutY="154.0" prefHeight="28.0" prefWidth="138.0" />
                                                       <TextField fx:id="txtMitwEditInstrument" layoutX="11.0" layoutY="196.0" prefHeight="28.0" prefWidth="138.0" />
-                                                      <Button fx:id="btnMitwEditSpeichern" focusTraversable="false" layoutX="111.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleBtnMitwEditSpeichern_onClick" prefHeight="40.0" prefWidth="40.0" styleClass="button-speichern">
+                                                      <Button fx:id="btnMitwEditSpeichern" focusTraversable="false" layoutX="179.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleBtnMitwEditSpeichern_onClick" prefHeight="40.0" prefWidth="40.0" styleClass="button-speichern">
                                                          <graphic>
                                                             <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
                                                                <image>
@@ -566,7 +565,7 @@
                                                             <Tooltip text="Person als Mitwirkende speichern / hinzufügen ..." />
                                                          </tooltip>
                                                       </Button>
-                                                      <Button fx:id="btnMitwEditLoeschen" focusTraversable="false" layoutX="11.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleBtnMitwEditLoeschen_onClick" prefHeight="40.0" prefWidth="40.0" styleClass="button-loeschen">
+                                                      <Button fx:id="btnMitwEditLoeschen" focusTraversable="false" layoutX="79.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleBtnMitwEditLoeschen_onClick" prefHeight="40.0" prefWidth="40.0" styleClass="button-loeschen">
                                                          <graphic>
                                                             <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
                                                                <image>
@@ -578,7 +577,7 @@
                                                             <Tooltip text="Person als Mitwirkende von der Aktuellen Aktion entfernen ..." />
                                                          </tooltip>
                                                       </Button>
-                                                      <Button fx:id="btnMitwEditNeu" focusTraversable="false" layoutX="61.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleBtnMitwEditNeu_onClick" prefHeight="40.0" prefWidth="40.0" styleClass="button-neu">
+                                                      <Button fx:id="btnMitwEditNeu" focusTraversable="false" layoutX="129.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleBtnMitwEditNeu_onClick" prefHeight="40.0" prefWidth="40.0" styleClass="button-neu">
                                                          <graphic>
                                                             <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
                                                                <image>
@@ -595,6 +594,7 @@
                                                       <Label layoutX="10.0" layoutY="140.0" prefHeight="15.0" prefWidth="125.0" text="Edit - Stimme " />
                                                       <Label layoutX="10.0" layoutY="182.0" prefHeight="15.0" prefWidth="131.0" text="Edit - Instrument" />
                                                       <Label fx:id="lblAktionTeilnehmerliste" alignment="CENTER_RIGHT" layoutX="375.0" layoutY="3.0" prefHeight="19.0" prefWidth="215.0" styleClass="label-title3" text="Teilnehmerliste  " textFill="#6b6b6b" AnchorPane.rightAnchor="10.0" />
+                                                      <Button fx:id="btnMitwEditSpeichern1" focusTraversable="false" layoutX="10.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleBtnMitwEditSpeichern1_onClick" prefHeight="40.0" prefWidth="61.0" text="&gt;&gt;&gt;" />
                                                    </children>
                                                 </AnchorPane>
                                              </items>
