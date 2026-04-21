@@ -1151,7 +1151,7 @@ public class FrmStartController implements Initializable
 			stModalwindow.setTitle("Notenmappen bearbeiten...");
 			stModalwindow.initOwner(btnBeenden.getScene().getWindow());
 			stModalwindow.setResizable(false);
-			stModalwindow.getIcons().add(new Image("/icons/javafx/werkzeug.png"));
+			stModalwindow.getIcons().add(new Image("/icons/javafx/jpcndicon0016.png"));
 			stModalwindow.setScene(new Scene(root));
 			stModalwindow.initModality(Modality.APPLICATION_MODAL);
 			stModalwindow.setUserData(stModalwindow);
@@ -1423,7 +1423,7 @@ public class FrmStartController implements Initializable
 			stModalwindow.setTitle("Themen für Lieder/Stücke bearbeiten...");
 			stModalwindow.setResizable(false);
 			stModalwindow.initOwner(btnBeenden.getScene().getWindow());
-			stModalwindow.getIcons().add(new Image("/icons/javafx/werkzeug.png"));
+			stModalwindow.getIcons().add(new Image("/icons/javafx/jpcndicon0016.png"));
 			stModalwindow.setScene(new Scene(root));
 			stModalwindow.initModality(Modality.APPLICATION_MODAL);
 			stModalwindow.setUserData(stModalwindow);
@@ -1484,7 +1484,7 @@ public class FrmStartController implements Initializable
 			// stModalwindow.setHeight(520);
 			// stModalwindow.setWidth(815);
 			stModalwindow.setResizable(false);
-			stModalwindow.getIcons().add(new Image("/icons/javafx/werkzeug.png"));
+			stModalwindow.getIcons().add(new Image("/icons/javafx/jpcndicon0016.png"));
 			stModalwindow.setScene(new Scene(root));
 			stModalwindow.initOwner(btnBeenden.getScene().getWindow());
 			stModalwindow.initModality(Modality.APPLICATION_MODAL);
@@ -1546,7 +1546,7 @@ public class FrmStartController implements Initializable
 			// stModalwindow.setWidth(815);
 			stModalwindow.setResizable(false);
 			stModalwindow.initOwner(btnBeenden.getScene().getWindow());
-			stModalwindow.getIcons().add(new Image("/icons/javafx/werkzeug.png"));
+			stModalwindow.getIcons().add(new Image("/icons/javafx/jpcndicon0016.png"));
 			stModalwindow.setScene(new Scene(root));
 			stModalwindow.initModality(Modality.APPLICATION_MODAL);
 			stModalwindow.setUserData(stModalwindow);
@@ -1596,7 +1596,7 @@ public class FrmStartController implements Initializable
 			// stModalwindow.initOwner(((Node) event.getSource()).getScene().getWindow());
 			stModalwindow.setTitle("Tage für Wochenlieder bearbeiten...");
 			stModalwindow.setResizable(false);
-			stModalwindow.getIcons().add(new Image("/icons/javafx/werkzeug.png"));
+			stModalwindow.getIcons().add(new Image("/icons/javafx/jpcndicon0016.png"));
 			stModalwindow.setScene(new Scene(root));
 			stModalwindow.setOnCloseRequest(e -> stModalwindow.close());
 			stModalwindow.showAndWait();
@@ -1996,7 +1996,7 @@ public class FrmStartController implements Initializable
 			stModalwindow.initOwner(btnBeenden.getScene().getWindow());
 			stModalwindow.setTitle("Autorinnen und Autoren bearbeiten...");
 			stModalwindow.setResizable(false);
-			stModalwindow.getIcons().add(new Image("/icons/javafx/werkzeug.png"));
+			stModalwindow.getIcons().add(new Image("/icons/javafx/jpcndicon0016.png"));
 			stModalwindow.setScene(new Scene(root));
 			stModalwindow.initModality(Modality.APPLICATION_MODAL);
 			stModalwindow.showAndWait();
@@ -2359,7 +2359,7 @@ public class FrmStartController implements Initializable
 			});
 			stModalwindow.setTitle("Verlage bearbeiten...");
 			stModalwindow.setResizable(false);
-			stModalwindow.getIcons().add(new Image("/icons/javafx/werkzeug.png"));
+			stModalwindow.getIcons().add(new Image("/icons/javafx/jpcndicon0016.png"));
 			stModalwindow.setScene(scene);
 			stModalwindow.initOwner(btnBeenden.getScene().getWindow());
 			stModalwindow.initModality(Modality.APPLICATION_MODAL);
@@ -2411,7 +2411,7 @@ public class FrmStartController implements Initializable
 			stModalwindow.setTitle("Editionsarten bearbeiten...");
 			stModalwindow.setResizable(false);
 			stModalwindow.initOwner(btnBeenden.getScene().getWindow());
-			stModalwindow.getIcons().add(new Image("/icons/javafx/werkzeug.png"));
+			stModalwindow.getIcons().add(new Image("/icons/javafx/jpcndicon0016.png"));
 			stModalwindow.setScene(scene);
 			stModalwindow.initModality(Modality.APPLICATION_MODAL);
 			stModalwindow.setUserData(stModalwindow);

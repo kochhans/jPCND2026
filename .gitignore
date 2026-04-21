@@ -9,7 +9,7 @@ dist/
 *.dll
 *.so
 *.dylib
-
+git-commits.txt
 
 zzz-sonstiges/
 zumkunde/

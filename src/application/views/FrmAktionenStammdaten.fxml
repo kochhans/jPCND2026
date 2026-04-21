@@ -79,8 +79,13 @@
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
+                                       <placeholder>
+											<Label alignment="TOP_CENTER" focusTraversable="false" text="-- es wurden keine Personen in der Stammdatentabelle gefunden - bitte Filterkriterien überprüfen --" textFill="#ae2020" />
+								 		</placeholder>                                 
+                                 
+                                 
                               </TableView>
-                              <Label layoutX="11.0" layoutY="19.0" prefHeight="19.0" prefWidth="279.0" styleClass="label-title2" text="Stammdaten Personen" textFill="#6b6b6b" />
+                              <Label layoutX="115.0" layoutY="19.0" prefHeight="48.0" prefWidth="136.0" styleClass="label-title2" text="Stammdaten&#10;Personen" textFill="#6b6b6b" wrapText="true" />
                               <TextField fx:id="txtPersStammChor" layoutX="270.0" layoutY="140.0" prefHeight="28.0" prefWidth="168.0" />
                               <Label layoutX="278.0" layoutY="126.0" prefHeight="14.0" prefWidth="145.0" text="Chor" />
                               <TextField fx:id="txtPersStammGruppe" layoutX="448.0" layoutY="140.0" prefHeight="28.0" prefWidth="228.0" />
@@ -171,6 +176,11 @@
                                  </tooltip>
                               </Button>
                               <Line endX="844.0" layoutX="106.0" layoutY="71.0" startX="-100.0" />
+                              <ImageView fitHeight="57.0" fitWidth="75.0" layoutX="14.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@/icons/javafx/menschen.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                      </content>

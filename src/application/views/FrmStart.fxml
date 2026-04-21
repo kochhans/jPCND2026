@@ -84,10 +84,14 @@
                         
                         
                         
-                        <Label fx:id="lblUpdateinfo" layoutX="765.0" layoutY="27.0" prefHeight="46.0" prefWidth="213.0" style="-fx-background-color: #DE6C6E;" text="Updateinfo ...&#10;..." wrapText="true" AnchorPane.rightAnchor="242.0">
+                        <Label fx:id="lblUpdateinfo" layoutX="765.0" layoutY="27.0" prefHeight="46.0" prefWidth="213.0" text="Updateinfo ...&#10;..." wrapText="true" AnchorPane.rightAnchor="242.0">
                            <padding>
                               <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
-                           </padding></Label>
+                           </padding>
+                           <styleClass>
+                              <String fx:value="label-title3" />
+                              <String fx:value="schriftrothell" />
+                           </styleClass></Label>
                         <ProgressBar fx:id="progressPdf" layoutX="522.0" layoutY="5.0" prefHeight="18.0" prefWidth="121.0" progress="0.0" visible="false" />
 								<ImageView fitHeight="75.0" fitWidth="118.0" layoutX="10.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
 									<image>

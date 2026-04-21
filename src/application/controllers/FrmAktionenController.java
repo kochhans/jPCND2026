@@ -81,8 +81,10 @@ import application.models.AktionenListePositionenModel;
 import application.models.CvwPersonenComboChorModel;
 import application.models.CvwPersonenComboGruppeModel;
 import application.models.CvwPersonenModel;
+import application.models.LiteraturlisteModel;
 import application.uicomponents.Msgbox;
 import application.utils.TableData;
+import application.utils.TableUtils;
 import application.utils.ToolsUpdateChecker;
 import application.utils.pdf.PdfExportOptions;
 import application.utils.pdf.PdfMasterDetailExporterUtil;
@@ -101,7 +103,7 @@ public class FrmAktionenController
 	// ----------------------------
 	@FXML
 	private MenuItem men01AktionenBeenden, men02StdatPersonen;
-	
+
 	@FXML
 	private MenuItem men40, men40Programm, men40Datenbank;
 	// ----------------------------
@@ -128,7 +130,7 @@ public class FrmAktionenController
 	private RadioButton radFilterProben, radFilterAuff, radFilterAlles;
 	// BUTTONS---------------------
 	@FXML
-	private Button btnFilterAn, btnFilterAus, btnAktionDrucken1, btnZuNotenarchiv,  btnStammdaten;//btnUpdaten,
+	private Button btnFilterAn, btnFilterAus, btnAktionDrucken1, btnZuNotenarchiv, btnStammdaten;// btnUpdaten,
 
 	// IMPORT---------------------
 	@FXML
@@ -284,16 +286,16 @@ public class FrmAktionenController
 //	@FXML
 //	private Button btnStammPersFilterAn, btnStammPersFilterAus, btnImportPersonen,
 //			btnStammPersSpeichern, btnStammPersLoeschen, btnStammPersNeu;
-	@FXML
-	private TextField txtPersFilterName;
+//	@FXML
+//	private TextField txtPersFilterName;
 //			txtPersStammChor, txtPersStammGruppe, txtPersStammStimme, txtPersStammInstrument,
 //			txtPersStammName, txtPersStammVorname, txtPersStammTelefon, txtPersStammMail, txtPersStammId;
 
-	@FXML
-	private ComboBox<CvwPersonenComboChorModel> cbxPersFilterChor;
-
-	@FXML
-	private ComboBox<CvwPersonenComboGruppeModel> cbxPersFilterGruppe;
+//	@FXML
+//	private ComboBox<CvwPersonenComboChorModel> cbxPersFilterChor;
+//
+//	@FXML
+//	private ComboBox<CvwPersonenComboGruppeModel> cbxPersFilterGruppe;
 
 	// Tableview Choraktionen aus gespeicherten Aktionen
 	@FXML
@@ -342,6 +344,7 @@ public class FrmAktionenController
 // ######### init - Methoden
 // ###########################################################################################
 	private DatabaseControllerAktionen db;
+	private boolean isUpdatingUI = false;
 
 	public void setDbControllerAktionen(DatabaseControllerAktionen db)
 	{
@@ -356,15 +359,30 @@ public class FrmAktionenController
 		// Hier nichts DB-relevantes machen
 		// NUR UI-Grundsetup
 		// KEINE DB!
-		
+
 		oblist_aktionenData.bind(tblvwChoraktionen);
 		oblist_aktionenpositionenData.bind(tblvwAktionPositionen);
 		oblist_aktionenpersonenData.bind(tblvwPersonenZugewiesen);
 		oblist_personenData.bind(tblvwPersonen);
-		//oblist_personencvwimportData.bind(tblvwCvwPersonenImport);
+		// oblist_personencvwimportData.bind(tblvwCvwPersonenImport);
 
 		tblvwAktionPositionen.setFixedCellSize(26);
+		tblvwChoraktionen.getSelectionModel()
+	    .selectedItemProperty()
+	    .addListener((obs, oldVal, newVal) -> {
+
+	        if (newVal == null || newVal == oldVal)
+	            return;
+
+	        handleAktionSelected(newVal);
+	    });
+//		tblvwChoraktionen.getSelectionModel()
+//				.selectedItemProperty()
+//				.addListener((obs, oldVal, newVal) -> {
+//					handleAktionSelected(newVal);
+//				});
 	}
+	//// TODO
 
 	@FXML
 	public void onShow() throws Exception
@@ -374,7 +392,7 @@ public class FrmAktionenController
 		{
 			throw new IllegalStateException("DB-Controller wurde nicht gesetzt!");
 		}
-		initTabPanes();
+		//initTabPanes();
 		initData();
 		// ===== Update-Check nur 1x pro Sitzung =====
 		if (ValuesGlobals.updatecheck == true)
@@ -473,9 +491,9 @@ public class FrmAktionenController
 			}
 		});
 
-		//initTableCvwPersonenImport();
+		// initTableCvwPersonenImport();
 		initCombosTabPersonen();
-		restoreCombosTabPersonen();
+		//restoreCombosTabPersonen();
 		restoreFilterAktionen();
 		anzeigenCombosTabPersonen();
 
@@ -493,7 +511,7 @@ public class FrmAktionenController
 		});
 
 	}
-	
+
 	private void checkUpdatesAktionen()
 	{
 		System.out.println("(3) checkUpdatesStart()");
@@ -569,82 +587,81 @@ public class FrmAktionenController
 			ValuesGlobals.updatecheck = false;
 		}
 	}
-	//############################### Updaten #############################################
+	// ############################### Updaten
+	// #############################################
 
-		//############################### Updaten #############################################
-		public void fctUpdaten() throws IOException
-		{
-			DatabaseUpdaten.fctDatabaseupdate(btnAktionNeu.getScene().getWindow());
-
-		}
-
-		@FXML
-		public void men40Programm_OnAction()
-		{
-			fctWebUpdatesinfo();
-		}
-
-		@FXML
-		public void men40Datenbank_OnAction() throws IOException
-		{
-			fctUpdaten();
-		}	
-		
-		public void fctWebUpdatesinfo()
-		{
-			String textUpdates = "Programmupdates müssen manuell heruntergeladen werden: \n"
-					+ "https://www.pcnd.eu/jpcnd/updates\n\n"
-					+ "Für Datenbankupdates wird eine Schaltfläche im Hauptfenster angezeigt "
-					+ "und können direkt installiert werden."
-					+ "\n\n"
-					+ "Weitere Informationen zum Programm: https://www.pcnd.eu/jpcnd/";
-			try
-			{
-				Msgbox.showUrl("Programmupdates ...", textUpdates);
-			}
-			catch (Exception e)
-			{
-				e.printStackTrace();
-			}
-		}
-		
-	// Tabwechsel
-	@FXML
-	public void initTabPanes()
+	// ############################### Updaten
+	// #############################################
+	public void fctUpdaten() throws IOException
 	{
-		tabPaneAktionen.getSelectionModel().selectedItemProperty().addListener(
-				(obs, oldTab, newTab) -> {
-					if ("Stammdaten Personen".equals(newTab.getText()))
-					{
-						cbxPersFilterChor.getEditor().setText(cbxMitwFilterChor.getEditor().getText());
-						cbxPersFilterGruppe.getEditor().setText(cbxMitwFilterGruppe.getEditor().getText());
-						txtPersFilterName.setText(txtMitwFilterName.getText());
-						leerenEingabenMitwirkende();
+		DatabaseUpdaten.fctDatabaseupdate(btnAktionNeu.getScene().getWindow());
 
-						//anzeigenTableCvwPersonenImport(0);
-
-						try
-						{
-
-						}
-						catch (Exception e)
-						{
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-					if ("Mitwirkende".equals(newTab.getText()))
-					{
-						//cbxMitwFilterChor.getEditor().setText(cbxPersFilterChor.getEditor().getText());
-						//cbxMitwFilterGruppe.getEditor().setText(cbxPersFilterGruppe.getEditor().getText());
-						//txtMitwFilterName.setText(txtPersFilterName.getText());
-						//leerenStammdatenPers();
-						anzeigenTblvwMitwirkende();
-						anzeigenTblvwPersonen();
-
-					}
-				});
 	}
+
+	@FXML
+	public void men40Programm_OnAction()
+	{
+		fctWebUpdatesinfo();
+	}
+
+	@FXML
+	public void men40Datenbank_OnAction() throws IOException
+	{
+		fctUpdaten();
+	}
+
+	public void fctWebUpdatesinfo()
+	{
+		String textUpdates = "Programmupdates müssen manuell heruntergeladen werden: \n"
+				+ "https://www.pcnd.eu/jpcnd/updates\n\n"
+				+ "Für Datenbankupdates wird eine Schaltfläche im Hauptfenster angezeigt "
+				+ "und können direkt installiert werden."
+				+ "\n\n"
+				+ "Weitere Informationen zum Programm: https://www.pcnd.eu/jpcnd/";
+		try
+		{
+			Msgbox.showUrl("Programmupdates ...", textUpdates);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	// Tabwechsel
+//	@FXML
+//	public void initTabPanes()
+//	{
+//		tabPaneAktionen.getSelectionModel().selectedItemProperty().addListener(
+//				(obs, oldTab, newTab) -> {
+//					if ("Stammdaten Personen".equals(newTab.getText()))
+//					{
+//						leerenEingabenMitwirkende();
+//
+//						// anzeigenTableCvwPersonenImport(0);
+//
+//						try
+//						{
+//
+//						}
+//						catch (Exception e)
+//						{
+//							// TODO Auto-generated catch block
+//							e.printStackTrace();
+//						}
+//					}
+//					if ("Mitwirkende".equals(newTab.getText()))
+//					{
+//						// cbxMitwFilterChor.getEditor().setText(cbxPersFilterChor.getEditor().getText());
+//						// cbxMitwFilterGruppe.getEditor().setText(cbxPersFilterGruppe.getEditor().getText());
+//						// txtMitwFilterName.setText(txtPersFilterName.getText());
+//						// leerenStammdatenPers();
+//						anzeigenTblvwMitwirkende();
+//						anzeigenTblvwPersonen();
+//
+//					}
+//				});
+//	}
 
 	public void tabDrucken_OnSelectionChanged()
 	{
@@ -809,19 +826,32 @@ public class FrmAktionenController
 
 	public void anzeigenTabelleAktionenPositionen() throws Exception
 	{
-		AktionenListeModel selected = tblvwChoraktionen.getSelectionModel().getSelectedItem();
+//		AktionenListeModel selected = tblvwChoraktionen.getSelectionModel().getSelectedItem();
+//
+//		if (selected == null)
+//		{
+//			oblist_aktionenpositionenData.master.clear();
+//			return;
+//		}
+//
+//		int aktuelleAktion = selected.getCaid();
+//		tblvwAktionPositionen.getSortOrder().clear();
+//		oblist_aktionenpositionenData.master.setAll(db.getAktionenPositionenListeAll(aktuelleAktion));
 
-		if (selected == null)
-		{
-			oblist_aktionenpositionenData.master.clear();
-			return;
+		    AktionenListeModel selected = tblvwChoraktionen.getSelectionModel().getSelectedItem();
+
+		    if (selected == null)
+		    {
+		        return; // ❗ kein clear mehr
+		    }
+
+		    int aktuelleAktion = selected.getCaid();
+
+		    oblist_aktionenpositionenData.master
+		        .setAll(db.getAktionenPositionenListeAll(aktuelleAktion));
 		}
 
-		int aktuelleAktion = selected.getCaid();
-		tblvwAktionPositionen.getSortOrder().clear();
-		oblist_aktionenpositionenData.master.setAll(db.getAktionenPositionenListeAll(aktuelleAktion));
-	}
-	
+
 //	private void reloadAktionenPositionen(int caid) {
 //	    oblist_aktionenpositionenData.setAll(
 //	        db.getAktionenPositionenListeAll(caid)
@@ -862,7 +892,7 @@ public class FrmAktionenController
 				// tblvwPersonenZugewiesen.scrollTo(0);
 
 			}
-			lblAktionTeilnehmerliste.setText("Teilnehmerliste [ " + String.valueOf(oblist_aktionenpersonenData.master.size()) + " ]");			
+			lblAktionTeilnehmerliste.setText("Teilnehmerliste [ " + String.valueOf(oblist_aktionenpersonenData.master.size()) + " ]");
 		}
 		catch (SQLException e)
 		{
@@ -948,10 +978,10 @@ public class FrmAktionenController
 			String filcvwpersonchor = "";
 			String filcvwpersongruppe = "";
 			String filcvwpersonstimme = "";
-			filcvwpersonname = txtPersFilterName.getText();
+			filcvwpersonname = txtMitwFilterName.getText();
 			// filcvwpersoninstrument = txtPersFilterInstrument.getText();
-			filcvwpersonchor = cbxPersFilterChor.getEditor().getText();
-			filcvwpersongruppe = cbxPersFilterGruppe.getEditor().getText();
+			filcvwpersonchor = cbxMitwFilterChor.getEditor().getText();
+			filcvwpersongruppe = cbxMitwFilterGruppe.getEditor().getText();
 			// filcvwpersonstimme = txtPersFilterStimme.getText();
 
 			List<CvwPersonenModel> daten = db.getPersonenListeAll(
@@ -972,99 +1002,6 @@ public class FrmAktionenController
 	// =======================================
 	// Handles für Tableviews
 	// =======================================
-	// -- Aktionenliste
-	@FXML
-	void handletblvwAktionenliste_onmouse_clicked() throws Exception
-	{
-
-		AktionenListeModel selected = tblvwChoraktionen.getSelectionModel().getSelectedItem();
-
-		if (selected == null)
-			return;
-		System.out.println("Probe oder Auftritt " + selected.getCaauftrittstermin());
-		// -------------------- Checkboxen --------------------//
-		if (selected.isProbe())
-		{
-			radDetailsProbe.setSelected(true);
-			radDetailsAuff.setSelected(false);
-		}
-		else if (selected.isAuftritt())
-		{
-			radDetailsAuff.setSelected(true);
-			radDetailsProbe.setSelected(false);
-		}
-
-		chkEingabeGema.setSelected(selected.isGema());
-
-		chkEingabeGema.setSelected(selected.getCagema() != 0);
-
-		// -------------------- Textfelder --------------------
-		txtEingabeAnzahl.setText(Integer.toString(selected.getCaanwesend()));
-		txtEingabeKurzbeschr.setText(selected.getCabeschreibung() != null ? selected.getCabeschreibung() : "");
-		txtEingabeZusatzinfos.setText(selected.getCabemerkung() != null ? selected.getCabemerkung() : "");
-
-		// -------------------- ComboBoxes --------------------
-		cbxEingabeAktion.getSelectionModel().select(selected.getCaakttyp());
-		cbxEingabeGruppe.getSelectionModel().select(selected.getCagruppe());
-		cbxEingabeVerantwortlich.getSelectionModel().select(selected.getCaverantwortlich());
-		cbxEingabeOrt.getSelectionModel().select(selected.getCaaktionsort());
-
-		// -------------------- Spinner für Beginn --------------------
-		LocalTime beginn = selected.getCabeginn();
-		if (beginn != null)
-		{
-			spEingabeBeginn.getValueFactory().setValue(beginn);
-		}
-		else
-		{
-			spEingabeBeginn.getValueFactory().setValue(LocalTime.of(20, 0));
-		}
-
-		// -------------------- Spinner für Treffpunkt --------------------
-		LocalTime treffpunkt = selected.getCatreffpunkt();
-		if (treffpunkt != null)
-		{
-			spEingabeTreffpunkt.getValueFactory().setValue(treffpunkt);
-		}
-		else
-		{
-			spEingabeTreffpunkt.getValueFactory().setValue(LocalTime.of(20, 0));
-		}
-
-		LocalDate datum = selected.getCadatum();
-		dpEingabeDatum.setValue(datum);
-
-		try
-		{
-			anzeigenTabelleAktionenPositionen();
-		}
-		catch (Exception e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		// -------------------- Tabs aktivieren --------------------
-
-		tabDrucken.setDisable(false);
-		//tabImportieren.setDisable(false);
-		//tabStammdatenPersonen.setDisable(false);
-		tabMitwirkende.setDisable(false);
-		btnPosEntf.setDisable(false);
-		btnPosHoch.setDisable(false);
-		btnPosListeBearbeiten.setDisable(false);
-		btnPosRunter.setDisable(false);
-		btnAktionDuplizieren.setDisable(false);
-		btnAktionDrucken1.setDisable(false);
-		chkDuplikatInclTitel.setDisable(false);
-		//lblAktionAktuell.setDisable(false);
-
-		leerenEingabenMitwirkende();
-		anzeigenTabelleAktionenPositionen();
-		anzeigenTblvwMitwirkende();
-		anzeigenTblvwPersonen();
-
-	}
 
 	@FXML
 	void handleTblvwPersonenZugewiesen_onmouseClicked()
@@ -1077,7 +1014,7 @@ public class FrmAktionenController
 		txtMitwEditVorname.setText(selected.getCapevname() != null ? selected.getCapevname() : "");
 		txtMitwEditStimme.setText(selected.getCapestimme() != null ? selected.getCapestimme() : "");
 		txtMitwEditInstrument.setText(selected.getCapeinstrument() != null ? selected.getCapeinstrument() : "");
-		lblMitwirkendeDatensatzaktion.setText("Mitwirkende bearbeiten oder entfernen ...");
+		lblMitwirkendeDatensatzaktion.setText("Teilnehmende bearbeiten oder entfernen ...");
 		tblvwPersonen.getSelectionModel().clearSelection();
 	}
 
@@ -1103,7 +1040,7 @@ public class FrmAktionenController
 		txtMitwEditVorname.setText(selected.getPevname() != null ? selected.getPevname() : "");
 		txtMitwEditStimme.setText(selected.getPestimme() != null ? selected.getPestimme() : "");
 		txtMitwEditInstrument.setText(selected.getPeinstrument() != null ? selected.getPeinstrument() : "");
-		lblMitwirkendeDatensatzaktion.setText("Mitwirkende hinzufügen ...");
+		lblMitwirkendeDatensatzaktion.setText("Teilnehmende hinzufügen ...");
 		tblvwPersonenZugewiesen.getSelectionModel().clearSelection();
 	}
 
@@ -1117,7 +1054,7 @@ public class FrmAktionenController
 		txtMitwEditVorname.setText(selected.getPevname() != null ? selected.getPevname() : "");
 		txtMitwEditStimme.setText(selected.getPestimme() != null ? selected.getPestimme() : "");
 		txtMitwEditInstrument.setText(selected.getPeinstrument() != null ? selected.getPeinstrument() : "");
-		lblMitwirkendeDatensatzaktion.setText("Mitwirkende hinzufügen ...");
+		lblMitwirkendeDatensatzaktion.setText("Teilnehmende hinzufügen ...");
 		tblvwPersonenZugewiesen.getSelectionModel().clearSelection();
 		handleBtnMitwEditSpeichern1_onClick();
 
@@ -1138,8 +1075,9 @@ public class FrmAktionenController
 
 		SceneManager.showStart(stage); // 👈 echte Wiederherstellung
 	}
-	
-	private void speichereAktionenfilter() {
+
+	private void speichereAktionenfilter()
+	{
 		ConfigManager.saveFilterAktionDatumvon(dpFilterDatumVon.getEditor().getText());
 		ConfigManager.saveFilterAktionDatumbis(dpFilterDatumBis.getEditor().getText());
 		ConfigManager.saveFilterAktion(cbxFilterAktion.getEditor().getText());
@@ -1151,28 +1089,28 @@ public class FrmAktionenController
 		ConfigManager.saveFilterChor(cbxMitwFilterChor.getEditor().getText());
 
 	}
-	
 
 	@FXML
 	private void btnStammdaten_OnAction(ActionEvent event) throws Exception
 	{
 		openStammdaten("personen");
-	
-	}	
+
+	}
 
 	@FXML
 	private void openStammdaten(String woher)
 	{
 		oblist_personenData.master.clear();
 
-		try {
-		    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/application/views/FrmAktionenStammdaten.fxml"));
-		    Parent root = fxmlLoader.load();
+		try
+		{
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/application/views/FrmAktionenStammdaten.fxml"));
+			Parent root = fxmlLoader.load();
 			FrmAktionenStammdatenController controller = fxmlLoader.getController();
 			controller.setDbControllerAktionen(this.db);
 			// ✅ Owner aus dem Button holen
 			Stage owner = (Stage) rootScene2.getScene().getWindow();
-			//Stage owner = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			// Stage owner = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Choraktionen - Liste");
 			dialogStage.getIcons().add(new Image("/icons/javafx/werkzeug.png"));
@@ -1192,11 +1130,11 @@ public class FrmAktionenController
 			controller.onShow(woher); // init in zugeh. EditController!
 			dialogStage.setScene(new Scene(root));
 			dialogStage.showAndWait(); // wartet bis Fenster geschlossen wird
-		} catch (Exception e) {
-		    e.printStackTrace();
 		}
-
-
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 
 		// refresh der notwendigen Combos und Tabellen
 		// updateComboNotenmappeItems(); // Filtercombo aktualisieren
@@ -1210,11 +1148,12 @@ public class FrmAktionenController
 		tblvwChoraktionen.getSelectionModel().clearSelection();
 		Platform.runLater(dpEingabeDatum::requestFocus);
 		ohneAktionElementeDisablen();
-		tabPaneAktionen.getSelectionModel().select(tabDetails);
+		//tabPaneAktionen.getSelectionModel().select(tabDetails);
 
 	}
-	
-	private void ohneAktionElementeDisablen() {
+
+	private void ohneAktionElementeDisablen()
+	{
 		tabDrucken.setDisable(true);
 		tabMitwirkende.setDisable(true);
 		btnPosEntf.setDisable(true);
@@ -1224,38 +1163,136 @@ public class FrmAktionenController
 		btnAktionDuplizieren.setDisable(true);
 		btnAktionDrucken1.setDisable(true);
 		chkDuplikatInclTitel.setDisable(true);
-		//lblAktionAktuell.setDisable(true);
+		// lblAktionAktuell.setDisable(true);
 	}
-	
+
 	@FXML
-	private void btnAktionSpeichern_OnClick(ActionEvent event) throws Exception {
-	    aktionSpeichern(event, false);
+	private void btnAktionSpeichern_OnClick(ActionEvent event) throws Exception
+	{
+		aktionSpeichern(event, false);
 	}
-		
+
 	@FXML
-	private void btnAktionDuplizieren_OnClick(ActionEvent event) throws Exception {
+	private void btnAktionDuplizieren_OnClick(ActionEvent event) throws Exception
+	{
 		AktionenListeModel selected = tblvwChoraktionen.getSelectionModel().getSelectedItem();
-	    if (selected == null) {
-	        Msgbox.warn("Duplizieren einer Aktion ...", "Bitte vor dem Duplizieren eine Aktion auswählen!");
-	        return;
-	    }
-	    //aktion id Quelle zwischenspeichern
-	    int alteCaid = selected.getCaid();
-	    // neue Aktion speichern → neue ID!
-	    int neueCaid = aktionSpeichern(event, true);	    
-		//aktionSpeichern(event, true);
-	    if(chkDuplikatInclTitel.isSelected()==true)
-	    { // nun sollen alle Datensätze der Quelle inclusive 1:n verknüpfte Daten kopiert werden
-	    	// 1: tblChoraktionen.ca_id (primary key)
-	    	// n: tblChoraktionenPositionen.capo_ca_id (foreign key)
-	    	// Ablauf:
-	    	// höchste id herauslesen (neue ca_id)
-	    	// alle Positionen der Quelle kopieren (alte ca_id == alte capo_ca_id) mit neuer höchster ca_id im Feld capo_ca_id versehen 
-	    	db.copyPositionen(alteCaid, neueCaid);
-	    }
-	    
+		if (selected == null)
+		{
+			Msgbox.warn("Duplizieren einer Aktion ...", "Bitte vor dem Duplizieren eine Aktion auswählen!");
+			return;
+		}
+		// aktion id Quelle zwischenspeichern
+		int alteCaid = selected.getCaid();
+		// neue Aktion speichern → neue ID!
+		int neueCaid = aktionSpeichern(event, true);
+		// aktionSpeichern(event, true);
+		if (chkDuplikatInclTitel.isSelected() == true)
+		{ // nun sollen alle Datensätze der Quelle inclusive 1:n verknüpfte Daten kopiert
+			// werden
+			// 1: tblChoraktionen.ca_id (primary key)
+			// n: tblChoraktionenPositionen.capo_ca_id (foreign key)
+			// Ablauf:
+			// höchste id herauslesen (neue ca_id)
+			// alle Positionen der Quelle kopieren (alte ca_id == alte capo_ca_id) mit neuer
+			// höchster ca_id im Feld capo_ca_id versehen
+			db.copyPositionen(alteCaid, neueCaid);
+		}
+
 	}
-	
+
+	private void handleAktionSelected(AktionenListeModel selected)
+	{
+		if (selected == null || isUpdatingUI)
+			return;
+
+		isUpdatingUI = true;
+		try
+		{
+			// AktionenListeModel selected =
+			// tblvwChoraktionen.getSelectionModel().getSelectedItem();
+
+			System.out.println("Probe oder Auftritt " + selected.getCaauftrittstermin());
+			// -------------------- Checkboxen --------------------//
+			radDetailsProbe.setSelected(selected.isProbe());
+			radDetailsAuff.setSelected(selected.isAuftritt());
+
+			// chkEingabeGema.setSelected(selected.isGema());
+
+			chkEingabeGema.setSelected(selected.getCagema() != 0);
+
+			// -------------------- Textfelder --------------------
+			txtEingabeAnzahl.setText(Integer.toString(selected.getCaanwesend()));
+			txtEingabeKurzbeschr.setText(selected.getCabeschreibung() != null ? selected.getCabeschreibung() : "");
+			txtEingabeZusatzinfos.setText(selected.getCabemerkung() != null ? selected.getCabemerkung() : "");
+
+			// -------------------- ComboBoxes --------------------
+			cbxEingabeAktion.getSelectionModel().select(selected.getCaakttyp());
+			cbxEingabeGruppe.getSelectionModel().select(selected.getCagruppe());
+			cbxEingabeVerantwortlich.getSelectionModel().select(selected.getCaverantwortlich());
+			cbxEingabeOrt.getSelectionModel().select(selected.getCaaktionsort());
+
+			// -------------------- Spinner für Beginn --------------------
+			LocalTime beginn = selected.getCabeginn();
+			if (beginn != null)
+			{
+				spEingabeBeginn.getValueFactory().setValue(beginn);
+			}
+			else
+			{
+				spEingabeBeginn.getValueFactory().setValue(LocalTime.of(20, 0));
+			}
+
+			// -------------------- Spinner für Treffpunkt --------------------
+			LocalTime treffpunkt = selected.getCatreffpunkt();
+			if (treffpunkt != null)
+			{
+				spEingabeTreffpunkt.getValueFactory().setValue(treffpunkt);
+			}
+			else
+			{
+				spEingabeTreffpunkt.getValueFactory().setValue(LocalTime.of(20, 0));
+			}
+
+			LocalDate datum = selected.getCadatum();
+			dpEingabeDatum.setValue(datum);
+
+			try
+			{
+				anzeigenTabelleAktionenPositionen();
+			}
+			catch (Exception e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			// -------------------- Tabs aktivieren --------------------
+
+			tabDrucken.setDisable(false);
+			// tabImportieren.setDisable(false);
+			// tabStammdatenPersonen.setDisable(false);
+			tabMitwirkende.setDisable(false);
+			btnPosEntf.setDisable(false);
+			btnPosHoch.setDisable(false);
+			btnPosListeBearbeiten.setDisable(false);
+			btnPosRunter.setDisable(false);
+			btnAktionDuplizieren.setDisable(false);
+			btnAktionDrucken1.setDisable(false);
+			chkDuplikatInclTitel.setDisable(false);
+			// lblAktionAktuell.setDisable(false);
+
+			//leerenEingabenMitwirkende();
+			//anzeigenTabelleAktionenPositionen();
+			anzeigenTblvwMitwirkende();
+			//anzeigenTblvwPersonen();
+
+		}
+		finally
+		{
+			isUpdatingUI = false;
+		}
+
+	}
 
 	private int aktionSpeichern(ActionEvent event, boolean duplikat) throws Exception
 	{
@@ -1341,33 +1378,34 @@ public class FrmAktionenController
 		if (duplikat == true)
 		{
 			neu = true;
-			caid=0;
-		    // Titel anpassen
-		    if (caakttyp != null && !caakttyp.endsWith("(Kopie)")) {
-		        caakttyp = caakttyp + " (Kopie)";
-		    }
+			caid = 0;
+			// Titel anpassen
+			if (caakttyp != null && !caakttyp.endsWith("(Kopie)"))
+			{
+				caakttyp = caakttyp + " (Kopie)";
+			}
 
-		    // Datum auf heute setzen
-		    //datum = LocalDate.now().plusDays(0);
+			// Datum auf heute setzen
+			// datum = LocalDate.now().plusDays(0);
 		}
 
 		// Save direkt mit LocalDate und LocalTime
-		int neueCaid=db.saveAktion(neu, caakttyp, datum, cakurzbeschr, treffpunkt, beginn,
+		int neueCaid = db.saveAktion(neu, caakttyp, datum, cakurzbeschr, treffpunkt, beginn,
 				caanwesend, cabemerkung, caverantwortlich, cagruppe,
 				caort, caveranstalter, caprobeauftritt, cagema, caid);
 
 		filternAktionen();
-
-		// leerenAktionsfelder();
 		Platform.runLater(dpEingabeDatum::requestFocus);
 		refreshComboBoxes();
-		anzeigenTabelleAktionen();
-		btnAktionNeu_OnClick(event);
+		if (neu == true)
+		{
+			//btnAktionNeu_OnClick(event);
+		}
+		// Cursor wieder setzen
+		TableUtils.selectRowById(tblvwChoraktionen, neueCaid, AktionenListeModel::getCaid);
+
 		return neueCaid;
-		
 	}
-
-
 
 	@FXML
 	void btnAktionLoeschen_OnClick(ActionEvent event) throws Exception
@@ -1395,7 +1433,7 @@ public class FrmAktionenController
 		refreshComboBoxes();
 		btnAktionNeu_OnClick(event);
 
-		//Selektion setzen
+		// Selektion setzen
 		ObservableList<AktionenListeModel> items = tblvwChoraktionen.getItems();
 		if (!items.isEmpty())
 		{
@@ -1404,10 +1442,9 @@ public class FrmAktionenController
 				markierterIndex = items.size() - 1;
 			}
 			tblvwChoraktionen.getSelectionModel().select(markierterIndex);
-			//tblvwChoraktionen.scrollTo(markierterIndex);
+			// tblvwChoraktionen.scrollTo(markierterIndex);
 		}
-		
-		
+
 	}
 
 	@FXML
@@ -1595,7 +1632,6 @@ public class FrmAktionenController
 					}
 				}
 
-
 				// ===== Bemerkungen zur Position =====
 
 				if (r.getCapoBem() != null && !r.getCapoBem().isEmpty())
@@ -1779,14 +1815,13 @@ public class FrmAktionenController
 		db.saveAktionenPerson(aktionId, personId, capename, capevorname, capestimme, capeinstrument);
 		anzeigenTblvwMitwirkende();
 		handleBtnMitwEditNeu_onClick();
-		
 
 	}
 
 	@FXML
 	private void handleBtnMitwEditNeu_onClick()
 	{
-		//oblist_cvwpersonen = null;
+		// oblist_cvwpersonen = null;
 		// oblist_mitwzugew = null;
 		tblvwPersonenZugewiesen.getSelectionModel().clearSelection();
 		tblvwPersonen.getSelectionModel().clearSelection();
@@ -1828,7 +1863,7 @@ public class FrmAktionenController
 		}
 		else
 		{
-			Msgbox.show("Mitwirkende aus der Aktion entfrenen ...", "Bitte markieren Sie eine Zeile in der Tabelle der Mitwirkenden");
+			Msgbox.show("Teilnehmer aus der Aktivität entfernen ...", "Bitte markieren Sie eine Zeile in der Tabelle der Teilnehmer");
 			return;
 		}
 		db.deleteAktionenPerson(capeid);
@@ -1851,194 +1886,6 @@ public class FrmAktionenController
 		handleBtnMitwEditLoeschen_onClick();
 	}
 
-	// ======================================
-	// Registertab Stammdaten Personen
-	// ======================================
-
-//	@FXML // --------- Personenliste aus CVW-importieren bzw. abgleichen
-//	private void handleBtnImportPersonen_onClick(ActionEvent event) throws Exception
-//	{
-//
-//		if (!Msgbox.yesno("Import Personenliste ...",
-//				"Wollen Sie eine Personenliste aus dem Programm Chorverwaltung einlesen?"))
-//		{
-//			return;
-//		}
-//
-//		// CSV auswählen (wie bisher)
-//		FileChooser chooser = new FileChooser();
-//		chooser.setTitle("CVW Personenliste - Datei auswählen ...");
-//		chooser.getExtensionFilters().add(
-//				new FileChooser.ExtensionFilter(
-//						"Chor-Personenliste (cvw_personen.csv)",
-//						"cvw_personen.csv"));
-//
-//		File file = chooser.showOpenDialog(tblvwCvwPersonenImport.getScene().getWindow());
-//		if (file == null)
-//			return;
-//
-//		List<CvwPersonenModel> alleCVWPersonen;
-//		try
-//		{
-//			alleCVWPersonen = CSVImporterCVW.readCSV(file.getAbsolutePath());
-//		}
-//		catch (Exception e)
-//		{
-//			Msgbox.error("Fehler beim CSV-Import", e.getMessage());
-//			return;
-//		}
-//
-//		Scene scene = tblvwChoraktionen.getScene();
-//		scene.setCursor(Cursor.WAIT);
-//
-//		Task<CSVImporterCVWResult> task = new Task<>()
-//		{
-//			@Override
-//			protected CSVImporterCVWResult call() throws Exception
-//			{
-//				return SQLiteImporter.insertCvwPersonen(alleCVWPersonen);
-//			}
-//		};
-//
-//		task.setOnSucceeded(e -> {
-//			CSVImporterCVWResult result = task.getValue();
-//
-//			Msgbox.show("Personen-Import abgeschlossen",
-//					"Neu eingefügt: " + result.inserted + "\n" +
-//							"Aktualisiert: " + result.updated + "\n" +
-//							"Unverändert: " + result.unchanged + "\n\n" +
-//							"Gesamt: " +
-//							(result.inserted + result.updated + result.unchanged));
-//
-//			try
-//			{
-//				anzeigenTableCvwPersonenImport(0);
-//				anzeigenCombosTabPersonen();
-//			}
-//			catch (Exception e1)
-//			{
-//				e1.printStackTrace();
-//			}
-//
-//			scene.setCursor(Cursor.DEFAULT);
-//		});
-//
-//		task.setOnFailed(e -> {
-//			scene.setCursor(Cursor.DEFAULT);
-//			Msgbox.error("Fehler beim Import",
-//					task.getException().getMessage());
-//		});
-//
-//		new Thread(task).start();
-//
-//	}
-
-//	public void btnStammPersFilterAn_onClick()
-//	{
-//		anzeigenTableCvwPersonenImport(0);
-//	}
-//
-//	public void btnStammPersFilterAus_onClick()
-//	{
-//		txtPersFilterName.setText("");
-//		cbxPersFilterChor.getEditor().setText("");
-//		cbxPersFilterGruppe.getEditor().setText("");
-//		anzeigenTableCvwPersonenImport(0);
-//	}
-
-//	@FXML
-//	void handletblvwCvwPersonenImport_onmouseClicked()
-//	{
-//		CvwPersonenModel selected = tblvwCvwPersonenImport.getSelectionModel().getSelectedItem();
-//		if (selected == null)
-//			return;
-//
-//		// -------------------- Textfelder --------------------
-//		txtPersStammChor.setText(selected.getPechor());
-//		txtPersStammGruppe.setText(selected.getPegruppe());
-//		txtPersStammInstrument.setText(selected.getPeinstrument());
-//		txtPersStammMail.setText(selected.getPemail());
-//		txtPersStammName.setText(selected.getPename());
-//		txtPersStammStimme.setText(selected.getPestimme());
-//		txtPersStammTelefon.setText(selected.getPetelefon());
-//		txtPersStammVorname.setText(selected.getPevname());
-//		txtPersStammId.setText(Integer.toString(selected.getPekeyid()));
-//
-//		// -------------------- Tabs aktivieren --------------------
-//	}
-
-//	public void btnStammPersSpeichern_onClick() throws Exception
-//	{
-//		int pekeyid = 0;
-//		if (txtPersStammName.getText().isBlank() ||
-//				txtPersStammVorname.getText().isBlank() ||
-//				txtPersStammChor.getText().isBlank() ||
-//				txtPersStammGruppe.getText().isBlank())
-//		{ // Validation
-//			Msgbox.show("Person speichern ...", "Bitte geben Sie in den Pflichtfeldern Daten ein!");
-//			txtPersStammName.requestFocus();
-//			return;
-//		}
-//		String pechor = txtPersStammChor.getText();
-//		String pegruppe = txtPersStammGruppe.getText();
-//		String peinstrument = txtPersStammInstrument.getText();
-//		String pemail = txtPersStammMail.getText();
-//		String pename = txtPersStammName.getText();
-//		String pestimme = txtPersStammStimme.getText();
-//		String petelefon = txtPersStammTelefon.getText();
-//		String pevorname = txtPersStammVorname.getText();
-//
-//		if (txtPersStammId.getText().isBlank())
-//		{// das ist ein neuer DS neue ID gleich abholoen
-//			pekeyid = db.saveCvwPerson(0, pechor, pegruppe, peinstrument, pemail, pename, pestimme, petelefon, pevorname, pekeyid);
-//
-//		}
-//		else
-//		{ // alter DS
-//			pekeyid = Integer.parseInt(txtPersStammId.getText());
-//			db.saveCvwPerson(0, pechor, pegruppe, peinstrument, pemail, pename, pestimme, petelefon, pevorname, pekeyid);
-//		}
-//
-//		anzeigenTableCvwPersonenImport(pekeyid);
-//		//leerenStammdatenPers();
-//		anzeigenCombosTabPersonen();
-//	}
-
-//	public void btnStammPersLoeschen_onClick() throws Exception
-//	{
-//		CvwPersonenModel selected = tblvwCvwPersonenImport.getSelectionModel().getSelectedItem();
-//		if (selected == null)
-//		{
-//			Msgbox.show("Person löschen ...", "Bitte markieren Sie eine Zeile, die gelöscht wereden soll!");
-//			return;
-//		}
-//
-//		db.deleteCvwPerson(selected.getPekeyid());
-//		anzeigenTableCvwPersonenImport(0);
-//		//leerenStammdatenPers();
-//		anzeigenCombosTabPersonen();
-//	}
-
-//	public void btnStammPersNeu_onClick()
-//	{
-//		leerenStammdatenPers();
-//
-//	}
-
-//	private void leerenStammdatenPers()
-//	{
-//		//txtPersStammChor.setText("");
-//		txtPersStammGruppe.setText("");
-//		txtPersStammInstrument.setText("");
-//		txtPersStammMail.setText("");
-//		txtPersStammName.setText("");
-//		txtPersStammStimme.setText("");
-//		txtPersStammTelefon.setText("");
-//		txtPersStammVorname.setText("");
-//		txtPersStammId.setText("");
-//		tblvwCvwPersonenImport.getSelectionModel().clearSelection();
-//
-//	}
 
 // =============================================================================================================================
 // ##### IMPORT Aktionen aus PCND CA -- 3xCSV-Dateien: ChorAktionen.csv,
@@ -2194,28 +2041,6 @@ public class FrmAktionenController
 
 		scene.setCursor(Cursor.WAIT);
 
-//		Task<Void> importTask = new Task<>()
-//		{
-//			@Override
-//			protected Void call() throws Exception
-//			{
-//				updateMessage("Importiere Choraktionen …");
-//				updateProgress(0, 3);
-//				SQLiteImporter.insertAktionen(fNeuAktionen);
-//
-//				updateMessage("Importiere Positionen …");
-//				updateProgress(1, 3);
-//				SQLiteImporterPositionen.insertPositionen(fNeuPositionen);
-//
-//				updateMessage("Importiere Personen …");
-//				updateProgress(2, 3);
-//				SQLiteImporterPersonen.insertPersonen(fNeuPersonen);
-//
-//				updateProgress(3, 3);
-//				updateMessage("Fertig");
-//				return null;
-//			}
-//		};
 
 		Task<Void> importTask = new Task<>()
 		{
@@ -2266,42 +2091,6 @@ public class FrmAktionenController
 
 		});
 
-//		importTask.setOnSucceeded(e -> {
-//			scene.setCursor(Cursor.DEFAULT);
-//			pbImport.progressProperty().unbind();
-//			lblImportStatus.textProperty().unbind();
-//			pbImport.setVisible(false);
-//			lblImportStatus.setVisible(false);
-//
-//			Platform.runLater(() -> Msgbox.show(
-//					"Import abgeschlossen",
-//					"CSV Choraktionen gelesen: " + fAlleAktionen.size() + "\n" +
-//							"Neu importierte Aktionen: " + fNeuAktionen.size() + "\n" +
-//							"Duplikate übersprungen: " + fDoppeltAktionen.size() + "\n" +
-//							"Positionen für Aktionen importiert: " + fNeuPositionen.size() + "\n" +
-//							"Teilnehmer für Aktionen importiert: " + fNeuPersonen.size()));
-//			try
-//			{
-//				refreshComboBoxes();
-//			}
-//			catch (SQLException e1)
-//			{
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}
-//
-//			try
-//			{
-//				//Notenausgaben von Kürzel auf Lang kopieren
-//				this.db.saveUpdateNotenausgaben();
-//				anzeigenTabelleAktionen();
-//				
-//			}
-//			catch (Exception ex)
-//			{
-//				ex.printStackTrace();
-//			}
-//		});
 
 		importTask.setOnSucceeded(e -> {
 			scene.setCursor(Cursor.DEFAULT);
@@ -2398,9 +2187,9 @@ public class FrmAktionenController
 				filterAktionGruppe, filterArt, filterAktionenBeschreibung);
 		// ObservableList auffüllen
 		oblist_aktionenData.master.setAll(listaktionen);
-		
+
 		lblFilterAnzahl.setText(" " + String.valueOf(oblist_aktionenData.master.size()) + " gefiltert");
-		leerenTabelleAktionenPositionen();
+		//leerenTabelleAktionenPositionen();
 	}
 
 	public void leerenAktionsfelder()
@@ -2436,7 +2225,6 @@ public class FrmAktionenController
 	{
 		oblist_aktionenpositionenData.master.clear();
 		leerenAktionsfelder();
-		
 
 	}
 
@@ -2571,7 +2359,7 @@ public class FrmAktionenController
 		AktionenListeModel selected = tblvwChoraktionen.getSelectionModel().getSelectedItem();
 		if (selected == null)
 		{
-			Msgbox.show("Positionsliste der Aktion bearbeiten ...", "Bitte wählen Sie eine Aktion aus, die bearbeiotet werden soll.");
+			Msgbox.show("Positionsliste der Aktivität bearbeiten ...", "Bitte wählen Sie eine Aktivität aus, die bearbeiotet werden soll.");
 			return;
 		}
 		int caid = selected.getCaid();
@@ -2582,8 +2370,8 @@ public class FrmAktionenController
 		// ✅ Owner aus dem Button holen
 		Stage owner = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		Stage dialogStage = new Stage();
-		dialogStage.setTitle("Choraktionen - Liste");
-		dialogStage.getIcons().add(new Image("/icons/javafx/werkzeug.png"));
+		dialogStage.setTitle("Chorktivitäten - Liste");
+		dialogStage.getIcons().add(new Image("/icons/javafx/jpcndicon0016.png"));
 		dialogStage.initOwner(owner); // Owner setzen (sehr wichtig!)
 		dialogStage.initModality(Modality.APPLICATION_MODAL); // blockiert Hauptfenster
 		// ####################
@@ -2606,7 +2394,7 @@ public class FrmAktionenController
 //		        db.getAktionenPositionenListeAll(caid)
 //		    )
 //		);
-		
+
 		anzeigenTabelleAktionenPositionen();
 
 	}
@@ -2639,8 +2427,8 @@ public class FrmAktionenController
 		initComboBox(cbxFilterOrt, baseList, AktionenListeModel::getCaaktionsort, false);
 		initComboBox(cbxFilterGruppe, baseList, AktionenListeModel::getCagruppe, false);
 
-		//cbxMitwFilterChor.valueProperty().bindBidirectional(cbxPersFilterChor.valueProperty());
-		//cbxMitwFilterGruppe.valueProperty().bindBidirectional(cbxPersFilterGruppe.valueProperty());
+		// cbxMitwFilterChor.valueProperty().bindBidirectional(cbxPersFilterChor.valueProperty());
+		// cbxMitwFilterGruppe.valueProperty().bindBidirectional(cbxPersFilterGruppe.valueProperty());
 	}
 
 	private void initSonderfelderAktionen()
@@ -2687,10 +2475,10 @@ public class FrmAktionenController
 	private void setupChorComboBox(ComboBox<CvwPersonenComboChorModel> comboBox)
 	{
 
-		//comboBox.setItems(chorList);
-		//comboBox.setEditable(true);
+		// comboBox.setItems(chorList);
+		// comboBox.setEditable(true);
 
-		//comboBox.setConverter(new StringConverter<>()
+		// comboBox.setConverter(new StringConverter<>()
 //		{
 //			@Override
 //			public String toString(CvwPersonenComboChorModel object)
@@ -2715,10 +2503,10 @@ public class FrmAktionenController
 	private void setupGruppeComboBox(ComboBox<CvwPersonenComboGruppeModel> comboBox)
 	{
 
-		//comboBox.setItems(gruppeList);
-		//comboBox.setEditable(true);
+		// comboBox.setItems(gruppeList);
+		// comboBox.setEditable(true);
 
-		//comboBox.setConverter(new StringConverter<>()
+		// comboBox.setConverter(new StringConverter<>()
 //		{
 //			@Override
 //			public String toString(CvwPersonenComboGruppeModel object)
@@ -2742,87 +2530,8 @@ public class FrmAktionenController
 
 	public void initCombosTabPersonen() throws SQLException
 	{
-		//loadComboChorGruppenData();
-
-		// Chor-Combos
-		setupChorComboBox(cbxPersFilterChor);
 		setupChorComboBox(cbxMitwFilterChor);
-
-		// Gruppen-Combos
-		setupGruppeComboBox(cbxPersFilterGruppe);
 		setupGruppeComboBox(cbxMitwFilterGruppe);
-
-//	    // -------------------------------
-//	    // 1️⃣ Chor ComboBox (editierbar, Teileingabe)
-//	    // -------------------------------
-//	    List<CvwPersonenComboChorModel> listChor = db.getCvwPersonenComboChor();
-//	    listChor.sort(Comparator.comparing(CvwPersonenComboChorModel::getPechor, String::compareToIgnoreCase));
-//
-//	    oblist_filterpersonenchor = FXCollections.observableArrayList(listChor);
-//	    cbxPersFilterChor.setItems(oblist_filterpersonenchor);
-//	    cbxPersFilterChor.setValue(null);
-//	    cbxPersFilterChor.setEditable(true);
-//
-//	    // StringConverter für editierbare ComboBox
-//	    cbxPersFilterChor.setConverter(new StringConverter<CvwPersonenComboChorModel>() {
-//	        @Override
-//	        public String toString(CvwPersonenComboChorModel object) {
-//	            return object != null ? object.getPechor() : "";
-//	        }
-//
-//	        @Override
-//	        public CvwPersonenComboChorModel fromString(String string) {
-//	            if (string == null || string.isBlank()) return null;
-//	            // Versuche passende Auswahl aus Items zu finden
-//	            return cbxPersFilterChor.getItems().stream()
-//	                    .filter(c -> c.getPechor().equalsIgnoreCase(string))
-//	                    .findFirst()
-//	                    .orElseGet(() -> new CvwPersonenComboChorModel(string)); // Optional: neues Modell für neue Eingabe
-//	        }
-//	    });
-//
-//	    // Listener zum Speichern bei Auswahl
-//	    cbxPersFilterChor.valueProperty().addListener((obs, oldVal, newVal) -> {
-//	        if (newVal != null) {
-//	            ConfigManager.saveFilterChor(newVal.getPechor());
-//	        }
-//	    });
-//
-//
-//	    // -------------------------------
-//	    // 2️⃣ Gruppe ComboBox (editierbar, Teileingabe)
-//	    // -------------------------------
-//	    List<CvwPersonenComboGruppeModel> listGruppe = db.getCvwPersonenComboGruppe();
-//	    listGruppe.sort(Comparator.comparing(CvwPersonenComboGruppeModel::getPegruppe, String::compareToIgnoreCase));
-//
-//	    oblist_filterpersonengruppe = FXCollections.observableArrayList(listGruppe);
-//	    cbxPersFilterGruppe.setItems(oblist_filterpersonengruppe);
-//	    cbxPersFilterGruppe.setValue(null);
-//	    cbxPersFilterGruppe.setEditable(true);
-//
-//	    // StringConverter für editierbare ComboBox
-//	    cbxPersFilterGruppe.setConverter(new StringConverter<CvwPersonenComboGruppeModel>() {
-//	        @Override
-//	        public String toString(CvwPersonenComboGruppeModel object) {
-//	            return object != null ? object.getPegruppe() : "";
-//	        }
-//
-//	        @Override
-//	        public CvwPersonenComboGruppeModel fromString(String string) {
-//	            if (string == null || string.isBlank()) return null;
-//	            return cbxPersFilterGruppe.getItems().stream()
-//	                    .filter(g -> g.getPegruppe().equalsIgnoreCase(string))
-//	                    .findFirst()
-//	                    .orElseGet(() -> new CvwPersonenComboGruppeModel(string)); // Optional: neues Modell für neue Eingabe
-//	        }
-//	    });
-//
-//	    // Listener zum Speichern bei Auswahl
-//	    cbxPersFilterGruppe.valueProperty().addListener((obs, oldVal, newVal) -> {
-//	        if (newVal != null) {
-//	            ConfigManager.saveFilterGruppe(newVal.getPegruppe());
-//	        }
-//	    });
 
 	}
 
@@ -2849,35 +2558,35 @@ public class FrmAktionenController
 
 		oblist_filterpersonengruppe.setAll(listGruppe);
 
-		//cbxPersFilterChor.setItems(oblist_filterpersonenchor);
-		//cbxPersFilterGruppe.setItems(oblist_filterpersonengruppe);
+		// cbxPersFilterChor.setItems(oblist_filterpersonenchor);
+		// cbxPersFilterGruppe.setItems(oblist_filterpersonengruppe);
 		cbxMitwFilterChor.setItems(oblist_filterpersonenchor);
 		cbxMitwFilterGruppe.setItems(oblist_filterpersonengruppe);
 	}
 
-	
-	
 	@FXML
 	public void men01AktionenBeenden_OnClick()
 	{
-        if (!Msgbox.yesno("Programm beenden", "Möchten Sie das Programm wirklich beenden?")) {
-              return;
-        }
-        speichereAktionenfilter();
+		if (!Msgbox.yesno("Programm beenden", "Möchten Sie das Programm wirklich beenden?"))
+		{
+			return;
+		}
+		speichereAktionenfilter();
 		SceneManager.exitApp();
 	}
+
 	@FXML
 	public void men02StdatPersonen_OnAction() throws Exception
 	{
 		openStammdaten("personen");
-		}
-	
+	}
+
 	@FXML
 	public void men02StdatImport_OnAction() throws Exception
 	{
 		openStammdaten("import");
-		}
-	
+	}
+
 // --------------------------------------------------------------------------------
 // Hilfsmethoden für Steuerelemente -----------------------------------------------
 // --------------------------------------------------------------------------------
@@ -3132,30 +2841,35 @@ public class FrmAktionenController
 		cbxFilterOrt.getEditor().setText(ConfigManager.loadFilterAktionOrt());
 		cbxFilterGruppe.getEditor().setText(ConfigManager.loadFilterAktionGruppe());
 		txtFilterKurzbeschr.setText(ConfigManager.loadFilterAktionBeschreibung());
+		
+		cbxMitwFilterChor.getEditor().setText(ConfigManager.loadFilterChor());
+		cbxMitwFilterGruppe.getEditor().setText(ConfigManager.loadFilterGruppe());
+		
+		
 
 	}
 
-	public void restoreCombosTabPersonen() throws SQLException
-	{ // Filterwerte wieder holen aus Prop
-
-		String savedChor = ConfigManager.loadFilterChor();
-		if (!savedChor.isBlank())
-		{
-			cbxPersFilterChor.getItems().stream()
-					.filter(c -> c.getPechor().equals(savedChor))
-					.findFirst()
-					.ifPresent(cbxPersFilterChor::setValue);
-		}
-
-		String savedGruppe = ConfigManager.loadFilterGruppe();
-		if (!savedGruppe.isBlank())
-		{
-			cbxPersFilterGruppe.getItems().stream()
-					.filter(g -> g.getPegruppe().equals(savedGruppe))
-					.findFirst()
-					.ifPresent(cbxPersFilterGruppe::setValue);
-		}
-
-	}
+//	public void restoreCombosTabPersonen() throws SQLException
+//	{ // Filterwerte wieder holen aus Prop
+//
+//		String savedChor = ConfigManager.loadFilterChor();
+//		if (!savedChor.isBlank())
+//		{
+//			cbxMitwFilterChor.getItems().stream()
+//					.filter(c -> c.getPechor().equals(savedChor))
+//					.findFirst()
+//					.ifPresent(cbxMitwFilterChor::setValue);
+//		}
+//
+//		String savedGruppe = ConfigManager.loadFilterGruppe();
+//		if (!savedGruppe.isBlank())
+//		{
+//			cbxMitwFilterGruppe.getItems().stream()
+//					.filter(g -> g.getPegruppe().equals(savedGruppe))
+//					.findFirst()
+//					.ifPresent(cbxMitwFilterGruppe::setValue);
+//		}
+//
+//	}
 
 }

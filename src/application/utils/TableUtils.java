@@ -20,25 +20,25 @@ public class TableUtils {
     /**
      * Variante 1 – für numerische IDs (int)
      */
-    public static <T> void selectRowById(TableView<T> tableView, int idToFind, ToIntFunction<T> idExtractor) {
-        Platform.runLater(() -> {
-            List<T> items = tableView.getItems();
-            if (items == null || items.isEmpty()) return;
+	public static <T> void selectRowById(TableView<T> tableView, int idToFind, ToIntFunction<T> idExtractor) {
 
-            for (T item : items) {
-                if (idExtractor.applyAsInt(item) == idToFind) {
-                    int index = items.indexOf(item);
+	    List<T> items = tableView.getItems();
+	    if (items == null || items.isEmpty()) return;
 
-                    tableView.getSelectionModel().clearSelection();
-                    tableView.getSelectionModel().select(index);
-                    tableView.scrollTo(index);
-                    tableView.getFocusModel().focus(index);
-                    tableView.requestFocus();
-                    break;
-                }
-            }
-        });
-    }
+	    for (T item : items) {
+	        if (idExtractor.applyAsInt(item) == idToFind) {
+
+	            int index = items.indexOf(item);
+
+	            tableView.getSelectionModel().clearAndSelect(index);
+	            tableView.scrollTo(index);
+	            tableView.getFocusModel().focus(index);
+	            tableView.requestFocus();
+
+	            break;
+	        }
+	    }
+	}
 
     /**
      * Variante 2 – für String-IDs (z. B. "LIT_001")

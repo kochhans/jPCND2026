@@ -433,16 +433,6 @@ public class ConfigManager
 	    props.setProperty("filter.gruppe", value != null ? value : "");
 	    save();
 	}
-	
-	
-	
-//	public static String loadFilterMitwGruppe() {
-//	    return props.getProperty("filter.mitwgruppe", "");
-//	}
-//
-//	public static void saveFilterMitwGruppe(String value) {
-//	    props.setProperty("filter.mitwgruppe", value != null ? value : "");
-//	    save();
-//	}
+
 
 }
