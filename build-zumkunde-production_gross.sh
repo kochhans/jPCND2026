@@ -69,55 +69,15 @@ build_linux() {
     TMP="$(mktemp -d)"
     mkdir -p "$TMP/jpcnd"
 
-    # ----------------------------
-    # APP CORE
-    # ----------------------------
     cp "$APP_JAR" "$TMP/jpcnd/"
     cp -r "$LIB_DIR" "$TMP/jpcnd/jpcnd_lib"
     cp "$RUN_SCRIPT" "$TMP/jpcnd/"
     cp "$README" "$TMP/jpcnd/"
-
-    # ----------------------------
-    # JAVAFX
-    # ----------------------------
     cp -r "$FX_ROOT/linux-sdk/lib" "$TMP/jpcnd/javafx"
-
-    # ----------------------------
-    # APP ASSETS
-    # ----------------------------
+    
     cp "$ROOT/install-linuxuser.sh" "$TMP/jpcnd/"
-    cp "$ROOT/lib/mac/jpcnd.png" "$TMP/jpcnd/"
+	cp "$ROOT/lib/mac/jpcnd.png" "$TMP/jpcnd/"
 
-    # ====================================================
-    # RUNTIME (FIXED PATH + CORRECT ORDER)
-    # ====================================================
-
-    echo ""
-    echo "☕ Binde Java Runtime ein"
-
-    JAVA_HOME="$RUNTIME_ROOT/linux-x64/jdk"
-
-    if [ ! -x "$JAVA_HOME/bin/java" ]; then
-        echo "❌ Java Runtime nicht gefunden:"
-        echo "$JAVA_HOME"
-        exit 1
-    fi
-
-    echo "☕ Java gefunden: $JAVA_HOME"
-
-    RUNTIME_TARGET="$TMP/jpcnd/runtime/jre"
-    mkdir -p "$RUNTIME_TARGET"
-
-    cp -R "$JAVA_HOME/bin" "$RUNTIME_TARGET/"
-    cp -R "$JAVA_HOME/lib" "$RUNTIME_TARGET/"
-    cp -R "$JAVA_HOME/conf" "$RUNTIME_TARGET/" 2>/dev/null || true
-    cp -R "$JAVA_HOME/release" "$RUNTIME_TARGET/" 2>/dev/null || true
-
-    echo "✅ Runtime eingebunden"
-
-    # ----------------------------
-    # ZIP
-    # ----------------------------
     ZIP="$OUT/${NAME_LINUX}-${BUILD_VERSION}.zip"
     ZIP_LATEST="$OUT/${NAME_LINUX}-${LATEST_SUFFIX}.zip"
 
@@ -130,6 +90,7 @@ build_linux() {
     echo "✅ Linux ZIP: $ZIP"
     echo "📦 Linux LATEST: $ZIP_LATEST"
 }
+
 # =====================================================
 # MAC APP BUNDLE
 # =====================================================

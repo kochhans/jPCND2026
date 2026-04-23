@@ -224,7 +224,6 @@ public class FrmAktionenController
 	// ----------------------------
 	// (3.2) Tab Teilnehmer
 	// ----------------------------
-	// LABELS---------------------
 	@FXML
 	private Label lblMitwirkendeDatensatzaktion, lblAktionTeilnehmerliste, lblPersonenGesamtliste;
 	@FXML
@@ -235,6 +234,10 @@ public class FrmAktionenController
 	private Button btnMitwEditSpeichern, btnMitwEditLoeschen, btnMitwEditNeu,
 			btnMitwEditLoeschen1, btnMitwEditSpeichern1,
 			btnMitwFilterEin, btnMitwFilterAus;
+
+	@FXML
+	private CheckBox chkAutomatischPos;
+
 	@FXML
 	private ComboBox<CvwPersonenComboChorModel> cbxMitwFilterChor;
 	@FXML
@@ -368,14 +371,14 @@ public class FrmAktionenController
 
 		tblvwAktionPositionen.setFixedCellSize(26);
 		tblvwChoraktionen.getSelectionModel()
-	    .selectedItemProperty()
-	    .addListener((obs, oldVal, newVal) -> {
+				.selectedItemProperty()
+				.addListener((obs, oldVal, newVal) -> {
 
-	        if (newVal == null || newVal == oldVal)
-	            return;
+					if (newVal == null || newVal == oldVal)
+						return;
 
-	        handleAktionSelected(newVal);
-	    });
+					handleAktionSelected(newVal);
+				});
 //		tblvwChoraktionen.getSelectionModel()
 //				.selectedItemProperty()
 //				.addListener((obs, oldVal, newVal) -> {
@@ -392,7 +395,7 @@ public class FrmAktionenController
 		{
 			throw new IllegalStateException("DB-Controller wurde nicht gesetzt!");
 		}
-		//initTabPanes();
+		// initTabPanes();
 		initData();
 		// ===== Update-Check nur 1x pro Sitzung =====
 		if (ValuesGlobals.updatecheck == true)
@@ -493,7 +496,7 @@ public class FrmAktionenController
 
 		// initTableCvwPersonenImport();
 		initCombosTabPersonen();
-		//restoreCombosTabPersonen();
+		// restoreCombosTabPersonen();
 		restoreFilterAktionen();
 		anzeigenCombosTabPersonen();
 
@@ -679,9 +682,8 @@ public class FrmAktionenController
 
 		// 👉 Label setzen
 
-				lblDruckreportsAnzahl.setText(anzahl + " gespeicherte REPORTS im Ordner");
+		lblDruckreportsAnzahl.setText(anzahl + " gespeicherte REPORTS im Ordner");
 
-		
 	}
 
 	// ==================================================================================
@@ -841,19 +843,18 @@ public class FrmAktionenController
 //		tblvwAktionPositionen.getSortOrder().clear();
 //		oblist_aktionenpositionenData.master.setAll(db.getAktionenPositionenListeAll(aktuelleAktion));
 
-		    AktionenListeModel selected = tblvwChoraktionen.getSelectionModel().getSelectedItem();
+		AktionenListeModel selected = tblvwChoraktionen.getSelectionModel().getSelectedItem();
 
-		    if (selected == null)
-		    {
-		        return; // ❗ kein clear mehr
-		    }
-
-		    int aktuelleAktion = selected.getCaid();
-
-		    oblist_aktionenpositionenData.master
-		        .setAll(db.getAktionenPositionenListeAll(aktuelleAktion));
+		if (selected == null)
+		{
+			return; // ❗ kein clear mehr
 		}
 
+		int aktuelleAktion = selected.getCaid();
+
+		oblist_aktionenpositionenData.master
+				.setAll(db.getAktionenPositionenListeAll(aktuelleAktion));
+	}
 
 //	private void reloadAktionenPositionen(int caid) {
 //	    oblist_aktionenpositionenData.setAll(
@@ -1151,7 +1152,7 @@ public class FrmAktionenController
 		tblvwChoraktionen.getSelectionModel().clearSelection();
 		Platform.runLater(dpEingabeDatum::requestFocus);
 		ohneAktionElementeDisablen();
-		//tabPaneAktionen.getSelectionModel().select(tabDetails);
+		// tabPaneAktionen.getSelectionModel().select(tabDetails);
 
 	}
 
@@ -1214,7 +1215,7 @@ public class FrmAktionenController
 			// AktionenListeModel selected =
 			// tblvwChoraktionen.getSelectionModel().getSelectedItem();
 
-			System.out.println("Probe oder Auftritt " + selected.getCaauftrittstermin());
+			// System.out.println("Probe oder Auftritt " + selected.getCaauftrittstermin());
 			// -------------------- Checkboxen --------------------//
 			radDetailsProbe.setSelected(selected.isProbe());
 			radDetailsAuff.setSelected(selected.isAuftritt());
@@ -1282,12 +1283,17 @@ public class FrmAktionenController
 			btnAktionDuplizieren.setDisable(false);
 			btnAktionDrucken1.setDisable(false);
 			chkDuplikatInclTitel.setDisable(false);
+			if ((chkAutomatischPos.isSelected()) || (tabPaneAktionen.getSelectionModel().isSelected(2)))
+			{
+				tabPaneAktionen.getSelectionModel().select(tabDetails);
+			}
+
 			// lblAktionAktuell.setDisable(false);
 
-			//leerenEingabenMitwirkende();
-			//anzeigenTabelleAktionenPositionen();
+			// leerenEingabenMitwirkende();
+			// anzeigenTabelleAktionenPositionen();
 			anzeigenTblvwMitwirkende();
-			//anzeigenTblvwPersonen();
+			// anzeigenTblvwPersonen();
 
 		}
 		finally
@@ -1402,7 +1408,7 @@ public class FrmAktionenController
 		refreshComboBoxes();
 		if (neu == true)
 		{
-			//btnAktionNeu_OnClick(event);
+			// btnAktionNeu_OnClick(event);
 		}
 		// Cursor wieder setzen
 		TableUtils.selectRowById(tblvwChoraktionen, neueCaid, AktionenListeModel::getCaid);
@@ -1478,9 +1484,8 @@ public class FrmAktionenController
 	{
 		int anzahlPdfs = 0;
 		fctAblaufplanDrucken(2); // Nur Musikstücke mit Zusatzangaben
-		
-		// 👉 Anzahl der PDFs ermitteln
 
+		// 👉 Anzahl der PDFs ermitteln
 
 	}
 
@@ -1893,7 +1898,6 @@ public class FrmAktionenController
 		handleBtnMitwEditLoeschen_onClick();
 	}
 
-
 // =============================================================================================================================
 // ##### IMPORT Aktionen aus PCND CA -- 3xCSV-Dateien: ChorAktionen.csv,
 // ChorAktionenPositionen.csv, ChorAktionPersonen.csv
@@ -2048,7 +2052,6 @@ public class FrmAktionenController
 
 		scene.setCursor(Cursor.WAIT);
 
-
 		Task<Void> importTask = new Task<>()
 		{
 			@Override
@@ -2097,7 +2100,6 @@ public class FrmAktionenController
 		importTask.setOnRunning(e -> {
 
 		});
-
 
 		importTask.setOnSucceeded(e -> {
 			scene.setCursor(Cursor.DEFAULT);
@@ -2196,7 +2198,7 @@ public class FrmAktionenController
 		oblist_aktionenData.master.setAll(listaktionen);
 
 		lblFilterAnzahl.setText(" " + String.valueOf(oblist_aktionenData.master.size()) + " gefiltert");
-		//leerenTabelleAktionenPositionen();
+		// leerenTabelleAktionenPositionen();
 	}
 
 	public void leerenAktionsfelder()
@@ -2581,6 +2583,7 @@ public class FrmAktionenController
 		speichereAktionenfilter();
 		SceneManager.exitApp();
 	}
+
 	@FXML
 	public void men01Einstellungen_OnAction() throws Exception
 	{
@@ -2598,8 +2601,6 @@ public class FrmAktionenController
 	{
 		openStammdaten("import");
 	}
-	
-	
 
 // --------------------------------------------------------------------------------
 // Hilfsmethoden für Steuerelemente -----------------------------------------------
@@ -2855,11 +2856,9 @@ public class FrmAktionenController
 		cbxFilterOrt.getEditor().setText(ConfigManager.loadFilterAktionOrt());
 		cbxFilterGruppe.getEditor().setText(ConfigManager.loadFilterAktionGruppe());
 		txtFilterKurzbeschr.setText(ConfigManager.loadFilterAktionBeschreibung());
-		
+
 		cbxMitwFilterChor.getEditor().setText(ConfigManager.loadFilterChor());
 		cbxMitwFilterGruppe.getEditor().setText(ConfigManager.loadFilterGruppe());
-		
-		
 
 	}
 

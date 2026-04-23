@@ -164,6 +164,7 @@ public class StartupManager {
             primaryStage.centerOnScreen();
             primaryStage.setMinWidth(1240);
             primaryStage.setMinHeight(780);
+            //primaryStage.setResizable(false);
 
             // 🔹 SceneManager initialisieren (entscheidet selbst, welche Scene geladen wird)
             DatabaseControllerAktionen dbController = new DatabaseControllerAktionen();
@@ -225,8 +226,9 @@ public class StartupManager {
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.getIcons().add(new Image(getClass().getResourceAsStream("/icons/javafx/jpcndicon0064.png")));
             dialog.setResizable(false);
-            dialog.setWidth(550);
-            dialog.setHeight(200);
+            dialog.setWidth(700);
+            dialog.setHeight(400);
+            dialog.setTitle("Lizenz für jPCND ...");
 
             LicenseDialogController controller = loader.getController();
             controller.setStage(dialog);

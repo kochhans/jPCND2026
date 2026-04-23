@@ -1,0 +1,84 @@
+/* Zusatz zu FramAktionenTableview.css 
+=========================
+   TABLE BASIS
+   ========================= */
+
+/* =========================
+   HEADER (SPALTENKOPF)
+   ========================= */
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+/* =========================
+   ZELLEN
+   ========================= */
+
+.table-view .table-cell {
+    -fx-border-color: transparent #3a6a6a #3a6a6a transparent;
+    -fx-border-width: 0 1 1 0;
+	-fx-text-fill: white;
+}
+
+/* =========================
+   ZEILEN (STANDARD)
+   ========================= */
+   .table-row-cell {
+       -fx-border-color: transparent;
+	   -fx-background-color: #2F4F4F;
+	   -fx-text-fill: white;	   
+   }
+
+  
+/* Alternierende Zeilen */
+.table-row-cell:odd {
+       -fx-background-color: #2F4F4F;
+	   -fx-text-fill: white;
+   }
+   
+
+/* =========================
+   HOVER EFFEKT
+   ========================= */
+.table-row-cell:hover {
+    -fx-background-color: #627A7A;/*#dbe9f6;*/
+	-fx-text-fill: black;
+}
+
+/* Hover */
+.table-row-cell:hover .table-cell {
+    -fx-text-fill: black;
+}
+
+/* Selected bleibt weiß */
+.table-row-cell:selected .table-cell {
+    -fx-text-fill: white;
+}
+
+
+/* =========================
+   SELECTION
+   ========================= */
+
+
+/* =========================
+   FOCUS (optional dezent)
+   ========================= */
+
+
+/* =========================
+   PLACEHOLDER (wenn leer)
+   ========================= */
+
+
+/* =========================
+   SCROLLBAR (modernisiert)
+   ========================= */
+
+
+
+/* =========================
+   LEERE ECKE OBEN RECHTS
+   ========================= */

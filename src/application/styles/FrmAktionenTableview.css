@@ -1,0 +1,141 @@
+/* =========================
+   TABLE BASIS
+   ========================= */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #D0D0D0;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
+/* =========================
+   HEADER (SPALTENKOPF)
+   ========================= */
+
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-padding: 8 10 8 10;
+    -fx-pref-height: 20px;
+    -fx-border-color: transparent rgba(255,255,255,0.15) transparent transparent;
+	-fx-border-width: 0 1 0 0;   /* rechte Linie */
+}
+.table-view .column-header:last-visible {
+    -fx-border-width: 0;
+}
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(#5c5c5c, #3f3f3f);
+    -fx-background-radius: 6 6 0 0;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+.table-view .column-header .arrow {
+    -fx-background-color: rgba(255,255,255,0.85);
+    -fx-padding: 5px;
+}
+
+.table-view .column-header:hover .arrow {
+    -fx-background-color: white;
+}
+
+.table-view .column-header:sorted {
+    -fx-background-color: linear-gradient(#6a6a6a, #4a4a4a);
+}
+
+/* =========================
+   ZELLEN
+   ========================= */
+.table-view .table-cell {
+    -fx-font-size: 12px;
+    -fx-padding: 1 2 1 2;
+    -fx-text-fill: #2b2b2b;
+	-fx-alignment: CENTER-LEFT;   /* horizontal + vertikal */
+}
+
+/* =========================
+   ZEILEN (STANDARD)
+   ========================= */
+
+
+.table-row-cell {
+    -fx-background-color: #E0E0E0;
+    -fx-border-color: transparent transparent #e6e6e6 transparent;
+}
+
+/* Alternierende Zeilen */
+.table-row-cell:odd {
+    -fx-background-color: #C0C0C0;
+}
+
+/* =========================
+   HOVER EFFEKT
+   ========================= */
+.table-row-cell:hover {
+    -fx-background-color: #dbe9f6;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================
+   SELECTION
+   ========================= */
+.table-row-cell:selected {
+    -fx-background-color: #4a90e2;
+}
+
+.table-row-cell:selected .table-cell {
+    -fx-text-fill: white;
+}
+
+/* =========================
+   FOCUS (optional dezent)
+   ========================= */
+.table-view:focused {
+    -fx-border-color: #4a90e2;
+}
+
+/* =========================
+   PLACEHOLDER (wenn leer)
+   ========================= */
+.table-view .placeholder .label {
+    -fx-text-fill: #888;
+    -fx-font-style: italic;
+    -fx-font-size: 10px;
+}
+
+/* =========================
+   SCROLLBAR (modernisiert)
+   ========================= */
+.scroll-bar:vertical,
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #c1c1c1;
+    -fx-background-radius: 5;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #a8a8a8;
+}
+
+/* =========================
+   LEERE ECKE OBEN RECHTS
+   ========================= */
+.table-view .filler {
+    -fx-background-color: linear-gradient(#5c5c5c, #3f3f3f);
+}

@@ -12,8 +12,8 @@
 /*Style of each column header in the tableView*/
 .table-view .column-header {
      /*-fx-background-color: transparent;*/
-     -fx-font-size:9px;
-     -fx-font-weight:normal;
+     -fx-font-size: 9px;
+     -fx-font-weight: bold;
 } 
 
 /*Style of each column header's background in the tableView*/
@@ -30,21 +30,21 @@
 
 /*Style of each column in the tableView*/
 .table-view .table-column{
-    -fx-alignment:center;
+    -fx-alignment: center;
     -fx-alignment: CENTER-LEFT;
     
 }
 .table-view .placeholder{
-    -fx-alignment:TOP-CENTER;
-     -fx-font-size:9 px;  
-     -fx-font-style:italic
+    -fx-alignment: TOP-CENTER;
+     -fx-font-size: 9 px;  
+     -fx-font-style: italic
     
 }
 
  /*Style of each table cell*/
 .table-view .table-cell{
     /*-fx-font-weight:bold;*/
-    -fx-font-size:9px;           /*the font size you asked in the comments below*/
+    -fx-font-size: 12px;           /*the font size you asked in the comments below*/
     /* -fx-text-fill:orange; */
 
 }
