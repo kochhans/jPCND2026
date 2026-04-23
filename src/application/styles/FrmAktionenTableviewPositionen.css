@@ -55,6 +55,7 @@
 /* Selected bleibt weiß */
 .table-row-cell:selected .table-cell {
     -fx-text-fill: white;
+	
 }
 
 

@@ -1595,7 +1595,7 @@ public class FrmAktionenPositionenController
 		}
 	}
 
-	void clearFilterfelder()
+	void clearFilterfelder()throws Exception
 	{
 		txtFilterTitel.setText("");
 		txtFilterEdit.setText("");
@@ -1611,23 +1611,30 @@ public class FrmAktionenPositionenController
 		cbxFilterStueckart.getEditor().setText("");
 		cbxFilterNotenmappe.getSelectionModel().clearSelection();
 		cbxFilterNotenmappe.getEditor().setText("");
-		oblist_lit.clear();
-		lblFilterTab0Anzahl.setText("Kein Filter aus Literaturdaten aktiv ...");
+		//oblist_lit.clear();
+		oblist_pos_aufgef.clear();
+		filternAktionen();
+		//lblFilterTab0Anzahl.setText("Kein Filter aus Literaturdaten aktiv ...");
 	}
 
 	void clearFilterfelderAktionen() throws Exception
 	{
-		dpFilterDatumBis.setValue(null);
-		dpFilterDatumVon.setValue(
-				LocalDate.now()
-						.minusYears(10)
-						.withDayOfYear(1));
+		//dpFilterDatumBis.setValue(null);
+//		dpFilterDatumVon.setValue(
+//				LocalDate.now()
+//						.minusYears(10)
+//						.withDayOfYear(1));
+		//dpFilterDatumVon.setValue(null);
 		cbxFilterAktion.setValue(null);
+		cbxFilterAktion.getEditor().setText("");
 		cbxFilterGruppe.setValue(null);
+		cbxFilterGruppe.getEditor().setText("");
 		cbxFilterOrt.setValue(null);
+		cbxFilterOrt.getEditor().setText("");		
 		radFilterAlles.setSelected(true);
 		filternAktionen();
 		oblist_aktionenpos1.clear();
+		//oblist_pos_aufgef.clear();
 	}
 
 	private void speichereFilterAktionenPositionen()
@@ -1869,6 +1876,9 @@ public class FrmAktionenPositionenController
 		{// nur wenn oben geklickt wurde, darf die untere Tabelle neu aufgebaut werden
 			anzeigenTableviewChorAktionenAusAufgef();
 		}
+		else {
+				
+		}
 		// tblvwAktionPositionen.getSelectionModel().clearSelection();
 	}
 
@@ -1903,10 +1913,14 @@ public class FrmAktionenPositionenController
 		if (tabAktiv == 0)
 		{
 			filtern(0);
+			
+			
 		}
 		else if (tabAktiv == 1)
 		{
+			
 			filternAktionen();
+			
 		}
 	}
 
@@ -1919,10 +1933,16 @@ public class FrmAktionenPositionenController
 		if (tabAktiv == 0)
 		{
 			clearFilterfelder();
+			filtern(0);
+			//oblist_.clear();
 		}
 		else if (tabAktiv == 1)
 		{
 			clearFilterfelderAktionen();
+			filternAktionen();
+			
+
+
 		}
 
 //		try
@@ -1964,6 +1984,7 @@ public class FrmAktionenPositionenController
 			filterlitwoli = cbxFilterWochenlied.getEditor().getText();
 			filterlitnoma = cbxFilterNotenmappe.getEditor().getText();
 			oblist_lit.clear();
+			oblist_pos_aufgef.clear();
 			List<LiteraturlisteModel> listadb = db.getLiteraturListeFilter(
 					filterLitId,
 					filterlittitel,
@@ -2093,6 +2114,8 @@ public class FrmAktionenPositionenController
 	public void filternAktionen() throws Exception
 	{
 		oblist_aktionen.clear();
+		oblist_aktionenpos1.clear();
+		tblvwLiteratur.getSelectionModel().clearSelection();
 		// Filterwerte direkt aus DatePicker
 		LocalDate filterDatumVon = dpFilterDatumVon.getValue();
 		LocalDate filterDatumBis = dpFilterDatumBis.getValue();

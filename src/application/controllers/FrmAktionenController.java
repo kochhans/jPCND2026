@@ -1283,7 +1283,7 @@ public class FrmAktionenController
 			btnAktionDuplizieren.setDisable(false);
 			btnAktionDrucken1.setDisable(false);
 			chkDuplikatInclTitel.setDisable(false);
-			if ((chkAutomatischPos.isSelected()) || (tabPaneAktionen.getSelectionModel().isSelected(2)))
+			if ((chkAutomatischPos.isSelected()) || (tabPaneAktionen.getSelectionModel().isSelected(2)) )
 			{
 				tabPaneAktionen.getSelectionModel().select(tabDetails);
 			}

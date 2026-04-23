@@ -406,7 +406,7 @@
                                           <TableView fx:id="tblvwAktionPositionen" editable="true" focusTraversable="false" layoutY="54.0" maxHeight="1.7976931348623157E308" prefHeight="155.0" prefWidth="1234.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="54.0">
                                              <columns>
                                                 <TableColumn fx:id="tblvwPosCol0Pos" editable="false" maxWidth="55.0" minWidth="55.0" prefWidth="55.0" resizable="false" sortable="false" text="Pos" />
-                                                <TableColumn fx:id="tblvwPosCol1Art" editable="false" maxWidth="150.0" minWidth="40.0" prefWidth="100.0" sortable="false" text="Hinweis" />
+                                                <TableColumn fx:id="tblvwPosCol1Art" editable="false" maxWidth="150.0" minWidth="0.0" prefWidth="100.0" sortable="false" text="Hinweis" />
                                                 <TableColumn fx:id="tblvwPosCol2Stcktitel" editable="false" minWidth="50.0" prefWidth="120.0" sortable="false" text="Stück-Titel" />
                                                 <TableColumn fx:id="tblvwPosCol5Stckart" editable="false" minWidth="30.0" prefWidth="50.0" sortable="false" text="Stück-Art" />
                                                 <TableColumn fx:id="tblvwPosCol3Notenausgabe" editable="false" minWidth="50.0" prefWidth="100.0" sortable="false" text="Notenausgabe" />

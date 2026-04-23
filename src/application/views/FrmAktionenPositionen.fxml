@@ -99,122 +99,127 @@
                               </TableView>
                            </children>
                         </AnchorPane>
-                      <AnchorPane maxHeight="420.0" minHeight="420.0" minWidth="300.0" prefHeight="420.0" prefWidth="300.0" style="-fx-background-color: #e0e0e0;" SplitPane.resizableWithParent="false">
+                      <AnchorPane minHeight="420.0" minWidth="300.0" prefHeight="420.0" prefWidth="300.0" style="-fx-background-color: #e0e0e0;" SplitPane.resizableWithParent="false">
                            <children>
-                              <CheckBox fx:id="chkProgZwischentext" disable="true" layoutX="300.0" layoutY="163.0" mnemonicParsing="false" onMouseClicked="#chkProgZwischentext_OnMouseClicked" prefHeight="19.0" prefWidth="119.0" styleClass="label-rotklein" text="Zwischentext" />
-                              <CheckBox fx:id="chkProgQuellePcnd" disable="true" layoutX="300.0" layoutY="183.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="118.0" text="Quelle PCND">
+                              <Label layoutX="18.0" layoutY="88.0" prefHeight="20.0" prefWidth="80.0" styleClass="label-rotklein" text="ZwiText" wrapText="true" />
+                              <Label alignment="CENTER" layoutX="403.0" layoutY="113.0" prefHeight="15.0" prefWidth="91.0" text=":" />
+                              
+                              <CheckBox fx:id="chkProgZwischentext" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="1.0" layoutX="21.0" layoutY="108.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#chkProgZwischentext_OnMouseClicked" prefHeight="18.0" prefWidth="24.0" styleClass="label-rotklein" />
+                              <CheckBox fx:id="chkProgQuellePcnd" disable="true" layoutX="266.0" layoutY="131.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="118.0" text="Quelle PCND">
                                  <styleClass>
                                     <String fx:value="label" />
                                     <String fx:value="schriftblaugrau" />
                                  </styleClass></CheckBox>
-                              <TextField fx:id="txtPosProgpkt" layoutX="20.0" layoutY="39.0" prefHeight="28.0" prefWidth="157.0" />
-                              <TextField fx:id="txtPosStckTitel" layoutX="185.0" layoutY="39.0" prefHeight="28.0" prefWidth="208.0" />
-                              <TextField fx:id="txtPosNotenausgabe" layoutX="20.0" layoutY="85.0" prefHeight="28.0" prefWidth="158.0" />
-                              <TextField fx:id="txtPosSeite" alignment="CENTER" layoutX="185.0" layoutY="85.0" prefHeight="28.0" prefWidth="62.0" />
-                              <TextField fx:id="txtPosNr" alignment="CENTER" layoutX="253.0" layoutY="85.0" prefHeight="28.0" prefWidth="50.0" />
-                              <TextField fx:id="txtPosTonart" alignment="CENTER" layoutX="314.0" layoutY="85.0" prefHeight="28.0" prefWidth="78.0" />
-                              <TextField fx:id="txtPosKomponist" layoutX="20.0" layoutY="130.0" prefHeight="28.0" prefWidth="157.0" />
-                              <TextField fx:id="txtPosBearbeiter" layoutX="186.0" layoutY="130.0" prefHeight="28.0" prefWidth="207.0" />
-                              <TextField fx:id="txtPosStueckart" layoutX="20.0" layoutY="179.0" prefHeight="28.0" prefWidth="155.0" />
-                              <TextField fx:id="txtPosDauermin" alignment="CENTER" layoutX="186.0" layoutY="179.0" prefHeight="28.0" prefWidth="48.0" />
-                              <TextField fx:id="txtPosDauersec" alignment="CENTER" layoutX="244.0" layoutY="179.0" prefHeight="28.0" prefWidth="49.0" />
-                              <TextField fx:id="txtPosBesetzung" alignment="TOP_LEFT" layoutX="20.0" layoutY="240.0" prefHeight="86.0" prefWidth="157.0" />
-                              <TextArea fx:id="txtBemerkungen" focusTraversable="false" layoutX="183.0" layoutY="240.0" prefHeight="86.0" prefWidth="320.0" />
-                              <Label layoutX="20.0" layoutY="25.0" text="Hinweis" />
-                              <Label layoutX="185.0" layoutY="25.0" prefHeight="14.0" prefWidth="177.0" text="Stücktitel bzw. Zwischentext" />
-                              <Label layoutX="20.0" layoutY="71.0" prefHeight="14.0" prefWidth="143.0" text="Notenausgabe" />
-                              <Label layoutX="185.0" layoutY="71.0" text="Seite" />
-                              <Label layoutX="253.0" layoutY="71.0" text="Nummer" />
-                              <Label layoutX="20.0" layoutY="164.0" text="Stück-Art" />
-                              <Label layoutX="20.0" layoutY="116.0" prefHeight="14.0" prefWidth="77.0" text="Komponist/in" />
-                              <Label layoutX="186.0" layoutY="116.0" prefHeight="14.0" prefWidth="77.0" text="Bearbeiter/in" />
-                              <Label layoutX="314.0" layoutY="71.0" prefHeight="14.0" prefWidth="45.0" text="Tonart" />
-                              <Label alignment="CENTER" layoutX="186.0" layoutY="205.0" prefHeight="15.0" prefWidth="48.0" text="Min." textAlignment="CENTER" />
-                              <Label alignment="CENTER" layoutX="244.0" layoutY="205.0" prefHeight="15.0" prefWidth="48.0" text="Sec." />
-                              <Label fx:id="lblZeilebearbeiten" layoutX="22.0" layoutY="2.0" prefHeight="24.0" prefWidth="499.0" styleClass="label-title3" text="..." />
-                              
-                              <Button fx:id="btnPosSpeichern" focusTraversable="false" layoutX="20.0" layoutY="335.0" mnemonicParsing="false" onAction="#btnPosSpeichern_OnKlick" prefHeight="34.0" prefWidth="34.0">
-	                            <graphic>
-	                              <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
-	                                 <image>
-	                                    <Image url="@/icons/javafx/accept_32x32.png" />
-	                                 </image>
-	                              </ImageView>
-	                           </graphic>
-	                           <tooltip>
-	                              <Tooltip text="Eingaben in die Positionsliste übernehmen" />
-	                           </tooltip>                             
-                              </Button>
-                              
-                              <Button fx:id="btnPosLeeren" focusTraversable="false" layoutX="108.0" layoutY="335.0" mnemonicParsing="false" onAction="#btnPosLeeren_OnClick" prefHeight="34.0" prefWidth="34.0">
-                              
-                               <graphic>
-	                              <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
-	                                 <image>
-	                                    <Image url="@/icons/javafx/table_edit32x32.png" />
-	                                 </image>
-	                              </ImageView>
-	                           </graphic>
-	                           <tooltip>
-	                              <Tooltip text="Eingabefelder leeren - neuer Datensatz (neue Position)" />
-	                           </tooltip> 
-                              </Button>                              
+                              <TextField fx:id="txtPosProgpkt" layoutX="86.0" layoutY="105.0" prefHeight="28.0" prefWidth="306.0" />
+                              <TextField fx:id="txtPosDauermin" alignment="CENTER" layoutX="404.0" layoutY="105.0" prefHeight="28.0" prefWidth="40.0" />
+                              <TextField fx:id="txtPosDauersec" alignment="CENTER" layoutX="455.0" layoutY="105.0" prefHeight="28.0" prefWidth="40.0" />
+                              <TextField fx:id="txtPosStckTitel" layoutX="15.0" layoutY="148.0" prefHeight="28.0" prefWidth="481.0" />
+                              <TextField fx:id="txtPosNr" alignment="CENTER" layoutX="15.0" layoutY="190.0" prefHeight="28.0" prefWidth="71.0" />
+                              <TextField fx:id="txtPosSeite" alignment="CENTER" layoutX="95.0" layoutY="190.0" prefHeight="28.0" prefWidth="71.0" />
+                              <TextField fx:id="txtPosStueckart" layoutX="172.0" layoutY="190.0" prefHeight="28.0" prefWidth="191.0" />
+                              <TextField fx:id="txtPosTonart" alignment="CENTER" layoutX="370.0" layoutY="190.0" prefHeight="28.0" prefWidth="127.0" />
+                              <TextField fx:id="txtPosNotenausgabe" layoutX="15.0" layoutY="233.0" prefHeight="28.0" prefWidth="208.0" />
+                              <TextField fx:id="txtPosBesetzung" alignment="TOP_LEFT" layoutX="237.0" layoutY="233.0" prefHeight="28.0" prefWidth="260.0" />
+                              <TextField fx:id="txtPosBearbeiter" layoutX="15.0" layoutY="276.0" prefHeight="28.0" prefWidth="207.0" />
+                              <TextField fx:id="txtPosKomponist" layoutX="238.0" layoutY="276.0" prefHeight="28.0" prefWidth="157.0" />
+                              <TextArea fx:id="txtBemerkungen" focusTraversable="false" layoutX="15.0" layoutY="322.0" prefHeight="57.0" prefWidth="377.0" />
+                              <Label layoutX="87.0" layoutY="88.0" prefHeight="15.0" prefWidth="177.0" text="Hinweis zum Ablaufplan" />
+                              <Label layoutX="15.0" layoutY="133.0" prefHeight="15.0" prefWidth="199.0" text="Stücktitel bzw. Zwischentext" />
+                              <Label layoutX="15.0" layoutY="218.0" prefHeight="14.0" prefWidth="143.0" text="Notenausgabe" />
+                              <Label layoutX="96.0" layoutY="176.0" prefHeight="15.0" prefWidth="63.0" text="Seite" />
+                              <Label layoutX="15.0" layoutY="176.0" prefHeight="15.0" prefWidth="53.0" text="Nr." />
+                              <Label layoutX="173.0" layoutY="176.0" prefHeight="15.0" prefWidth="110.0" text="Stück-Art" />
+                              <Label layoutX="15.0" layoutY="262.0" prefHeight="14.0" prefWidth="77.0" text="Komponist/in" />
+                              <Label layoutX="239.0" layoutY="262.0" prefHeight="14.0" prefWidth="77.0" text="Bearbeiter/in" />
+                              <Label layoutX="371.0" layoutY="176.0" prefHeight="15.0" prefWidth="119.0" text="Tonart" />
+                              <Label fx:id="lblZeilebearbeiten" prefHeight="24.0" prefWidth="203.0" style="-fx-background-color: white;" styleClass="label-title3" text="..." AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding></Label>                               
                               
                               
-                              
-                              <Button fx:id="btnPosLoeschen" focusTraversable="false" layoutX="370.0" layoutY="335.0" mnemonicParsing="false" onAction="#btnPosLoeschen_OnClick">
-								<graphic>
-									<ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
-										<image> <Image url="@/icons/javafx/cross32x32.png" /> </image>
-									</ImageView>
-								</graphic>
-								<tooltip>
-									<Tooltip text="markierte Zeile in der Positionsliste löschen ..." /> 
-								</tooltip>                              
-                              </Button> 
-                              
-                              <Button fx:id="btnPosHoch" focusTraversable="false" layoutX="235.0" layoutY="335.0" mnemonicParsing="false" onAction="#btnPosHoch_OnClick" prefHeight="34.0" prefWidth="34.0">
-                                 <graphic>
-									<ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
-										<image> <Image url="@/icons/javafx/icons8-pfeilaufwaerts-32x32.png" /> </image>
-									</ImageView>
-								</graphic>
-								<tooltip>
-									<Tooltip text="markierte Zeile nach oben schieben ..." /> 
-								</tooltip>
-                             </Button>                               
-                              
-                              
-                              <Button fx:id="btnPosRunter" focusTraversable="false" layoutX="294.0" layoutY="335.0" mnemonicParsing="false" onAction="#btnPosRunter_OnClick" prefHeight="34.0" prefWidth="34.0">
-                                <graphic>
-									<ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
-										<image> <Image url="@/icons/javafx/icons8-pfeilabwaerts-32x32.png" /> </image>
-									</ImageView>
-								</graphic>
-								<tooltip>
-									<Tooltip text="markierte Zeile nach unten schieben ..." /> 
-								</tooltip>
-                             </Button>                               
-                              
-                              
-                              <Label layoutX="182.0" layoutY="223.0" prefHeight="15.0" prefWidth="169.0" text="Bemerkungen " />
-                              <TextField fx:id="txtPosLitId" disable="true" editable="false" layoutX="405.0" layoutY="24.0" prefHeight="6.0" prefWidth="46.0" style="-fx-background-color: #e0e0e0; -fx-border-color: #e0e0e0;" styleClass="label-rotklein">
+                              <Label layoutX="15.0" layoutY="305.0" prefHeight="15.0" prefWidth="169.0" text="Bemerkungen " />
+                              <TextField fx:id="txtPosLitId" alignment="CENTER_RIGHT" disable="true" editable="false" layoutX="232.0" layoutY="84.0" prefHeight="24.0" prefWidth="159.0" style="-fx-background-color: #e0e0e0; -fx-border-color: #e0e0e0;" styleClass="label-rotklein">
                                  <font>
                                     <Font size="8.0" />
                                  </font></TextField>
-                              <Label layoutX="20.0" layoutY="223.0" prefHeight="15.0" prefWidth="110.0" text="Besetzung" />
-                              <Label alignment="CENTER_RIGHT" disable="true" layoutX="451.0" layoutY="33.0" prefHeight="15.0" prefWidth="50.0" text="LitId" />
-                              <Rectangle arcHeight="1.0" arcWidth="1.0" fill="WHITE" focusTraversable="true" height="116.0" layoutX="400.0" layoutY="49.0" stroke="#bfbbbb" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="6.0" strokeType="INSIDE" width="99.0" />
-                              <ImageView fx:id="imgNaTitelgrafik" fitHeight="107.0" fitWidth="89.0" layoutX="405.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" />
-                              <Button fx:id="btnNaGrafikwahl" focusTraversable="false" layoutX="411.0" layoutY="169.0" mnemonicParsing="false" onAction="#btnNaGrafikwahl_OnClick" prefHeight="29.0" prefWidth="75.0" styleClass="button-neu" text="Grafik ..." />
-                              <TextField fx:id="txtPosTitelgrafik" alignment="CENTER_RIGHT" disable="true" editable="false" focusTraversable="false" layoutX="297.0" layoutY="210.0" prefHeight="23.0" prefWidth="203.0" style="-fx-background-color: #F4F4F4; -fx-border-color: #F4F4F4;" styleClass="label">
+                              <Label layoutX="237.0" layoutY="218.0" prefHeight="15.0" prefWidth="110.0" text="Besetzung" />
+                              <Label alignment="CENTER_RIGHT" disable="true" layoutX="405.0" layoutY="132.0" prefHeight="15.0" prefWidth="89.0" text="LitId" />
+                              <Rectangle arcHeight="1.0" arcWidth="1.0" fill="WHITE" focusTraversable="true" height="116.0" layoutX="400.0" layoutY="264.0" stroke="#bfbbbb" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="6.0" strokeType="INSIDE" width="99.0" />
+                              <ImageView fx:id="imgNaTitelgrafik" fitHeight="107.0" fitWidth="89.0" layoutX="405.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" />
+                              <Button fx:id="btnNaGrafikwahl" focusTraversable="false" layoutX="400.0" layoutY="384.0" mnemonicParsing="false" onAction="#btnNaGrafikwahl_OnClick" prefHeight="29.0" prefWidth="99.0" styleClass="button-neu" text="Grafik ..." />
+                              <TextField fx:id="txtPosTitelgrafik" alignment="CENTER_RIGHT" disable="true" editable="false" focusTraversable="false" layoutX="21.0" layoutY="383.0" prefHeight="20.0" prefWidth="374.0">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets></TextField>
-                              <Button fx:id="btnPosLeerenAnhaengen" focusTraversable="false" layoutX="167.0" layoutY="335.0" mnemonicParsing="false" onAction="#btnPosLeerenAnhaengen_OnClick" prefHeight="30.0" prefWidth="28.0">
+                              <Label alignment="CENTER" layoutX="399.0" layoutY="88.0" prefHeight="15.0" prefWidth="101.0" text="Dauer (min:sec)" />
+                              <Button fx:id="btnPosSpeichern" focusTraversable="false" layoutX="41.0" layoutY="33.0" mnemonicParsing="false" onAction="#btnPosSpeichern_OnKlick" prefHeight="34.0" prefWidth="34.0">
+                                 <graphic>
+                                    <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
+                                       <image>
+                                          <Image url="@/icons/javafx/accept_32x32.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Eingaben in die Positionsliste übernehmen" />
+                                 </tooltip>
+                              </Button>
+                              <Button fx:id="btnPosLeeren" focusTraversable="false" layoutX="102.0" layoutY="33.0" mnemonicParsing="false" onAction="#btnPosLeeren_OnClick" prefHeight="34.0" prefWidth="34.0">
+                                 <graphic>
+                                    <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
+                                       <image>
+                                          <Image url="@/icons/javafx/table_edit32x32.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="Eingabefelder leeren - neuer Datensatz (neue Position)" />
+                                 </tooltip>
+                              </Button>
+                              <Button fx:id="btnPosLoeschen" focusTraversable="false" layoutX="349.0" layoutY="33.0" mnemonicParsing="false" onAction="#btnPosLoeschen_OnClick">
+                                 <graphic>
+                                    <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
+                                       <image>
+                                          <Image url="@/icons/javafx/cross32x32.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="markierte Zeile in der Positionsliste löschen ..." />
+                                 </tooltip>
+                              </Button>
+                              <Button fx:id="btnPosHoch" focusTraversable="false" layoutX="226.0" layoutY="33.0" mnemonicParsing="false" onAction="#btnPosHoch_OnClick" prefHeight="34.0" prefWidth="34.0">
+                                 <graphic>
+                                    <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
+                                       <image>
+                                          <Image url="@/icons/javafx/icons8-pfeilaufwaerts-32x32.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="markierte Zeile nach oben schieben ..." />
+                                 </tooltip>
+                              </Button>
+                              <Button fx:id="btnPosRunter" focusTraversable="false" layoutX="287.0" layoutY="33.0" mnemonicParsing="false" onAction="#btnPosRunter_OnClick" prefHeight="34.0" prefWidth="34.0">
+                                 <graphic>
+                                    <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
+                                       <image>
+                                          <Image url="@/icons/javafx/icons8-pfeilabwaerts-32x32.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <tooltip>
+                                    <Tooltip text="markierte Zeile nach unten schieben ..." />
+                                 </tooltip>
+                              </Button>
+                              <Button fx:id="btnPosLeerenAnhaengen" focusTraversable="false" layoutX="164.0" layoutY="33.0" mnemonicParsing="false" onAction="#btnPosLeerenAnhaengen_OnClick" prefHeight="30.0" prefWidth="28.0">
                                  <graphic>
                                     <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
                                        <image>
@@ -226,13 +231,7 @@
                                     <Tooltip text="Eingabefelder leeren - neuer Datensatz (neue Position)" />
                                  </tooltip>
                               </Button>
-                              <Label alignment="CENTER" layoutX="8.0" layoutY="384.0" prefHeight="15.0" prefWidth="76.0" text="in Liste sp." />
-                              <Label alignment="CENTER" layoutX="102.0" layoutY="384.0" prefHeight="15.0" prefWidth="67.0" text="einfügen" />
-                              <Label alignment="CENTER" layoutX="167.0" layoutY="384.0" prefHeight="15.0" prefWidth="69.0" text="anhängen" />
-                              <Label alignment="CENTER" layoutX="238.0" layoutY="384.0" prefHeight="15.0" prefWidth="117.0" text="Zeile verschieben" />
-                              <Label alignment="CENTER" layoutX="369.0" layoutY="384.0" prefHeight="15.0" prefWidth="62.0" text="Pos. entf." />
-                              <Label alignment="CENTER" layoutX="110.0" layoutY="397.0" prefHeight="15.0" prefWidth="112.0" text="neu" />
-                              <Button fx:id="btnPosgespielt" disable="true" focusTraversable="false" layoutX="447.0" layoutY="335.0" mnemonicParsing="false" onAction="#btnPosgespielt_OnClick">
+                              <Button fx:id="btnPosgespielt" disable="true" focusTraversable="false" layoutX="436.0" layoutY="33.0" mnemonicParsing="false" onAction="#btnPosgespielt_OnClick">
                                  <graphic>
                                     <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
                                        <image>
@@ -244,11 +243,9 @@
                                     <Tooltip text="markierte Zeile in der Positionsliste löschen ..." />
                                  </tooltip>
                               </Button>
-                              <Label disable="true" layoutX="441.0" layoutY="384.0" text="schon gespelt?" />
-                              <Label alignment="CENTER" layoutX="186.0" layoutY="165.0" prefHeight="15.0" prefWidth="104.0" text="Spieldauer" />
                            </children>
                            <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              <Insets bottom="5.0" />
                            </padding>
                         </AnchorPane>
                     </items>
@@ -263,6 +260,7 @@
                         <content>
                           <AnchorPane style="-fx-background-color: #e0e0e0;">
                                  <children>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="44.0" layoutX="185.0" layoutY="416.0" opacity="0.12" stroke="BLACK" strokeType="INSIDE" width="196.0" />
                                     <Label layoutX="18.0" layoutY="9.0" prefHeight="17.0" prefWidth="98.0" text="Stücktitel" textFill="#6b6b6b" />
                                     <Label layoutX="18.0" layoutY="97.0" prefHeight="17.0" prefWidth="205.0" text="Notenausgabe (lang)" textFill="#6b6b6b" />
                                     <Label layoutX="472.0" layoutY="9.0" prefHeight="17.0" prefWidth="107.0" text="Thema" textFill="#6b6b6b" />
@@ -339,7 +337,6 @@
                                        </font>
                                     </Label>
                                     <Label fx:id="lblFilterTab0Anzahl111" alignment="CENTER" layoutX="387.0" layoutY="412.0" prefHeight="25.0" prefWidth="312.0" text="nur Proben / nur Aufführungen / alles  anzeigen" textFill="#808080" />
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="44.0" layoutX="185.0" layoutY="416.0" opacity="0.12" stroke="BLACK" strokeType="INSIDE" width="196.0" />
                                     <Label fx:id="lblFilterTab0Anzahl" layoutX="9.0" layoutY="144.0" prefHeight="25.0" prefWidth="679.0" text="kein Filter aktiv" textFill="#808080" />
                                  </children>
                               </AnchorPane>
