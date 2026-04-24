@@ -1,6 +1,5 @@
 package application.utils;
 
-import application.ConfigManager;
 import application.db.DBManager;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;

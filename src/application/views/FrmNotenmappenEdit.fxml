@@ -52,7 +52,7 @@
 		<AnchorPane layoutY="54.0" maxHeight="720.0" maxWidth="1024.0" minHeight="620.0" minWidth="985.0" prefHeight="620.0" prefWidth="985.0" style="-fx-background-color: #F0F0F0;">
 			<children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dcddca" height="598.0" layoutX="571.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="402.0" />
-				<TableView fx:id="tblvwNm" layoutX="11.0" layoutY="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onMouseReleased="#tblvwNoma_OnMouseRel" prefHeight="125.0" prefWidth="449.0" stylesheets="@../styles/application.css">
+				<TableView fx:id="tblvwNm" focusTraversable="false" layoutX="11.0" layoutY="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onMouseReleased="#tblvwNoma_OnMouseRel" prefHeight="125.0" prefWidth="449.0" stylesheets="@../styles/application.css">
 					<placeholder><Label text="-" /> </placeholder>
 					<columns>
 						<TableColumn fx:id="tblvwColNmbez" maxWidth="309.0" minWidth="50.0" prefWidth="309.0" text="Notenmappe" />
@@ -69,12 +69,13 @@
 					</font>
 				</TextField>
 				<TextField fx:id="txtNmBemerkung" layoutX="109.0" layoutY="181.0" prefHeight="26.0" prefWidth="351.0" />
-				<TextField fx:id="txtNotenmappeIdCheck" alignment="CENTER" disable="true" editable="false" layoutX="469.0" layoutY="3.0" prefHeight="26.0" prefWidth="98.0" visible="false">
+				<TextField fx:id="txtNotenmappeIdCheck" alignment="CENTER" disable="true" editable="false" focusTraversable="false" layoutX="469.0" layoutY="3.0" prefHeight="26.0" prefWidth="98.0" visible="false">
 					<font>
 						<Font size="8.0" />
 					</font>
 				</TextField>
-				<TableView fx:id="tblvwNmInhalt" layoutX="16.0" layoutY="251.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onMouseReleased="#tblvwNomaInhalt_OnMouseRel" prefHeight="214.0" prefWidth="521.0" stylesheets="@../styles/application.css">
+            <Button fx:id="btnNomaSpeichern" layoutX="469.0" layoutY="134.0" mnemonicParsing="false" onAction="#btnNomaSpeichern_OnClick" prefHeight="26.0" prefWidth="98.0" styleClass="button-speichern" text="Speichern" />
+				<TableView fx:id="tblvwNmInhalt" focusTraversable="false" layoutX="16.0" layoutY="251.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onMouseReleased="#tblvwNomaInhalt_OnMouseRel" prefHeight="214.0" prefWidth="521.0" stylesheets="@../styles/application.css">
 					<placeholder><Label text="-" /> </placeholder>
 					<columns>
 						<TableColumn fx:id="tblvwColNmInhEdition" maxWidth="400.0" minWidth="50.0" prefWidth="300.0" text="Edition/Notenausgabe" />
@@ -91,7 +92,7 @@
 					</columnResizePolicy>
 				</TableView>
             <Label layoutX="603.0" layoutY="31.0" prefHeight="20.0" prefWidth="369.0" text="können der aktivierten NOTENMAPPE zugeteilt werden..." />
-            <TableView fx:id="tblvwNmEditAuswahl" layoutX="603.0" layoutY="187.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onMouseReleased="#tblvwNmEditAuswahl_OnMouseRel" prefHeight="409.0" prefWidth="358.0" stylesheets="@../styles/application.css">
+            <TableView fx:id="tblvwNmEditAuswahl" focusTraversable="false" layoutX="603.0" layoutY="187.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onMouseReleased="#tblvwNmEditAuswahl_OnMouseRel" prefHeight="409.0" prefWidth="358.0" stylesheets="@../styles/application.css">
                <placeholder><Label text="-" /> </placeholder>
                <columns>
                   <TableColumn fx:id="tblvwColNmAuswahlEditon" editable="false" maxWidth="400.0" minWidth="50.0" prefWidth="264.0" text="Notenausgabe/Edition" />
@@ -104,28 +105,11 @@
             </TableView>
             <TextField fx:id="txtFilterNomaEdition" layoutX="665.0" layoutY="58.0" prefHeight="28.0" prefWidth="197.0" />
             <TextField fx:id="txtFilterNomaVerlag" layoutX="666.0" layoutY="91.0" prefHeight="28.0" prefWidth="197.0" />
-            <Label alignment="CENTER_RIGHT" layoutX="575.0" layoutY="90.0" prefHeight="39.0" prefWidth="76.0" text="Filter &#10;Verlag" textAlignment="RIGHT" />
-            <TextField fx:id="txtNmInhaltEditAnzahl" layoutX="367.0" layoutY="475.0" prefHeight="26.0" prefWidth="62.0" />
-            <TextField fx:id="txtNmInhaltEditLo2" layoutX="88.0" layoutY="542.0" prefHeight="26.0" prefWidth="111.0" />
-            <TextField fx:id="txtNmInhaltEditLo1" layoutX="86.0" layoutY="508.0" prefHeight="26.0" prefWidth="343.0" />
-            <TextField fx:id="txtNmInhaltEditLo3" layoutX="271.0" layoutY="542.0" prefHeight="26.0" prefWidth="54.0" />
-            <TextField fx:id="txtNmInhaltEditBem" layoutX="88.0" layoutY="573.0" prefHeight="26.0" prefWidth="236.0" />
-            <Button fx:id="btnNomaInhaltSpeichern" alignment="CENTER" contentDisplay="CENTER" layoutX="337.0" layoutY="573.0" mnemonicParsing="false" onAction="#btnNomaInhaltSpeichern_OnClick" prefHeight="26.0" prefWidth="90.0" styleClass="button-speichern" text="speichern" />
-            
-            <Button fx:id="btnNomaNeu" layoutX="469.0" layoutY="31.0" mnemonicParsing="false" onAction="#btnNomaNeu_OnClick" prefHeight="26.0" prefWidth="98.0" styleClass="button-neu" text="Neu..." textFill="#25ae3c" />
-            <Button fx:id="btnNomaSpeichern" layoutX="469.0" layoutY="134.0" mnemonicParsing="false" onAction="#btnNomaSpeichern_OnClick" prefHeight="26.0" prefWidth="98.0" styleClass="button-speichern" text="Speichern" />
-            <Button fx:id="btnNomaLoeschen" layoutX="469.0" layoutY="62.0" mnemonicParsing="false" onAction="#btnNomaLoeschen_OnClick" prefHeight="26.0" prefWidth="98.0" styleClass="button-loeschen" text="Löschen" textFill="#d01717" />
-            <Label alignment="CENTER_RIGHT" layoutX="8.0" layoutY="186.0" prefHeight="18.0" prefWidth="98.0" text="Bemerkungen" />
-            <Label alignment="CENTER_RIGHT" layoutX="16.0" layoutY="156.0" prefHeight="18.0" prefWidth="90.0" text="Bezeichnung" />
             <TextField fx:id="txtNmInhaltEdition" disable="true" editable="false" layoutX="85.0" layoutY="473.0" prefHeight="26.0" prefWidth="217.0">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>
             </TextField>
-            <Label alignment="CENTER_RIGHT" layoutX="1.0" layoutY="479.0" prefHeight="18.0" prefWidth="83.0" text="Notenausg." />
-            <Label alignment="CENTER_RIGHT" layoutX="303.0" layoutY="478.0" prefHeight="18.0" prefWidth="62.0" text="Anzahl" />
-            <Label alignment="CENTER_RIGHT" layoutX="13.0" layoutY="519.0" prefHeight="18.0" prefWidth="69.0" text="z.B. Raum" />
-            <Label alignment="CENTER_RIGHT" layoutX="28.0" layoutY="578.0" prefHeight="18.0" prefWidth="54.0" text="Bem." />
             <Button fx:id="btnNomaEditHinzuFilter" layoutX="666.0" layoutY="124.0" mnemonicParsing="false" onAction="#btnNomaEditHinzuFilter_OnClick" prefHeight="46.0" prefWidth="83.0">
 										<graphic>
 									        <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
@@ -146,6 +130,22 @@
 									    </graphic>
 								        <tooltip><Tooltip text="Filter entfernen ..." /> </tooltip>           
             </Button>
+            <TextField fx:id="txtNmInhaltEditAnzahl" layoutX="367.0" layoutY="475.0" prefHeight="26.0" prefWidth="62.0" />
+            <TextField fx:id="txtNmInhaltEditLo1" layoutX="86.0" layoutY="508.0" prefHeight="26.0" prefWidth="343.0" />
+            <TextField fx:id="txtNmInhaltEditLo2" layoutX="88.0" layoutY="542.0" prefHeight="26.0" prefWidth="111.0" />
+            <TextField fx:id="txtNmInhaltEditLo3" layoutX="271.0" layoutY="542.0" prefHeight="26.0" prefWidth="54.0" />
+            <TextField fx:id="txtNmInhaltEditBem" layoutX="88.0" layoutY="573.0" prefHeight="26.0" prefWidth="236.0" />
+            <Button fx:id="btnNomaInhaltSpeichern" alignment="CENTER" contentDisplay="CENTER" layoutX="337.0" layoutY="573.0" mnemonicParsing="false" onAction="#btnNomaInhaltSpeichern_OnClick" prefHeight="26.0" prefWidth="90.0" styleClass="button-speichern" text="speichern" />
+            
+            <Button fx:id="btnNomaNeu" focusTraversable="false" layoutX="469.0" layoutY="31.0" mnemonicParsing="false" onAction="#btnNomaNeu_OnClick" prefHeight="26.0" prefWidth="98.0" styleClass="button-neu" text="Neu..." textFill="#25ae3c" />
+            <Button fx:id="btnNomaLoeschen" layoutX="469.0" layoutY="62.0" mnemonicParsing="false" onAction="#btnNomaLoeschen_OnClick" prefHeight="26.0" prefWidth="98.0" styleClass="button-loeschen" text="Löschen" textFill="#d01717" />
+            <Label alignment="CENTER_RIGHT" layoutX="8.0" layoutY="186.0" prefHeight="18.0" prefWidth="98.0" text="Bemerkungen" />
+            <Label alignment="CENTER_RIGHT" layoutX="16.0" layoutY="156.0" prefHeight="18.0" prefWidth="90.0" text="Bezeichnung" />
+            <Label alignment="CENTER_RIGHT" layoutX="1.0" layoutY="479.0" prefHeight="18.0" prefWidth="83.0" text="Notenausg." />
+            <Label alignment="CENTER_RIGHT" layoutX="303.0" layoutY="478.0" prefHeight="18.0" prefWidth="62.0" text="Anzahl" />
+            <Label alignment="CENTER_RIGHT" layoutX="575.0" layoutY="90.0" prefHeight="39.0" prefWidth="76.0" text="Filter &#10;Verlag" textAlignment="RIGHT" />
+            <Label alignment="CENTER_RIGHT" layoutX="13.0" layoutY="519.0" prefHeight="18.0" prefWidth="69.0" text="z.B. Raum" />
+            <Label alignment="CENTER_RIGHT" layoutX="28.0" layoutY="578.0" prefHeight="18.0" prefWidth="54.0" text="Bem." />
 				<HBox layoutX="871.0" layoutY="61.0" prefHeight="118.0" prefWidth="98.0" style="-fx-border-color: white; -fx-alignment: CENTER;">
                <children>
                   <ImageView fx:id="imgNomaGrafik" fitHeight="109.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />

@@ -73,7 +73,6 @@ import application.database.CSVImporterPositionen;
 import application.database.SQLiteImporter;
 import application.database.SQLiteImporterPersonen;
 import application.database.SQLiteImporterPositionen;
-import application.dbupdate.DatabaseMergeController;
 import application.dbupdate.DatabaseUpdaten;
 import application.models.AktionenListeModel;
 import application.models.AktionenListePersonenModel;
@@ -81,7 +80,6 @@ import application.models.AktionenListePositionenModel;
 import application.models.CvwPersonenComboChorModel;
 import application.models.CvwPersonenComboGruppeModel;
 import application.models.CvwPersonenModel;
-import application.models.LiteraturlisteModel;
 import application.uicomponents.Msgbox;
 import application.utils.TableData;
 import application.utils.TableUtils;
@@ -1482,9 +1480,9 @@ public class FrmAktionenController
 	@FXML
 	private void btnAktionDrucken1_OnClick(ActionEvent event) throws Exception
 	{
-		int anzahlPdfs = 0;
+		//int anzahlPdfs = 0;
 		fctAblaufplanDrucken(2); // Nur Musikstücke mit Zusatzangaben
-
+		
 		// 👉 Anzahl der PDFs ermitteln
 
 	}

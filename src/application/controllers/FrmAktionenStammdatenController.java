@@ -17,7 +17,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -30,12 +29,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
+
 import java.util.Set;
-import java.util.function.Function;
+
 import java.util.prefs.Preferences;
 
-import application.ValuesGlobals;
 import application.database.CSVImporterAktionen;
 import application.database.CSVImporterCVW;
 import application.database.CSVImporterCVWResult;
@@ -941,39 +939,39 @@ public class FrmAktionenStammdatenController
 	// ============================================================================
 	// Hilfsmethoden für normale Comboboxen
 	// ============================================================================
-	private void initComboBox(
-			ComboBox<String> combo,
-			List<AktionenListeModel> baseList,
-			Function<AktionenListeModel, String> extractor, boolean autoopen)
-	{
-
-		List<String> items = baseList.stream()
-				.map(extractor)
-				.filter(Objects::nonNull)
-				.filter(s -> !s.isBlank())
-				.distinct()
-				.sorted(String::compareToIgnoreCase)
-				.toList();
-
-		combo.setItems(FXCollections.observableArrayList(items));
-		combo.setEditable(true);
-
-		// makeSearchable(combo);
-		if (autoopen == true)
-		{
-			installAutoOpenOnFocus(combo);
-		}
-	}
+//	private void initComboBox(
+//			ComboBox<String> combo,
+//			List<AktionenListeModel> baseList,
+//			Function<AktionenListeModel, String> extractor, boolean autoopen)
+//	{
+//
+//		List<String> items = baseList.stream()
+//				.map(extractor)
+//				.filter(Objects::nonNull)
+//				.filter(s -> !s.isBlank())
+//				.distinct()
+//				.sorted(String::compareToIgnoreCase)
+//				.toList();
+//
+//		combo.setItems(FXCollections.observableArrayList(items));
+//		combo.setEditable(true);
+//
+//		// makeSearchable(combo);
+//		if (autoopen == true)
+//		{
+//			installAutoOpenOnFocus(combo);
+//		}
+//	}
 
 	// Combo klappt runter, wenn man mit der Tab-Taste draufgeht
-	private void installAutoOpenOnFocus(ComboBox<?> combo)
-	{
-		combo.focusedProperty().addListener((obs, oldF, newF) -> {
-			if (newF)
-			{
-				Platform.runLater(combo::show);
-			}
-		});
-	}
+//	private void installAutoOpenOnFocus(ComboBox<?> combo)
+//	{
+//		combo.focusedProperty().addListener((obs, oldF, newF) -> {
+//			if (newF)
+//			{
+//				Platform.runLater(combo::show);
+//			}
+//		});
+//	}
 
 }

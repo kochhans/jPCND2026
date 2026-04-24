@@ -7,13 +7,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 import application.controllers.DatabaseControllerAktionen;
+import application.controllers.DatabaseDialogController;
 import application.controllers.FrmStartEinstellungenController;
 import application.controllers.LicenseDialogController;
 import application.db.DBManager;
 import application.db.DatabaseVersionUtil;
 import application.dbupdate.DatabaseMergeService;
 import application.uicomponents.Msgbox;
-import application.utils.ToolsWinHelper;
 import application.utils.license.LicenseCheckResult;
 import application.utils.license.LicenseManager;
 import javafx.application.Platform;
@@ -97,10 +97,12 @@ public class StartupManager {
             case BACKGROUND_INIT:
                 startBackgroundTasks();
                 runStep(StartupStep.DONE);
+
                 break;
 
             case DONE:
                 System.out.println("✅ Startup complete");
+
                 break;
         }
     }
@@ -119,22 +121,76 @@ public class StartupManager {
     // =========================
     // DB
     // =========================
+//    private boolean ensureDatabase() {
+//        String dbPath = ConfigManager.loadDBPath();
+//
+//        if (dbPath == null || !new File(dbPath).exists()) {
+//            boolean ok = showDatabaseDialog();
+//            if (!ok)
+//                return false;
+//            dbPath = ValuesGlobals.dbPfad;
+//        }
+//
+//        ValuesGlobals.dbPfad = dbPath;
+//        ValuesGlobals.databasePath = dbPath;
+//
+//        return true;
+//    }
+//    private boolean ensureDatabase() {
+//
+//        String dbPath = ConfigManager.loadDBPath();
+//
+//        if (dbPath == null || dbPath.isBlank() || !new File(dbPath).exists()) {
+//        	//dbPath = showDatabaseDialog();
+//            dbPath = showDatabaseDialogAndGetPath();
+//
+//            if (dbPath == null || dbPath.isBlank()) {
+//                return false; // User hat abgebrochen
+//            }
+//
+//            ConfigManager.saveDBPath(dbPath);
+//        }
+//
+//        ValuesGlobals.dbPfad = dbPath;
+//        ValuesGlobals.databasePath = dbPath;
+//        System.out.println("DB-Pfad beim Start: " + dbPath);
+//
+//        return true;
+//    }
+ // =========================
+ // DB
+ // =========================
+    
     private boolean ensureDatabase() {
-        String dbPath = ConfigManager.loadDBPath();
 
-        if (dbPath == null || !new File(dbPath).exists()) {
-            boolean ok = showDatabaseDialog();
-            if (!ok)
+        System.out.println("👉 ensureDatabase START");
+
+        String dbPath = ConfigManager.loadDBPath();
+        System.out.println("Config DB-Pfad: " + dbPath);
+
+        if (dbPath == null || dbPath.isBlank() || !new File(dbPath).exists()) {
+
+            String newPath = showDatabaseDialogAndGetPath();
+            System.out.println("Dialog Rückgabe: " + newPath);
+
+            if (newPath == null) {
                 return false;
-            dbPath = ValuesGlobals.dbPfad;
+            }
+
+
+
+            return false;
         }
 
         ValuesGlobals.dbPfad = dbPath;
         ValuesGlobals.databasePath = dbPath;
 
+        System.out.println("DB-Pfad beim Start: " + dbPath);
+
         return true;
     }
-
+    
+ 
     // =========================
     // UI (JETZT MIT SCENEMANAGER)
     // =========================
@@ -172,10 +228,16 @@ public class StartupManager {
 
             // 🔹 Close-Handling vereinfacht
             primaryStage.setOnCloseRequest(e -> {
-                if (!Msgbox.yesno("Programm beenden", "Möchten Sie das Programm wirklich beenden?")) {
+
+
+
+                // ❓ echter Benutzer-Exit
+                if (!Msgbox.yesno("Beenden", "Wirklich beenden?")) {
                     e.consume();
                     return;
                 }
+
+                System.out.println("❌ echter Exit");
                 SceneManager.exitApp();
             });
 //            primaryStage.setOnCloseRequest(e -> {
@@ -225,10 +287,19 @@ public class StartupManager {
             dialog.initOwner(primaryStage);
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.getIcons().add(new Image(getClass().getResourceAsStream("/icons/javafx/jpcndicon0064.png")));
-            dialog.setResizable(false);
+            dialog.setResizable(true);
+         // wichtig: NICHT hart setzen
+            dialog.sizeToScene();
+            dialog.centerOnScreen();
+            dialog.setTitle("Lizenz für jPCND ...");
+            
+            dialog.setResizable(true);
+
+            dialog.setMinWidth(700);
+            dialog.setMinHeight(400);
+
             dialog.setWidth(700);
             dialog.setHeight(400);
-            dialog.setTitle("Lizenz für jPCND ...");
 
             LicenseDialogController controller = loader.getController();
             controller.setStage(dialog);
@@ -242,54 +313,155 @@ public class StartupManager {
         }
     }
 
-    private boolean showDatabaseDialog() {
+//    private boolean showDatabaseDialog() {
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/views/FrmStartEinstellungen.fxml"));
+//            Parent root = loader.load();
+//
+//            Stage dialog = new Stage();
+//            dialog.initOwner(primaryStage);
+//            dialog.initModality(Modality.APPLICATION_MODAL);
+//            dialog.setResizable(false);
+//            dialog.setScene(new Scene(root));
+//            dialog.sizeToScene();
+//            dialog.centerOnScreen();
+//
+//            dialog.setMinWidth(720);
+//            dialog.setMinHeight(310);
+//            dialog.getIcons().add(new Image(getClass().getResourceAsStream("/icons/javafx/jpcndicon0064.png")));
+//
+//            FrmStartEinstellungenController controller = loader.getController();
+//            controller.setStage(dialog);
+//
+//            dialog.setScene(new Scene(root));
+//            dialog.showAndWait();
+//            return !controller.txtDatenbankpfad.getText().trim().isEmpty();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return false;
+//        }
+//    }
+    
+    private String showDatabaseDialogAndGetPath() {
+
+        System.out.println("🚀 Dialog gestartet");
+
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/views/FrmStartEinstellungen.fxml"));
+            FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/application/views/FrmStartEinstellungen.fxml")
+            );
+
             Parent root = loader.load();
 
             Stage dialog = new Stage();
             dialog.initOwner(primaryStage);
             dialog.initModality(Modality.APPLICATION_MODAL);
-            dialog.setResizable(false);
-            dialog.setWidth(720);
-            dialog.setHeight(310);
-            dialog.getIcons().add(new Image(getClass().getResourceAsStream("/icons/javafx/jpcndicon0064.png")));
 
             FrmStartEinstellungenController controller = loader.getController();
             controller.setStage(dialog);
 
             dialog.setScene(new Scene(root));
+            dialog.sizeToScene();
+            dialog.centerOnScreen();
+
             dialog.showAndWait();
-            return !controller.txtDatenbankpfad.getText().trim().isEmpty();
+
+            StartSettingsResult result = controller.getResult();
+
+            if (result == null || !result.isSaved()) {
+                return null;
+            }
+
+            System.out.println("💾 Neuer DB-Pfad: " + result.getDbPath());
+
+            // ❗ NUR speichern, KEIN Restart!
+            ConfigManager.saveDBPath(result.getDbPath());
+            ConfigManager.reload();
+
+            ValuesGlobals.dbPfad = result.getDbPath();
+            ValuesGlobals.databasePath = result.getDbPath();
+
+            //DBManager.reset();
+
+            return result.getDbPath();
+
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
+    
+//    private String showDatabaseDialogAndGetPath() {
+//        
+//    	 try {
+//    		 FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/views/FrmStartEinstellungen.fxml"));
+//        Parent root = loader.load();
+//
+//        Stage dialog = new Stage();
+//        dialog.initOwner(primaryStage);
+//        dialog.initModality(Modality.APPLICATION_MODAL);
+//        dialog.setResizable(false);
+//        dialog.setScene(new Scene(root));
+//        dialog.sizeToScene();
+//        dialog.centerOnScreen();
+//        dialog.setMinWidth(720);
+//        dialog.setMinHeight(310);
+//        dialog.getIcons().add(new Image(getClass().getResourceAsStream("/icons/javafx/jpcndicon0064.png")));
+//
+//        FrmStartEinstellungenController controller = loader.getController();
+//        controller.setStage(dialog);
+//
+//        dialog.setScene(new Scene(root));
+//        dialog.showAndWait();
+//        return controller.getSelectedPath(); // <<< DAS ist entscheidend
+//        //return !controller.txtDatenbankpfad.getText().trim().isEmpty();
+//    } 
+//    	 catch (Exception e) {
+//        e.printStackTrace();
+//        return null;
+//    }
+//}
+    
+    
+
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/views/FrmStartEinstellungen.fxml"));
+//            Parent root = loader.load();
+//
+//            Stage stage = new Stage();
+//            stage.initModality(Modality.APPLICATION_MODAL);
+//            stage.setScene(new Scene(root));
+//            stage.setTitle("Datenbank auswählen");
+//
+//            DatabaseDialogController controller = loader.getController();
+//            controller.setStage(stage);
+//
+//            stage.showAndWait();
+//
+//            return controller.getSelectedPath(); // <<< DAS ist entscheidend
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+
 
     // =========================
     // Neustart
     // =========================
-    public void restartApplication() {
-        Platform.runLater(() -> {
-            try {
-                Platform.exit();
-                System.exit(0);
-            } catch (Exception e) {
-                e.printStackTrace();
-                Msgbox.error("Fehler beim Beenden", e.getMessage());
-            }
-        });
-    }
+//    public void restartApplication() {
+//        Platform.runLater(() -> {
+//            try {
+//                Platform.exit();
+//                System.exit(0);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                Msgbox.error("Fehler beim Beenden", e.getMessage());
+//            }
+//        });
+//    }
+    
+  
 
-    public static void restart() {
-        if (instance != null) {
-            instance.restartApplication();
-        } else {
-            System.err.println("[WARN] StartupManager-Instanz nicht initialisiert!");
-            Platform.exit();
-            System.exit(0);
-        }
-    }
 }
 

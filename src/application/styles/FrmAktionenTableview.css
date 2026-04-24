@@ -2,27 +2,28 @@
    TABLE BASIS
    ========================= */
 .table-view {
-    -fx-background-color: transparent;
+    -fx-background-color: #EfEfEf;
     -fx-border-color: #D0D0D0;
     -fx-border-radius: 6;
     -fx-background-radius: 6;
 }
 
 /* =========================
-   HEADER (SPALTENKOPF)
+   HEADER
    ========================= */
-
-
 .table-view .column-header {
     -fx-background-color: transparent;
     -fx-padding: 8 10 8 10;
-    -fx-pref-height: 20px;
-    -fx-border-color: transparent rgba(255,255,255,0.15) transparent transparent;
-	-fx-border-width: 0 1 0 0;   /* rechte Linie */
+    -fx-pref-height: 24px;
+
+    -fx-border-color: transparent rgba(255,255,255,0.2) transparent transparent;
+    -fx-border-width: 0 1 0 0;
 }
+
 .table-view .column-header:last-visible {
     -fx-border-width: 0;
 }
+
 .table-view .column-header-background {
     -fx-background-color: linear-gradient(#5c5c5c, #3f3f3f);
     -fx-background-radius: 6 6 0 0;
@@ -33,6 +34,8 @@
     -fx-font-size: 12px;
     -fx-font-weight: bold;
 }
+
+/* Sortierpfeile */
 .table-view .column-header .arrow {
     -fx-background-color: rgba(255,255,255,0.85);
     -fx-padding: 5px;
@@ -51,42 +54,32 @@
    ========================= */
 .table-view .table-cell {
     -fx-font-size: 12px;
-    -fx-padding: 1 2 1 2;
+    -fx-padding: 2 6 2 6;
     -fx-text-fill: #2b2b2b;
-	-fx-alignment: CENTER-LEFT;   /* horizontal + vertikal */
+    -fx-alignment: CENTER-LEFT;
+
+    /* dezente Grid-Linien */
+    -fx-border-color: transparent #d0d0d0 #e0e0e0 transparent;
+    -fx-border-width: 0 1 1 0;
 }
 
 /* =========================
-   ZEILEN (STANDARD)
+   ZEILEN
    ========================= */
-
-
 .table-row-cell {
     -fx-background-color: #E0E0E0;
-    -fx-border-color: transparent transparent #e6e6e6 transparent;
 }
 
-/* Alternierende Zeilen */
+/* Zebra */
 .table-row-cell:odd {
-    -fx-background-color: #C0C0C0;
+    -fx-background-color: #CFCFCF;
 }
 
 /* =========================
-   HOVER EFFEKT
-   ========================= */
-.table-row-cell:hover {
-    -fx-background-color: #dbe9f6;
-}
-
-
-
-
-
-/* =========================
-   SELECTION
+   SELECTION (Basis!)
    ========================= */
 .table-row-cell:selected {
-    -fx-background-color: #4a90e2;
+    -fx-background-color: #3580BB;
 }
 
 .table-row-cell:selected .table-cell {
@@ -94,14 +87,14 @@
 }
 
 /* =========================
-   FOCUS (optional dezent)
+   FOCUS
    ========================= */
 .table-view:focused {
     -fx-border-color: #4a90e2;
 }
 
 /* =========================
-   PLACEHOLDER (wenn leer)
+   PLACEHOLDER
    ========================= */
 .table-view .placeholder .label {
     -fx-text-fill: #888;
@@ -110,10 +103,9 @@
 }
 
 /* =========================
-   SCROLLBAR (modernisiert)
+   SCROLLBAR
    ========================= */
-.scroll-bar:vertical,
-.scroll-bar:horizontal {
+.scroll-bar {
     -fx-background-color: transparent;
 }
 
@@ -126,9 +118,7 @@
     -fx-background-color: #a8a8a8;
 }
 
-/* =========================
-   LEERE ECKE OBEN RECHTS
-   ========================= */
+/* Ecke oben rechts */
 .table-view .filler {
     -fx-background-color: linear-gradient(#5c5c5c, #3f3f3f);
 }

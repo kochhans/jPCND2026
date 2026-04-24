@@ -89,7 +89,7 @@
                            </padding>
                            <styleClass>
                               <String fx:value="label-title3" />
-                              <String fx:value="schriftrothell" />
+                              <String fx:value="schriftweiss" />
                            </styleClass></Label>
                         <ProgressBar fx:id="progressPdf" layoutX="522.0" layoutY="5.0" prefHeight="18.0" prefWidth="121.0" progress="0.0" visible="false" />
 								<ImageView fitHeight="75.0" fitWidth="118.0" layoutX="10.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">

@@ -20,7 +20,6 @@ import application.FilterState;
 import application.SceneManager;
 import application.ValuesGlobals;
 
-import application.dbupdate.DatabaseMergeController;
 import application.dbupdate.DatabaseUpdaten;
 import application.models.AutorenlisteModel;
 import application.models.BibellisteModel;

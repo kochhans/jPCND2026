@@ -383,7 +383,7 @@ public class DatabaseMergeController
 			logArea.appendText("✅ Daten-Übertragung abgeschlossen!\n");
 			Msgbox.show("Datenbank-Update ...",
 					"Das Update wurde erfolgreich eingespielt.\nNun ist ein Neustart des Programms erforderlich.");
-			StartupManager.restart();
+			//StartupManager.restart();
 		});
 
 		// Fehlerfall

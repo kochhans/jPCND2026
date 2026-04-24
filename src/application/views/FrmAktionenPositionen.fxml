@@ -150,8 +150,8 @@
                               <Label alignment="CENTER_RIGHT" disable="true" layoutX="405.0" layoutY="132.0" prefHeight="15.0" prefWidth="89.0" text="LitId" />
                               <Rectangle arcHeight="1.0" arcWidth="1.0" fill="WHITE" focusTraversable="true" height="116.0" layoutX="400.0" layoutY="264.0" stroke="#bfbbbb" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="6.0" strokeType="INSIDE" width="99.0" />
                               <ImageView fx:id="imgNaTitelgrafik" fitHeight="107.0" fitWidth="89.0" layoutX="405.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true" />
-                              <Button fx:id="btnNaGrafikwahl" focusTraversable="false" layoutX="400.0" layoutY="384.0" mnemonicParsing="false" onAction="#btnNaGrafikwahl_OnClick" prefHeight="29.0" prefWidth="99.0" styleClass="button-neu" text="Grafik ..." />
-                              <TextField fx:id="txtPosTitelgrafik" alignment="CENTER_RIGHT" disable="true" editable="false" focusTraversable="false" layoutX="21.0" layoutY="383.0" prefHeight="20.0" prefWidth="374.0">
+                              <Button fx:id="btnNaGrafikwahl" focusTraversable="false" layoutX="400.0" layoutY="384.0" mnemonicParsing="false" onAction="#btnNaGrafikwahl_OnClick" prefHeight="29.0" prefWidth="43.0" styleClass="button-speichern" text="..." />
+                              <TextField fx:id="txtPosTitelgrafik" alignment="CENTER_RIGHT" disable="true" editable="false" focusTraversable="false" layoutX="15.0" layoutY="383.0" prefHeight="30.0" prefWidth="377.0">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
@@ -243,6 +243,7 @@
                                     <Tooltip text="markierte Zeile in der Positionsliste löschen ..." />
                                  </tooltip>
                               </Button>
+                              <Button fx:id="btnNaGrafikwahlLeer" focusTraversable="false" layoutX="454.0" layoutY="384.0" mnemonicParsing="false" onAction="#btnNaGrafikwahlLeer_OnClick" prefHeight="29.0" prefWidth="45.0" styleClass="button-loeschen" text="X" />
                            </children>
                            <padding>
                               <Insets bottom="5.0" />
@@ -258,7 +259,7 @@
                     <tabs>
                       <Tab onSelectionChanged="#handleTabChanged" text="aus Literaturdaten">
                         <content>
-                          <AnchorPane style="-fx-background-color: #e0e0e0;">
+                          <AnchorPane style="-fx-background-color: #C0C0C0;">
                                  <children>
                                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="44.0" layoutX="185.0" layoutY="416.0" opacity="0.12" stroke="BLACK" strokeType="INSIDE" width="196.0" />
                                     <Label layoutX="18.0" layoutY="9.0" prefHeight="17.0" prefWidth="98.0" text="Stücktitel" textFill="#6b6b6b" />
@@ -279,9 +280,9 @@
                                     <ComboBox fx:id="cbxFilterThema" editable="true" layoutX="472.0" layoutY="25.0" prefHeight="30.0" prefWidth="195.0" styleClass="filter-field" />
                                     <ComboBox fx:id="cbxFilterWochenlied" editable="true" layoutX="472.0" layoutY="69.0" prefHeight="30.0" prefWidth="195.0" styleClass="filter-field" />
                                     <ComboBox fx:id="cbxFilterNotenmappe" editable="true" layoutX="472.0" layoutY="114.0" prefHeight="30.0" prefWidth="195.0" styleClass="filter-field" />
-                                    <TableView fx:id="tblvwLiteratur" focusTraversable="false" layoutY="166.0" minWidth="571.0" onMouseClicked="#handleTblvwLiteratur_OnMouseClicked" prefHeight="246.0" prefWidth="685.0" style="-fx-selection-bar: #AAC4DF; -fx-selection-bar-non-focused: #AAC4DF;" stylesheets="@../styles/FrmAktionenTableview.css" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="166.0">
+                                    <TableView fx:id="tblvwLiteratur" focusTraversable="false" layoutY="166.0" minWidth="571.0" onMouseClicked="#handleTblvwLiteratur_OnMouseClicked" prefHeight="235.0" prefWidth="685.0" stylesheets="@../styles/FrmAktionenTableview.css" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="166.0">
                                        <placeholder>
-                                          <Label text="keine FIlter" />
+                                          <Label text="-- keine FIlterergebnisse --" />
                                        </placeholder>
                                        <columns>
                                           <TableColumn fx:id="tblvwColNotenmappe" maxWidth="500.0" minWidth="100.0" prefWidth="150.0" text="Notenmappe" visible="false" />
@@ -303,7 +304,7 @@
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                        </columnResizePolicy>
                                     </TableView>
-                                    <TableView fx:id="tblvwChoraktionenAufgef" focusTraversable="false" layoutX="9.0" layoutY="463.0" onMouseClicked="#handletblvwAktionenlisteGespielt_onmouse_clicked" prefHeight="222.0" prefWidth="667.0" style="-fx-selection-bar: #AAC4DF; -fx-selection-bar-non-focused: #AAC4DF;" stylesheets="@../styles/FrmAktionenTableview.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="463.0">
+                                    <TableView fx:id="tblvwChoraktionenAufgef" focusTraversable="false" layoutX="9.0" layoutY="463.0" onMouseClicked="#handletblvwAktionenlisteGespielt_onmouse_clicked" prefHeight="222.0" prefWidth="667.0" stylesheets="@../styles/FrmAktionenTableview.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="463.0">
                                        <columns>
                                           <TableColumn fx:id="tblvwAktionenAufgefCol0" editable="false" minWidth="50.0" prefWidth="60.0" text="Datum" />
                                           <TableColumn fx:id="tblvwAktionenAufgefCol1" prefWidth="120.0" text="Aktivität" />
@@ -324,20 +325,35 @@
                                     <Label fx:id="lblFilterTab0Anzahl1" layoutX="7.0" layoutY="416.0" prefHeight="40.0" prefWidth="197.0" text="der oben markierte Titel &#10;wurde schon gespielt" textFill="#808080" wrapText="true" />
                                     <CheckBox fx:id="chkStueckartGespielt" focusTraversable="false" layoutX="298.0" layoutY="439.0" mnemonicParsing="false" onAction="#handleChkStueckartGespielt_onAction" prefHeight="16.0" prefWidth="90.0" styleClass="label" text="Stückart" />
                                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="44.0" layoutX="399.0" layoutY="416.0" opacity="0.12" stroke="BLACK" strokeType="INSIDE" width="287.0" />
-                                    <RadioButton fx:id="radFilterProbengespielt" focusTraversable="false" layoutX="426.0" layoutY="439.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" selected="true" styleClass="label" text="Proben">
+                                    <RadioButton fx:id="radFilterProbengespielt" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="406.0" layoutY="439.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" selected="true" styleClass="label">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="ogrFilterProbeAuffAllesGespielt" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="radFilterAuffgespielt" focusTraversable="false" layoutX="504.0" layoutY="439.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" styleClass="label" text="Aufführungen" toggleGroup="$ogrFilterProbeAuffAllesGespielt" />
-                                    <RadioButton fx:id="radFilterAllesgespielt" focusTraversable="false" layoutX="618.0" layoutY="439.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" styleClass="label" text="alles" toggleGroup="$ogrFilterProbeAuffAllesGespielt" />
+                                    <RadioButton fx:id="radFilterAuffgespielt" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="481.0" layoutY="439.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" styleClass="label" text="Aufführungen" toggleGroup="$ogrFilterProbeAuffAllesGespielt" />
+                                    <RadioButton fx:id="radFilterAllesgespielt" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="588.0" layoutY="439.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" styleClass="label" text="alles" toggleGroup="$ogrFilterProbeAuffAllesGespielt" />
                                     <Label fx:id="lblFilterTab0Anzahl11" alignment="CENTER" layoutX="157.0" layoutY="412.0" prefHeight="25.0" prefWidth="242.0" text="zusätzlich einschränken auf ..." textFill="#808080">
                                        <font>
                                           <Font name="System Italic" size="12.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="lblFilterTab0Anzahl111" alignment="CENTER" layoutX="387.0" layoutY="412.0" prefHeight="25.0" prefWidth="312.0" text="nur Proben / nur Aufführungen / alles  anzeigen" textFill="#808080" />
+                                    <Label fx:id="lblFilterTab0Anzahl111" alignment="CENTER" layoutX="387.0" layoutY="412.0" prefHeight="25.0" prefWidth="312.0" text="nur Proben / nur Vortragstermine/ alles  anzeigen" textFill="#808080" />
                                     <Label fx:id="lblFilterTab0Anzahl" layoutX="9.0" layoutY="144.0" prefHeight="25.0" prefWidth="679.0" text="kein Filter aktiv" textFill="#808080" />
+                                    <Label fx:id="lblFilterTab0Anzahl112" layoutX="429.0" layoutY="435.0" prefHeight="25.0" prefWidth="67.0" text="Proben" textFill="#808080">
+                                       <font>
+                                          <Font name="System Italic" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblFilterTab0Anzahl1121" layoutX="512.0" layoutY="435.0" prefHeight="25.0" prefWidth="75.0" text="nur Vortr." textFill="#808080">
+                                       <font>
+                                          <Font name="System Italic" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblFilterTab0Anzahl11211" layoutX="619.0" layoutY="435.0" prefHeight="25.0" prefWidth="61.0" text="alles" textFill="#808080">
+                                       <font>
+                                          <Font name="System Italic" size="12.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                               </AnchorPane>
                         </content>
@@ -346,24 +362,29 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="690.0" prefWidth="682.0" style="-fx-background-color: #e0e0e0;">
                                  <children>
-                                    <DatePicker fx:id="dpFilterDatumVon" layoutX="14.0" layoutY="27.0" prefHeight="19.0" prefWidth="138.0" styleClass="filter-field" />
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="32.0" layoutX="412.0" layoutY="69.0" opacity="0.12" stroke="BLACK" strokeType="INSIDE" width="274.0" />
+                                    <Label fx:id="lblFilterTab0Anzahl11212" layoutX="532.0" layoutY="72.0" prefHeight="25.0" prefWidth="75.0" text="nur Vortr." textFill="#808080">
+                                       <font>
+                                          <Font name="System Italic" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <DatePicker fx:id="dpFilterDatumVon" layoutX="14.0" layoutY="24.0" prefHeight="19.0" prefWidth="138.0" styleClass="filter-field" />
                                     <DatePicker fx:id="dpFilterDatumBis" layoutX="14.0" layoutY="68.0" prefHeight="32.0" prefWidth="138.0" styleClass="filter-field" />
-                                    <ComboBox fx:id="cbxFilterAktion" editable="true" layoutX="162.0" layoutY="27.0" prefHeight="30.0" prefWidth="242.0" styleClass="filter-field" />
+                                    <ComboBox fx:id="cbxFilterAktion" editable="true" layoutX="162.0" layoutY="24.0" prefHeight="30.0" prefWidth="242.0" styleClass="filter-field" />
                                     <ComboBox fx:id="cbxFilterOrt" editable="true" layoutX="161.0" layoutY="69.0" prefHeight="32.0" prefWidth="244.0" styleClass="filter-field" />
-                                    <ComboBox fx:id="cbxFilterGruppe" editable="true" layoutX="428.0" layoutY="27.0" prefHeight="30.0" prefWidth="201.0" styleClass="filter-field" />
+                                    <ComboBox fx:id="cbxFilterGruppe" editable="true" layoutX="428.0" layoutY="24.0" prefHeight="30.0" prefWidth="201.0" styleClass="filter-field" />
                                     <Label layoutX="30.0" layoutY="53.0" prefHeight="17.0" prefWidth="58.0" text="bis..." textFill="#6b6b6b" />
                                     <Label layoutX="18.0" layoutY="9.0" prefHeight="17.0" prefWidth="94.0" text="Datum von..." textFill="#6b6b6b" />
                                     <Label layoutX="162.0" layoutY="9.0" prefHeight="17.0" prefWidth="63.0" text="Aktion" textFill="#6b6b6b" />
                                     <Label layoutX="162.0" layoutY="53.0" prefHeight="17.0" prefWidth="63.0" text="Ort" textFill="#6b6b6b" />
                                     <Label layoutX="428.0" layoutY="9.0" prefHeight="17.0" prefWidth="63.0" text="Gruppe" textFill="#6b6b6b" />
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="32.0" layoutX="412.0" layoutY="69.0" opacity="0.12" stroke="BLACK" strokeType="INSIDE" width="238.0" />
-                                    <RadioButton fx:id="radFilterProben" focusTraversable="false" layoutX="415.0" layoutY="76.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" styleClass="label" text="Proben">
+                                    <RadioButton fx:id="radFilterProben" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="414.0" layoutY="76.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" styleClass="label" text="Proben">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="ogrFiltergespeichert" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton fx:id="radFilterAuff" focusTraversable="false" layoutX="483.0" layoutY="76.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" styleClass="label" text="Auftritte" toggleGroup="$ogrFiltergespeichert" />
-                                    <RadioButton fx:id="radFilterAlles" focusTraversable="false" layoutX="567.0" layoutY="76.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" selected="true" styleClass="label" text="alles" toggleGroup="$ogrFiltergespeichert" />
+                                    <RadioButton fx:id="radFilterAuff" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="501.0" layoutY="76.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" styleClass="label" text="Auftritte" toggleGroup="$ogrFiltergespeichert" />
+                                    <RadioButton fx:id="radFilterAlles" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="605.0" layoutY="76.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" selected="true" styleClass="label" text="alles" toggleGroup="$ogrFiltergespeichert" />
                                     <TableView fx:id="tblvwChoraktionen" focusTraversable="false" layoutX="8.0" layoutY="123.0" onMousePressed="#handletblvwAktionenliste_onmouse_clicked" prefHeight="276.0" prefWidth="682.0" style="-fx-background-color: #f5f5f5;" stylesheets="@../styles/FrmAktionenTableview.css" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="123.0">
                                        <columns>
                                           <TableColumn fx:id="tblvwAktionenCol0" editable="false" minWidth="20.0" prefWidth="40.0" text="Datum" />
@@ -399,6 +420,16 @@
                                     </TableView>
                                     <Label layoutX="6.0" layoutY="402.0" prefHeight="25.0" prefWidth="441.0" text="Programmpunkte der gewählten Aktivität" textFill="#808080" />
                                     <Label fx:id="lblFilterTab1Anzahl" layoutX="14.0" layoutY="100.0" prefHeight="25.0" prefWidth="671.0" text="kein Filter aktiv" textFill="#808080" />
+                                    <Label fx:id="lblFilterTab0Anzahl1122" layoutX="444.0" layoutY="72.0" prefHeight="25.0" prefWidth="67.0" text="Proben" textFill="#808080">
+                                       <font>
+                                          <Font name="System Italic" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblFilterTab0Anzahl112111" layoutX="636.0" layoutY="72.0" prefHeight="25.0" prefWidth="61.0" text="alles" textFill="#808080">
+                                       <font>
+                                          <Font name="System Italic" size="12.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                               </AnchorPane>
                         </content>

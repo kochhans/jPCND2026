@@ -11,126 +11,141 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 
-public class SceneManager {
+public class SceneManager
+{
 
-    public enum SceneType {
-        START,
-        AKTIONEN,
-        DETAILS
-    }
+	public enum SceneType
+	{
+		START,
+		AKTIONEN,
+		DETAILS
+	}
 
-    private static final Preferences prefs = Preferences.userNodeForPackage(SceneManager.class);
-    private static final String KEY_LAST_SCENE = "lastScene";
+	private static final Preferences prefs = Preferences.userNodeForPackage(SceneManager.class);
+	private static final String KEY_LAST_SCENE = "lastScene";
 
-    private static SceneType currentScene = SceneType.START;
+	private static SceneType currentScene = SceneType.START;
 
-    private static Parent startRoot;
-    private static FXMLLoader startLoader;
+	private static Parent startRoot;
+	private static FXMLLoader startLoader;
 
-    private static Parent aktionenRoot;
-    private static FXMLLoader aktionenLoader;
-    
-    private static DatabaseControllerAktionen dbController;
+	private static Parent aktionenRoot;
+	private static FXMLLoader aktionenLoader;
 
-    // =========================
-    // PUBLIC API
-    // =========================
+	private static DatabaseControllerAktionen dbController;
 
-    public static void init(Stage stage, DatabaseControllerAktionen controller) throws Exception {
-        dbController = controller;
+	// =========================
+	// PUBLIC API
+	// =========================
 
-        SceneType last = loadLastScene();
+	public static void init(Stage stage, DatabaseControllerAktionen controller) throws Exception
+	{
+		dbController = controller;
 
-        switch (last) {
-            case AKTIONEN:
-                showAktionen(stage);
-                break;
-            case START:
-            default:
-                showStart(stage);
-                break;
-        }
-    }
+		SceneType last = loadLastScene();
 
-    public static void showStart(Stage stage) throws IOException {
-        if (startRoot == null) {
-            startLoader = new FXMLLoader(
-                SceneManager.class.getResource("/application/views/FrmStart.fxml")
-            );
-            startRoot = startLoader.load();
-            System.out.println("START geladen");
-        }
+		switch (last)
+		{
+		case AKTIONEN:
+			showAktionen(stage);
+			break;
+		case START:
+		default:
+			showStart(stage);
+			break;
+		}
+	}
 
-        stage.getScene().setRoot(startRoot);
+	public static void showStart(Stage stage) throws IOException
+	{
+		if (startRoot == null)
+		{
+			startLoader = new FXMLLoader(
+					SceneManager.class.getResource("/application/views/FrmStart.fxml"));
+			startRoot = startLoader.load();
+			System.out.println("START geladen");
+		}
 
-        FrmStartController controller = startLoader.getController();
-        controller.onShow();
+		stage.getScene().setRoot(startRoot);
 
-        setCurrentScene(SceneType.START);
-    }
+		FrmStartController controller = startLoader.getController();
+		controller.onShow();
 
-    public static void showAktionen(Stage stage) throws Exception {
-        if (aktionenRoot == null) {
-            aktionenLoader = new FXMLLoader(
-                SceneManager.class.getResource("/application/views/FrmAktionen.fxml")
-            );
-            aktionenRoot = aktionenLoader.load();
-        }
+		setCurrentScene(SceneType.START);
+	}
 
-        FrmAktionenController controller = aktionenLoader.getController();
-        controller.setDbControllerAktionen(dbController);
+	public static void showAktionen(Stage stage) throws Exception
+	{
+		if (aktionenRoot == null)
+		{
+			aktionenLoader = new FXMLLoader(
+					SceneManager.class.getResource("/application/views/FrmAktionen.fxml"));
+			aktionenRoot = aktionenLoader.load();
+		}
 
-        stage.getScene().setRoot(aktionenRoot);
-        controller.onShow();
+		FrmAktionenController controller = aktionenLoader.getController();
+		controller.setDbControllerAktionen(dbController);
 
-        setCurrentScene(SceneType.AKTIONEN);
-    }
+		stage.getScene().setRoot(aktionenRoot);
+		controller.onShow();
 
-    // =========================
-    // STATE HANDLING
-    // =========================
+		setCurrentScene(SceneType.AKTIONEN);
+	}
 
-    private static void setCurrentScene(SceneType scene) {
-        currentScene = scene;
-        saveLastScene(scene);
-    }
+	// =========================
+	// STATE HANDLING
+	// =========================
 
-    public static SceneType getCurrentScene() {
-        return currentScene;
-    }
+	private static void setCurrentScene(SceneType scene)
+	{
+		currentScene = scene;
+		saveLastScene(scene);
+	}
 
-    private static void saveLastScene(SceneType scene) {
-        prefs.put(KEY_LAST_SCENE, scene.name());
-    }
+	public static SceneType getCurrentScene()
+	{
+		return currentScene;
+	}
 
-    private static SceneType loadLastScene() {
-        try {
-            return SceneType.valueOf(
-                prefs.get(KEY_LAST_SCENE, SceneType.START.name())
-            );
-        } catch (Exception e) {
-            return SceneType.START;
-        }
-    }
+	private static void saveLastScene(SceneType scene)
+	{
+		prefs.put(KEY_LAST_SCENE, scene.name());
+	}
 
-    public static void exitApp() {
-        try {
-            // 🔥 UI-State speichern
-            FilterState.get().save();
+	private static SceneType loadLastScene()
+	{
+		try
+		{
+			return SceneType.valueOf(
+					prefs.get(KEY_LAST_SCENE, SceneType.START.name()));
+		}
+		catch (Exception e)
+		{
+			return SceneType.START;
+		}
+	}
 
-            // 🔥 letzte Scene merken
-            saveLastScene(currentScene);
+	public static void exitApp()
+	{
+		try
+		{
+			// 🔥 UI-State speichern
+			FilterState.get().save();
 
-            // 🔥 Anwendung wirklich beenden
-            ToolsWinHelper.closeApplication();
+			// 🔥 letzte Scene merken
+			saveLastScene(currentScene);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+			// 🔥 Anwendung wirklich beenden
+			ToolsWinHelper.closeApplication();
+
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 
 }
-
 
 //package application;
 //

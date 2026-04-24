@@ -1,6 +1,5 @@
 package application;
 
-import application.ConfigManager;
 
 /**
  * Zentraler Zustand für Start-Filter

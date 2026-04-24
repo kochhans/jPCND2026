@@ -2,7 +2,7 @@
 # =====================================================
 # jPCND BUILD SYSTEM - PRODUCTION LEVEL 3 (CLEAN)
 # Linux ZIP + macOS .app Bundle + LATEST artifacts
-# Version 2026-04-21
+# Version 2026-04-24
 # =====================================================
 
 # set -euo pipefail
@@ -61,10 +61,11 @@ mkdir -p "$OUT"
 # =====================================================
 # LINUX ZIP
 # =====================================================
+
 build_linux() {
 
     echo ""
-    echo "📦 BUILD LINUX ZIP"
+    echo "📦 BUILD LINUX ZIP (MIT MINIMAL RUNTIME)"
 
     TMP="$(mktemp -d)"
     mkdir -p "$TMP/jpcnd"
@@ -80,40 +81,49 @@ build_linux() {
     # ----------------------------
     # JAVAFX
     # ----------------------------
-    cp -r "$FX_ROOT/linux-sdk/lib" "$TMP/jpcnd/javafx"
+    mkdir -p "$TMP/jpcnd/javafx_jars"
+    mkdir -p "$TMP/jpcnd/javafx_lib"
+
+    cp "$FX_ROOT/linux-sdk/lib/"*.jar "$TMP/jpcnd/javafx_jars/"
+    cp "$FX_ROOT/linux-sdk/lib/"*.so "$TMP/jpcnd/javafx_lib/"
+
+    # fallback (für dein Script)
+    mkdir -p "$TMP/jpcnd/javafx"
+    cp -r "$FX_ROOT/linux-sdk/lib/"* "$TMP/jpcnd/javafx/"
 
     # ----------------------------
-    # APP ASSETS
+    # ASSETS
     # ----------------------------
     cp "$ROOT/install-linuxuser.sh" "$TMP/jpcnd/"
     cp "$ROOT/lib/mac/jpcnd.png" "$TMP/jpcnd/"
 
     # ====================================================
-    # RUNTIME (FIXED PATH + CORRECT ORDER)
+    # 🔧 JLINK RUNTIME (LIVE BUILD)
     # ====================================================
-
     echo ""
-    echo "☕ Binde Java Runtime ein"
+    echo "🔧 Baue Minimal Runtime (jlink)"
 
-    JAVA_HOME="$RUNTIME_ROOT/linux-x64/jdk"
+    JDK_HOME="$RUNTIME_ROOT/linux-x64/jdk"
 
-    if [ ! -x "$JAVA_HOME/bin/java" ]; then
-        echo "❌ Java Runtime nicht gefunden:"
-        echo "$JAVA_HOME"
+    if [ ! -x "$JDK_HOME/bin/jlink" ]; then
+        echo "❌ jlink nicht gefunden: $JDK_HOME"
         exit 1
     fi
 
-    echo "☕ Java gefunden: $JAVA_HOME"
-
     RUNTIME_TARGET="$TMP/jpcnd/runtime/jre"
-    mkdir -p "$RUNTIME_TARGET"
 
-    cp -R "$JAVA_HOME/bin" "$RUNTIME_TARGET/"
-    cp -R "$JAVA_HOME/lib" "$RUNTIME_TARGET/"
-    cp -R "$JAVA_HOME/conf" "$RUNTIME_TARGET/" 2>/dev/null || true
-    cp -R "$JAVA_HOME/release" "$RUNTIME_TARGET/" 2>/dev/null || true
+    "$JDK_HOME/bin/jlink" \
+  --add-modules java.base,java.desktop,java.net.http,java.prefs,java.sql,java.scripting,java.xml,java.xml.crypto,java.logging,jdk.unsupported,jdk.jsobject,jdk.xml.dom \
+   		--strip-debug \
+        --no-man-pages \
+        --no-header-files \
+        --compress=2 \
+        --output "$RUNTIME_TARGET"
+        
+        
 
-    echo "✅ Runtime eingebunden"
+
+    echo "✅ Minimal Runtime erstellt"
 
     # ----------------------------
     # ZIP
@@ -130,6 +140,11 @@ build_linux() {
     echo "✅ Linux ZIP: $ZIP"
     echo "📦 Linux LATEST: $ZIP_LATEST"
 }
+
+
+
+
+
 # =====================================================
 # MAC APP BUNDLE
 # =====================================================

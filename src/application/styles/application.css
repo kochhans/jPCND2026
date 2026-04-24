@@ -234,12 +234,17 @@
 
 /* Optional: Fokus leicht stärker */
 .filter-field:focused {
-    -fx-background-color: #FEFFE1;
+    -fx-background-color: #DDDDDD;
     -fx-border-color: #812323;
 }
 .combo-box.filter-field,
 .combo-box.filter-field .text-field {
     -fx-background-color: #FEFFE1;
+}
+
+.combo-box.filter-field,
+.combo-box.filter-field .text-field:focused {
+    -fx-background-color: #DDDDDD;
 }
 
 /* Filter-Style auch für DatePicker */
@@ -251,7 +256,7 @@
 /* Fokus */
 .date-picker.filter-field:focused,
 .date-picker.filter-field .text-field:focused {
-    -fx-background-color: #FEFFE1;
+    -fx-background-color: #DDDDDD;
     -fx-border-color: #812323;
 }
 

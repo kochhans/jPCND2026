@@ -111,7 +111,8 @@ public class FrmAktionenPositionenController
 	private Label lblZeilebearbeiten;
 	@FXML
 	private Button btnPosSpeichern, btnPosLoeschen, btnPosHoch,
-			btnPosRunter, btnPosLeeren, btnPosLeerenAnhaengen, btnNaGrafikwahl, btnPosgespielt;
+			btnPosRunter, btnPosLeeren, btnPosLeerenAnhaengen, btnNaGrafikwahl,btnNaGrafikwahlLeer, btnPosgespielt;
+	
 	@FXML
 	FileChooser fileAuswahlbox = new FileChooser();
 	@FXML
@@ -692,6 +693,7 @@ public class FrmAktionenPositionenController
 				lblZeilebearbeitenSetzen(6);
 			}
 		}
+		txtPosStckTitel.requestFocus();
 
 	}
 
@@ -992,9 +994,21 @@ public class FrmAktionenPositionenController
 	@FXML // Titelgrafikpfad auswählen...
 	public void btnNaGrafikwahl_OnClick() throws Exception
 	{
-		Msgbox.show("Grafik für die Notenausgabe", "Diese Grafik wird direkt der Aktionsliste-Position zugeordnet\n"
-				+ "Es können bei Bedarf pro Position eigenständige Grafiken zugeordnet werden.\n Eine Synchronisation mit den Datensätzen des Notenarchiv (Notenausgaben) erfolgt nicht!");
+		//Msgbox.show("Grafik für die Notenausgabe", "Diese Grafik wird direkt der Aktionsliste-Position zugeordnet\n"
+		//		+ "Es können bei Bedarf pro Position eigenständige Grafiken zugeordnet werden.\n Eine Synchronisation mit den Datensätzen des Notenarchiv (Notenausgaben) erfolgt nicht!");
 		grafikwahlBox();
+	}
+	
+	public void btnNaGrafikwahlLeer_OnClick() throws Exception
+	{
+		if(Msgbox.yesno("Grafik entfernen ...", "Soll die Titelgrafik der Notenausgabe von der Listenposition entfernt werden?\n"
+				+ "Diese Aktion wird erst nach Speichern der Listenposition wirksam!\n\n"
+				+ "Hinweis: Die Zuordnung Titelgrafik-Notenausgabe bleibt in der Literaturliste weiterhin bestehen!")==false) {
+			return;
+		}
+		//grafikwahlBox();
+		txtPosTitelgrafik.setText("");
+		titelgrafikAnzeigen();
 	}
 
 	public void grafikwahlBox() throws Exception
@@ -1215,7 +1229,7 @@ public class FrmAktionenPositionenController
 
 			chkProgQuellePcnd.setSelected(false);
 			chkProgQuellePcnd.setDisable(true);
-			txtPosProgpkt.requestFocus();
+			txtPosStckTitel.requestFocus();
 		}
 		else
 		{

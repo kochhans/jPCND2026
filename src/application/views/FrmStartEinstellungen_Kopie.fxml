@@ -39,7 +39,7 @@
                </font>
             </Label>
             <Button fx:id="btnEinstellungenSpeichern" layoutX="460.0" layoutY="254.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="213.0" text="alle Änderungen übernehmen" visible="false" />
-            
+            <Button fx:id="btnSicherungskopieErstellen" layoutX="481.0" layoutY="159.0" mnemonicParsing="false" onAction="#btnSicherungskopieErstellen_OnClick" prefHeight="32.0" prefWidth="40.0" text="Datensicherung starten" visible="false" />
             <Label layoutX="12.0" layoutY="77.0" prefHeight="20.0" prefWidth="167.0" text="aktueller Sicherungsordner" wrapText="true">
                <font>
                   <Font name="System Italic" size="10.0" />
@@ -56,9 +56,9 @@
                </font></TextField>
             <Button fx:id="btnDatenimport" layoutX="500.0" layoutY="257.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="161.0" text="neue Daten importieren..." visible="false" />
             <Button fx:id="btnBackuppfadWaehlen" layoutX="633.0" layoutY="77.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="48.0" text="..." />
-            <Button fx:id="btnZurueck" layoutX="561.0" layoutY="116.0" mnemonicParsing="false" onAction="#btnZurueck_OnClick" prefHeight="32.0" prefWidth="124.0" styleClass="button-speichern" text="speichern" textFill="#07861d" />
-            <ProgressBar fx:id="progressBar" layoutX="15.0" layoutY="114.0" prefHeight="18.0" prefWidth="386.0" progress="0.0" />
-            <Label fx:id="lblStatus" layoutX="14.0" layoutY="133.0" prefHeight="20.0" prefWidth="386.0" text="Download...." visible="false" wrapText="true">
+            <Button fx:id="btnZurueck" layoutX="501.0" layoutY="120.0" mnemonicParsing="false" onAction="#btnZurueck_OnClick" prefHeight="32.0" prefWidth="191.0" styleClass="button-speichern" text="speichern und zurück" textFill="#07861d" />
+            <ProgressBar fx:id="progressBar" layoutX="15.0" layoutY="127.0" prefHeight="18.0" prefWidth="447.0" progress="0.0" />
+            <Label fx:id="lblStatus" layoutX="176.0" layoutY="143.0" prefHeight="20.0" prefWidth="434.0" text="Download...." visible="false" wrapText="true">
                <font>
                   <Font name="System Italic" size="10.0" />
                </font>
@@ -68,13 +68,12 @@
                   <Font name="System Italic" size="10.0" />
                </font>
             </Label>
-            <Label fx:id="lblTabellenueberschrift" layoutX="14.0" layoutY="156.0" prefHeight="18.0" prefWidth="692.0" text="Label">
+            <Label fx:id="lblTabellenueberschrift" layoutX="15.0" layoutY="152.0" prefHeight="18.0" prefWidth="679.0" text="Label">
                <styleClass>
                   <String fx:value="schriftrothell" />
                   <String fx:value="label-title3" />
                </styleClass>
             </Label>
-            <Button fx:id="btnAbbruchZurueck" layoutX="417.0" layoutY="116.0" mnemonicParsing="false" onAction="#btnAbbruchZurueck_OnClick" prefHeight="32.0" prefWidth="124.0" styleClass="button-loeschen" text="abbrechen" textFill="RED" />
 
 			</children>
 		</AnchorPane>
@@ -107,6 +106,7 @@
                   <Image url="@/icons/javafx/folders_explorer_fatcow32x32.png" />
                </image>
             </ImageView>
+            <Button fx:id="btnAbbruchZurueck" layoutX="501.0" layoutY="21.0" mnemonicParsing="false" onAction="#btnAbbruchZurueck_OnClick" prefHeight="32.0" prefWidth="191.0" styleClass="button-loeschen" text="abbrechen und zurück" textFill="RED" />
 			</children>
 		</AnchorPane>
 	</children>

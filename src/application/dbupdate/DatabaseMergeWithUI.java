@@ -143,7 +143,7 @@ public class DatabaseMergeWithUI extends Stage {
 
                 // Neustart aufrufen
                 Msgbox.show("Update abgeschlossen", "Die Anwendung wird nun neu gestartet.");
-                StartupManager.restart();
+                //StartupManager.restart();
 
                 return null;
             }
