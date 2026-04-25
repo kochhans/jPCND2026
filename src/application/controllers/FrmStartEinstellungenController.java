@@ -296,9 +296,11 @@ public class FrmStartEinstellungenController
 				result = new StartSettingsResult(true, dbdateipfad);
 
 				Msgbox.show(
-						"Fertig",
-						"Datenbank wurde erfolgreich heruntergeladen.\n" +
-								"Die Anwendung wird jetzt beendet und muss neu gestartet werden.");
+						"Datenbankdownload ...",
+						"Die Datenbank wurde erfolgreich geladen. Der Speicherpfad wurde festgelegt auf:\n"
+								+ dbdateipfad + "\n\n"
+								+ "ACHTUNG: Das Programm wird nun zur Neuinstellung der Daten beendet.\n"
+								+ "Starten Sie bitte anschließend neu.");
 
 				// 🔥 sauberer Exit (verzögert!)
 				Platform.runLater(() -> {
@@ -373,7 +375,8 @@ public class FrmStartEinstellungenController
 							+ dbdateipfad + "\n\n"
 							+ "Eine Datenbankdatei ist hier schon vorhanden.\n"
 							+ "Bitte prüfen Sie die Version Ihrer Daten.\n\n"
-							+ "Die Anwendung wird nun beendet und muss manuell neu gestartet werden!");
+							+ "ACHTUNG: Aufgrund der geänderten Speicherpfade wird das Programm beendet\n"
+							+ "Starten Sie bitte anschließend neu.");
 			finishAndSave(dbdateipfad, backupPath);
 			// 🔒 Pfade SPEICHERN (kanonisch!)
 			ConfigManager.saveDBPath(dbdateipfad);
@@ -396,39 +399,6 @@ public class FrmStartEinstellungenController
 
 		stage.close();
 	}
-//	@FXML
-//	private void onSaveSettings()
-//	{
-//	    try
-//	    {
-//	        // 1️⃣ Alten DB-Pfad merken (kann null sein!)
-//	        String oldDbPath = ValuesGlobals.databasePath;
-//	        System.out.println("alterDB-Pfad: " + oldDbPath);
-//
-//	        // 2️⃣ Neue Einstellungen speichern
-//	        String newDbPath = "jdbc:sqlite:" + ConfigManager.loadDBPath();
-//	        ValuesGlobals.databasePath = newDbPath;
-//	        System.out.println("neuerDB-Pfad: " + newDbPath);
-//
-//	        // 3️⃣ Modales Fenster schließen
-//	        stage.close();
-//
-//	        // 4️⃣ Vergleich NULL-sicher
-//	        if (!Objects.equals(oldDbPath, newDbPath))
-//	        {
-//	            // DB-Pfad geändert → kompletter Neustart
-//	        	//StartupManager.restart();
-//	        }
-//	        else
-//	        {
-//	            // Nur UI neu laden
-//	        	//StartupManager.restart();
-//	        }
-//	    }
-//	    catch (Exception e)
-//	    {
-//	        Msgbox.error( "Fehler beim Speichern der Einstellungen", e.getMessage());
-//	    }
-//	}
+
 
 }

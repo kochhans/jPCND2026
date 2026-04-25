@@ -14,7 +14,6 @@ public class DBManager {
     // Verbindung holen (Lazy Init)
     // ---------------------------------------------------------
     public static synchronized Connection getConnection() {
-
         try {
             if (connection == null || connection.isClosed()) {
 
@@ -35,7 +34,11 @@ public class DBManager {
 
                 System.out.println("✅ SQLite Connection erfolgreich");
             }
-            System.out.println("DBMANAGER 📂 Öffne DB: " + ValuesGlobals.dbPfad);
+            else {
+                // optional:
+                System.out.println("♻️ bestehende DB-Verbindung wird genutzt");
+            }
+
             return connection;
 
         } catch (Exception e) {
