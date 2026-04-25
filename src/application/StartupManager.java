@@ -262,17 +262,19 @@ public class StartupManager {
 
             // ✅ DANN Größenlogik
             dialog.setMinWidth(700);
-            dialog.setMinHeight(400);
+            dialog.setMinHeight(450);
 
             dialog.setWidth(700);
-            dialog.setHeight(400);
+            dialog.setHeight(450);
+            dialog.setMaxWidth(700);
+            dialog.setMaxHeight(450);
 
             dialog.centerOnScreen();
-            dialog.setOnShown(e -> {
-                dialog.setWidth(700);
-                dialog.setHeight(400);
-                dialog.centerOnScreen();
-            });
+//            dialog.setOnShown(e -> {
+//                dialog.setWidth(700);
+//                dialog.setHeight(400);
+//                dialog.centerOnScreen();
+//            });
 
             LicenseDialogController controller = loader.getController();
             controller.setStage(dialog);
@@ -339,10 +341,12 @@ public class StartupManager {
             dialog.setScene(scene);
             // ✅ DANN Größenlogik
             dialog.setMinWidth(730);
-            dialog.setMinHeight(270);
+            dialog.setMinHeight(300);
 
             dialog.setWidth(730);
-            dialog.setHeight(270);
+            dialog.setHeight(300);
+            dialog.setMaxWidth(730);
+            dialog.setMaxHeight(300);
 
             dialog.centerOnScreen();
             dialog.centerOnScreen();            
