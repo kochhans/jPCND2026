@@ -118,45 +118,6 @@ public class StartupManager {
         return ok && LicenseManager.getInstance().checkLicense() == LicenseCheckResult.VALID;
     }
 
-    // =========================
-    // DB
-    // =========================
-//    private boolean ensureDatabase() {
-//        String dbPath = ConfigManager.loadDBPath();
-//
-//        if (dbPath == null || !new File(dbPath).exists()) {
-//            boolean ok = showDatabaseDialog();
-//            if (!ok)
-//                return false;
-//            dbPath = ValuesGlobals.dbPfad;
-//        }
-//
-//        ValuesGlobals.dbPfad = dbPath;
-//        ValuesGlobals.databasePath = dbPath;
-//
-//        return true;
-//    }
-//    private boolean ensureDatabase() {
-//
-//        String dbPath = ConfigManager.loadDBPath();
-//
-//        if (dbPath == null || dbPath.isBlank() || !new File(dbPath).exists()) {
-//        	//dbPath = showDatabaseDialog();
-//            dbPath = showDatabaseDialogAndGetPath();
-//
-//            if (dbPath == null || dbPath.isBlank()) {
-//                return false; // User hat abgebrochen
-//            }
-//
-//            ConfigManager.saveDBPath(dbPath);
-//        }
-//
-//        ValuesGlobals.dbPfad = dbPath;
-//        ValuesGlobals.databasePath = dbPath;
-//        System.out.println("DB-Pfad beim Start: " + dbPath);
-//
-//        return true;
-//    }
  // =========================
  // DB
  // =========================
@@ -202,7 +163,7 @@ public class StartupManager {
             System.out.println(ValuesGlobals.progPfadGrafik);
 
             // 🔹 Dummy Scene setzen (wichtig für SceneManager)
-            Scene scene = new Scene(new StackPane(), 1240, 780);
+            Scene scene = new Scene(new StackPane(), 1240, 768);
             scene.getStylesheets().add(
                     getClass().getResource("/application/styles/application.css").toExternalForm());
 
@@ -215,11 +176,11 @@ public class StartupManager {
                     " -- -Pfad  " + ValuesGlobals.dbPfad);
 
             Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-            primaryStage.setWidth(screenBounds.getWidth() * 0.9);
-            primaryStage.setHeight(screenBounds.getHeight() * 0.9);
+            primaryStage.setWidth(screenBounds.getWidth() * 0.8);
+            primaryStage.setHeight(screenBounds.getHeight() * 0.8);
             primaryStage.centerOnScreen();
             primaryStage.setMinWidth(1240);
-            primaryStage.setMinHeight(780);
+            primaryStage.setMinHeight(768);
             //primaryStage.setResizable(false);
 
             // 🔹 SceneManager initialisieren (entscheidet selbst, welche Scene geladen wird)
@@ -280,33 +241,46 @@ public class StartupManager {
     // =========================
     private boolean showLicenseDialog() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/views/LicenseDialog.fxml"));
+            FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/application/views/LicenseDialog.fxml")
+            );
+
             Parent root = loader.load();
 
             Stage dialog = new Stage();
             dialog.initOwner(primaryStage);
             dialog.initModality(Modality.APPLICATION_MODAL);
-            dialog.getIcons().add(new Image(getClass().getResourceAsStream("/icons/javafx/jpcndicon0064.png")));
-            dialog.setResizable(true);
-         // wichtig: NICHT hart setzen
-            dialog.sizeToScene();
-            dialog.centerOnScreen();
-            dialog.setTitle("Lizenz für jPCND ...");
-            
-            dialog.setResizable(true);
+            dialog.getIcons().add(new Image(
+                getClass().getResourceAsStream("/icons/javafx/jpcndicon0064.png")
+            ));
 
+            dialog.setTitle("Lizenz für jPCND ...");
+
+            // ✅ ERST Scene setzen!
+            Scene scene = new Scene(root);
+            dialog.setScene(scene);
+
+            // ✅ DANN Größenlogik
             dialog.setMinWidth(700);
             dialog.setMinHeight(400);
 
             dialog.setWidth(700);
             dialog.setHeight(400);
 
+            dialog.centerOnScreen();
+            dialog.setOnShown(e -> {
+                dialog.setWidth(700);
+                dialog.setHeight(400);
+                dialog.centerOnScreen();
+            });
+
             LicenseDialogController controller = loader.getController();
             controller.setStage(dialog);
 
-            dialog.setScene(new Scene(root));
             dialog.showAndWait();
+
             return true;
+
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -356,13 +330,28 @@ public class StartupManager {
             Stage dialog = new Stage();
             dialog.initOwner(primaryStage);
             dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.getIcons().add(new Image(
+                    getClass().getResourceAsStream("/icons/javafx/jpcndicon0064.png")
+                ));
+            dialog.setTitle("Einstellungen für jPCND ...");   
+            // ✅ ERST Scene setzen!
+            Scene scene = new Scene(root);
+            dialog.setScene(scene);
+            // ✅ DANN Größenlogik
+            dialog.setMinWidth(730);
+            dialog.setMinHeight(270);
 
+            dialog.setWidth(730);
+            dialog.setHeight(270);
+
+            dialog.centerOnScreen();
+            dialog.centerOnScreen();            
             FrmStartEinstellungenController controller = loader.getController();
             controller.setStage(dialog);
 
-            dialog.setScene(new Scene(root));
-            dialog.sizeToScene();
-            dialog.centerOnScreen();
+            //dialog.setScene(new Scene(root));
+            //dialog.sizeToScene();
+
 
             dialog.showAndWait();
 

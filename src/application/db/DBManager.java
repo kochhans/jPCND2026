@@ -13,38 +13,83 @@ public class DBManager {
     // ---------------------------------------------------------
     // Verbindung holen (Lazy Init)
     // ---------------------------------------------------------
+//    public static synchronized Connection getConnection() {
+//        try {
+//            if (connection == null || connection.isClosed()) {
+//
+//                String dbPath = ValuesGlobals.dbPfad;
+//
+//                if (dbPath == null || dbPath.isBlank()) {
+//                    throw new IllegalStateException("DB-Pfad ist leer!");
+//                }
+//
+//                String url = "jdbc:sqlite:" + dbPath;
+//
+//                System.out.println("📂 Öffne SQLite DB: " + dbPath);
+//
+//                connection = DriverManager.getConnection(url);
+//
+//                // Foreign Keys aktivieren
+//                connection.createStatement().execute("PRAGMA foreign_keys = ON");
+//
+//                System.out.println("✅ SQLite Connection erfolgreich");
+//            }
+//            else {
+//                // optional:
+//                System.out.println("♻️ bestehende DB-Verbindung wird genutzt");
+//            }
+//
+//            return connection;
+//
+//        } catch (Exception e) {
+//            System.err.println("❌ DBManager.getConnection Fehler");
+//            e.printStackTrace();
+//            throw new RuntimeException("DB-Verbindung konnte nicht geöffnet werden", e);
+//        }
+//    }
     public static synchronized Connection getConnection() {
         try {
+            // 🔒 HARD GUARD: nur SQLite erlauben
+            String dbPath = ValuesGlobals.dbPfad;
+
+            if (dbPath == null || dbPath.isBlank()) {
+                throw new IllegalStateException("DB-Pfad ist leer!");
+            }
+
+            // 🔥 ABSICHERUNG: MySQL komplett blocken
+            if (dbPath.startsWith("jdbc:mysql") ||
+                dbPath.startsWith("mysql:") ||
+                dbPath.contains("mysql")) {
+
+                throw new IllegalStateException("MySQL ist deaktiviert – nur SQLite erlaubt!");
+            }
             if (connection == null || connection.isClosed()) {
 
-                String dbPath = ValuesGlobals.dbPfad;
+                dbPath = ValuesGlobals.dbPfad;
 
                 if (dbPath == null || dbPath.isBlank()) {
                     throw new IllegalStateException("DB-Pfad ist leer!");
                 }
 
+                // 🔥 SQLITE FIX: Force driver
+                Class.forName("org.sqlite.JDBC");
+
                 String url = "jdbc:sqlite:" + dbPath;
 
                 System.out.println("📂 Öffne SQLite DB: " + dbPath);
 
+                Class.forName("org.sqlite.JDBC");
                 connection = DriverManager.getConnection(url);
 
-                // Foreign Keys aktivieren
                 connection.createStatement().execute("PRAGMA foreign_keys = ON");
 
                 System.out.println("✅ SQLite Connection erfolgreich");
-            }
-            else {
-                // optional:
-                System.out.println("♻️ bestehende DB-Verbindung wird genutzt");
             }
 
             return connection;
 
         } catch (Exception e) {
-            System.err.println("❌ DBManager.getConnection Fehler");
-            e.printStackTrace();
-            throw new RuntimeException("DB-Verbindung konnte nicht geöffnet werden", e);
+            throw new RuntimeException("DB Fehler", e);
         }
     }
 

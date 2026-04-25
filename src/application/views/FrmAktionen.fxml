@@ -31,7 +31,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane id="rootScene2" fx:id="rootScene2" minHeight="780.0" minWidth="1220.0" prefHeight="780.0" prefWidth="1220.0" style="-fx-background-color: #7f7f7f;" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.FrmAktionenController">
+<AnchorPane id="rootScene2" fx:id="rootScene2" minHeight="740.0" minWidth="1220.0" prefHeight="740.0" prefWidth="1220.0" style="-fx-background-color: #7f7f7f;" stylesheets="@../styles/application.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.FrmAktionenController">
 	<children>
 		<VBox minWidth="1220.0" prefWidth="1220.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<children>
@@ -65,7 +65,7 @@
 					<children>
 						<AnchorPane maxHeight="84.0" minHeight="84.0" minWidth="1220.0" prefHeight="84.0" prefWidth="1220.0" style="-fx-background-color: #7f7f7f;" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label fx:id="lblUpdateinfo" layoutX="804.0" layoutY="29.0" prefHeight="46.0" prefWidth="213.0" text="Updateinfo ...&#10;...." wrapText="true" AnchorPane.rightAnchor="228.0">
+                        <Label fx:id="lblUpdateinfo" layoutX="804.0" layoutY="29.0" prefHeight="46.0" prefWidth="348.0" text="Updateinfo ...&#10;...." wrapText="true" AnchorPane.rightAnchor="219.0">
                            <padding>
                               <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
                            </padding>
@@ -207,7 +207,7 @@
 				</HBox>
             <SplitPane dividerPositions="0.5268456375838926" minWidth="1220.0" orientation="VERTICAL" prefHeight="721.0" prefWidth="1220.0" VBox.vgrow="ALWAYS">
               <items>
-                <AnchorPane maxHeight="1.7976931348623157E308" minHeight="245.0" minWidth="1220.0" prefHeight="299.0" prefWidth="1220.0">
+                <AnchorPane minHeight="245.0" minWidth="1220.0" prefHeight="299.0" prefWidth="1220.0">
                      <children>
                      
                         <SplitPane dividerPositions="0.37318255250403876" layoutX="-1.0" layoutY="36.0" minWidth="1220.0" prefHeight="328.0" prefWidth="1220.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
@@ -352,7 +352,7 @@
                   </AnchorPane>
                 <AnchorPane minHeight="272.0" minWidth="1220.0" prefHeight="280.0" prefWidth="1220.0">
                      <children>
-                        <TabPane fx:id="tabPaneAktionen" maxHeight="1.7976931348623157E308" minWidth="1220.0" prefHeight="272.0" prefWidth="1220.0" style="-fx-background-color: #e0e0e0;" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="9999.0" tabMinHeight="30.0" tabMinWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TabPane fx:id="tabPaneAktionen" minWidth="1220.0" prefHeight="272.0" prefWidth="1220.0" style="-fx-background-color: #e0e0e0;" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="9999.0" tabMinHeight="30.0" tabMinWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <tabs>
                               <Tab fx:id="tabDetails" text="Programmpunkte">
                                  <graphic>
@@ -379,7 +379,7 @@
                                              </tooltip>
                                           </Button>
                                           <Label fx:id="lblDatum21" layoutX="409.0" layoutY="5.0" prefHeight="19.0" prefWidth="112.0" styleClass="label-title2" text="Liste" textFill="#6b6b6b" visible="false" />
-                                          <TableView fx:id="tblvwAktionPositionen" editable="true" focusTraversable="false" layoutY="54.0" maxHeight="1.7976931348623157E308" prefHeight="155.0" prefWidth="1234.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="54.0">
+                                          <TableView fx:id="tblvwAktionPositionen" editable="true" focusTraversable="false" layoutY="54.0" prefHeight="166.0" prefWidth="1210.0" style="-fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="54.0">
                                              <columns>
                                                 <TableColumn fx:id="tblvwPosCol0Pos" editable="false" maxWidth="55.0" minWidth="55.0" prefWidth="55.0" resizable="false" sortable="false" text="Pos" />
                                                 <TableColumn fx:id="tblvwPosCol1Art" editable="false" maxWidth="150.0" minWidth="0.0" prefWidth="100.0" sortable="false" text="Hinweis" />
@@ -452,13 +452,13 @@
         							</ImageView>
     							</graphic>                               
                                  <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="248.0" prefWidth="1238.0" style="-fx-background-color: #EDEDED;">
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="206.0" prefWidth="1220.0" style="-fx-background-color: #EDEDED;">
                                        <children>
-                                          <SplitPane dividerPositions="0.49754098360655735" layoutX="5.0" layoutY="14.0" minWidth="-Infinity" prefHeight="239.0" prefWidth="1234.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                          <SplitPane dividerPositions="0.5032894736842105" layoutX="5.0" layoutY="14.0" minWidth="-Infinity" prefHeight="231.0" prefWidth="1216.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                                              <items>
-                                                <AnchorPane minHeight="0.0" minWidth="610.0" prefHeight="158.0" prefWidth="620.0" style="-fx-background-color: #C4C4C4;">
+                                                <AnchorPane minHeight="0.0" minWidth="610.0" prefHeight="234.0" prefWidth="610.0" style="-fx-background-color: #C4C4C4;">
                                                    <children>
-                                                      <TableView fx:id="tblvwPersonen" focusTraversable="false" layoutX="6.0" layoutY="122.0" onMouseClicked="#handleTblvwPersonen_onmouseClicked" prefHeight="101.0" prefWidth="600.0" style="-fx-background-color: #F5F5F5;" stylesheets="@../styles/FrmAktionenTableview.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="122.0">
+                                                      <TableView fx:id="tblvwPersonen" focusTraversable="false" layoutX="6.0" layoutY="122.0" onMouseClicked="#handleTblvwPersonen_onmouseClicked" prefHeight="101.0" prefWidth="600.0" style="-fx-background-color: #F5F5F5;" stylesheets="@../styles/FrmAktionenTableview.css" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="122.0">
                                                          <columns>
                                                             <TableColumn fx:id="tblcolPersonenChor" editable="false" prefWidth="100.0" sortable="false" text="Chor" />
                                                             <TableColumn fx:id="tblcolPersonenGruppe" editable="false" prefWidth="100.0" sortable="false" text="Gruppe" />
@@ -512,9 +512,9 @@
                                                       <CheckBox fx:id="chkAutomatischPos" contentDisplay="RIGHT" layoutX="514.0" layoutY="88.0" mnemonicParsing="false" selected="true" styleClass="label-rotklein" text="autom. zur &#10;Positionsliste" />
                                                    </children>
                                                 </AnchorPane>
-                                                <AnchorPane minHeight="0.0" minWidth="600.0" prefHeight="228.0" prefWidth="590.0" style="-fx-background-color: #C4C4C4;">
+                                                <AnchorPane minHeight="0.0" minWidth="600.0" prefHeight="216.0" prefWidth="600.0" style="-fx-background-color: #C4C4C4;">
                                                    <children>
-                                                      <TableView fx:id="tblvwPersonenZugewiesen" focusTraversable="false" layoutX="159.0" layoutY="61.0" onMouseClicked="#handleTblvwPersonenZugewiesen_onmouseClicked" prefHeight="173.0" prefWidth="445.0" style="-fx-background-color: #F5F5F5;" stylesheets="@../styles/FrmAktionenTableview.css" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="159.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="61.0">
+                                                      <TableView fx:id="tblvwPersonenZugewiesen" focusTraversable="false" layoutX="159.0" layoutY="61.0" onMouseClicked="#handleTblvwPersonenZugewiesen_onmouseClicked" prefHeight="165.0" prefWidth="436.0" style="-fx-background-color: #F5F5F5;" stylesheets="@../styles/FrmAktionenTableview.css" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="159.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="61.0">
                                                          <columns>
                                                             <TableColumn fx:id="tblcolMitwZugewiesenName" editable="false" prefWidth="120.0" text="Name" />
                                                             <TableColumn fx:id="tblcolMitwZugewiesenVorname" editable="false" prefWidth="120.0" text="Vorname" />
@@ -532,7 +532,7 @@
                                                       </TableView>
                                                       <Label fx:id="lblMitwirkendeDatensatzaktion" layoutX="159.0" layoutY="41.0" prefHeight="19.0" prefWidth="439.0" text="Person NEU hinzufügen" wrapText="true" />
                                                       <TextField fx:id="txtMitwEditName" layoutX="11.0" layoutY="66.0" prefHeight="28.0" prefWidth="138.0" />
-                                                      <TextField fx:id="txtMitwEditVorname" layoutX="11.0" layoutY="110.0" prefHeight="28.0" prefWidth="138.0" />
+                                                      <TextField fx:id="txtMitwEditVorname" layoutX="11.0" layoutY="109.0" prefHeight="28.0" prefWidth="138.0" />
                                                       <TextField fx:id="txtMitwEditStimme" layoutX="11.0" layoutY="154.0" prefHeight="28.0" prefWidth="138.0" />
                                                       <TextField fx:id="txtMitwEditInstrument" layoutX="11.0" layoutY="196.0" prefHeight="28.0" prefWidth="138.0" />
                                                       <Button fx:id="btnMitwEditSpeichern" focusTraversable="false" layoutX="179.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleBtnMitwEditSpeichern_onClick" prefHeight="40.0" prefWidth="40.0" styleClass="button-speichern">
@@ -571,9 +571,8 @@
                                                             <Tooltip text="Person als Mitwirkende manuell erfassen ..." />
                                                          </tooltip>
                                                       </Button>
-                                                      <Label layoutX="11.0" layoutY="50.0" prefHeight="15.0" prefWidth="131.0" text="Edit - Name" />
-                                                      <Label layoutX="11.0" layoutY="94.0" prefHeight="15.0" prefWidth="125.0" text="Edit - Vorname" />
-                                                      <Label layoutX="10.0" layoutY="140.0" prefHeight="15.0" prefWidth="125.0" text="Edit - Stimme " />
+                                                      <Label layoutX="11.0" layoutY="50.0" prefHeight="15.0" prefWidth="131.0" text="Edit - Name, Vorname" />
+                                                      <Label layoutX="10.0" layoutY="139.0" prefHeight="15.0" prefWidth="125.0" text="Edit - Stimme " />
                                                       <Label layoutX="10.0" layoutY="182.0" prefHeight="15.0" prefWidth="131.0" text="Edit - Instrument" />
                                                       <Label fx:id="lblAktionTeilnehmerliste" alignment="CENTER_RIGHT" layoutX="375.0" layoutY="3.0" prefHeight="19.0" prefWidth="215.0" styleClass="label-title3" text="Teilnehmerliste  " textFill="#6b6b6b" AnchorPane.rightAnchor="10.0" />
                                                       <Button fx:id="btnMitwEditSpeichern1" focusTraversable="false" layoutX="10.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleBtnMitwEditSpeichern1_onClick" prefHeight="40.0" prefWidth="61.0" text="&gt;&gt;&gt;" />

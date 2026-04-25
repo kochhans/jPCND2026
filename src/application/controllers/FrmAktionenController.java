@@ -2389,7 +2389,7 @@ public class FrmAktionenController
 		dialogStage.setX((screenBounds.getWidth() - dialogStage.getWidth()) / 2);
 		dialogStage.setY((screenBounds.getHeight() - dialogStage.getHeight()) / 2);
 		dialogStage.setMinWidth(1240);
-		dialogStage.setMinHeight(720);
+		dialogStage.setMinHeight(768);
 		// --------------------
 		controller.onShow(caid); // init in zugeh. EditController!
 		dialogStage.setScene(new Scene(root));

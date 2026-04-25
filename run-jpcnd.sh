@@ -2,6 +2,7 @@
 
 # =====================================================
 # jPCND START SCRIPT (ULTRA ROBUST)
+# 2026-04-25
 # =====================================================
 
 set -e
@@ -104,6 +105,7 @@ exec "$JAVA_CMD" \
   --enable-native-access=ALL-UNNAMED \
   --add-opens=java.base/java.lang=ALL-UNNAMED \
   --add-opens=java.base/java.nio=ALL-UNNAMED \
+  --add-opens=java.base/java.util=ALL-UNNAMED \
   --module-path "$MODULE_PATH" \
   --add-modules javafx.controls,javafx.fxml,javafx.graphics,javafx.media,javafx.web \
   -Djava.library.path="$LIB_PATH" \

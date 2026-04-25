@@ -2,7 +2,7 @@
 # =====================================================
 # jPCND BUILD SYSTEM - PRODUCTION LEVEL 3 (CLEAN)
 # Linux ZIP + macOS .app Bundle + LATEST artifacts
-# Version 2026-04-24
+# Version 2026-04-25
 # =====================================================
 
 # set -euo pipefail
@@ -54,6 +54,18 @@ for f in "$APP_JAR" "$RUN_SCRIPT" "$README"; do
 done
 
 [ -d "$LIB_DIR" ] || { echo "❌ fehlt lib dir"; exit 1; }
+
+echo "🔍 Prüfe JDBC Treiber..."
+if ls "$LIB_DIR" | grep -i mysql >/dev/null; then
+    echo "❌ MYSQL TREIBER GEFUNDEN - ABGELEHNT"
+    exit 1
+fi
+
+echo "🔍 JDBC Check (all platforms)"
+if ls "$LIB_DIR" | grep -Ei "mysql|maria" >/dev/null; then
+    echo "❌ JDBC Fremdtreiber gefunden"
+    exit 1
+fi
 
 rm -rf "$OUT"
 mkdir -p "$OUT"

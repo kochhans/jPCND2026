@@ -2048,8 +2048,7 @@ public class FrmAktionenPositionenController
 
 	public void titelgrafikAnzeigen()
 	{
-		//System.out.println("titelgarfikAnzeigen()" + ValuesGlobals.progPfadGrafik);
-		File fileFehlt = new File(ValuesGlobals.progPfadGrafik + ValuesGlobals.progPfadGrafikFehlt);
+		//File fileFehlt = new File(ValuesGlobals.progPfadGrafik + ValuesGlobals.progPfadGrafikFehlt);
 		File imgFile0 = new File(ValuesGlobals.progPfadGrafik + txtPosTitelgrafik.getText());
 		if (imgFile0.isFile())
 		{
@@ -2058,16 +2057,17 @@ public class FrmAktionenPositionenController
 		}
 		else
 		{
-			if (!tblvwLiteratur.getSelectionModel().isEmpty())
-			{
-				Image imgfileLeer = new Image(fileFehlt.toURI().toString());
-				imgNaTitelgrafik.setImage(imgfileLeer);
-			}
-			else
-			{
-				imgNaTitelgrafik.setImage(null);
-
-			}
+			imgNaTitelgrafik.setImage(null);
+//			if (!tblvwLiteratur.getSelectionModel().isEmpty())
+//			{
+//				//Image imgfileLeer = new Image(fileFehlt.toURI().toString());
+//				//imgNaTitelgrafik.setImage(imgfileLeer);
+//			}
+//			else
+//			{
+//				imgNaTitelgrafik.setImage(null);
+//
+//			}
 		}
 	}
 
