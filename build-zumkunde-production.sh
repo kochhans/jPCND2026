@@ -1,22 +1,15 @@
 #!/bin/bash
+set -euo pipefail
+
 # =====================================================
-# jPCND BUILD SYSTEM - PRODUCTION LEVEL 3 (CLEAN)
+# jPCND BUILD SYSTEM - PRODUCTION LEVEL 3 (CLEAN FIX)
 # Linux ZIP + macOS .app Bundle + LATEST artifacts
-# Version 2026-04-25
+# Version 2026-04-26
 # =====================================================
 
-# set -euo pipefail
-set -e
-
-# ----------------------------
-# VERSION
-# ----------------------------
 MAJOR=1
 BUILD_VERSION="$MAJOR.$(date +%y.%m.%d.%H%M)"
 
-# ----------------------------
-# PATHS
-# ----------------------------
 ROOT="$(pwd)"
 TARGET="$ROOT/target"
 OUT="$ROOT/zumkunde"
@@ -29,10 +22,8 @@ README="$ROOT/README-user.txt"
 FX_ROOT="$ROOT/lib/javafx"
 RUNTIME_ROOT="$ROOT/lib/runtime"
 
+INSTALLER="$ROOT/install-linuxuser.sh"
 
-# =====================================================
-# NAMING STRATEGY (SINGLE SOURCE OF TRUTH)
-# =====================================================
 APP_ID="jpcnd"
 
 NAME_LINUX="${APP_ID}-linux"
@@ -41,101 +32,89 @@ NAME_MAC_ARM64="${APP_ID}-macos-arm64"
 
 LATEST_SUFFIX="latest"
 
-# ----------------------------
-# CHECKS
-# ----------------------------
+
 echo "===================================="
-echo " jPCND LEVEL 3 CLEAN BUILD"
-echo " Version: $BUILD_VERSION"
+echo " BUILD $BUILD_VERSION"
 echo "===================================="
 
-for f in "$APP_JAR" "$RUN_SCRIPT" "$README"; do
+
+# =====================================================
+# CHECKS
+# =====================================================
+for f in "$APP_JAR" "$RUN_SCRIPT" "$README" "$INSTALLER"; do
     [ -f "$f" ] || { echo "❌ fehlt: $f"; exit 1; }
 done
 
 [ -d "$LIB_DIR" ] || { echo "❌ fehlt lib dir"; exit 1; }
 
-echo "🔍 Prüfe JDBC Treiber..."
-if ls "$LIB_DIR" | grep -i mysql >/dev/null; then
-    echo "❌ MYSQL TREIBER GEFUNDEN - ABGELEHNT"
-    exit 1
-fi
-
-echo "🔍 JDBC Check (all platforms)"
+echo "🔍 JDBC CHECK"
 if ls "$LIB_DIR" | grep -Ei "mysql|maria" >/dev/null; then
-    echo "❌ JDBC Fremdtreiber gefunden"
+    echo "❌ Fremd-JDBC Treiber gefunden"
     exit 1
 fi
 
 rm -rf "$OUT"
 mkdir -p "$OUT"
 
-# =====================================================
-# LINUX ZIP
-# =====================================================
 
+# =====================================================
+# LINUX BUILD
+# =====================================================
 build_linux() {
 
-    echo ""
-    echo "📦 BUILD LINUX ZIP (MIT MINIMAL RUNTIME)"
+    echo "🐧 BUILD LINUX"
 
     TMP="$(mktemp -d)"
-    mkdir -p "$TMP/jpcnd"
+    APP="$TMP/jpcnd"
+
+    mkdir -p "$APP"
 
     # ----------------------------
-    # APP CORE
+    # CORE APP
     # ----------------------------
-    cp "$APP_JAR" "$TMP/jpcnd/"
-    cp -r "$LIB_DIR" "$TMP/jpcnd/jpcnd_lib"
-    cp "$RUN_SCRIPT" "$TMP/jpcnd/"
-    cp "$README" "$TMP/jpcnd/"
+    cp "$APP_JAR" "$APP/"
+    cp -r "$LIB_DIR" "$APP/jpcnd_lib"
+    cp "$RUN_SCRIPT" "$APP/"
+    cp "$README" "$APP/"
+
+    # ----------------------------
+    # INSTALLER (WICHTIG FIX)
+    # ----------------------------
+    cp "$INSTALLER" "$APP/"
+    chmod +x "$APP/install-linuxuser.sh"
+
+    # Debug CHECK (wichtig!)
+    echo "📦 CHECK INSTALLER:"
+    ls -l "$APP" | grep install || {
+        echo "❌ INSTALLER NICHT IM PACKAGE"
+        exit 1
+    }
 
     # ----------------------------
     # JAVAFX
     # ----------------------------
-    mkdir -p "$TMP/jpcnd/javafx_jars"
-    mkdir -p "$TMP/jpcnd/javafx_lib"
+    FX_LINUX="$FX_ROOT/linux/lib"
 
-    cp "$FX_ROOT/linux-sdk/lib/"*.jar "$TMP/jpcnd/javafx_jars/"
-    cp "$FX_ROOT/linux-sdk/lib/"*.so "$TMP/jpcnd/javafx_lib/"
+    mkdir -p "$APP/javafx_jars"
+    mkdir -p "$APP/javafx_lib"
 
-    # fallback (für dein Script)
-    mkdir -p "$TMP/jpcnd/javafx"
-    cp -r "$FX_ROOT/linux-sdk/lib/"* "$TMP/jpcnd/javafx/"
+    cp "$FX_LINUX/"*.jar "$APP/javafx_jars/"
+    cp "$FX_LINUX/"*.so "$APP/javafx_lib/"
 
     # ----------------------------
-    # ASSETS
+    # RUNTIME (jlink)
     # ----------------------------
-    cp "$ROOT/install-linuxuser.sh" "$TMP/jpcnd/"
-    cp "$ROOT/lib/mac/jpcnd.png" "$TMP/jpcnd/"
-
-    # ====================================================
-    # 🔧 JLINK RUNTIME (LIVE BUILD)
-    # ====================================================
-    echo ""
-    echo "🔧 Baue Minimal Runtime (jlink)"
-
     JDK_HOME="$RUNTIME_ROOT/linux-x64/jdk"
 
-    if [ ! -x "$JDK_HOME/bin/jlink" ]; then
-        echo "❌ jlink nicht gefunden: $JDK_HOME"
-        exit 1
-    fi
-
-    RUNTIME_TARGET="$TMP/jpcnd/runtime/jre"
-
     "$JDK_HOME/bin/jlink" \
-  --add-modules java.base,java.desktop,java.net.http,java.prefs,java.sql,java.scripting,java.xml,java.xml.crypto,java.logging,jdk.unsupported,jdk.jsobject,jdk.xml.dom \
-   		--strip-debug \
+        --add-modules java.base,java.desktop,java.sql,java.xml,java.logging,jdk.unsupported \
+        --strip-debug \
         --no-man-pages \
         --no-header-files \
         --compress=2 \
-        --output "$RUNTIME_TARGET"
-        
-        
+        --output "$APP/runtime"
 
-
-    echo "✅ Minimal Runtime erstellt"
+    echo "✅ jlink Runtime fertig"
 
     # ----------------------------
     # ZIP
@@ -149,32 +128,20 @@ build_linux() {
 
     rm -rf "$TMP"
 
-    echo "✅ Linux ZIP: $ZIP"
-    echo "📦 Linux LATEST: $ZIP_LATEST"
+    echo "✅ Linux Build fertig"
+    echo "📦 $ZIP"
 }
 
 
-
-
-
 # =====================================================
-# MAC APP BUNDLE
+# MAC BUILD
 # =====================================================
 build_macos_app() {
-    local ARCH="${1:-}"
-		[ -n "$ARCH" ] || { echo "❌ ARCH fehlt"; exit 1; }
 
-    echo "DEBUG: ARCH=$ARCH"
-    echo "DEBUG: RUNTIME_ROOT=$RUNTIME_ROOT"
+    ARCH="$1"
 
-    local ARCH="$1"
+    echo "🍏 BUILD MAC $ARCH"
 
-    echo ""
-    echo "🍏 BUILD MAC APP ($ARCH)"
-
-    # ----------------------------
-    # NAME RESOLUTION
-    # ----------------------------
     if [ "$ARCH" == "macos-x64" ]; then
         NAME="$NAME_MAC_X64"
     else
@@ -186,37 +153,11 @@ build_macos_app() {
 
     rm -rf "$APP"
 
-    # ----------------------------
-    # STRUCTURE
-    # ----------------------------
     mkdir -p "$CONTENTS/MacOS"
     mkdir -p "$CONTENTS/Java/jpcnd_lib"
-    mkdir -p "$CONTENTS/Java/javafx"
-    mkdir -p "$CONTENTS/Runtime"
     mkdir -p "$CONTENTS/Java/javafx_jars"
-
-    # ----------------------------
-    # LAUNCHER
-    # ----------------------------
-cat > "$CONTENTS/MacOS/jpcnd" <<EOF
-#!/bin/bash
-DIR="\$(cd "\$(dirname "\$0")" && pwd)"
-
-JAVA_HOME="\$DIR/../Runtime/jre"
-if [ -d "\$JAVA_HOME" ]; then
-  JAVA_BIN="\$JAVA_HOME/bin/java"
-else
-  JAVA_BIN="java"
-fi
-
-exec "\$JAVA_BIN" \\
-  --module-path "\$DIR/../Java/javafx_jars" \\
-  --add-modules javafx.controls,javafx.fxml,javafx.graphics,javafx.media,javafx.web \\
-  -Djava.library.path="\$DIR/../Java/javafx/$ARCH" \\
-  -jar "\$DIR/../Java/jpcnd.jar"
-EOF
-
-    chmod +x "$CONTENTS/MacOS/jpcnd"
+    mkdir -p "$CONTENTS/Java/javafx_lib"
+    mkdir -p "$CONTENTS/Runtime"
 
     # ----------------------------
     # APP FILES
@@ -224,117 +165,88 @@ EOF
     cp "$APP_JAR" "$CONTENTS/Java/"
     cp -r "$LIB_DIR/"* "$CONTENTS/Java/jpcnd_lib/" || true
 
-    if [ -d "$FX_ROOT/$ARCH" ]; then
-        cp -r "$FX_ROOT/$ARCH" "$CONTENTS/Java/javafx/"
-    else
-        echo "❌ JavaFX fehlt: $ARCH"
+    # ----------------------------
+    # JAVAFX
+    # ----------------------------
+    FX_DIR=$(find "$FX_ROOT/$ARCH" -type d -name "lib" | head -n 1)
+
+    if [ -z "$FX_DIR" ]; then
+        echo "❌ JavaFX fehlt $ARCH"
         exit 1
     fi
-    
-    # ----------------------------
-    # JavaFX JARs (Module!) hinzufügen
-    # ----------------------------    
 
-	cp "$FX_ROOT/javafx.base.jar"      "$CONTENTS/Java/javafx_jars/"
-	cp "$FX_ROOT/javafx.controls.jar"  "$CONTENTS/Java/javafx_jars/"
-	cp "$FX_ROOT/javafx.fxml.jar"      "$CONTENTS/Java/javafx_jars/"
-	cp "$FX_ROOT/javafx.graphics.jar"  "$CONTENTS/Java/javafx_jars/"
-	cp "$FX_ROOT/javafx.media.jar"     "$CONTENTS/Java/javafx_jars/"
-	cp "$FX_ROOT/javafx.web.jar"       "$CONTENTS/Java/javafx_jars/"
-    
-	# ----------------------------
-	# Runtime AUTO DETECT + FLAT PACK (FIX2)
-	# ----------------------------
-	
-	RUNTIME_SRC="${RUNTIME_ROOT}/${ARCH}"
-	JAVA_HOME=""
-	if [ ! -d "$RUNTIME_SRC" ]; then
-    echo "❌ Runtime-Ordner fehlt: $RUNTIME_SRC"
-    exit 1
-fi
-	
-	if [ -d "$RUNTIME_SRC/Contents/Home" ]; then
-	    JAVA_HOME="$RUNTIME_SRC/Contents/Home"
-	elif [ -d "$RUNTIME_SRC/jre/Contents/Home" ]; then
-	    JAVA_HOME="$RUNTIME_SRC/jre/Contents/Home"
-	elif [ -d "$RUNTIME_SRC/jre/bin" ]; then
-	    JAVA_HOME="$RUNTIME_SRC/jre"
-	elif [ -x "$RUNTIME_SRC/bin/java" ]; then
-	    JAVA_HOME="$RUNTIME_SRC"
-	fi
-	
-	if [ -z "$JAVA_HOME" ] || [ ! -x "$JAVA_HOME/bin/java" ]; then
-	    echo "❌ Kein gültiges Java Runtime gefunden: $RUNTIME_SRC"
-	    exit 1
-	fi
-	
-	echo "☕ Java erkannt: $JAVA_HOME"
-	
-	RUNTIME_TARGET="$CONTENTS/Runtime/jre"
-	mkdir -p "$RUNTIME_TARGET"
-	
-	cp -R "$JAVA_HOME/bin" "$RUNTIME_TARGET/"
-	cp -R "$JAVA_HOME/lib" "$RUNTIME_TARGET/"
-	cp -R "$JAVA_HOME/conf" "$RUNTIME_TARGET/" 2>/dev/null || true
-	cp -R "$JAVA_HOME/release" "$RUNTIME_TARGET/" 2>/dev/null || true
+    cp "$FX_DIR/"*.jar "$CONTENTS/Java/javafx_jars/"
+    cp "$FX_DIR/"*.dylib "$CONTENTS/Java/javafx_lib/"
 
     # ----------------------------
-    # Info.plist
+    # RUNTIME
+    # ----------------------------
+    RUNTIME_SRC="$RUNTIME_ROOT/$ARCH"
+
+    JAVA_HOME=$(find "$RUNTIME_SRC" -type d -path "*Home" | head -n 1)
+
+    if [ -z "$JAVA_HOME" ]; then
+        echo "❌ Runtime fehlt"
+        exit 1
+    fi
+
+    cp -R "$JAVA_HOME/bin" "$CONTENTS/Runtime/"
+    cp -R "$JAVA_HOME/lib" "$CONTENTS/Runtime/"
+
+    # ----------------------------
+    # LAUNCHER
+    # ----------------------------
+    cat > "$CONTENTS/MacOS/jpcnd" <<EOF
+#!/bin/bash
+DIR="\$(cd "\$(dirname "\$0")" && pwd)"
+
+JAVA="\$DIR/../Runtime/bin/java"
+
+exec "\$JAVA" \
+ --module-path "\$DIR/../Java/javafx_jars" \
+ --add-modules javafx.controls,javafx.fxml,javafx.graphics,javafx.media,javafx.web \
+ -Djava.library.path="\$DIR/../Java/javafx_lib" \
+ -jar "\$DIR/../Java/jpcnd.jar"
+EOF
+
+    chmod +x "$CONTENTS/MacOS/jpcnd"
+
+    # ----------------------------
+    # INFO PLIST
     # ----------------------------
     cat > "$CONTENTS/Info.plist" <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <plist version="1.0">
 <dict>
-    <key>CFBundleName</key>
-    <string>jPCND</string>
-
-    <key>CFBundleExecutable</key>
-    <string>jpcnd</string>
-
-    <key>CFBundleIdentifier</key>
-    <string>com.jpcnd.app</string>
-
-    <key>CFBundleVersion</key>
-    <string>$BUILD_VERSION</string>
-
-    <key>CFBundlePackageType</key>
-    <string>APPL</string>
-
-    <key>LSMinimumSystemVersion</key>
-    <string>11.0</string>
+    <key>CFBundleName</key><string>jPCND</string>
+    <key>CFBundleExecutable</key><string>jpcnd</string>
+    <key>CFBundleIdentifier</key><string>com.jpcnd.app</string>
+    <key>CFBundleVersion</key><string>$BUILD_VERSION</string>
 </dict>
 </plist>
 EOF
 
-    # ----------------------------
-    # ZIP OUTPUT
-    # ----------------------------
     ZIP="$OUT/${NAME}-${BUILD_VERSION}.zip"
     ZIP_LATEST="$OUT/${NAME}-${LATEST_SUFFIX}.zip"
 
     (cd "$OUT" && zip -rq "$ZIP" "$(basename "$APP")")
-
     cp -f "$ZIP" "$ZIP_LATEST"
 
-    echo "✅ Mac App fertig: $APP"
-    echo "📦 ZIP: $ZIP"
-    echo "📦 LATEST: $ZIP_LATEST"
+    echo "✅ Mac Build fertig: $ARCH"
 }
 
+
 # =====================================================
-# BUILD ALL
+# RUN ALL
 # =====================================================
 build_linux
 build_macos_app "macos-x64"
 build_macos_app "macos-arm64"
 
+
 echo ""
 echo "===================================="
-echo "🎉 BUILD COMPLETE (LEVEL 3 CLEAN)"
-echo "OUTPUT: $OUT"
+echo "🎉 BUILD COMPLETE LEVEL 3 FIXED"
+echo "OUT: $OUT"
 echo "VERSION: $BUILD_VERSION"
 echo "===================================="
-
-# optional DMG step
-# echo "=========== OPTIONAL ============"
-# bash ./build-dmg.sh || true

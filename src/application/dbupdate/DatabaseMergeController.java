@@ -26,7 +26,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import application.ConfigManager;
-import application.StartupManager;
 import application.ValuesGlobals;
 import application.uicomponents.Msgbox;
 

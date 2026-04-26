@@ -1148,9 +1148,9 @@ public class FrmAktionenController
 		leerenAktionsfelder();
 		leerenTabelleAktionenPositionen();
 		tblvwChoraktionen.getSelectionModel().clearSelection();
-		Platform.runLater(dpEingabeDatum::requestFocus);
 		ohneAktionElementeDisablen();
 		// tabPaneAktionen.getSelectionModel().select(tabDetails);
+		Platform.runLater(radDetailsProbe::requestFocus);	
 
 	}
 
@@ -1199,6 +1199,7 @@ public class FrmAktionenController
 			// höchster ca_id im Feld capo_ca_id versehen
 			db.copyPositionen(alteCaid, neueCaid);
 		}
+		btnAktionNeu_OnClick(null);
 
 	}
 
@@ -1337,18 +1338,6 @@ public class FrmAktionenController
 		}
 
 		// Validierungen
-		if (caakttyp == null || caakttyp.isBlank())
-		{
-			Msgbox.warn("Speichern abgebrochen", "Bitte wählen Sie eine Bezeichnung für die Planung ein oder geben Sie eine neue ein.");
-			Platform.runLater(cbxEingabeAktion::requestFocus);
-			return 0;
-		}
-		if (caort == null || caort.isBlank())
-		{
-			Msgbox.warn("Speichern abgebrochen", "Bitte wählen Sie einen Ort aus oder geben Sie einen neuen ein.");
-			Platform.runLater(cbxEingabeOrt::requestFocus);
-			return 0;
-		}
 		if (cagruppe == null || cagruppe.isBlank())
 		{
 			Msgbox.warn("Speichern abgebrochen", "Bitte wählen Sie eine Gruppe aus oder geben Sie eine neue Gruppe ein.");
@@ -1359,6 +1348,18 @@ public class FrmAktionenController
 		{
 			Msgbox.warn("Speichern abgebrochen", "Bitte wählen Sie eine(n) Verantwortliche(n) oder geben Sie hier neu ein.");
 			Platform.runLater(cbxEingabeVerantwortlich::requestFocus);
+			return 0;
+		}
+		if (caort == null || caort.isBlank())
+		{
+			Msgbox.warn("Speichern abgebrochen", "Bitte wählen Sie einen Ort aus oder geben Sie einen neuen ein.");
+			Platform.runLater(cbxEingabeOrt::requestFocus);
+			return 0;
+		}
+		if (caakttyp == null || caakttyp.isBlank())
+		{
+			Msgbox.warn("Speichern abgebrochen", "Bitte wählen Sie eine Bezeichnung für die Planung ein oder geben Sie eine neue ein.");
+			Platform.runLater(cbxEingabeAktion::requestFocus);
 			return 0;
 		}
 
@@ -1402,7 +1403,7 @@ public class FrmAktionenController
 				caort, caveranstalter, caprobeauftritt, cagema, caid);
 
 		filternAktionen();
-		Platform.runLater(dpEingabeDatum::requestFocus);
+
 		refreshComboBoxes();
 		if (neu == true)
 		{
@@ -1410,7 +1411,12 @@ public class FrmAktionenController
 		}
 		// Cursor wieder setzen
 		TableUtils.selectRowById(tblvwChoraktionen, neueCaid, AktionenListeModel::getCaid);
-
+		leerenAktionsfelder();
+		leerenTabelleAktionenPositionen();
+		tblvwChoraktionen.getSelectionModel().clearSelection();
+		//ohneAktionElementeDisablen();
+		// tabPaneAktionen.getSelectionModel().select(tabDetails);
+		Platform.runLater(radDetailsProbe::requestFocus);		
 		return neueCaid;
 	}
 
@@ -1451,6 +1457,7 @@ public class FrmAktionenController
 			tblvwChoraktionen.getSelectionModel().select(markierterIndex);
 			// tblvwChoraktionen.scrollTo(markierterIndex);
 		}
+		btnAktionNeu_OnClick(null);		
 
 	}
 

@@ -20,7 +20,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.*;
 
-import application.StartupManager;
 import application.ValuesGlobals;
 import application.uicomponents.Msgbox;
 

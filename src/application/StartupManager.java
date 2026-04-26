@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import application.controllers.DatabaseControllerAktionen;
-import application.controllers.DatabaseDialogController;
 import application.controllers.FrmStartEinstellungenController;
 import application.controllers.LicenseDialogController;
 import application.db.DBManager;

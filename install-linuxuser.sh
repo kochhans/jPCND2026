@@ -5,6 +5,8 @@
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
+
+
 DESKTOP_FILE="$HOME/.local/share/applications/jpcnd.desktop"
 ICON_TARGET="$HOME/.local/share/icons/jpcnd.png"
 
