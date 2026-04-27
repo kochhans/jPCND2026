@@ -6,11 +6,19 @@ import java.util.Properties;
 
 public class ConfigManager {
 
-    private static final Path CONFIG_DIR =
-            Paths.get(System.getProperty("user.home"), ".jpcnd");
+//    private static final Path CONFIG_DIR =
+//            Paths.get(System.getProperty("user.home"), ".jpcnd");
+//
+//    private static final String APP_FOLDER = "jpcnd";
+//    
+//    private static final Path CONFIG_FILE = CONFIG_DIR.resolve("config.ini");
+	private static final String APP_FOLDER = "jpcnd";
 
-    private static final String APP_FOLDER = "jpcnd";
-    private static final Path CONFIG_FILE = CONFIG_DIR.resolve("config.ini");
+	private static final Path CONFIG_DIR =
+	        getConfigDirectory().toPath();
+
+	private static final Path CONFIG_FILE =
+	        CONFIG_DIR.resolve("config.ini");
 
     private static final Properties props = new Properties();
 

@@ -242,6 +242,14 @@
                                     
                                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="25.0" layoutX="6.0" layoutY="25.0" opacity="0.12" stroke="BLACK" strokeType="INSIDE" styleClass="label" width="224.0" />
                                     <Label fx:id="lblDatum2" layoutX="8.0" layoutY="2.0" prefHeight="25.0" prefWidth="167.0" styleClass="label-title3" text="Aktivität Details" wrapText="true" />
+                                    <Label layoutX="38.0" layoutY="29.0" prefHeight="17.0" prefWidth="73.0" text="Probe o.ä." textFill="#6b6b6b" />
+                                    
+                                    <RadioButton fx:id="radDetailsProbe" layoutX="13.0" layoutY="29.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" selected="true">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="ogrProbeAuffuehrung" />
+                                       </toggleGroup></RadioButton>
+                                    
+                                    <RadioButton fx:id="radDetailsAuff" layoutX="126.0" layoutY="29.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" toggleGroup="$ogrProbeAuffuehrung" />
                                     <ComboBox fx:id="cbxEingabeGruppe" editable="true" layoutX="6.0" layoutY="71.0" prefHeight="30.0" prefWidth="224.0" />
                                     <DatePicker fx:id="dpEingabeDatum" layoutX="237.0" layoutY="72.0" prefHeight="28.0" prefWidth="118.0" />
                                     <Spinner fx:id="spEingabeBeginn" layoutX="363.0" layoutY="73.0" prefHeight="28.0" prefWidth="100.0" />
@@ -254,7 +262,6 @@
                                     <Label fx:id="lblDatum" layoutX="237.0" layoutY="54.0" prefHeight="17.0" prefWidth="91.0" text="Datum" textFill="#6b6b6b" />
                                     <Label fx:id="lblGruppe1" layoutX="8.0" layoutY="100.0" prefHeight="17.0" prefWidth="145.0" text="Leitung" textFill="#6b6b6b" />
                                     <Label layoutX="153.0" layoutY="29.0" prefHeight="17.0" prefWidth="73.0" text="Aufführung" textFill="#6b6b6b" />
-                                    <Label layoutX="38.0" layoutY="29.0" prefHeight="17.0" prefWidth="73.0" text="Probe o.ä." textFill="#6b6b6b" />
                                     <Label fx:id="lblTreffpunkt" layoutX="473.0" layoutY="54.0" prefHeight="17.0" prefWidth="100.0" text="Treffp. (hh:mm)" textFill="#6b6b6b" />
                                     <Label fx:id="lblBeginn" layoutX="365.0" layoutY="54.0" prefHeight="17.0" prefWidth="109.0" text="Beginn (hh:mm)" textFill="#6b6b6b" />
                                     <Label alignment="CENTER_RIGHT" layoutX="527.0" layoutY="124.0" prefHeight="17.0" prefWidth="58.0" text="GEMA" textFill="#6b6b6b" AnchorPane.rightAnchor="75.0" />
@@ -329,14 +336,6 @@
                                           <Tooltip text="Drucken... (PDF-Seitenansicht)" />
                                        </tooltip>
                                     </Button>
-                                    
-                                    <RadioButton fx:id="radDetailsAuff" focusTraversable="false" layoutX="126.0" layoutY="29.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT">
-                                       <toggleGroup>
-                                          <ToggleGroup fx:id="ogrProbeAuffuehrung" />
-                                       </toggleGroup>
-                                    </RadioButton>
-                                    
-                                    <RadioButton fx:id="radDetailsProbe" focusTraversable="false" layoutX="13.0" layoutY="29.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" selected="true" toggleGroup="$ogrProbeAuffuehrung" />
                                     <TextField fx:id="txtEingabeAnzahl" alignment="CENTER" focusTraversable="false" layoutX="572.0" layoutY="73.0" prefHeight="28.0" prefWidth="50.0" />
                                     <Label fx:id="lblDatum1" layoutX="237.0" layoutY="147.0" prefHeight="17.0" prefWidth="202.0" text="Kurzbeschreibung" textFill="#6b6b6b" />
                                     <Label fx:id="lblGruppe" layoutX="8.0" layoutY="54.0" prefHeight="17.0" prefWidth="195.0" text="Beteiligte (Chor/Gruppe)" textFill="#6b6b6b" />
@@ -531,10 +530,10 @@
                                                          
                                                       </TableView>
                                                       <Label fx:id="lblMitwirkendeDatensatzaktion" layoutX="159.0" layoutY="41.0" prefHeight="19.0" prefWidth="439.0" text="Person NEU hinzufügen" wrapText="true" />
-                                                      <TextField fx:id="txtMitwEditName" layoutX="11.0" layoutY="66.0" prefHeight="28.0" prefWidth="138.0" />
-                                                      <TextField fx:id="txtMitwEditVorname" layoutX="11.0" layoutY="109.0" prefHeight="28.0" prefWidth="138.0" />
-                                                      <TextField fx:id="txtMitwEditStimme" layoutX="11.0" layoutY="154.0" prefHeight="28.0" prefWidth="138.0" />
-                                                      <TextField fx:id="txtMitwEditInstrument" layoutX="11.0" layoutY="196.0" prefHeight="28.0" prefWidth="138.0" />
+                                                      <TextField fx:id="txtMitwEditName" layoutX="11.0" layoutY="63.0" prefHeight="28.0" prefWidth="138.0" />
+                                                      <TextField fx:id="txtMitwEditVorname" layoutX="11.0" layoutY="105.0" prefHeight="28.0" prefWidth="138.0" />
+                                                      <TextField fx:id="txtMitwEditStimme" layoutX="11.0" layoutY="149.0" prefHeight="28.0" prefWidth="138.0" />
+                                                      <TextField fx:id="txtMitwEditInstrument" layoutX="11.0" layoutY="193.0" prefHeight="28.0" prefWidth="138.0" />
                                                       <Button fx:id="btnMitwEditSpeichern" focusTraversable="false" layoutX="179.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleBtnMitwEditSpeichern_onClick" prefHeight="40.0" prefWidth="40.0" styleClass="button-speichern">
                                                          <graphic>
                                                             <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
@@ -571,11 +570,12 @@
                                                             <Tooltip text="Person als Mitwirkende manuell erfassen ..." />
                                                          </tooltip>
                                                       </Button>
-                                                      <Label layoutX="11.0" layoutY="50.0" prefHeight="15.0" prefWidth="131.0" text="Edit - Name, Vorname" />
-                                                      <Label layoutX="10.0" layoutY="139.0" prefHeight="15.0" prefWidth="125.0" text="Edit - Stimme " />
-                                                      <Label layoutX="10.0" layoutY="182.0" prefHeight="15.0" prefWidth="131.0" text="Edit - Instrument" />
+                                                      <Label layoutX="11.0" layoutY="50.0" prefHeight="15.0" prefWidth="131.0" text="Edit - Name" />
+                                                      <Label layoutX="11.0" layoutY="136.0" prefHeight="15.0" prefWidth="125.0" text="Edit - Stimme " />
+                                                      <Label layoutX="11.0" layoutY="179.0" prefHeight="15.0" prefWidth="131.0" text="Edit - Instrument" />
                                                       <Label fx:id="lblAktionTeilnehmerliste" alignment="CENTER_RIGHT" layoutX="375.0" layoutY="3.0" prefHeight="19.0" prefWidth="215.0" styleClass="label-title3" text="Teilnehmerliste  " textFill="#6b6b6b" AnchorPane.rightAnchor="10.0" />
                                                       <Button fx:id="btnMitwEditSpeichern1" focusTraversable="false" layoutX="10.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleBtnMitwEditSpeichern1_onClick" prefHeight="40.0" prefWidth="61.0" text="&gt;&gt;&gt;" />
+                                                      <Label layoutX="11.0" layoutY="92.0" prefHeight="15.0" prefWidth="131.0" text="Edit - Vorname" />
                                                    </children>
                                                 </AnchorPane>
                                              </items>

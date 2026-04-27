@@ -37,7 +37,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="495.0" layoutY="25.0" prefHeight="20.0" prefWidth="236.0" text="Datensätze neu anlegen, bearbeiten, löschen." wrapText="true">
+            <Label layoutX="495.0" layoutY="25.0" prefHeight="20.0" prefWidth="236.0" text="Datensätze neu anlegen, bearbeiten, löschen." visible="false" wrapText="true">
                <font>
                   <Font name="System Italic" size="10.0" />
                </font>

@@ -16,6 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -89,6 +90,7 @@ public class FrmStueckeWoliEditController extends BaseEditController<GesangbuchM
 		{
 			lblAuswahl.setText("kein Stück gewählt - Feiertage/Festtage für Wochenlieder editieren...");
 			lblGewaehlt.setText("Feiertage/Festtage editieren...");
+			lblGewaehlt.setAlignment(Pos.CENTER_RIGHT);
 			tblVwListeZugewiesen.setDisable(true);
 			btnWegnehmen.setDisable(true);
 			btnZuweisen.setDisable(true);

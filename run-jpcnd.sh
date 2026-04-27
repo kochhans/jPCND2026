@@ -2,7 +2,6 @@
 
 # =====================================================
 # jPCND START SCRIPT (ULTRA ROBUST)
-# 2026-04-25
 # =====================================================
 
 set -e
@@ -21,11 +20,15 @@ echo "===================================="
 # JAVA CHECK
 # ----------------------------
 # ----------------------------
-# JAVA (BUNDLED FIRST)
+# JAVA (BUNDLED FIRST - FIXED)
 # ----------------------------
-if [ -x "$BASE_DIR/runtime/jre/bin/java" ]; then
+
+if [ -x "$BASE_DIR/runtime/bin/java" ]; then
+    JAVA_CMD="$BASE_DIR/runtime/bin/java"
+    echo "☕ Verwende gebündelte jlink Runtime"
+elif [ -x "$BASE_DIR/runtime/jre/bin/java" ]; then
     JAVA_CMD="$BASE_DIR/runtime/jre/bin/java"
-    echo "☕ Verwende gebündelte Runtime"
+    echo "☕ Verwende alternative Runtime (jre)"
 elif command -v java >/dev/null 2>&1; then
     JAVA_CMD="java"
     echo "☕ Verwende System-Java"

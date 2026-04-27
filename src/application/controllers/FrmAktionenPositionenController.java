@@ -758,6 +758,7 @@ public class FrmAktionenPositionenController
 		}
 
 		posBearbStatus = 3;
+		txtPosStckTitel.requestFocus();
 	}
 
 	// POSITION LEEREN (NEUER DS)
@@ -787,6 +788,7 @@ public class FrmAktionenPositionenController
 		posBearbStatus = 3;
 		tblvwLiteratur.getSelectionModel().clearSelection();
 		btnNaGrafikwahl.setDisable(true);
+		txtPosStckTitel.requestFocus();
 		// tblvwAktionPositionen.getSelectionModel().clearSelection();
 	}
 
@@ -815,6 +817,7 @@ public class FrmAktionenPositionenController
 		posBearbStatus = 4;
 		btnPosLeeren.setDisable(true);
 		btnNaGrafikwahl.setDisable(true);
+		txtPosStckTitel.requestFocus();
 
 	}
 
@@ -1209,6 +1212,10 @@ public class FrmAktionenPositionenController
 		chkProgZwischentext.setDisable(false);
 		if (chkProgZwischentext.isSelected())
 		{
+			txtPosProgpkt.setDisable(false);
+			txtPosStckTitel.setDisable(false);
+			txtBemerkungen.setDisable(false);
+			
 			txtPosNotenausgabe.setDisable(true);
 			txtPosNotenausgabe.setText(null);
 			txtPosSeite.setDisable(true);
@@ -1250,6 +1257,7 @@ public class FrmAktionenPositionenController
 		if (chkProgQuellePcnd.isSelected() == true && chkProgZwischentext.isSelected() == false)
 		{
 			txtPosNotenausgabe.setDisable(false);
+			
 		}
 		else if (chkProgQuellePcnd.isSelected() == false && chkProgZwischentext.isSelected() == false)
 		{

@@ -4,7 +4,7 @@ set -euo pipefail
 # =====================================================
 # jPCND BUILD SYSTEM - PRODUCTION LEVEL 3 (CLEAN FIX)
 # Linux ZIP + macOS .app Bundle + LATEST artifacts
-# Version 2026-04-26
+# Version 2026-04-27
 # =====================================================
 
 MAJOR=1
@@ -74,16 +74,18 @@ build_linux() {
     # ----------------------------
     cp "$APP_JAR" "$APP/"
     cp -r "$LIB_DIR" "$APP/jpcnd_lib"
-    cp "$RUN_SCRIPT" "$APP/"
+
+    # run script sauber kopieren (FIX)
+    RUN_NAME="$(basename "$RUN_SCRIPT")"
+    cp "$RUN_SCRIPT" "$APP/$RUN_NAME"
+    chmod +x "$APP/$RUN_NAME"
+
     cp "$README" "$APP/"
 
-    # ----------------------------
-    # INSTALLER (WICHTIG FIX)
-    # ----------------------------
+    # installer
     cp "$INSTALLER" "$APP/"
     chmod +x "$APP/install-linuxuser.sh"
 
-    # Debug CHECK (wichtig!)
     echo "📦 CHECK INSTALLER:"
     ls -l "$APP" | grep install || {
         echo "❌ INSTALLER NICHT IM PACKAGE"
@@ -101,20 +103,46 @@ build_linux() {
     cp "$FX_LINUX/"*.jar "$APP/javafx_jars/"
     cp "$FX_LINUX/"*.so "$APP/javafx_lib/"
 
-    # ----------------------------
-    # RUNTIME (jlink)
-    # ----------------------------
-    JDK_HOME="$RUNTIME_ROOT/linux-x64/jdk"
-
-    "$JDK_HOME/bin/jlink" \
-        --add-modules java.base,java.desktop,java.sql,java.xml,java.logging,jdk.unsupported \
-        --strip-debug \
-        --no-man-pages \
-        --no-header-files \
-        --compress=2 \
-        --output "$APP/runtime"
-
-    echo "✅ jlink Runtime fertig"
+	# ----------------------------
+	# RUNTIME (jlink AUTO FIXED)
+	# ----------------------------
+	
+	JDK_HOME="$RUNTIME_ROOT/linux-x64/jdk"
+	
+	echo "🔍 Analysiere benötigte Module (jdeps)..."
+	
+	CORE_MODULES="java.base,java.desktop,java.sql,java.xml,java.logging,jdk.unsupported,java.scripting,jdk.xml.dom,jdk.jsobject"
+	
+	AUTO_MODULES=$("$JDK_HOME/bin/jdeps" \
+	    --ignore-missing-deps \
+	    --print-module-deps \
+	    --recursive \
+	    "$APP_JAR" 2>/dev/null | tr -d '\n' || true)
+	
+	# ----------------------------
+	# CLEANUP (WICHTIG!)
+	# ----------------------------
+	if [ -z "$AUTO_MODULES" ]; then
+	    echo "⚠️ jdeps leer → nutze nur CORE_MODULES"
+	    MODULES="$CORE_MODULES"
+	else
+	    MODULES="$CORE_MODULES,$AUTO_MODULES"
+	fi
+	
+	# trailing comma fix (sehr wichtig)
+	MODULES=$(echo "$MODULES" | sed 's/,,/,/g' | sed 's/,$//')
+	
+	echo "📦 Module erkannt: $MODULES"
+	
+	"$JDK_HOME/bin/jlink" \
+	    --add-modules "$MODULES" \
+	    --strip-debug \
+	    --no-man-pages \
+	    --no-header-files \
+	    --compress=2 \
+	    --output "$APP/runtime"
+	
+	echo "✅ jlink Runtime fertig"
 
     # ----------------------------
     # ZIP
@@ -134,7 +162,7 @@ build_linux() {
 
 
 # =====================================================
-# MAC BUILD
+# MAC BUILD (UNVERÄNDERT)
 # =====================================================
 build_macos_app() {
 
@@ -157,48 +185,40 @@ build_macos_app() {
     mkdir -p "$CONTENTS/Java/jpcnd_lib"
     mkdir -p "$CONTENTS/Java/javafx_jars"
     mkdir -p "$CONTENTS/Java/javafx_lib"
+    mkdir -p "$CONTENTS/Resources"
     mkdir -p "$CONTENTS/Runtime"
 
-    # ----------------------------
-    # APP FILES
-    # ----------------------------
     cp "$APP_JAR" "$CONTENTS/Java/"
-    cp -r "$LIB_DIR/"* "$CONTENTS/Java/jpcnd_lib/" || true
+    cp -r "$LIB_DIR/"* "$CONTENTS/Java/jpcnd_lib/" 2>/dev/null || true
 
-    # ----------------------------
-    # JAVAFX
-    # ----------------------------
     FX_DIR=$(find "$FX_ROOT/$ARCH" -type d -name "lib" | head -n 1)
 
-    if [ -z "$FX_DIR" ]; then
-        echo "❌ JavaFX fehlt $ARCH"
-        exit 1
-    fi
+    for m in base controls graphics fxml media web; do
+        cp "$FX_DIR/javafx.$m.jar" "$CONTENTS/Java/javafx_jars/"
+    done
 
-    cp "$FX_DIR/"*.jar "$CONTENTS/Java/javafx_jars/"
     cp "$FX_DIR/"*.dylib "$CONTENTS/Java/javafx_lib/"
 
-    # ----------------------------
-    # RUNTIME
-    # ----------------------------
     RUNTIME_SRC="$RUNTIME_ROOT/$ARCH"
 
-    JAVA_HOME=$(find "$RUNTIME_SRC" -type d -path "*Home" | head -n 1)
+    JAVA_HOME=""
 
-    if [ -z "$JAVA_HOME" ]; then
-        echo "❌ Runtime fehlt"
-        exit 1
+    if [ -d "$RUNTIME_SRC/Contents/Home" ]; then
+        JAVA_HOME="$RUNTIME_SRC/Contents/Home"
+    elif [ -d "$RUNTIME_SRC/jre/Contents/Home" ]; then
+        JAVA_HOME="$RUNTIME_SRC/jre/Contents/Home"
+    else
+        JAVA_HOME=$(find "$RUNTIME_SRC" -type d -path "*Home" | head -n 1)
     fi
 
     cp -R "$JAVA_HOME/bin" "$CONTENTS/Runtime/"
     cp -R "$JAVA_HOME/lib" "$CONTENTS/Runtime/"
+    cp -R "$JAVA_HOME/conf" "$CONTENTS/Runtime/" 2>/dev/null || true
 
-    # ----------------------------
-    # LAUNCHER
-    # ----------------------------
     cat > "$CONTENTS/MacOS/jpcnd" <<EOF
 #!/bin/bash
 DIR="\$(cd "\$(dirname "\$0")" && pwd)"
+cd "\$DIR/../Java"
 
 JAVA="\$DIR/../Runtime/bin/java"
 
@@ -211,20 +231,59 @@ EOF
 
     chmod +x "$CONTENTS/MacOS/jpcnd"
 
-    # ----------------------------
-    # INFO PLIST
-    # ----------------------------
+    ICON_PLIST=""
+
+    if [ -f "$ROOT/resources/iconset/mac/jpcnd.icns" ]; then
+        cp "$ROOT/resources/iconset/mac/jpcnd.icns" "$CONTENTS/Resources/"
+        ICON_PLIST="<key>CFBundleIconFile</key><string>jpcnd.icns</string>"
+    fi
+
     cat > "$CONTENTS/Info.plist" <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+ "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>CFBundleName</key><string>jPCND</string>
-    <key>CFBundleExecutable</key><string>jpcnd</string>
-    <key>CFBundleIdentifier</key><string>com.jpcnd.app</string>
-    <key>CFBundleVersion</key><string>$BUILD_VERSION</string>
+
+    <key>CFBundleName</key>
+    <string>jPCND</string>
+
+    <key>CFBundleDisplayName</key>
+    <string>jPCND</string>
+
+    <key>CFBundleExecutable</key>
+    <string>jpcnd</string>
+
+    <key>CFBundleIdentifier</key>
+    <string>com.jpcnd.app</string>
+
+    <key>CFBundleVersion</key>
+    <string>$BUILD_VERSION</string>
+
+    <key>CFBundleShortVersionString</key>
+    <string>$BUILD_VERSION</string>
+
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+
+    <key>LSMinimumSystemVersion</key>
+    <string>11.0</string>
+
+    <key>NSHighResolutionCapable</key>
+    <true/>
+
+    $ICON_PLIST
+
 </dict>
 </plist>
 EOF
+
+    if command -v codesign >/dev/null 2>&1; then
+        codesign --force --deep --sign - "$APP" || true
+    fi
 
     ZIP="$OUT/${NAME}-${BUILD_VERSION}.zip"
     ZIP_LATEST="$OUT/${NAME}-${LATEST_SUFFIX}.zip"
@@ -237,12 +296,11 @@ EOF
 
 
 # =====================================================
-# RUN ALL
+# RUN
 # =====================================================
 build_linux
 build_macos_app "macos-x64"
 build_macos_app "macos-arm64"
-
 
 echo ""
 echo "===================================="
