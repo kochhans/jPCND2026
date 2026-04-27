@@ -1,3 +1,16 @@
+2026-04-27_Icon unter Ubuntu nicht gefunden
+
+pinguin@h-vpc-ubuntu1:~/meineApps/jpcnd$ ./install-linuxuser.sh 
+cp: Aufruf von stat für '/home/pinguin/meineApps/jpcnd/jpcnd.png' nicht möglich: Datei oder Verzeichnis nicht gefunden
+✅ Menüeintrag erstellt: /home/pinguin/.local/share/applications/jpcnd.desktop
+🎨 Icon installiert: /home/pinguin/.local/share/icons/jpcnd.png
+
+
+
+
+
+
+
 ############## Paketinhalt vor Verbesserung 2026-04-21 ############
 pinguin@h-vpc-mint1:~/Schreibtisch/jpcnd-macos-arm64.app$ ls -R
 .:

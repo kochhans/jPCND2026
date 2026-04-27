@@ -74,6 +74,7 @@ build_linux() {
     # ----------------------------
     cp "$APP_JAR" "$APP/"
     cp -r "$LIB_DIR" "$APP/jpcnd_lib"
+    cp "$ROOT/resources/icons/linux/jpcnd.png" "$APP/jpcnd.png"
 
     # run script sauber kopieren (FIX)
     RUN_NAME="$(basename "$RUN_SCRIPT")"

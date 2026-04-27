@@ -172,7 +172,7 @@ public class StartupManager {
             primaryStage.setTitle(ValuesGlobals.progTitel +
                     " -- Programm-" + ValuesGlobals.progVersion + " " +
                     "-- Datenbank -Version " + DatabaseVersionUtil.getLocalDatabaseVersion() +
-                    " -- -Pfad  " + ValuesGlobals.dbPfad);
+                    " -- Pfad  " + ValuesGlobals.dbPfad);
 
             Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
             primaryStage.setWidth(screenBounds.getWidth() * 0.8);

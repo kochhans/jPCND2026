@@ -316,7 +316,7 @@
                               <Label layoutX="1058.0" layoutY="303.0" prefHeight="18.0" prefWidth="37.0" text="sec" AnchorPane.bottomAnchor="118.0" AnchorPane.rightAnchor="125.0">
 
                               </Label>
-                              <Label contentDisplay="RIGHT" layoutX="1057.0" layoutY="273.0" prefHeight="18.0" prefWidth="37.0" text="min" AnchorPane.bottomAnchor="148.0" AnchorPane.rightAnchor="126.0">
+                              <Label contentDisplay="RIGHT" layoutX="1057.0" layoutY="274.0" prefHeight="18.0" prefWidth="37.0" text="min" AnchorPane.bottomAnchor="147.0" AnchorPane.rightAnchor="126.0">
 
                               </Label>
 										<TableView fx:id="tblvwLiteratur" focusTraversable="false" layoutX="5.0" layoutY="5.0" minHeight="-Infinity" onKeyReleased="#handleTblvwLit_OnKeyRel" onMouseReleased="#handleTblvwLit_OnMouseRel" prefHeight="238.0" prefWidth="1068.0" style="-fx-selection-bar: #AAC4DF; -fx-selection-bar-non-focused: #AAC4DF; -fx-background-color: #f5f5f5;" stylesheets="@../styles/FrmStartTableview.css" AnchorPane.bottomAnchor="193.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="142.0" AnchorPane.topAnchor="5.0">
@@ -387,7 +387,7 @@
 										<Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="745.0" layoutY="303.0" prefHeight="18.0" prefWidth="34.0" text="Nr." AnchorPane.bottomAnchor="118.0" AnchorPane.rightAnchor="441.0">
 
 										</Label>
-										<Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="747.0" layoutY="276.0" prefHeight="18.0" prefWidth="30.0" text="S." AnchorPane.bottomAnchor="145.0" AnchorPane.rightAnchor="443.0">
+										<Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="747.0" layoutY="276.0" prefHeight="18.0" prefWidth="30.0" text="Seite" AnchorPane.bottomAnchor="145.0" AnchorPane.rightAnchor="443.0">
 
 										</Label>
 										<Label alignment="CENTER_RIGHT" layoutX="5.0" layoutY="371.0" prefHeight="15.0" prefWidth="73.0" text="Bearb." AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="5.0">
@@ -408,16 +408,16 @@
                               <Label alignment="CENTER_RIGHT" layoutX="15.0" layoutY="404.0" prefHeight="15.0" prefWidth="63.0" text="Stück-Art" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="15.0">
 
                               </Label>
-                              <Label contentDisplay="CENTER" layoutX="1012.0" layoutY="251.0" prefHeight="18.0" prefWidth="70.0" text="Dauer" textAlignment="CENTER" AnchorPane.bottomAnchor="170.0" AnchorPane.rightAnchor="138.0">
+                              <Label contentDisplay="CENTER" layoutX="1012.0" layoutY="254.0" prefHeight="18.0" prefWidth="70.0" text="Dauer" textAlignment="CENTER" AnchorPane.bottomAnchor="167.0" AnchorPane.rightAnchor="138.0">
 
                               </Label>
                               <Label alignment="CENTER_RIGHT" layoutX="867.0" layoutY="226.0" prefHeight="15.0" prefWidth="55.0" text="StckId" visible="false" AnchorPane.bottomAnchor="140.0" AnchorPane.rightAnchor="78.0">
 
                               </Label>
-                              <Label alignment="CENTER_RIGHT" layoutX="899.0" layoutY="404.0" prefHeight="15.0" prefWidth="45.0" text="Db" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="299.0">
+                              <Label alignment="CENTER_RIGHT" layoutX="899.0" layoutY="404.0" prefHeight="15.0" prefWidth="22.0" text="Db" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="299.0">
 
                               </Label>
-                              <Label alignment="CENTER" layoutX="783.0" layoutY="251.0" prefHeight="18.0" prefWidth="146.0" text="  mit Sonderzeichen" AnchorPane.bottomAnchor="170.0" AnchorPane.rightAnchor="291.0">
+                              <Label alignment="CENTER" layoutX="783.0" layoutY="252.0" prefHeight="18.0" prefWidth="146.0" text="  mit Sonderzeichen" AnchorPane.bottomAnchor="169.0" AnchorPane.rightAnchor="291.0">
 
                               </Label>
                               <Button fx:id="btnLitZuNotenausgabeRegister" focusTraversable="false" layoutX="701.0" layoutY="296.0" mnemonicParsing="false" onAction="#btnLitZuNotenausgabeRegister_OnClick" prefHeight="25.0" prefWidth="30.0" text="..." AnchorPane.bottomAnchor="114.0" AnchorPane.rightAnchor="485.0" />
@@ -425,7 +425,7 @@
                               <Button fx:id="btnKomponistEdit" focusTraversable="false" layoutX="701.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnKomponistEdit_OnClick" prefHeight="25.0" prefWidth="30.0" text="..." AnchorPane.bottomAnchor="82.0" AnchorPane.rightAnchor="485.0" />
                               <Button fx:id="btnBearbeiterEdit" focusTraversable="false" layoutX="701.0" layoutY="361.0" mnemonicParsing="false" onAction="#btnKomponistEdit_OnClick" prefHeight="25.0" prefWidth="30.0" text="..." AnchorPane.bottomAnchor="49.0" AnchorPane.rightAnchor="485.0" />
                               <Button fx:id="btnStueckartEdit" focusTraversable="false" layoutX="518.0" layoutY="394.0" mnemonicParsing="false" onAction="#btnStueckartEdit_OnClick" prefHeight="25.0" prefWidth="30.0" text="..." AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="668.0" />
-                              <Label alignment="CENTER" layoutX="935.0" layoutY="251.0" prefHeight="18.0" prefWidth="72.0" text="num." AnchorPane.bottomAnchor="170.0" AnchorPane.rightAnchor="213.0" />
+                              <Label alignment="CENTER" layoutX="935.0" layoutY="253.0" prefHeight="18.0" prefWidth="72.0" text="num." AnchorPane.bottomAnchor="168.0" AnchorPane.rightAnchor="213.0" />
 									</children>
 								</AnchorPane>
 							</content>
@@ -561,7 +561,7 @@
 							<content>
 								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="423.0" prefWidth="1220.0">
 									<children>
-										<TextField fx:id="txtStueckTitel" layoutX="80.0" layoutY="269.0" prefHeight="25.0" prefWidth="408.0" AnchorPane.bottomAnchor="144.0" AnchorPane.leftAnchor="80.0" />
+										<TextField fx:id="txtStueckTitel" layoutX="80.0" layoutY="269.0" prefHeight="29.0" prefWidth="408.0" AnchorPane.bottomAnchor="143.0" AnchorPane.leftAnchor="80.0" />
                               <SearchableComboBox fx:id="cbxStckEditDichter" layoutX="579.0" layoutY="268.0" prefHeight="30.0" prefWidth="242.0" AnchorPane.bottomAnchor="144.0" AnchorPane.leftAnchor="579.0" />
                               <Button fx:id="btnStckSpeichern" disable="true" layoutX="866.0" layoutY="277.0" mnemonicParsing="false" onAction="#btnStckSpeichern_OnClick" prefHeight="26.0" prefWidth="122.0" styleClass="button-speichern" text="Speichern" AnchorPane.rightAnchor="12.0" />
                               <Button fx:id="btnStckNeu" disable="true" layoutX="866.0" layoutY="245.0" mnemonicParsing="false" onAction="#btnStckNeu_OnClick" prefHeight="26.0" prefWidth="122.0" styleClass="button-neu" text="Neuer Datensatz" textFill="#077c57" AnchorPane.rightAnchor="12.0" />

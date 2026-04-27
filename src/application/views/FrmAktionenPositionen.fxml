@@ -78,15 +78,15 @@
                            <children>
                               <TableView fx:id="tblvwAktionPositionen" focusTraversable="false" layoutX="22.0" onMouseClicked="#handleTblvwAktionPositionen_onmouse_clicked" style="-fx-selection-bar-non-focused: AAC4DF; -fx-selection-bar: #AAC4DF;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="5.0">
                                  <columns>
-                                    <TableColumn fx:id="tblvwPosCol0Pos" editable="false" maxWidth="60.0" minWidth="40.0" prefWidth="60.0" sortable="false" text="Pos" />
-                                    <TableColumn fx:id="tblvwPosCol1Art" editable="false" minWidth="20.0" prefWidth="70.0" sortable="false" text="Hinweis" />
+                                    <TableColumn fx:id="tblvwPosCol0Pos" editable="false" maxWidth="60.0" minWidth="40.0" prefWidth="60.0" resizable="false" sortable="false" text="Pos" />
+                                    <TableColumn fx:id="tblvwPosCol1Art" editable="false" minWidth="20.0" prefWidth="60.0" sortable="false" text="Hinweis" />
                                     <TableColumn fx:id="tblvwPosCol2Stcktitel" editable="false" prefWidth="120.0" sortable="false" text="Stück-Titel" />
                                     <TableColumn fx:id="tblvwPosCol5Stckart" editable="false" prefWidth="50.0" sortable="false" text="Stück-Art" visible="false" />
                                     <TableColumn fx:id="tblvwPosCol3Notenausgabe" editable="false" prefWidth="150.0" sortable="false" text="Notenausgabe" />
                                     <TableColumn fx:id="tblvwPosCol4Nr" editable="false" prefWidth="50.0" resizable="false" sortable="false" text="Nr" />
                                     <TableColumn fx:id="tblvwPosCol4S" editable="false" prefWidth="50.0" resizable="false" sortable="false" text="S" />
                                     <TableColumn fx:id="tblvwPosCol6Komp" editable="false" prefWidth="47.0" sortable="false" text="Komp" />
-                                    <TableColumn fx:id="tblvwPosCol7Besetzung" editable="false" prefWidth="43.0" sortable="false" text="Besetzung" />
+                                    <TableColumn fx:id="tblvwPosCol7Besetzung" editable="false" prefWidth="43.0" sortable="false" text="Besetzung" visible="false" />
                                     <TableColumn fx:id="tblvwPosCol8Anmerkungen" editable="false" prefWidth="86.0" sortable="false" text="Anmerkungen" visible="false" />
                                  </columns>
                                  <columnResizePolicy>
@@ -102,7 +102,7 @@
                       <AnchorPane minHeight="420.0" minWidth="300.0" prefHeight="420.0" prefWidth="300.0" style="-fx-background-color: #e0e0e0;" SplitPane.resizableWithParent="false">
                            <children>
                               <Label layoutX="18.0" layoutY="88.0" prefHeight="20.0" prefWidth="80.0" styleClass="label-rotklein" text="ZwiText" wrapText="true" />
-                              <Label alignment="CENTER" layoutX="403.0" layoutY="113.0" prefHeight="15.0" prefWidth="91.0" text=":" />
+                              <Label alignment="CENTER" layoutX="403.0" layoutY="111.0" prefHeight="15.0" prefWidth="91.0" text=":" />
                               
                               <CheckBox fx:id="chkProgZwischentext" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="1.0" layoutX="21.0" layoutY="108.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#chkProgZwischentext_OnMouseClicked" prefHeight="18.0" prefWidth="24.0" styleClass="label-rotklein" />
                               <CheckBox fx:id="chkProgQuellePcnd" disable="true" layoutX="266.0" layoutY="131.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="118.0" text="Quelle PCND">
@@ -110,9 +110,9 @@
                                     <String fx:value="label" />
                                     <String fx:value="schriftblaugrau" />
                                  </styleClass></CheckBox>
-                              <TextField fx:id="txtPosProgpkt" layoutX="86.0" layoutY="105.0" prefHeight="28.0" prefWidth="306.0" />
-                              <TextField fx:id="txtPosDauermin" alignment="CENTER" layoutX="404.0" layoutY="105.0" prefHeight="28.0" prefWidth="40.0" />
-                              <TextField fx:id="txtPosDauersec" alignment="CENTER" layoutX="455.0" layoutY="105.0" prefHeight="28.0" prefWidth="40.0" />
+                              <TextField fx:id="txtPosProgpkt" layoutX="86.0" layoutY="103.0" prefHeight="28.0" prefWidth="306.0" />
+                              <TextField fx:id="txtPosDauermin" alignment="CENTER" layoutX="404.0" layoutY="103.0" prefHeight="28.0" prefWidth="40.0" />
+                              <TextField fx:id="txtPosDauersec" alignment="CENTER" layoutX="455.0" layoutY="103.0" prefHeight="28.0" prefWidth="40.0" />
                               <TextField fx:id="txtPosStckTitel" layoutX="15.0" layoutY="148.0" prefHeight="28.0" prefWidth="481.0" />
                               <TextField fx:id="txtPosNr" alignment="CENTER" layoutX="15.0" layoutY="190.0" prefHeight="28.0" prefWidth="71.0" />
                               <TextField fx:id="txtPosSeite" alignment="CENTER" layoutX="95.0" layoutY="190.0" prefHeight="28.0" prefWidth="71.0" />
@@ -257,7 +257,7 @@
                <children>
                   <TabPane fx:id="tabPanePosFilter" prefHeight="723.0" prefWidth="689.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <tabs>
-                      <Tab onSelectionChanged="#handleTabChanged" text="aus Literaturdaten">
+                      <Tab closable="false" onSelectionChanged="#handleTabChanged" text="aus Literaturdaten">
                         <content>
                           <AnchorPane style="-fx-background-color: #C0C0C0;">
                                  <children>
@@ -271,15 +271,15 @@
                                     <Label layoutX="472.0" layoutY="97.0" prefHeight="17.0" prefWidth="124.0" text="Notenmappe" textFill="#6b6b6b" />
                                     <Label layoutX="262.0" layoutY="97.0" prefHeight="17.0" prefWidth="126.0" text="Verlag" textFill="#6b6b6b" />
                                     <Label layoutX="262.0" layoutY="53.0" prefHeight="17.0" prefWidth="128.0" text="Dichter/in" textFill="#6b6b6b" />
-                                    <TextField fx:id="txtFilterTitel" layoutX="18.0" layoutY="27.0" prefHeight="28.0" prefWidth="223.0" styleClass="filter-field" />
-                                    <ComboBox fx:id="cbxFilterStueckart" editable="true" layoutX="18.0" layoutY="69.0" prefHeight="30.0" prefWidth="223.0" styleClass="filter-field" />
-                                    <TextField fx:id="txtFilterEdit" layoutX="18.0" layoutY="115.0" prefHeight="28.0" prefWidth="223.0" styleClass="filter-field" />
-                                    <TextField fx:id="txtFilterKomp" layoutX="260.0" layoutY="27.0" prefHeight="28.0" prefWidth="185.0" styleClass="filter-field" />
-                                    <TextField fx:id="txtFilterDicht" layoutX="260.0" layoutY="71.0" prefHeight="28.0" prefWidth="185.0" styleClass="filter-field" />
-                                    <TextField fx:id="txtFilterEditVerlag" layoutX="260.0" layoutY="115.0" prefHeight="28.0" prefWidth="185.0" styleClass="filter-field" />
-                                    <ComboBox fx:id="cbxFilterThema" editable="true" layoutX="472.0" layoutY="25.0" prefHeight="30.0" prefWidth="195.0" styleClass="filter-field" />
-                                    <ComboBox fx:id="cbxFilterWochenlied" editable="true" layoutX="472.0" layoutY="69.0" prefHeight="30.0" prefWidth="195.0" styleClass="filter-field" />
-                                    <ComboBox fx:id="cbxFilterNotenmappe" editable="true" layoutX="472.0" layoutY="114.0" prefHeight="30.0" prefWidth="195.0" styleClass="filter-field" />
+                                    <TextField fx:id="txtFilterTitel" layoutX="18.0" layoutY="23.0" prefHeight="30.0" prefWidth="223.0" styleClass="filter-field" />
+                                    <ComboBox fx:id="cbxFilterStueckart" editable="true" layoutX="18.0" layoutY="67.0" prefHeight="30.0" prefWidth="223.0" styleClass="filter-field" />
+                                    <TextField fx:id="txtFilterEdit" layoutX="18.0" layoutY="113.0" prefHeight="30.0" prefWidth="223.0" styleClass="filter-field" />
+                                    <TextField fx:id="txtFilterKomp" layoutX="260.0" layoutY="23.0" prefHeight="30.0" prefWidth="185.0" styleClass="filter-field" />
+                                    <TextField fx:id="txtFilterDicht" layoutX="260.0" layoutY="67.0" prefHeight="30.0" prefWidth="185.0" styleClass="filter-field" />
+                                    <TextField fx:id="txtFilterEditVerlag" layoutX="260.0" layoutY="113.0" prefHeight="30.0" prefWidth="185.0" styleClass="filter-field" />
+                                    <ComboBox fx:id="cbxFilterThema" editable="true" layoutX="472.0" layoutY="23.0" prefHeight="30.0" prefWidth="195.0" styleClass="filter-field" />
+                                    <ComboBox fx:id="cbxFilterWochenlied" editable="true" layoutX="472.0" layoutY="67.0" prefHeight="30.0" prefWidth="195.0" styleClass="filter-field" />
+                                    <ComboBox fx:id="cbxFilterNotenmappe" editable="true" layoutX="472.0" layoutY="113.0" prefHeight="30.0" prefWidth="195.0" styleClass="filter-field" />
                                     <TableView fx:id="tblvwLiteratur" focusTraversable="false" layoutY="166.0" minWidth="571.0" onMouseClicked="#handleTblvwLiteratur_OnMouseClicked" prefHeight="235.0" prefWidth="685.0" stylesheets="@../styles/FrmAktionenTableview.css" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="166.0">
                                        <placeholder>
                                           <Label text="-- keine FIlterergebnisse --" />
@@ -290,11 +290,11 @@
                                           <TableColumn fx:id="tblvwColThema" maxWidth="500.0" minWidth="50.0" prefWidth="75.0" text="Thema" visible="false" />
                                           <TableColumn fx:id="tblvwColTitel" editable="false" maxWidth="500.0" minWidth="100.0" prefWidth="150.0" text="Stücktitel" />
                                           <TableColumn fx:id="tblvwColEdit" editable="false" maxWidth="500.0" minWidth="20.0" prefWidth="100.0" text="Notenausgabe" />
-                                          <TableColumn fx:id="tblvwColTArt" editable="false" maxWidth="150.0" prefWidth="30.0" style="-fx-alignment: CENTER;" text="Tonart" />
+                                          <TableColumn fx:id="tblvwColTArt" editable="false" maxWidth="150.0" prefWidth="40.0" style="-fx-alignment: CENTER;" text="Tonart" />
                                           <TableColumn fx:id="tblvwColKomp" editable="false" maxWidth="400.0" prefWidth="70.0" text="KomponistIn" />
                                           <TableColumn fx:id="tblvwColBearb" editable="false" maxWidth="100.0" prefWidth="40.0" text="BearbeiterIn" visible="false" />
-                                          <TableColumn fx:id="tblvwColN" editable="false" maxWidth="150.0" prefWidth="25.0" style="-fx-alignment: CENTER;" text="Nr" />
-                                          <TableColumn fx:id="tblvwColS" editable="false" maxWidth="150.0" prefWidth="25.0" style="-fx-alignment: CENTER;" text="S" />
+                                          <TableColumn fx:id="tblvwColN" editable="false" maxWidth="150.0" prefWidth="30.0" style="-fx-alignment: CENTER;" text="Nr" />
+                                          <TableColumn fx:id="tblvwColS" editable="false" maxWidth="150.0" prefWidth="30.0" style="-fx-alignment: CENTER;" text="S" />
                                           <TableColumn fx:id="tblvwColBes" editable="false" maxWidth="120.0" prefWidth="76.0" sortable="false" text="Besetzung" />
                                           <TableColumn fx:id="tblvwColStckArt" editable="false" maxWidth="400.0" prefWidth="59.0" text="Stückart" />
                                           <TableColumn fx:id="tblvwColLitGrafik" maxWidth="150.0" minWidth="20.0" prefWidth="50.0" style="-fx-alignment: CENTER-LEFT" text="Grafik" visible="false" />
@@ -332,19 +332,19 @@
                                     </RadioButton>
                                     <RadioButton fx:id="radFilterAuffgespielt" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="481.0" layoutY="439.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" styleClass="label" text="Aufführungen" toggleGroup="$ogrFilterProbeAuffAllesGespielt" />
                                     <RadioButton fx:id="radFilterAllesgespielt" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="588.0" layoutY="439.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" styleClass="label" text="alles" toggleGroup="$ogrFilterProbeAuffAllesGespielt" />
-                                    <Label fx:id="lblFilterTab0Anzahl11" alignment="CENTER" layoutX="157.0" layoutY="412.0" prefHeight="25.0" prefWidth="242.0" text="zusätzlich einschränken auf ..." textFill="#808080">
+                                    <Label fx:id="lblFilterTab0Anzahl11" alignment="CENTER" layoutX="157.0" layoutY="412.0" prefHeight="25.0" prefWidth="249.0" text="zusätzlich einschränken auf " textFill="#808080">
                                        <font>
                                           <Font name="System Italic" size="12.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="lblFilterTab0Anzahl111" alignment="CENTER" layoutX="387.0" layoutY="412.0" prefHeight="25.0" prefWidth="312.0" text="nur Proben / nur Vortragstermine/ alles  anzeigen" textFill="#808080" />
+                                    <Label fx:id="lblFilterTab0Anzahl111" alignment="CENTER" layoutX="387.0" layoutY="412.0" prefHeight="25.0" prefWidth="312.0" text="nur Proben / nur Aufführungen / alles  anzeigen" textFill="#808080" />
                                     <Label fx:id="lblFilterTab0Anzahl" layoutX="9.0" layoutY="144.0" prefHeight="25.0" prefWidth="679.0" text="kein Filter aktiv" textFill="#808080" />
-                                    <Label fx:id="lblFilterTab0Anzahl112" layoutX="429.0" layoutY="435.0" prefHeight="25.0" prefWidth="67.0" text="Proben" textFill="#808080">
+                                    <Label fx:id="lblFilterTab0Anzahl112" layoutX="429.0" layoutY="435.0" prefHeight="25.0" prefWidth="58.0" text="Proben" textFill="#808080">
                                        <font>
                                           <Font name="System Italic" size="12.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="lblFilterTab0Anzahl1121" layoutX="512.0" layoutY="435.0" prefHeight="25.0" prefWidth="75.0" text="nur Vortr." textFill="#808080">
+                                    <Label fx:id="lblFilterTab0Anzahl1121" layoutX="512.0" layoutY="435.0" prefHeight="25.0" prefWidth="83.0" text="nur Aufführ." textFill="#808080">
                                        <font>
                                           <Font name="System Italic" size="12.0" />
                                        </font>
@@ -360,7 +360,7 @@
                       </Tab>
                       <Tab closable="false" onSelectionChanged="#handleTabChanged" text="aus gespeicherten Aktivitäten">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="690.0" prefWidth="682.0" style="-fx-background-color: #e0e0e0;">
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="690.0" prefWidth="682.0" style="-fx-background-color: #C0C0C0;">
                                  <children>
                                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="32.0" layoutX="412.0" layoutY="69.0" opacity="0.12" stroke="BLACK" strokeType="INSIDE" width="274.0" />
                                     <Label fx:id="lblFilterTab0Anzahl11212" layoutX="532.0" layoutY="72.0" prefHeight="25.0" prefWidth="75.0" text="nur Vortr." textFill="#808080">
