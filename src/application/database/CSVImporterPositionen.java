@@ -51,6 +51,7 @@ public class CSVImporterPositionen
 		String[] nrSeite = splitNrSeite(r.get("capo_nrseite"));
 		String capoNr = nrSeite[0];
 		String capoSeite = nrSeite[1];
+		String capoZeilentyp ="0";
 
 		return new AktionenListePositionenModel(
 				parseIntSafe(r.get("capo_id")),
@@ -70,7 +71,7 @@ public class CSVImporterPositionen
 				r.get("capo_besetzung"),
 				r.get("capo_tonart"),
 				r.get("capo_komponist"),
-				r.get("capo_zeilentyp"),
+				capoZeilentyp, //r.get("capo_zeilentyp"),
 				r.get("capo_Titelbild"),
 				r.get("capo_Bearbeiter"),
 				parseBooleanAsInt(r.get("capo_Literatur")),

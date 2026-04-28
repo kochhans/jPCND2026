@@ -81,7 +81,6 @@ import application.models.CvwPersonenComboChorModel;
 import application.models.CvwPersonenComboGruppeModel;
 import application.models.CvwPersonenModel;
 import application.uicomponents.Msgbox;
-import application.utils.ComboBoxUtils;
 import application.utils.TableData;
 import application.utils.TableUtils;
 import application.utils.ToolsUpdateChecker;
@@ -439,8 +438,6 @@ public class FrmAktionenController
 		initTableviewsAktionen();
 		initSonderfelderAktionen();
 		initCombosAktionen();
-    
-	    
 		initTableviewsAktionenPositionen();
 		initTblvwMitwirkende();
 		initTblvwPersonen();
@@ -764,7 +761,7 @@ public class FrmAktionenController
 		try
 		{
 			List<AktionenListeModel> daten = db.getAktionenListeAll();
-			oblist_aktionenData.master.setAll(daten);
+			oblist_aktionenData.setAll(daten);
 
 		}
 		catch (SQLException e)
@@ -776,7 +773,7 @@ public class FrmAktionenController
 
 	public void anzeigenTabelleAktionen() throws Exception // (2) anzeigen nach Speichern
 	{
-		oblist_aktionenData.master.setAll(db.getAktionenListeAll());
+		oblist_aktionenData.setAll(db.getAktionenListeAll());
 
 	}
 
@@ -827,7 +824,7 @@ public class FrmAktionenController
 		tblvwPosCol8Anmerkungen.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(
 				cellData.getValue().getCapoBem() != null ? cellData.getValue().getCapoBem() : ""));
 
-		oblist_aktionenpositionenData.master.setAll(db.getAktionenPositionenListeAll(0));
+		oblist_aktionenpositionenData.setAll(db.getAktionenPositionenListeAll(0));
 	}
 
 	public void anzeigenTabelleAktionenPositionen() throws Exception
@@ -853,8 +850,7 @@ public class FrmAktionenController
 
 		int aktuelleAktion = selected.getCaid();
 
-		oblist_aktionenpositionenData.master
-				.setAll(db.getAktionenPositionenListeAll(aktuelleAktion));
+		oblist_aktionenpositionenData.setAll(db.getAktionenPositionenListeAll(aktuelleAktion));
 	}
 
 //	private void reloadAktionenPositionen(int caid) {
@@ -888,7 +884,7 @@ public class FrmAktionenController
 		{
 			List<AktionenListePersonenModel> daten = db.getAktionenPersonenListeAll(aktionid);
 			// tblvwPersonenZugewiesen.getItems().setAll(daten);
-			oblist_aktionenpersonenData.master.setAll(daten);
+			oblist_aktionenpersonenData.setAll(daten);
 			// ersten Mitwirkenden markieren
 			if (!daten.isEmpty())
 			{
@@ -897,7 +893,7 @@ public class FrmAktionenController
 				// tblvwPersonenZugewiesen.scrollTo(0);
 
 			}
-			lblAktionTeilnehmerliste.setText("Teilnehmerliste [ " + String.valueOf(oblist_aktionenpersonenData.master.size()) + " ]");
+			lblAktionTeilnehmerliste.setText("Teilnehmerliste [ " + String.valueOf(oblist_aktionenpersonenData.size()) + " ]");
 		}
 		catch (SQLException e)
 		{
@@ -948,8 +944,8 @@ public class FrmAktionenController
 					filpersonname, filpersonvname, filpersoninstrument, filpersonchor, filpersongruppe, filpersonstimme);
 			// tblvwPersonen.getItems().setAll(daten); alt!!!
 
-			oblist_personenData.master.setAll(daten);
-			lblPersonenGesamtliste.setText("Personen-Gesamtliste [ " + String.valueOf(oblist_personenData.master.size()) + " ]");
+			oblist_personenData.setAll(daten);
+			lblPersonenGesamtliste.setText("Personen-Gesamtliste [ " + String.valueOf(oblist_personenData.size()) + " ]");
 
 		}
 		catch (SQLException e)
@@ -991,8 +987,8 @@ public class FrmAktionenController
 
 			List<CvwPersonenModel> daten = db.getPersonenListeAll(
 					filcvwpersonname, filcvwpersonvname, filcvwpersoninstrument, filcvwpersonchor, filcvwpersongruppe, filcvwpersonstimme);
-			oblist_personenData.master.setAll(daten);
-			oblist_personencvwimportData.master.setAll(daten);
+			oblist_personenData.setAll(daten);
+			oblist_personencvwimportData.setAll(daten);
 			// ObservableList<CvwPersonenModel> items = tblvwCvwPersonenImport.getItems();
 			// alt!!!!!
 			// items.setAll(daten);
@@ -1105,7 +1101,7 @@ public class FrmAktionenController
 	@FXML
 	private void openStammdaten(String woher)
 	{
-		oblist_personenData.master.clear();
+		oblist_personenData.clear();
 
 		try
 		{
@@ -1117,7 +1113,7 @@ public class FrmAktionenController
 			Stage owner = (Stage) rootScene2.getScene().getWindow();
 			// Stage owner = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Choraktionen - Liste");
+			dialogStage.setTitle("Stammdaten importieren");
 			dialogStage.getIcons().add(new Image("/icons/javafx/werkzeug.png"));
 			dialogStage.initOwner(owner); // Owner setzen (sehr wichtig!)
 			dialogStage.initModality(Modality.APPLICATION_MODAL); // blockiert Hauptfenster
@@ -1130,6 +1126,8 @@ public class FrmAktionenController
 //			dialogStage.setY((screenBounds.getHeight() - dialogStage.getHeight()) / 2);
 			dialogStage.setMinWidth(950);
 			dialogStage.setMinHeight(600);
+			dialogStage.setMaxWidth(950);
+			dialogStage.setMaxHeight(600);
 			dialogStage.setResizable(false);
 			// --------------------
 			controller.onShow(woher); // init in zugeh. EditController!
@@ -2203,9 +2201,9 @@ public class FrmAktionenController
 				filterDatumVon, filterDatumBis, filterAktion, filterAktionOrt,
 				filterAktionGruppe, filterArt, filterAktionenBeschreibung);
 		// ObservableList auffüllen
-		oblist_aktionenData.master.setAll(listaktionen);
+		oblist_aktionenData.setAll(listaktionen);
 
-		lblFilterAnzahl.setText(" " + String.valueOf(oblist_aktionenData.master.size()) + " gefiltert");
+		lblFilterAnzahl.setText(" " + String.valueOf(oblist_aktionenData.size()) + " gefiltert");
 		// leerenTabelleAktionenPositionen();
 	}
 
@@ -2233,21 +2231,21 @@ public class FrmAktionenController
 
 	public void leerenTabelleAktionen()
 	{
-		oblist_aktionenData.master.clear();
+		oblist_aktionenData.clear();
 		leerenAktionsfelder();
 
 	}
 
 	public void leerenTabelleAktionenPositionen()
 	{
-		oblist_aktionenpositionenData.master.clear();
+		oblist_aktionenpositionenData.clear();
 		leerenAktionsfelder();
 
 	}
 
 	public void leerenTabelleAktionenMitwirkende()
 	{
-		oblist_aktionenpersonenData.master.clear();
+		oblist_aktionenpersonenData.clear();
 
 	}
 
@@ -2446,17 +2444,6 @@ public class FrmAktionenController
 
 		// cbxMitwFilterChor.valueProperty().bindBidirectional(cbxPersFilterChor.valueProperty());
 		// cbxMitwFilterGruppe.valueProperty().bindBidirectional(cbxPersFilterGruppe.valueProperty());
-		
-	    ComboBoxUtils.makeSearchable(cbxEingabeGruppe);
-//	    ComboBoxUtils.makeSearchable(cbxEingabeVerantwortlich);
-//	    ComboBoxUtils.makeSearchable(cbxEingabeOrt);
-//	    ComboBoxUtils.makeSearchable(cbxEingabeAktion);	
-//	    ComboBoxUtils.makeSearchable(cbxFilterAktion);
-//	    ComboBoxUtils.makeSearchable(cbxFilterGruppe);
-//	    ComboBoxUtils.makeSearchable(cbxFilterOrt);
-	    //ComboBoxUtils.makeSearchable(cbxMitwFilterChor);	
-	    //ComboBoxUtils.makeSearchable(cbxMitwFilterGruppe);
-	    
 	}
 
 	private void initSonderfelderAktionen()
@@ -2779,24 +2766,13 @@ public class FrmAktionenController
 		combo.setItems(FXCollections.observableArrayList(items));
 		combo.setEditable(true);
 
-		// makeSearchable(combo);
-		if (autoopen == false)
-		{
-			installAutoOpenOnFocus(combo);
-		}
+		//makeSearchable(combo);
+//		if (autoopen == true)
+//		{
+//			installAutoOpenOnFocus(combo);
+//		}
 	}
-	
 
-	// Combo klappt runter, wenn man mit der Tab-Taste draufgeht
-	private void installAutoOpenOnFocus(ComboBox<?> combo)
-	{
-		combo.focusedProperty().addListener((obs, oldF, newF) -> {
-			if (newF)
-			{
-				Platform.runLater(combo::show);
-			}
-		});
-	}
 
 	// Hilfsmethode für die Gestaltung der Comboboxen
 	private void installFocusStyle(ComboBox<?> comboBox)

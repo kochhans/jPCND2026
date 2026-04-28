@@ -541,8 +541,8 @@ public class FrmAktionenStammdatenController
 			List<CvwPersonenModel> daten = db.getPersonenListeAll(
 					filcvwpersonname, filcvwpersonvname, filcvwpersoninstrument, filcvwpersonchor, filcvwpersongruppe, filcvwpersonstimme);
 			// oblist_personenData.master.setAll(daten);
-			oblist_personencvwimportData.master.setAll(daten);
-			filteranzahl = oblist_personencvwimportData.master.size();
+			oblist_personencvwimportData.setAll(daten);
+			filteranzahl = oblist_personencvwimportData.size();
 			lblAnzahlFilter.setText(String.valueOf(filteranzahl) + " Personen gefiltert.");
 			// ObservableList<CvwPersonenModel> items = tblvwCvwPersonenImport.getItems();
 			// alt!!!!!
