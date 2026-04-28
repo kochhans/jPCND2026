@@ -81,6 +81,7 @@ import application.models.CvwPersonenComboChorModel;
 import application.models.CvwPersonenComboGruppeModel;
 import application.models.CvwPersonenModel;
 import application.uicomponents.Msgbox;
+import application.utils.ComboBoxUtils;
 import application.utils.TableData;
 import application.utils.TableUtils;
 import application.utils.ToolsUpdateChecker;
@@ -438,6 +439,8 @@ public class FrmAktionenController
 		initTableviewsAktionen();
 		initSonderfelderAktionen();
 		initCombosAktionen();
+    
+	    
 		initTableviewsAktionenPositionen();
 		initTblvwMitwirkende();
 		initTblvwPersonen();
@@ -2443,6 +2446,17 @@ public class FrmAktionenController
 
 		// cbxMitwFilterChor.valueProperty().bindBidirectional(cbxPersFilterChor.valueProperty());
 		// cbxMitwFilterGruppe.valueProperty().bindBidirectional(cbxPersFilterGruppe.valueProperty());
+		
+	    ComboBoxUtils.makeSearchable(cbxEingabeGruppe);
+//	    ComboBoxUtils.makeSearchable(cbxEingabeVerantwortlich);
+//	    ComboBoxUtils.makeSearchable(cbxEingabeOrt);
+//	    ComboBoxUtils.makeSearchable(cbxEingabeAktion);	
+//	    ComboBoxUtils.makeSearchable(cbxFilterAktion);
+//	    ComboBoxUtils.makeSearchable(cbxFilterGruppe);
+//	    ComboBoxUtils.makeSearchable(cbxFilterOrt);
+	    //ComboBoxUtils.makeSearchable(cbxMitwFilterChor);	
+	    //ComboBoxUtils.makeSearchable(cbxMitwFilterGruppe);
+	    
 	}
 
 	private void initSonderfelderAktionen()
@@ -2766,11 +2780,12 @@ public class FrmAktionenController
 		combo.setEditable(true);
 
 		// makeSearchable(combo);
-		if (autoopen == true)
+		if (autoopen == false)
 		{
 			installAutoOpenOnFocus(combo);
 		}
 	}
+	
 
 	// Combo klappt runter, wenn man mit der Tab-Taste draufgeht
 	private void installAutoOpenOnFocus(ComboBox<?> combo)
