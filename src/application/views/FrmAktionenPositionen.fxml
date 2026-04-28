@@ -99,7 +99,7 @@
                               </TableView>
                            </children>
                         </AnchorPane>
-                      <AnchorPane minHeight="420.0" minWidth="300.0" prefHeight="420.0" prefWidth="300.0" style="-fx-background-color: #e0e0e0;" SplitPane.resizableWithParent="false">
+                      <AnchorPane maxHeight="-Infinity" minHeight="420.0" minWidth="300.0" prefHeight="420.0" prefWidth="300.0" style="-fx-background-color: #e0e0e0;" SplitPane.resizableWithParent="false">
                            <children>
                               <Label layoutX="18.0" layoutY="88.0" prefHeight="20.0" prefWidth="80.0" styleClass="label-rotklein" text="ZwiText" wrapText="true" />
                               <Label alignment="CENTER" layoutX="403.0" layoutY="113.0" prefHeight="15.0" prefWidth="91.0" text=":" />
@@ -382,7 +382,7 @@
                       </Tab>
                       <Tab closable="false" onSelectionChanged="#handleTabChanged" text="aus gespeicherten Aktivitäten">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="690.0" prefWidth="682.0" style="-fx-background-color: #e0e0e0;">
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="690.0" prefWidth="682.0" style="-fx-background-color: #C0C0C0;">
                                  <children>
                                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="32.0" layoutX="412.0" layoutY="69.0" opacity="0.12" stroke="BLACK" strokeType="INSIDE" width="274.0" />
                                     <Label fx:id="lblFilterTab0Anzahl11212" layoutX="532.0" layoutY="72.0" prefHeight="25.0" prefWidth="75.0" text="nur Vortr." textFill="#808080">

@@ -2766,22 +2766,22 @@ public class FrmAktionenController
 		combo.setEditable(true);
 
 		// makeSearchable(combo);
-		if (autoopen == true)
-		{
-			installAutoOpenOnFocus(combo);
-		}
+//		if (autoopen == true)
+//		{
+//			installAutoOpenOnFocus(combo);
+//		}
 	}
 
 	// Combo klappt runter, wenn man mit der Tab-Taste draufgeht
-	private void installAutoOpenOnFocus(ComboBox<?> combo)
-	{
-		combo.focusedProperty().addListener((obs, oldF, newF) -> {
-			if (newF)
-			{
-				Platform.runLater(combo::show);
-			}
-		});
-	}
+//	private void installAutoOpenOnFocus(ComboBox<?> combo)
+//	{
+//		combo.focusedProperty().addListener((obs, oldF, newF) -> {
+//			if (newF)
+//			{
+//				Platform.runLater(combo::show);
+//			}
+//		});
+//	}
 
 	// Hilfsmethode für die Gestaltung der Comboboxen
 	private void installFocusStyle(ComboBox<?> comboBox)

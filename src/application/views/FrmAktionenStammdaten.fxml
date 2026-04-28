@@ -196,7 +196,7 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #f2f2f2;">
                            <children>
-                              <Button fx:id="btnImportCsv" contentDisplay="RIGHT" focusTraversable="false" layoutX="22.0" layoutY="150.0" mnemonicParsing="false" onAction="#btnImportCsv_OnClick" prefHeight="73.0" prefWidth="315.0" styleClass="button-neu" text="PCND CA&#10;Choraktivitäten&#10;Positionen&#10;Teilnehmende" textFill="#e10000">
+                              <Button fx:id="btnImportCsv" contentDisplay="RIGHT" focusTraversable="false" layoutX="22.0" layoutY="158.0" mnemonicParsing="false" onAction="#btnImportCsv_OnClick" prefHeight="94.0" prefWidth="315.0" styleClass="button-neu" text="PCND CA&#10;Choraktivitäten&#10;Positionen&#10;Teilnehmende" textFill="#e10000">
                                  <graphic>
                                     <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
                                        <image>
@@ -209,7 +209,7 @@
                               <ProgressBar fx:id="pbImport" layoutX="422.0" layoutY="42.0" prefHeight="20.0" prefWidth="514.0" progress="0.0" visible="false" />
                               <Label layoutX="14.0" layoutY="19.0" prefHeight="19.0" prefWidth="374.0" styleClass="label-title2" text="Importieren von Datensätzen aus ..." textFill="#6b6b6b" />
                               <Label alignment="TOP_LEFT" layoutX="364.0" layoutY="67.0" prefHeight="83.0" prefWidth="328.0" styleClass="label-rot" text="Der Import von Daten aus den Programmen PCND Choraktivitäten (CA) und Chorverwaltung (CVW) muss durch EXPORT der Daten aus diesen Programmen vorbereitet werden!" wrapText="true" />
-                              <Button fx:id="btnImportPersonen" contentDisplay="RIGHT" focusTraversable="false" layoutX="22.0" layoutY="62.0" mnemonicParsing="false" onAction="#handleBtnImportPersonen_onClick" prefHeight="73.0" prefWidth="314.0" styleClass="button-neu" text="PCND Chorverwaltung &#10;Personendaten" textFill="#e10000">
+                              <Button fx:id="btnImportPersonen" contentDisplay="RIGHT" focusTraversable="false" layoutX="22.0" layoutY="62.0" mnemonicParsing="false" onAction="#handleBtnImportPersonen_onClick" prefHeight="87.0" prefWidth="314.0" styleClass="button-neu" text="PCND Chorverwaltung &#10;Personendaten" textFill="#e10000">
                                  <graphic>
                                     <ImageView fitHeight="32" fitWidth="32" preserveRatio="true">
                                        <image>

@@ -846,8 +846,8 @@ public class FrmStartController implements Initializable
 
 				tblvwLiteratur.setItems(oblist_lit);
 				tblvwLiteratur.getSortOrder().add(tblvwColTitel);
-				lblFilterFortschrittsinfo.setText(oblist_lit.size() + " Literatureinträge gefiltert");// (maximal " + ValuesGlobals.filtermax + ")");
-
+				lblFilterFortschrittsinfo.setText("Filterergebnis: " + oblist_lit.size());// (maximal " + ValuesGlobals.filtermax + ")");
+				
 				Platform.runLater(new Runnable()
 				{
 					@Override
