@@ -52,7 +52,6 @@ public class CSVImporterPositionen
 		String capoNr = nrSeite[0];
 		String capoSeite = nrSeite[1];
 		String capoZeilentyp ="0";
-
 		return new AktionenListePositionenModel(
 				parseIntSafe(r.get("capo_id")),
 				parseIntSafe(r.get("capo_nr")), // neuer Feldname capo_pos

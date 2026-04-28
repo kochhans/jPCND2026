@@ -49,7 +49,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="640.0" layoutY="25.0" prefHeight="20.0" prefWidth="234.0" text="Datensätze neu anlegen, bearbeiten, löschen." visible="false" wrapText="true">
+            <Label layoutX="640.0" layoutY="25.0" prefHeight="20.0" prefWidth="234.0" text="Datensätze neu anlegen, bearbeiten, löschen." wrapText="true">
                <font>
                   <Font name="System Italic" size="10.0" />
                </font>

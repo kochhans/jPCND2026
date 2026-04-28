@@ -1257,7 +1257,6 @@ public class FrmAktionenPositionenController
 		if (chkProgQuellePcnd.isSelected() == true && chkProgZwischentext.isSelected() == false)
 		{
 			txtPosNotenausgabe.setDisable(false);
-			
 		}
 		else if (chkProgQuellePcnd.isSelected() == false && chkProgZwischentext.isSelected() == false)
 		{

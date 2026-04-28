@@ -256,18 +256,18 @@
                               <String fx:value="label" />
                               <String fx:value="schriftgelb" />
                            </styleClass></Label>
-								<TextField fx:id="txtFilterTitel" layoutX="10.0" layoutY="20.0" prefHeight="15.0" prefWidth="262.0" styleClass="filter-field" AnchorPane.leftAnchor="10.0" />
-                        <ComboBox fx:id="cbxFilterStueckart" editable="true" layoutX="11.0" layoutY="63.0" prefHeight="9.0" prefWidth="260.0" styleClass="filter-field" />
+								<TextField fx:id="txtFilterTitel" layoutX="10.0" layoutY="20.0" prefHeight="25.0" prefWidth="262.0" styleClass="filter-field" AnchorPane.leftAnchor="10.0" />
+                        <ComboBox fx:id="cbxFilterStueckart" editable="true" layoutX="11.0" layoutY="63.0" prefHeight="25.0" prefWidth="260.0" styleClass="filter-field" />
 								<TextField fx:id="txtFilterEdit" layoutX="11.0" layoutY="110.0" prefHeight="25.0" prefWidth="260.0" styleClass="filter-field" />
-								<TextField fx:id="txtFilterKomp" layoutX="281.0" layoutY="20.0" prefHeight="15.0" prefWidth="251.0" styleClass="filter-field" />
-								<TextField fx:id="txtFilterDicht" layoutX="282.0" layoutY="65.0" prefHeight="6.0" prefWidth="251.0" styleClass="filter-field" />
+								<TextField fx:id="txtFilterKomp" layoutX="281.0" layoutY="20.0" prefHeight="25.0" prefWidth="251.0" styleClass="filter-field" />
+								<TextField fx:id="txtFilterDicht" layoutX="282.0" layoutY="65.0" prefHeight="25.0" prefWidth="251.0" styleClass="filter-field" />
 								<TextField fx:id="txtFilterEditVerlag" layoutX="282.0" layoutY="110.0" prefHeight="25.0" prefWidth="251.0" styleClass="filter-field" />
-                        <ComboBox fx:id="cbxFilterWochenlied" editable="true" layoutX="544.0" layoutY="18.0" prefHeight="8.0" prefWidth="236.0" styleClass="filter-field" />
-                        <ComboBox fx:id="cbxFilterThema" editable="true" layoutX="544.0" layoutY="63.0" prefHeight="18.0" prefWidth="236.0" styleClass="filter-field" />
+                        <ComboBox fx:id="cbxFilterWochenlied" editable="true" layoutX="544.0" layoutY="18.0" prefHeight="25.0" prefWidth="236.0" styleClass="filter-field" />
+                        <ComboBox fx:id="cbxFilterThema" editable="true" layoutX="544.0" layoutY="63.0" prefHeight="25.0" prefWidth="236.0" styleClass="filter-field" />
                         <ComboBox fx:id="cbxFilterBibel" disable="true" editable="true" layoutX="795.0" layoutY="18.0" prefHeight="25.0" prefWidth="182.0" promptText="z.B.: Matth" styleClass="filter-field" />
                         <ComboBox fx:id="cbxFilterGesangbuch" disable="true" editable="true" layoutX="795.0" layoutY="63.0" prefHeight="25.0" prefWidth="182.0" promptText="z.B.: Ev" styleClass="filter-field" />
-                        <ComboBox fx:id="cbxFilterNotenmappe" editable="true" layoutX="544.0" layoutY="110.0" onMouseClicked="#Nomafilter_OnClick" prefHeight="15.0" prefWidth="388.0" styleClass="filter-field" />
-								<Button fx:id="btnNotenmappen" focusTraversable="false" layoutX="945.0" layoutY="109.0" mnemonicParsing="false" onAction="#NomaEdit_OnClick" prefHeight="26.0" prefWidth="34.0" text="..." />
+                        <ComboBox fx:id="cbxFilterNotenmappe" editable="true" layoutX="544.0" layoutY="109.0" onMouseClicked="#Nomafilter_OnClick" prefHeight="25.0" prefWidth="388.0" styleClass="filter-field" />
+								<Button fx:id="btnNotenmappen" focusTraversable="false" layoutX="945.0" layoutY="108.0" mnemonicParsing="false" onAction="#NomaEdit_OnClick" prefHeight="26.0" prefWidth="34.0" text="..." />
                         <CheckBox fx:id="chkDsBearbeiten" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" focusTraversable="false" graphicTextGap="1.0" layoutX="993.0" layoutY="105.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#chkDsBearbeiten_OnChanged" prefHeight="32.0" prefWidth="18.0" text="Daten bearbeiten" textAlignment="CENTER" textFill="#c90a0a">
                            <padding>
                               <Insets top="5.0" />
@@ -561,7 +561,7 @@
 							<content>
 								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="423.0" prefWidth="1220.0">
 									<children>
-										<TextField fx:id="txtStueckTitel" layoutX="80.0" layoutY="269.0" prefHeight="29.0" prefWidth="408.0" AnchorPane.bottomAnchor="143.0" AnchorPane.leftAnchor="80.0" />
+										<TextField fx:id="txtStueckTitel" layoutX="80.0" layoutY="269.0" prefHeight="25.0" prefWidth="408.0" AnchorPane.bottomAnchor="144.0" AnchorPane.leftAnchor="80.0" />
                               <SearchableComboBox fx:id="cbxStckEditDichter" layoutX="579.0" layoutY="268.0" prefHeight="30.0" prefWidth="242.0" AnchorPane.bottomAnchor="144.0" AnchorPane.leftAnchor="579.0" />
                               <Button fx:id="btnStckSpeichern" disable="true" layoutX="866.0" layoutY="277.0" mnemonicParsing="false" onAction="#btnStckSpeichern_OnClick" prefHeight="26.0" prefWidth="122.0" styleClass="button-speichern" text="Speichern" AnchorPane.rightAnchor="12.0" />
                               <Button fx:id="btnStckNeu" disable="true" layoutX="866.0" layoutY="245.0" mnemonicParsing="false" onAction="#btnStckNeu_OnClick" prefHeight="26.0" prefWidth="122.0" styleClass="button-neu" text="Neuer Datensatz" textFill="#077c57" AnchorPane.rightAnchor="12.0" />

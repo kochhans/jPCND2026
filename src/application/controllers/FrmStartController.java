@@ -846,7 +846,7 @@ public class FrmStartController implements Initializable
 
 				tblvwLiteratur.setItems(oblist_lit);
 				tblvwLiteratur.getSortOrder().add(tblvwColTitel);
-				lblFilterFortschrittsinfo.setText(oblist_lit.size() + " Literatureinträge gefiltert "); // (maximal " + ValuesGlobals.filtermax + ")");
+				lblFilterFortschrittsinfo.setText(oblist_lit.size() + " Literatureinträge gefiltert");// (maximal " + ValuesGlobals.filtermax + ")");
 
 				Platform.runLater(new Runnable()
 				{
@@ -2745,7 +2745,7 @@ public class FrmStartController implements Initializable
 			filterGesetzt = fctFilterzustand(1);
 			// oblist_edit.clear();
 			lblHaupttitel.setText("Notenausgaben");
-			lblFilterFortschrittsinfo.setText(oblist_edit.size() + " Editionen (Notenausgaben) gefiltert");// (maximal " + ValuesGlobals.filtermax + ")");
+			lblFilterFortschrittsinfo.setText(oblist_edit.size() + " Editionen (Notenausgaben) gefiltert (maximal " + ValuesGlobals.filtermax + ")");
 
 
 
@@ -2770,7 +2770,7 @@ public class FrmStartController implements Initializable
 			filterGesetzt = fctFilterzustand(2);
 			// oblist_st.clear();
 			lblHaupttitel.setText("Stücke/Lieder");
-			lblFilterFortschrittsinfo.setText(oblist_st.size() + " Stücke und Lieder gefiltert ");//(maximal " + ValuesGlobals.filtermax + ")");
+			lblFilterFortschrittsinfo.setText(oblist_st.size() + " Stücke und Lieder gefiltert (maximal " + ValuesGlobals.filtermax + ")");
 
 
 

@@ -761,7 +761,7 @@ public class FrmAktionenController
 		try
 		{
 			List<AktionenListeModel> daten = db.getAktionenListeAll();
-			oblist_aktionenData.setAll(daten);
+			oblist_aktionenData.master.setAll(daten);
 
 		}
 		catch (SQLException e)
@@ -773,7 +773,7 @@ public class FrmAktionenController
 
 	public void anzeigenTabelleAktionen() throws Exception // (2) anzeigen nach Speichern
 	{
-		oblist_aktionenData.setAll(db.getAktionenListeAll());
+		oblist_aktionenData.master.setAll(db.getAktionenListeAll());
 
 	}
 
@@ -824,7 +824,7 @@ public class FrmAktionenController
 		tblvwPosCol8Anmerkungen.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(
 				cellData.getValue().getCapoBem() != null ? cellData.getValue().getCapoBem() : ""));
 
-		oblist_aktionenpositionenData.setAll(db.getAktionenPositionenListeAll(0));
+		oblist_aktionenpositionenData.master.setAll(db.getAktionenPositionenListeAll(0));
 	}
 
 	public void anzeigenTabelleAktionenPositionen() throws Exception
@@ -850,7 +850,8 @@ public class FrmAktionenController
 
 		int aktuelleAktion = selected.getCaid();
 
-		oblist_aktionenpositionenData.setAll(db.getAktionenPositionenListeAll(aktuelleAktion));
+		oblist_aktionenpositionenData.master
+				.setAll(db.getAktionenPositionenListeAll(aktuelleAktion));
 	}
 
 //	private void reloadAktionenPositionen(int caid) {
@@ -884,7 +885,7 @@ public class FrmAktionenController
 		{
 			List<AktionenListePersonenModel> daten = db.getAktionenPersonenListeAll(aktionid);
 			// tblvwPersonenZugewiesen.getItems().setAll(daten);
-			oblist_aktionenpersonenData.setAll(daten);
+			oblist_aktionenpersonenData.master.setAll(daten);
 			// ersten Mitwirkenden markieren
 			if (!daten.isEmpty())
 			{
@@ -893,7 +894,7 @@ public class FrmAktionenController
 				// tblvwPersonenZugewiesen.scrollTo(0);
 
 			}
-			lblAktionTeilnehmerliste.setText("Teilnehmerliste [ " + String.valueOf(oblist_aktionenpersonenData.size()) + " ]");
+			lblAktionTeilnehmerliste.setText("Teilnehmerliste [ " + String.valueOf(oblist_aktionenpersonenData.master.size()) + " ]");
 		}
 		catch (SQLException e)
 		{
@@ -944,8 +945,8 @@ public class FrmAktionenController
 					filpersonname, filpersonvname, filpersoninstrument, filpersonchor, filpersongruppe, filpersonstimme);
 			// tblvwPersonen.getItems().setAll(daten); alt!!!
 
-			oblist_personenData.setAll(daten);
-			lblPersonenGesamtliste.setText("Personen-Gesamtliste [ " + String.valueOf(oblist_personenData.size()) + " ]");
+			oblist_personenData.master.setAll(daten);
+			lblPersonenGesamtliste.setText("Personen-Gesamtliste [ " + String.valueOf(oblist_personenData.master.size()) + " ]");
 
 		}
 		catch (SQLException e)
@@ -987,8 +988,8 @@ public class FrmAktionenController
 
 			List<CvwPersonenModel> daten = db.getPersonenListeAll(
 					filcvwpersonname, filcvwpersonvname, filcvwpersoninstrument, filcvwpersonchor, filcvwpersongruppe, filcvwpersonstimme);
-			oblist_personenData.setAll(daten);
-			oblist_personencvwimportData.setAll(daten);
+			oblist_personenData.master.setAll(daten);
+			oblist_personencvwimportData.master.setAll(daten);
 			// ObservableList<CvwPersonenModel> items = tblvwCvwPersonenImport.getItems();
 			// alt!!!!!
 			// items.setAll(daten);
@@ -1101,7 +1102,7 @@ public class FrmAktionenController
 	@FXML
 	private void openStammdaten(String woher)
 	{
-		oblist_personenData.clear();
+		oblist_personenData.master.clear();
 
 		try
 		{
@@ -1113,7 +1114,7 @@ public class FrmAktionenController
 			Stage owner = (Stage) rootScene2.getScene().getWindow();
 			// Stage owner = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Stammdaten importieren");
+			dialogStage.setTitle("Choraktionen - Liste");
 			dialogStage.getIcons().add(new Image("/icons/javafx/werkzeug.png"));
 			dialogStage.initOwner(owner); // Owner setzen (sehr wichtig!)
 			dialogStage.initModality(Modality.APPLICATION_MODAL); // blockiert Hauptfenster
@@ -1126,8 +1127,6 @@ public class FrmAktionenController
 //			dialogStage.setY((screenBounds.getHeight() - dialogStage.getHeight()) / 2);
 			dialogStage.setMinWidth(950);
 			dialogStage.setMinHeight(600);
-			dialogStage.setMaxWidth(950);
-			dialogStage.setMaxHeight(600);
 			dialogStage.setResizable(false);
 			// --------------------
 			controller.onShow(woher); // init in zugeh. EditController!
@@ -2201,9 +2200,9 @@ public class FrmAktionenController
 				filterDatumVon, filterDatumBis, filterAktion, filterAktionOrt,
 				filterAktionGruppe, filterArt, filterAktionenBeschreibung);
 		// ObservableList auffüllen
-		oblist_aktionenData.setAll(listaktionen);
+		oblist_aktionenData.master.setAll(listaktionen);
 
-		lblFilterAnzahl.setText(" " + String.valueOf(oblist_aktionenData.size()) + " gefiltert");
+		lblFilterAnzahl.setText(" " + String.valueOf(oblist_aktionenData.master.size()) + " gefiltert");
 		// leerenTabelleAktionenPositionen();
 	}
 
@@ -2231,21 +2230,21 @@ public class FrmAktionenController
 
 	public void leerenTabelleAktionen()
 	{
-		oblist_aktionenData.clear();
+		oblist_aktionenData.master.clear();
 		leerenAktionsfelder();
 
 	}
 
 	public void leerenTabelleAktionenPositionen()
 	{
-		oblist_aktionenpositionenData.clear();
+		oblist_aktionenpositionenData.master.clear();
 		leerenAktionsfelder();
 
 	}
 
 	public void leerenTabelleAktionenMitwirkende()
 	{
-		oblist_aktionenpersonenData.clear();
+		oblist_aktionenpersonenData.master.clear();
 
 	}
 
@@ -2766,13 +2765,23 @@ public class FrmAktionenController
 		combo.setItems(FXCollections.observableArrayList(items));
 		combo.setEditable(true);
 
-		//makeSearchable(combo);
-//		if (autoopen == true)
-//		{
-//			installAutoOpenOnFocus(combo);
-//		}
+		// makeSearchable(combo);
+		if (autoopen == true)
+		{
+			installAutoOpenOnFocus(combo);
+		}
 	}
 
+	// Combo klappt runter, wenn man mit der Tab-Taste draufgeht
+	private void installAutoOpenOnFocus(ComboBox<?> combo)
+	{
+		combo.focusedProperty().addListener((obs, oldF, newF) -> {
+			if (newF)
+			{
+				Platform.runLater(combo::show);
+			}
+		});
+	}
 
 	// Hilfsmethode für die Gestaltung der Comboboxen
 	private void installFocusStyle(ComboBox<?> comboBox)
