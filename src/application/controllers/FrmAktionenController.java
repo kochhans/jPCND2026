@@ -87,6 +87,7 @@ import application.utils.ToolsUpdateChecker;
 import application.utils.pdf.PdfExportOptions;
 import application.utils.pdf.PdfMasterDetailExporterUtil;
 import application.utils.pdf.PdfPathUtil;
+import application.utils.ComboBoxUtils;
 
 // .....................................................
 public class FrmAktionenController
@@ -438,11 +439,14 @@ public class FrmAktionenController
 		initTableviewsAktionen();
 		initSonderfelderAktionen();
 		initCombosAktionen();
+		
 		initTableviewsAktionenPositionen();
 		initTblvwMitwirkende();
 		initTblvwPersonen();
+		
 		anzeigenTabelleAktionen();
 		anzeigenTblvwPersonen();
+		
 		Platform.runLater(dpEingabeDatum::requestFocus);
 		// ------ Tableviews konfigurieren
 		// alle Tableviews Spalten unverschiebbar machen
@@ -2440,9 +2444,46 @@ public class FrmAktionenController
 		initComboBox(cbxFilterAktion, baseList, AktionenListeModel::getCaakttyp, false);
 		initComboBox(cbxFilterOrt, baseList, AktionenListeModel::getCaaktionsort, false);
 		initComboBox(cbxFilterGruppe, baseList, AktionenListeModel::getCagruppe, false);
+		
+		//Comboboxen Serachable machen 1) Liste 2) zuweisen
+		List<String> aktiontypItems = baseList.stream()
+		        .map(AktionenListeModel::getCaakttyp)
+		        .filter(Objects::nonNull)
+		        .filter(s -> !s.isBlank())
+		        .distinct()
+		        .sorted()
+		        .toList();
+		ComboBoxUtils.makeSearchable(cbxEingabeAktion, aktiontypItems);
+		
+		List<String> gruppeItems = baseList.stream()
+		        .map(AktionenListeModel::getCagruppe)
+		        .filter(Objects::nonNull)
+		        .filter(s -> !s.isBlank())
+		        .distinct()
+		        .sorted()
+		        .toList();
+		ComboBoxUtils.makeSearchable(cbxEingabeGruppe, gruppeItems);
+		
+		List<String> verantwItems = baseList.stream()
+		        .map(AktionenListeModel::getCaakttyp)
+		        .filter(Objects::nonNull)
+		        .filter(s -> !s.isBlank())
+		        .distinct()
+		        .sorted()
+		        .toList();
+		ComboBoxUtils.makeSearchable(cbxEingabeVerantwortlich, verantwItems);
+		
+		List<String> ortItems = baseList.stream()
+		        .map(AktionenListeModel::getCaakttyp)
+		        .filter(Objects::nonNull)
+		        .filter(s -> !s.isBlank())
+		        .distinct()
+		        .sorted()
+		        .toList();
+		ComboBoxUtils.makeSearchable(cbxEingabeOrt, ortItems);
 
-		// cbxMitwFilterChor.valueProperty().bindBidirectional(cbxPersFilterChor.valueProperty());
-		// cbxMitwFilterGruppe.valueProperty().bindBidirectional(cbxPersFilterGruppe.valueProperty());
+
+
 	}
 
 	private void initSonderfelderAktionen()
