@@ -1411,9 +1411,15 @@ public class FrmAktionenController
 		}
 		// Cursor wieder setzen
 		TableUtils.selectRowById(tblvwChoraktionen, neueCaid, AktionenListeModel::getCaid);
-		leerenAktionsfelder();
-		leerenTabelleAktionenPositionen();
-		tblvwChoraktionen.getSelectionModel().clearSelection();
+		
+		if(neu==true) {
+			leerenTabelleAktionenPositionen();
+			leerenAktionsfelder();
+		}
+		else {
+			
+		}
+		//tblvwChoraktionen.getSelectionModel().clearSelection();
 		//ohneAktionElementeDisablen();
 		// tabPaneAktionen.getSelectionModel().select(tabDetails);
 		Platform.runLater(radDetailsProbe::requestFocus);		
