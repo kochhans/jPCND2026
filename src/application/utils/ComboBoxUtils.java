@@ -14,32 +14,49 @@ public class ComboBoxUtils
 {
 	public static void makeSearchable(ComboBox<String> combo, List<String> items)
 	{
-		ObservableList<String> master = FXCollections.observableArrayList(items);
+	    ObservableList<String> master =
+	            FXCollections.observableArrayList(items);
 
-		FilteredList<String> filtered = new FilteredList<>(master, s -> true);
+	    FilteredList<String> filtered =
+	            new FilteredList<>(master, s -> true);
 
-		combo.setItems(filtered);
-		combo.setEditable(true);
+	    combo.setItems(filtered);
+	    combo.setEditable(true);
 
-		TextField editor = combo.getEditor();
+	    TextField editor = combo.getEditor();
 
-		editor.textProperty().addListener((obs, old, neu) -> {
+	    // 🔥 USER TYPING → FILTER
+	    editor.textProperty().addListener((obs, old, neu) -> {
 
-			// 🔥 NUR reagieren wenn Benutzer wirklich tippt
-			if (!editor.isFocused())
-				return;
-			if (neu == null)
-				return;
+	        if (!editor.isFocused()) return;
 
-			String filter = neu.toLowerCase();
+	        if (neu == null || neu.isBlank()) {
+	            filtered.setPredicate(s -> true);
+	            return;
+	        }
 
-			filtered.setPredicate(item -> item.toLowerCase().contains(filter));
+	        String filter = neu.toLowerCase();
 
-			// Dropdown nur öffnen wenn User tippt
-			if (!combo.isShowing())
-			{
-				combo.show();
-			}
-		});
+	        filtered.setPredicate(item ->
+	                item.toLowerCase().contains(filter)
+	        );
+	    });
+
+	    // 🔥 USER HAT AUSGEWÄHLT → FILTER RESET
+	    combo.setOnAction(e -> {
+
+	        String value = combo.getValue();
+
+	        // Filter zurücksetzen
+	        filtered.setPredicate(s -> true);
+
+	        // Editor sauber synchronisieren
+	        if (value != null) {
+	            editor.setText(value);
+	        }
+	    });
+
+	    // 🔥 Popup sauber öffnen
+	    combo.setOnMouseClicked(e -> combo.show());
 	}
 }
