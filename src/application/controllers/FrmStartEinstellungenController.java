@@ -127,7 +127,7 @@ public class FrmStartEinstellungenController
 				txtSicherungsordner.setText(txtDatenbankpfad.getText().trim());
 			}
 
-			ConfigManager.saveBackupDirectory(txtSicherungsordner.getText().trim());
+			// ConfigManager.saveBackupDirectory(txtSicherungsordner.getText().trim());
 			// Msgbox.show("Fertig", "Backup-Ordner gespeichert.");
 		});
 		Platform.runLater(() -> {
@@ -166,13 +166,11 @@ public class FrmStartEinstellungenController
 	// Buttons mit Aktion
 
 	@FXML
-	private void btnZurueck_OnClick() //Speichern und Zurück
+	private void btnZurueck_OnClick() // Speichern und Zurück
 	{
 		try
 		{
 			saveSettings(); // ⭐ HIER passiert alles
-
-
 
 		}
 		catch (IOException e)
@@ -197,6 +195,7 @@ public class FrmStartEinstellungenController
 	private void saveSettings() throws IOException
 	{
 		String alterDbPfad = ConfigManager.loadDBPath();
+		String alterBuPfad = ConfigManager.loadBackupDirectory();
 		// ---------------------------------------------------------
 		// 1️⃣ Datenbankpfad lesen & validieren
 		// ---------------------------------------------------------
@@ -223,8 +222,8 @@ public class FrmStartEinstellungenController
 			Msgbox.show(
 					"Sicherungsordner...",
 					"Der Sicherungspfad wurde nicht angegeben.\nAls Verzeichnis wird "
-							+ dbdateipfad + " verwendet.");
-			txtSicherungsordner.setText(dbdateipfad);
+							+ ordnerPfad + " verwendet.");
+			txtSicherungsordner.setText(ordnerPfad);
 			path2Input = dbdateipfad;
 		}
 
@@ -238,7 +237,6 @@ public class FrmStartEinstellungenController
 		{
 			dbFolder.mkdirs();
 		}
-		
 
 		// ---------------------------------------------------------
 		// 4️⃣ Datenbank existiert NICHT → Download
@@ -309,7 +307,7 @@ public class FrmStartEinstellungenController
 						stage.close();
 						Platform.exit();
 					}
-					
+
 				});
 			});
 
@@ -318,22 +316,21 @@ public class FrmStartEinstellungenController
 			// -----------------------------------------------------
 			task.setOnFailed(e -> {
 
-			    Throwable ex = task.getException();
+				Throwable ex = task.getException();
 
-			    ex.printStackTrace();   // ⭐ WICHTIGSTER DEBUG
+				ex.printStackTrace(); // ⭐ WICHTIGSTER DEBUG
 
-			    progressBar.progressProperty().unbind();
-			    lblStatus.textProperty().unbind();
+				progressBar.progressProperty().unbind();
+				lblStatus.textProperty().unbind();
 
-			    lblStatus.setText("Fehler beim Download!");
+				lblStatus.setText("Fehler beim Download!");
 
-			    Msgbox.error(
-			            "Fehler",
-			            "Download fehlgeschlagen:\n" +
-			            (ex != null ? ex.getMessage() : "Unbekannter Fehler")
-			    );
+				Msgbox.error(
+						"Fehler",
+						"Download fehlgeschlagen:\n" +
+								(ex != null ? ex.getMessage() : "Unbekannter Fehler"));
 
-			    Platform.exit();
+				Platform.exit();
 			});
 
 			// -----------------------------------------------------
@@ -346,13 +343,13 @@ public class FrmStartEinstellungenController
 
 			return;
 		}
-		
-		if(alterDbPfad.equals(txtDatenbankpfad.getText()))
-		{
-			result = new StartSettingsResult(false, null);
-			stage.close();
-			return;
-		}
+
+//		if(alterDbPfad.equals(txtDatenbankpfad.getText()))
+//		{
+//			result = new StartSettingsResult(false, null);
+//			stage.close();
+//			return;
+//		}
 
 		// ---------------------------------------------------------
 		// 5️⃣ Datenbank EXISTIERT → Pfad vergleichen
@@ -364,28 +361,33 @@ public class FrmStartEinstellungenController
 		{
 			String oldCanonical = new File(oldPath).getCanonicalPath();
 			pathChanged = !oldCanonical.equals(dbdateipfad);
+			pathChanged = !alterBuPfad.equals(backupPath);
 		}
 
 		if (pathChanged)
 		{
 
 			Msgbox.warn(
-					"Datenbankpfad geändert",
-					"Der Speicherpfad wurde geändert auf:\n"
-							+ dbdateipfad + "\n\n"
-							+ "Eine Datenbankdatei ist hier schon vorhanden.\n"
+					"Dateipfade wurden geändert ...",
+					"Der Datenbank-Speicherplatz wurde festgelegt auf:\n"
+							+ dbdateipfad + ",\n"
+									+ "der Backup-Pfad wurde festgelegt auf: \n" 
+							+ backupPath + "\n"
+							+ "Eine Datenbankdatei ist unter " + dbdateipfad + "schon vorhanden.\n"
 							+ "Bitte prüfen Sie die Version Ihrer Daten.\n\n"
 							+ "ACHTUNG: Aufgrund der geänderten Speicherpfade wird das Programm beendet\n"
 							+ "Starten Sie bitte anschließend neu.");
 			finishAndSave(dbdateipfad, backupPath);
 			// 🔒 Pfade SPEICHERN (kanonisch!)
-			ConfigManager.saveDBPath(dbdateipfad);
-			ConfigManager.saveBackupDirectory(backupPath);
-			ConfigManager.saveGrafikDirectory(ordnerPfad + "titelgrafik");
+//			ConfigManager.saveDBPath(dbdateipfad);
+//			ConfigManager.saveBackupDirectory(backupPath);
+//			ConfigManager.saveGrafikDirectory(ordnerPfad + "titelgrafik");
+			// ConfigManager.saveBackupDirectory(txtSicherungsordner.getText().trim());
 
 			Platform.exit();
 			// System.exit(0);
 		}
+		this.stage.close();
 	}
 
 	private void finishAndSave(String dbPath, String backupPath)
@@ -399,6 +401,5 @@ public class FrmStartEinstellungenController
 
 		stage.close();
 	}
-
 
 }
