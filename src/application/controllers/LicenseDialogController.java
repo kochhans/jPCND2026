@@ -79,7 +79,7 @@ public class LicenseDialogController {
             LicenseCheckResult result = task.getValue();
             switch (result) {
                 case VALID -> stage.close();
-                case INVALID -> lblStatus.setText("Die eingegebene E-Mail stimmt nicht mit der Lizenz überein!");
+                case INVALID -> lblStatus.setText("Die eingegebene Lizenznummer ist nicht korrekt!");
                 case WRONG_MACHINE -> lblStatus.setText("Lizenz ist an ein anderes Gerät gebunden.");
                 case SERVER_ERROR -> lblStatus.setText("Serverfehler. Bitte prüfen Sie die Verbindung.");
                 case SAVE_FAILED -> lblStatus.setText("Lizenz konnte nicht gespeichert werden.");

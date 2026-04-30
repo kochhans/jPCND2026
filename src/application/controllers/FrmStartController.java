@@ -3143,7 +3143,7 @@ public class FrmStartController implements Initializable
 
 		String text = "Lizenz: " + lic.getLicenseKey() + "\n" +
 				"E-Mail: " + lic.getEmail() + "\n" +
-				"Gültig bis: " + lic.getValidUntil() + "\n" +
+				//"Gültig bis: " + lic.getValidUntil() + "\n" +
 				"Letzter Online-Check: " + lic.getLastOnlineCheck() + "\n" +
 				"Status: " + lm.getLicenseStatusText();
 
