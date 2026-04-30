@@ -393,7 +393,7 @@
 										<Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="585.0" layoutY="378.0" prefHeight="17.0" prefWidth="73.0" text="Stimmen" AnchorPane.bottomAnchor="44.0" AnchorPane.rightAnchor="596.0">
 
 										</Label>
-										<Label fx:id="lblLitInfozeile" layoutX="10.0" layoutY="241.0" prefHeight="32.0" prefWidth="504.0" styleClass="label-title2" text="Lesezugriff..." textFill="#03636d" AnchorPane.bottomAnchor="165.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="486.0">
+										<Label fx:id="lblLitInfozeile" layoutX="10.0" layoutY="241.0" prefHeight="32.0" prefWidth="504.0" style="-fx-text-fill: #03636D;" styleClass="label-title2" text="Lesezugriff..." textFill="#03636d" AnchorPane.bottomAnchor="165.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="486.0">
 
 										</Label>
 										<Label alignment="CENTER_RIGHT" layoutY="305.0" prefHeight="15.0" prefWidth="78.0" text="Notenausg." AnchorPane.bottomAnchor="119.0" AnchorPane.leftAnchor="0.0">
@@ -451,7 +451,7 @@
 										</Label>
 										<TableView fx:id="tblvwEditionen" focusTraversable="false" layoutX="5.0" layoutY="5.0" onKeyReleased="#handleTblvwNa_OnKeyRel" onMousePressed="#handleTblvwNa_OnMousePressed" onMouseReleased="#handleTblvwNa_OnMouseRel" onSort="#handleTblvwEditionen_OnSort" prefHeight="238.0" prefWidth="1068.0" style="-fx-selection-bar: #AAC4DF; -fx-selection-bar-non-focused: #AAC4DF; -fx-background-color: #f5f5f5;" stylesheets="@../styles/FrmStartTableview.css" AnchorPane.bottomAnchor="193.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="142.0" AnchorPane.topAnchor="5.0">
 			                                 <placeholder>
-												<Label text="keine Notenausgaben gefunden -- bitte Filterkriterien ändern und erneut filtern ..." />
+												<Label text="keine Notenausgaben gefunden -- bitte Filterkriterien ändern und erneut filtern ..." textAlignment="CENTER" />
 											 </placeholder>
 											<columns>
 												<TableColumn fx:id="tblvwColEditNoma" maxWidth="500.0" minWidth="100.0" prefWidth="100.0" style="-fx-alignment: CENTER-LEFT;" text="Notenmappe" visible="false" />
@@ -523,7 +523,7 @@
 										<Label alignment="CENTER_RIGHT" layoutX="872.0" layoutY="305.0" prefHeight="18.0" prefWidth="63.0" text="Schw." AnchorPane.bottomAnchor="116.0" AnchorPane.rightAnchor="285.0">
 
 										</Label>
-										<Label fx:id="lblNaEditInfozeile" layoutX="10.0" layoutY="241.0" prefHeight="32.0" prefWidth="491.0" styleClass="label-title2" text="Lesezugriff..." textFill="#03636d" AnchorPane.bottomAnchor="165.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="499.0">
+										<Label fx:id="lblNaEditInfozeile" layoutX="10.0" layoutY="241.0" prefHeight="32.0" prefWidth="491.0" style="-fx-text-fill: #03636D;" styleClass="label-title2" text="Lesezugriff..." textFill="#03636d" AnchorPane.bottomAnchor="165.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="499.0">
 
 										</Label>
 										<Button fx:id="btnNaGrafikwahl" disable="true" focusTraversable="false" layoutX="866.0" layoutY="186.0" mnemonicParsing="false" onAction="#btnNaGrafikwahl_OnClick" prefHeight="26.0" prefWidth="122.0" styleClass="button-neu" text="Titelgrafik..." AnchorPane.rightAnchor="12.0" />
@@ -565,7 +565,7 @@
                               <Button fx:id="btnStckLoeschen" disable="true" layoutX="866.0" layoutY="308.0" mnemonicParsing="false" onAction="#btnStckLoeschen_OnClick" prefHeight="26.0" prefWidth="122.0" styleClass="button-loeschen" text="Löschen" textFill="#d01717" AnchorPane.rightAnchor="12.0" />
 										<TableView fx:id="tblvwStuecke" focusTraversable="false" layoutX="5.0" layoutY="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" onKeyReleased="#handleTblvwStck_OnKeyRel" onMouseReleased="#handleTblvwStck_OnMouseRel" prefHeight="238.0" prefWidth="1068.0" style="-fx-selection-bar: #AAC4DF; -fx-selection-bar-non-focused: #AAC4DF; -fx-background-color: #f5f5f5;" stylesheets="@../styles/FrmStartTableview.css" AnchorPane.bottomAnchor="193.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="142.0" AnchorPane.topAnchor="5.0">
 			                                 <placeholder>
-												<Label text="keine Stücke / Lieder gefunden -- bitte Filterkriterien ändern und erneut filtern ..." />
+												<Label text="keine Stücke / Lieder gefunden -- bitte Filterkriterien ändern und erneut filtern ..." textAlignment="CENTER" />
 											 </placeholder>
 											<columns>
 												<TableColumn fx:id="tblvwColStckWoli" editable="false" maxWidth="400.0" minWidth="150.0" prefWidth="300.0" text="Wochenlied" />
@@ -594,7 +594,7 @@
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
                                  <placeholder>
-									<Label alignment="TOP_CENTER" focusTraversable="false" text="keine Themenzuordnung" textFill="#ae2020" />
+									<Label alignment="TOP_CENTER" focusTraversable="false" text="keine Themenzuordnung" textAlignment="CENTER" textFill="#ae2020" wrapText="true" />
 								 </placeholder>
                               </TableView>
                               <TableView fx:id="tblvwStckWoli" focusTraversable="false" layoutX="492.0" layoutY="304.0" prefHeight="83.0" prefWidth="167.0" style="-fx-background-color: #f5f5f5;" styleClass="table-small" stylesheets="@../styles/FrmStartTableview.css" AnchorPane.bottomAnchor="52.0">
@@ -605,7 +605,7 @@
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
                  				<placeholder>
-									<Label text="keine Wochenliedzuordnung vorhanden" textFill="#ae2020" />
+									<Label alignment="CENTER" text="keine Wochenliedzuordnung vorhanden" textAlignment="CENTER" textFill="#ae2020" wrapText="true" />
 								</placeholder>
                               </TableView>
                               <TableView fx:id="tblvwStckBib" focusTraversable="false" layoutX="663.0" layoutY="304.0" prefHeight="83.0" prefWidth="195.0" style="-fx-background-color: #f5f5f5;" styleClass="table-small" stylesheets="@../styles/FrmStartTableview.css" AnchorPane.bottomAnchor="52.0">
@@ -617,7 +617,7 @@
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
                                  <placeholder>
-									<Label text="keine Bibelstellen zugeordnet" textFill="#ae2020" />
+									<Label alignment="CENTER" text="keine Bibelstellen zugeordnet" textAlignment="CENTER" textFill="#ae2020" wrapText="true" />
 								 </placeholder>
                               </TableView>
                               <TableView fx:id="tblvwStckGesb" focusTraversable="false" layoutX="281.0" layoutY="304.0" prefHeight="83.0" prefWidth="208.0" style="-fx-background-color: #f5f5f5;" styleClass="table-small" stylesheets="@../styles/FrmStartTableview.css" AnchorPane.bottomAnchor="52.0">
@@ -629,10 +629,10 @@
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
                                  <placeholder>
-									<Label text="nicht in Gesangbüchern gefunden" textFill="#ae2020" />
+									<Label text="nicht in Gesangbüchern gefunden" textAlignment="CENTER" textFill="#ae2020" wrapText="true" />
 								 </placeholder>                                 
                               </TableView>
-                              <Label fx:id="lblStckInfozeile" layoutX="10.0" layoutY="241.0" prefHeight="32.0" prefWidth="479.0" styleClass="label-title2" text="Lesezugriff..." textFill="#03636d" AnchorPane.bottomAnchor="165.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="511.0">
+                              <Label fx:id="lblStckInfozeile" layoutX="10.0" layoutY="241.0" prefHeight="32.0" prefWidth="479.0" style="-fx-text-fill: #03636D;" styleClass="label-title2" text="Lesezugriff..." textFill="#03636d" AnchorPane.bottomAnchor="165.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="511.0">
 
                               </Label>
                               <Button fx:id="btnStckThemaEdit" focusTraversable="false" layoutX="80.0" layoutY="394.0" mnemonicParsing="false" onAction="#btnStckThemaEdit_OnClick" prefHeight="21.0" prefWidth="194.0" styleClass="button-speichern" text="Themen bearbeiten" textFill="#046972" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="80.0">

@@ -1,16 +1,25 @@
 package application.dbupdate;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.io.IOException;
+import java.nio.file.*;
+import java.util.logging.*;
+import java.util.logging.Formatter;
 
 public class DatabaseMergeService
 {
-
+	
 	private final String sourceDbPath;
 	private final String targetDbPath;
 	private final Set<String> excludedTables = new HashSet<>(); // ← Blacklist
+	
+	private static final Logger LOGGER = Logger.getLogger("DatabaseMergeLogger");
+	
 
 //	public DatabaseMergeService(String sourceDbPath, String targetDbPath)
 //	{
@@ -22,6 +31,7 @@ public class DatabaseMergeService
 	{
 		this.sourceDbPath = sourceDbPath;
 		this.targetDbPath = targetDbPath;
+		initLogger();
 	}
 
 	/** Zweiter Konstruktor für Startup-Migration (nur Ziel-DB nötig) */
@@ -51,21 +61,45 @@ public class DatabaseMergeService
 		return tables;
 	}
 
+	private void initLogger() {
+	    try {
+	        Path dbPath = Paths.get(targetDbPath); // deine Ziel-DB
+	        Path logPath = dbPath.getParent().resolve("merge.log");
+
+	        FileHandler fileHandler = new FileHandler(logPath.toString(), true);
+	        
+	        fileHandler.setFormatter(new Formatter() {
+	            @Override
+	            public String format(LogRecord record) {
+	                return String.format("[%1$tF %1$tT] [%2$s] %3$s%n",
+	                        record.getMillis(),
+	                        record.getLevel(),
+	                        record.getMessage());
+	            }
+	        });
+
+	        LOGGER.addHandler(fileHandler);
+	        LOGGER.setUseParentHandlers(false);
+
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}	
 
 	public void mergeAllTables(Connection sourceConn, Connection targetConn, List<String> tables) throws SQLException {
-	    // tblAdbVersion gezielt behandeln
-//	    if (tables.contains("tblAdbVersion")) {
-//	        mergeTblAdbVersion(sourceConn, targetConn);
-//	        tables = tables.stream()
-//	                       .filter(t -> !t.equals("tblAdbVersion"))
-//	                       .toList(); // Restliche Tabellen ohne tblAdbVersion
-//	    }
 
-	    // Restliche Tabellen normal mergen
-	    for (String table : tables) {
-	        int added = mergeTable(sourceConn, targetConn, table);
-	        System.out.println("✅ Tabelle " + table + " übernommen: " + added + " neue Datensätze");
-	        System.out.println("TargetDBPath: " + targetDbPath + " SourceDbPath " + sourceDbPath);
+		for (String table : tables) {
+	        try {
+	            int added = mergeTable(sourceConn, targetConn, table);
+
+	            LOGGER.info("Tabelle " + table + " übernommen: " + added + " neue Datensätze");
+
+	        } catch (SQLException e) {
+
+	            LOGGER.log(Level.WARNING, "Fehler bei Tabelle " + table, e);
+
+	            // 👉 kein throw → Merge läuft weiter
+	        }
 	    }
 	}
 
@@ -112,11 +146,92 @@ public class DatabaseMergeService
 	 * @param table Tabellenname
 	 * @return Anzahl hinzugefügter Datensätze
 	 */
+//	private int mergeTable(Connection sourceConn, Connection targetConn, String table) throws SQLException {
+//	    String pkColumn = getPrimaryKeyColumn(targetConn, table);
+//	    if (pkColumn == null) return 0;
+//
+//	    int affectedCount = 0;
+//
+//	    try (Statement stmt = sourceConn.createStatement();
+//	         ResultSet rs = stmt.executeQuery("SELECT * FROM " + table)) {
+//
+//	        ResultSetMetaData meta = rs.getMetaData();
+//	        int columnCount = meta.getColumnCount();
+//
+//	        // Spaltenliste
+//	        List<String> colNames = new ArrayList<>();
+//	        for (int i = 1; i <= columnCount; i++) {
+//	            colNames.add(meta.getColumnName(i));
+//	        }
+//	        colNames.add("user_modified"); // sicherstellen
+//
+//	        // 🔥 UPSERT SQL (INSERT + UPDATE)
+//	        String insertSQL = "INSERT INTO " + table + " (" + String.join(",", colNames) + ") VALUES ("
+//	                + "?,".repeat(colNames.size());
+//	        insertSQL = insertSQL.substring(0, insertSQL.length() - 1) + ")";
+//
+//	        insertSQL += " ON CONFLICT(" + pkColumn + ") DO UPDATE SET ";
+//
+//	        for (int i = 0; i < columnCount; i++) {
+//	            insertSQL += colNames.get(i) + " = excluded." + colNames.get(i) + ",";
+//	        }
+//
+//	        insertSQL = insertSQL.substring(0, insertSQL.length() - 1);
+//
+//	        // 🔥 nur überschreiben wenn NICHT user-modified
+//	        insertSQL += " WHERE " + table + ".user_modified = 0";
+//
+//	        targetConn.setAutoCommit(false);
+//
+//	        try (PreparedStatement pstmt = targetConn.prepareStatement(insertSQL)) {
+//
+//	            int batchSize = 0;
+//
+//	            while (rs.next()) {
+//
+//	                for (int i = 1; i <= columnCount; i++) {
+//	                    pstmt.setObject(i, rs.getObject(i));
+//	                }
+//
+//	                pstmt.setInt(columnCount + 1, 0); // user_modified = 0
+//	                pstmt.addBatch();
+//	                batchSize++;
+//	                affectedCount++;
+//
+//	                if (batchSize % 5000 == 0) {
+//	                    try {
+//	                        pstmt.executeBatch();
+//	                    } catch (BatchUpdateException e) {
+//	                        System.err.println("⚠️ Batch-Fehler in Tabelle " + table + ": " + e.getMessage());
+//	                    }
+//	                }
+//	            }
+//
+//	            try {
+//	                pstmt.executeBatch();
+//	            } catch (BatchUpdateException e) {
+//	                System.err.println("⚠️ Batch-Endfehler in Tabelle " + table + ": " + e.getMessage());
+//	            }
+//
+//	            targetConn.commit();
+//
+//	        } finally {
+//	            targetConn.setAutoCommit(true);
+//	        }
+//	    }
+//
+//	    return affectedCount;
+//	}
+	
 	private int mergeTable(Connection sourceConn, Connection targetConn, String table) throws SQLException {
+
 	    String pkColumn = getPrimaryKeyColumn(targetConn, table);
 	    if (pkColumn == null) return 0;
 
-	    int affectedCount = 0;
+	    int inserted = 0;
+	    int updated = 0;
+	    int skipped = 0;
+	    int errors = 0;
 
 	    try (Statement stmt = sourceConn.createStatement();
 	         ResultSet rs = stmt.executeQuery("SELECT * FROM " + table)) {
@@ -124,14 +239,12 @@ public class DatabaseMergeService
 	        ResultSetMetaData meta = rs.getMetaData();
 	        int columnCount = meta.getColumnCount();
 
-	        // Spaltenliste
 	        List<String> colNames = new ArrayList<>();
 	        for (int i = 1; i <= columnCount; i++) {
 	            colNames.add(meta.getColumnName(i));
 	        }
-	        colNames.add("user_modified"); // sicherstellen
+	        colNames.add("user_modified");
 
-	        // 🔥 UPSERT SQL (INSERT + UPDATE)
 	        String insertSQL = "INSERT INTO " + table + " (" + String.join(",", colNames) + ") VALUES ("
 	                + "?,".repeat(colNames.size());
 	        insertSQL = insertSQL.substring(0, insertSQL.length() - 1) + ")";
@@ -144,7 +257,6 @@ public class DatabaseMergeService
 
 	        insertSQL = insertSQL.substring(0, insertSQL.length() - 1);
 
-	        // 🔥 nur überschreiben wenn NICHT user-modified
 	        insertSQL += " WHERE " + table + ".user_modified = 0";
 
 	        targetConn.setAutoCommit(false);
@@ -159,34 +271,89 @@ public class DatabaseMergeService
 	                    pstmt.setObject(i, rs.getObject(i));
 	                }
 
-	                pstmt.setInt(columnCount + 1, 0); // user_modified = 0
+	                pstmt.setInt(columnCount + 1, 0);
 	                pstmt.addBatch();
 	                batchSize++;
-	                affectedCount++;
 
 	                if (batchSize % 5000 == 0) {
-	                    try {
-	                        pstmt.executeBatch();
-	                    } catch (BatchUpdateException e) {
-	                        System.err.println("⚠️ Batch-Fehler in Tabelle " + table + ": " + e.getMessage());
+	                    int[] results = executeBatchSafe(pstmt, table);
+
+	                    for (int r : results) {
+	                        if (r > 0) {
+	                            inserted++; // oder updated → SQLite unterscheidet hier leider nicht sauber
+	                        } else if (r == Statement.SUCCESS_NO_INFO) {
+	                            updated++;
+	                        } else if (r == Statement.EXECUTE_FAILED) {
+	                            errors++;
+	                        } else {
+	                            skipped++;
+	                        }
 	                    }
 	                }
 	            }
 
-	            try {
-	                pstmt.executeBatch();
-	            } catch (BatchUpdateException e) {
-	                System.err.println("⚠️ Batch-Endfehler in Tabelle " + table + ": " + e.getMessage());
+	            // Restbatch
+	            int[] results = executeBatchSafe(pstmt, table);
+
+	            for (int r : results) {
+	                if (r > 0) {
+	                    inserted++;
+	                } else if (r == Statement.SUCCESS_NO_INFO) {
+	                    updated++;
+	                } else if (r == Statement.EXECUTE_FAILED) {
+	                    errors++;
+	                } else {
+	                    skipped++;
+	                }
 	            }
 
 	            targetConn.commit();
 
+	        } catch (Exception e) {
+	            targetConn.rollback();
+	            throw e;
 	        } finally {
 	            targetConn.setAutoCommit(true);
 	        }
 	    }
 
-	    return affectedCount;
+	    System.out.println("📊 Tabelle " + table +
+	            " | inserted=" + inserted +
+	            " updated=" + updated +
+	            " skipped=" + skipped +
+	            " errors=" + errors);
+	    
+	    LOGGER.info("Tabelle " + table +
+	            " | inserted=" + inserted +
+	            " updated=" + updated +
+	            " skipped=" + skipped +
+	            " errors=" + errors);
+
+	    return inserted + updated;
+	}
+	
+	private int[] executeBatchSafe(PreparedStatement pstmt, String table) throws SQLException {
+
+	    try {
+	        return pstmt.executeBatch();
+
+	    } catch (BatchUpdateException e) {
+
+	        int[] results = e.getUpdateCounts();
+
+	        System.err.println("⚠️ Batch-Fehler in Tabelle " + table + ": " + e.getMessage());
+	        LOGGER.warning("Batch-Fehler in Tabelle " + table + ": " + e.getMessage());
+	        
+
+	        for (int i = 0; i < results.length; i++) {
+	            if (results[i] == Statement.EXECUTE_FAILED) {
+	                System.err.println("❌ Fehler bei Datensatz #" + i);
+	                LOGGER.fine("Fehler bei Datensatz #" + i);
+	            }
+	        }
+
+	        return results; // 👉 extrem wichtig!
+	    }
 	}
 
 	/**

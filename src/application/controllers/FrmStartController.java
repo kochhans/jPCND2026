@@ -846,7 +846,7 @@ public class FrmStartController implements Initializable
 
 				tblvwLiteratur.setItems(oblist_lit);
 				tblvwLiteratur.getSortOrder().add(tblvwColTitel);
-				lblFilterFortschrittsinfo.setText("Filterergebnis: " + oblist_lit.size());// (maximal " + ValuesGlobals.filtermax + ")");
+				lblFilterFortschrittsinfo.setText("" + oblist_lit.size() + " Einträge gefunden");// (maximal " + ValuesGlobals.filtermax + ")");
 				
 				Platform.runLater(new Runnable()
 				{
@@ -905,7 +905,7 @@ public class FrmStartController implements Initializable
 						filterstckgesbuch);
 				listadb.forEach((item) -> oblist_st.add(item));
 				tblvwStuecke.setItems(oblist_st);
-				lblFilterFortschrittsinfo.setText("Filterergebnis: " + oblist_st.size() + " ");
+				lblFilterFortschrittsinfo.setText("" + oblist_st.size() +  " Einträge gefunden");
 				tblvwStuecke.getSortOrder().add(tblvwColStckTitel);// sortieren nach erster Spalte
 				if (suppressAutoSelection == false)
 				{
@@ -963,7 +963,7 @@ public class FrmStartController implements Initializable
 				List<EditionenlisteModel> listedit = dbStart().getEditionenListeFilter(filternaeditlang, filternaverlag, filterlitnoma);
 				listedit.forEach((item) -> oblist_edit.add(item));
 				tblvwEditionen.setItems(oblist_edit);
-				lblFilterFortschrittsinfo.setText("Filterergebnis: " + oblist_edit.size() + "");
+				lblFilterFortschrittsinfo.setText("" + oblist_edit.size()  + " Einträge gefunden");
 				System.out.println(tblvwEditionen.getSortOrder());
 				tblvwEditionen.getSortOrder().add(tblvwColEditLt);// sortieren nach erster Spalte
 				Platform.runLater(new Runnable()
@@ -2716,7 +2716,7 @@ public class FrmStartController implements Initializable
 			// oblist_lit.clear();
 			filterGesetzt = fctFilterzustand(0);
 			lblHaupttitel.setText("Literatur - Gesamtliste");
-			lblFilterFortschrittsinfo.setText(oblist_lit.size() + " Literatureinträge angezeigt (maximal " + ValuesGlobals.filtermax + ")");
+			lblFilterFortschrittsinfo.setText(oblist_lit.size() + " Einträge gefunden");//+ " Literatureinträge angezeigt (maximal " + ValuesGlobals.filtermax + ")");
 
 
 
@@ -2745,7 +2745,7 @@ public class FrmStartController implements Initializable
 			filterGesetzt = fctFilterzustand(1);
 			// oblist_edit.clear();
 			lblHaupttitel.setText("Notenausgaben");
-			lblFilterFortschrittsinfo.setText(oblist_edit.size() + " Editionen (Notenausgaben) gefiltert (maximal " + ValuesGlobals.filtermax + ")");
+			lblFilterFortschrittsinfo.setText(oblist_edit.size() +  " Einträge gefunden");// " Editionen (Notenausgaben) gefiltert (maximal " + ValuesGlobals.filtermax + ")");
 
 
 
@@ -2770,7 +2770,7 @@ public class FrmStartController implements Initializable
 			filterGesetzt = fctFilterzustand(2);
 			// oblist_st.clear();
 			lblHaupttitel.setText("Stücke/Lieder");
-			lblFilterFortschrittsinfo.setText(oblist_st.size() + " Stücke und Lieder gefiltert (maximal " + ValuesGlobals.filtermax + ")");
+			lblFilterFortschrittsinfo.setText(oblist_st.size()  + " Einträge gefunden");//+ " Stücke und Lieder gefiltert (maximal " + ValuesGlobals.filtermax + ")");
 
 
 

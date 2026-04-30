@@ -1,5 +1,11 @@
 package application.dbupdate;
 
+import java.util.logging.Logger;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.SimpleFormatter;
+import java.util.logging.Formatter;
+import java.util.logging.LogRecord;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
@@ -13,21 +19,28 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+//import java.lang.System.Logger;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.FileHandler;
+import java.util.logging.SimpleFormatter;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import application.ConfigManager;
 import application.ValuesGlobals;
 import application.uicomponents.Msgbox;
+
+
 
 public class DatabaseMergeController
 {
@@ -47,6 +60,7 @@ public class DatabaseMergeController
 	private DatabaseMergeService service;
 	private File updateFolder;
 	// private File downloadedZip;
+	private static final Logger LOGGER = Logger.getLogger("DatabaseMergeLogger");
 
 	// Tabellen, die niemals gemerged werden sollen
 //	private final List<String> blackList = List.of("tblNotenmappe", "tblNotenmappeEdition");
@@ -60,6 +74,25 @@ public class DatabaseMergeController
 			"tblZDatenbankstruktur");
 			 //"tblAdbVersion");
 
+	
+
+	private void initLogger() {
+	    try {
+	        Path dbPath = Paths.get(ValuesGlobals.dbPfad);
+	        Path logPath = dbPath.getParent().resolve("merge.log");
+
+	        FileHandler fileHandler = new FileHandler(logPath.toString(), true);
+	        fileHandler.setFormatter(new SimpleFormatter());
+
+	        LOGGER.addHandler(fileHandler);
+	        LOGGER.setUseParentHandlers(false); // verhindert Console-Spam
+
+	    } catch (IOException e) {
+	        e.printStackTrace(); // Fallback
+	    }
+	}
+	
+	
 	@FXML
 	public void initialize()
 	{
@@ -71,6 +104,7 @@ public class DatabaseMergeController
 		tableListView.setVisible(false);
 		tableListView.setManaged(false);
 		tableListView.setDisable(true);
+		initLogger();
 
 	}
 
@@ -317,6 +351,75 @@ public class DatabaseMergeController
 	}
 
 	/** Merge starten */
+//	@FXML
+//	public void onStartMerge()
+//	{
+//	    if (sourceDbPath == null)
+//	    {
+//	        logArea.appendText("❌ Keine Quelldatei ausgewählt!\n");
+//	        return;
+//	    }
+//
+//	    if (!Msgbox.yesno("Datenbank-Update ...", "Soll das Datenbank-Update nun gestartet werden?"))
+//	    {
+//	        return;
+//	    }
+//
+//	    createDatabaseBackup();
+//
+//	    progressBar.progressProperty().unbind();
+//	    progressBar.setProgress(0);
+//	    btnMerge.setDisable(true);
+//
+//	    Task<Void> mergeTask = new Task<>()
+//	    {
+//	        @Override
+//	        protected Void call() throws Exception
+//	        {
+//	            try (Connection sourceConn = DriverManager.getConnection("jdbc:sqlite:" + sourceDbPath);
+//	                 Connection targetConn = DriverManager.getConnection("jdbc:sqlite:" + ValuesGlobals.dbPfad))
+//	            {
+//	                DatabaseMergeService service = new DatabaseMergeService(sourceDbPath, ValuesGlobals.dbPfad);
+//	                service.excludeTables(blackList);
+//
+//	                List<String> tables = service.getTableNames().stream()
+//	                        .filter(t -> !blackList.contains(t))
+//	                        .toList();
+//
+//	                service.mergeAllTables(sourceConn, targetConn, tables);
+//	            }
+//
+//	            return null;
+//	        }
+//	    };
+//
+//	    progressBar.progressProperty().bind(mergeTask.progressProperty());
+//
+//	    // ✅ Erfolg bleibt im UI
+//	    mergeTask.setOnSucceeded(e -> {
+//	        deleteUpdateFiles();
+//	        btnMerge.setDisable(false);
+//
+//	        logArea.appendText("✅ Daten-Übertragung abgeschlossen!\n");
+//
+//	        Msgbox.show("Datenbank-Update ...",
+//	                "Das Update wurde erfolgreich eingespielt.\nNun ist ein Neustart des Programms erforderlich.");
+//
+//	        System.exit(0);
+//	    });
+//
+//	    // ❌ Fehler nur noch ins Logfile
+//	    mergeTask.setOnFailed(e -> {
+//	        btnMerge.setDisable(false);
+//	        Throwable ex = mergeTask.getException();
+//
+//	        LOGGER.log(Level.SEVERE, "Fehler beim Datenbank-Merge", ex);
+//	    });
+//
+//	    Thread mergeThread = new Thread(mergeTask, "Database-Merge-Thread");
+//	    mergeThread.setDaemon(true);
+//	    mergeThread.start();
+//	}
 	@FXML
 	public void onStartMerge()
 	{
