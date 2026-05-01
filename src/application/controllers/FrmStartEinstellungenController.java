@@ -360,8 +360,7 @@ public class FrmStartEinstellungenController
 		if (oldPath != null && !oldPath.isBlank())
 		{
 			String oldCanonical = new File(oldPath).getCanonicalPath();
-			pathChanged = !oldCanonical.equals(dbdateipfad);
-			pathChanged = !alterBuPfad.equals(backupPath);
+			pathChanged = !oldCanonical.equals(dbdateipfad)||!alterBuPfad.equals(backupPath);
 		}
 
 		if (pathChanged)
