@@ -59,7 +59,7 @@
 						</Menu>
 						<Menu fx:id="men30" mnemonicParsing="false" text="Infos">
 							<items>
-								<MenuItem fx:id="men03WebAllgemein" mnemonicParsing="false" onAction="#men03WebAllgemein_OnClick" text="Web-Updateseite" />
+								<MenuItem fx:id="men03WebAllgemein" mnemonicParsing="false" onAction="#men03WebAllgemein_OnClick" text="Web-Updateseite" visible="false" />
 								<MenuItem fx:id="men03UpdatesPruefen" disable="true" mnemonicParsing="false" onAction="#men03UpdatesPruefen_OnClick" text="auf Updates prüfen..." visible="false" />
 								<MenuItem fx:id="men03HilfeVersion" mnemonicParsing="false" onAction="#men03HilfeVersion_OnClick" text="Programminfos ..." />
                         		<MenuItem fx:id="men03Lizenz" mnemonicParsing="false" onAction="#men03Lizenz_OnClick" text="Lizenz..." />

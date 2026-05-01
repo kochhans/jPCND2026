@@ -65,6 +65,8 @@
 .text-field:focused, .text-area:focused{
     -fx-background-color: #EBEBEB;/*#E0E0E0; /*#AAC4DF;*/
     -fx-border-color: #812323;
+	-fx-border-width: 1.5px;
+
 }
 
 .textfield-error {

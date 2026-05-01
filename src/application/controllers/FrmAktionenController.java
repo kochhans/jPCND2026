@@ -44,8 +44,11 @@ import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -602,7 +605,16 @@ public class FrmAktionenController
 	@FXML
 	public void men40Programm_OnAction()
 	{
-		fctWebUpdatesinfo();
+		String url="https://www.pcnd.eu/jpcnd/index.php?aw=20-01-prg.php"; //Update Programm
+        try {
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().browse(new URI(url));
+            } else {
+                System.out.println("Desktop wird nicht unterstützt");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 	}
 
 	@FXML
@@ -611,23 +623,6 @@ public class FrmAktionenController
 		fctUpdaten();
 	}
 
-	public void fctWebUpdatesinfo()
-	{
-		String textUpdates = "Programmupdates müssen manuell heruntergeladen werden: \n"
-				+ "https://www.pcnd.eu/jpcnd/updates\n\n"
-				+ "Für Datenbankupdates wird eine Schaltfläche im Hauptfenster angezeigt "
-				+ "und können direkt installiert werden."
-				+ "\n\n"
-				+ "Weitere Informationen zum Programm: https://www.pcnd.eu/jpcnd/";
-		try
-		{
-			Msgbox.showUrl("Programmupdates ...", textUpdates);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
 
 	// Tabwechsel
 //	@FXML

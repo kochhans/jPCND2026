@@ -1,7 +1,9 @@
 package application.controllers;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
 
 import java.sql.SQLException;
@@ -3071,6 +3073,12 @@ public class FrmStartController implements Initializable
 	@FXML
 	public void men03WebAllgemein_OnClick()
 	{
+
+	}
+
+	@FXML
+	public void men03UpdatesPruefen_OnClick()
+	{
 		String textUpdates = "Programmupdates müssen manuell heruntergeladen werden: \n"
 				+ "https://www.pcnd.eu/jpcnd/updates\n\n"
 				+ "Für Datenbankupdates wird eine Schaltfläche im Hauptfenster angezeigt "
@@ -3085,11 +3093,6 @@ public class FrmStartController implements Initializable
 		{
 			e.printStackTrace();
 		}
-	}
-
-	@FXML
-	public void men03UpdatesPruefen_OnClick()
-	{
 //		String versionNeu = "";
 //		String textUpdates = "";
 //		try
@@ -3179,7 +3182,17 @@ public class FrmStartController implements Initializable
 	@FXML
 	public void men40Programm_OnClick()
 	{
-		men03WebAllgemein_OnClick();
+		String url="https://www.pcnd.eu/jpcnd/index.php?aw=20-01-prg.php"; //Update Programm
+        try {
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().browse(new URI(url));
+            } else {
+                System.out.println("Desktop wird nicht unterstützt");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+		//men03WebAllgemein_OnClick();
 	}
 
 	@FXML
@@ -3652,6 +3665,9 @@ public class FrmStartController implements Initializable
 //===============================================================================
 //  Allgemeine Methoden 
 //===============================================================================	
+
+	
+	
 	public void titelgrafikAnzeigen()
 	{
 		// System.out.println("titelgarfikAnzeigen()" + ValuesGlobals.progPfadGrafik);

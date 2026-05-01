@@ -81,7 +81,13 @@ public class DatabaseMergeController
 	        Path dbPath = Paths.get(ValuesGlobals.dbPfad);
 	        Path logPath = dbPath.getParent().resolve("merge.log");
 
-	        FileHandler fileHandler = new FileHandler(logPath.toString(), true);
+	        //FileHandler fileHandler = new FileHandler(logPath.toString(), true);
+	        FileHandler fileHandler = new FileHandler(
+	        	    logPath.toString(),
+	        	    1_000_000, // 1 MB
+	        	    5,         // 5 Dateien
+	        	    true
+	        	);
 	        fileHandler.setFormatter(new SimpleFormatter());
 
 	        LOGGER.addHandler(fileHandler);

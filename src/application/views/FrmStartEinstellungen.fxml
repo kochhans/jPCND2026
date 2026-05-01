@@ -15,11 +15,11 @@
 	<children>
 		<AnchorPane layoutY="72.0" maxHeight="486.0" maxWidth="794.0" minHeight="182.0" minWidth="460.0" prefHeight="182.0" prefWidth="721.0" style="-fx-background-color: #F0F0F0;">
 			<children>
-            <TextField fx:id="txtDatenbankpfad" layoutX="176.0" layoutY="29.0" prefHeight="30.0" prefWidth="434.0" promptText="bitte auswählen....">
+            <TextField fx:id="txtDatenbankpfad" layoutX="176.0" layoutY="49.0" prefHeight="30.0" prefWidth="434.0" promptText="bitte auswählen....">
                <font>
                   <Font name="Courier New Bold" size="12.0" />
                </font></TextField>
-            <Label layoutX="12.0" layoutY="25.0" prefHeight="20.0" prefWidth="161.0" text="aktueller Datenbankpfad" wrapText="true">
+            <Label layoutX="12.0" layoutY="45.0" prefHeight="20.0" prefWidth="161.0" text="aktueller Datenbankpfad" wrapText="true">
                <font>
                   <Font name="System Italic" size="10.0" />
                </font>
@@ -31,7 +31,7 @@
                </font>
             </Label>
             <TextField fx:id="txtEingabezeile7" disable="true" editable="false" layoutX="133.0" layoutY="196.0" prefHeight="25.0" prefWidth="48.0" visible="false" />
-            <Button fx:id="btnDbpfadAuswaehlen" layoutX="632.0" layoutY="29.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="48.0" text="..." />
+            <Button fx:id="btnDbpfadAuswaehlen" layoutX="632.0" layoutY="49.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="48.0" text="..." />
             <Button fx:id="btnDbAnlegen" layoutX="460.0" layoutY="90.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="213.0" text="Datenbank anlegen..." visible="false" />
             <Label fx:id="lblStueckauswahl11111" alignment="CENTER_RIGHT" layoutX="243.0" layoutY="128.0" prefHeight="15.0" prefWidth="40.0" text="id" visible="false">
                <font>
@@ -40,7 +40,7 @@
             </Label>
             <Button fx:id="btnEinstellungenSpeichern" layoutX="460.0" layoutY="254.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="213.0" text="alle Änderungen übernehmen" visible="false" />
             
-            <Label layoutX="12.0" layoutY="77.0" prefHeight="20.0" prefWidth="167.0" text="aktueller Sicherungsordner" wrapText="true">
+            <Label layoutX="12.0" layoutY="87.0" prefHeight="20.0" prefWidth="167.0" text="aktueller Sicherungsordner" wrapText="true">
                <font>
                   <Font name="System Italic" size="10.0" />
                </font>
@@ -50,28 +50,36 @@
                   <Font name="System Italic" size="10.0" />
                </font>
             </Label>
-            <TextField fx:id="txtSicherungsordner" layoutX="176.0" layoutY="75.0" prefHeight="30.0" prefWidth="434.0" promptText="bitte auswählen....">
+            <TextField fx:id="txtSicherungsordner" layoutX="176.0" layoutY="85.0" prefHeight="30.0" prefWidth="434.0" promptText="bitte auswählen....">
                <font>
                   <Font name="Courier New Bold" size="12.0" />
                </font></TextField>
-            <Button fx:id="btnBackuppfadWaehlen" layoutX="633.0" layoutY="77.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="48.0" text="..." />
-            <Button fx:id="btnZurueck" layoutX="445.0" layoutY="116.0" mnemonicParsing="false" onAction="#btnZurueck_OnClick" prefHeight="32.0" prefWidth="240.0" styleClass="button-speichern" text="speichern und schließen" textFill="#07861d" />
-            <ProgressBar fx:id="progressBar" layoutX="15.0" layoutY="114.0" prefHeight="18.0" prefWidth="386.0" progress="0.0" />
-            <Label fx:id="lblStatus" layoutX="14.0" layoutY="133.0" prefHeight="20.0" prefWidth="386.0" text="Download...." visible="false" wrapText="true">
+            <Button fx:id="btnBackuppfadWaehlen" layoutX="633.0" layoutY="87.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="48.0" text="..." />
+            <Button fx:id="btnZurueck" layoutX="445.0" layoutY="121.0" mnemonicParsing="false" onAction="#btnZurueck_OnClick" prefHeight="32.0" prefWidth="240.0" styleClass="button-speichern" text="speichern und schließen" textFill="#07861d" />
+            <ProgressBar fx:id="progressBar" layoutX="15.0" layoutY="127.0" prefHeight="18.0" prefWidth="386.0" progress="0.0" />
+            <Label fx:id="lblStatus" layoutX="14.0" layoutY="142.0" prefHeight="20.0" prefWidth="386.0" text="Download...." wrapText="true">
+               <font>
+                  <Font name="System Italic" size="10.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets top="-1.0" />
+               </opaqueInsets>
+            </Label>
+            <Label layoutX="12.0" layoutY="64.0" prefHeight="20.0" prefWidth="161.0" text="und Pfad für PDF-Ausdrucke" wrapText="true">
                <font>
                   <Font name="System Italic" size="10.0" />
                </font>
             </Label>
-            <Label layoutX="12.0" layoutY="44.0" prefHeight="20.0" prefWidth="161.0" text="und Pfad für PDF-Ausdrucke" wrapText="true">
-               <font>
-                  <Font name="System Italic" size="10.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblTabellenueberschrift" layoutX="14.0" layoutY="156.0" prefHeight="18.0" prefWidth="692.0" text="Label">
+            <Label fx:id="lblTabellenueberschrift" layoutX="14.0" layoutY="161.0" prefHeight="18.0" prefWidth="692.0" text="Label">
                <styleClass>
                   <String fx:value="schriftrothell" />
                   <String fx:value="label-title3" />
                </styleClass>
+            </Label>
+            <Label layoutX="10.0" layoutY="4.0" prefHeight="38.0" prefWidth="692.0" styleClass="label-rot" text="Datenablage und den Sicherungsordner unbedingt außerhalb des Programmpfades!&#10;(z.B. Benutzer/Dokumente/jpcnd-Daten)" wrapText="true">
+               <font>
+                  <Font name="System Italic" size="10.0" />
+               </font>
             </Label>
 
 			</children>
