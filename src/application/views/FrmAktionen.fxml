@@ -51,6 +51,15 @@
                       <MenuItem fx:id="men02StdatImport" mnemonicParsing="false" onAction="#men02StdatImport_OnAction" text="Importieren ..." />
                     </items>
                   </Menu>
+                  <Menu fx:id="men30" mnemonicParsing="false" text="Infos">
+                     <items>
+                        <MenuItem fx:id="men03WebOnlinehilfe" mnemonicParsing="false" onAction="#men03WebOnlinehilfe_OnClick" text="Online-Hilfe" />
+                        <MenuItem fx:id="men03WebAllgemein" mnemonicParsing="false" onAction="#men03WebAllgemein_OnClick" text="Web-Updateseite" visible="false" />
+                        <MenuItem fx:id="men03UpdatesPruefen" disable="true" mnemonicParsing="false" onAction="#men03UpdatesPruefen_OnClick" text="auf Updates prüfen..." visible="false" />
+                        <MenuItem fx:id="men03HilfeVersion" mnemonicParsing="false" onAction="#men03HilfeVersion_OnClick" text="Programminfos ..." />
+                        <MenuItem fx:id="men03Lizenz" mnemonicParsing="false" onAction="#men03Lizenz_OnClick" text="Lizenz..." />
+                     </items>
+                  </Menu>
       
                   <Menu fx:id="men40" mnemonicParsing="false" style="-fx-text-fill: red; -fx-font-weight: bold;" text=" --  U P D A T E S    sind verfügbar  --" visible="false">
                      <items>

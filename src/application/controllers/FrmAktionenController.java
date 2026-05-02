@@ -83,10 +83,13 @@ import application.models.AktionenListePositionenModel;
 import application.models.CvwPersonenComboChorModel;
 import application.models.CvwPersonenComboGruppeModel;
 import application.models.CvwPersonenModel;
+import application.models.ProgrammversionenModel;
 import application.uicomponents.Msgbox;
 import application.utils.TableData;
 import application.utils.TableUtils;
 import application.utils.ToolsUpdateChecker;
+import application.utils.license.License;
+import application.utils.license.LicenseManager;
 import application.utils.pdf.PdfExportOptions;
 import application.utils.pdf.PdfMasterDetailExporterUtil;
 import application.utils.pdf.PdfPathUtil;
@@ -104,6 +107,8 @@ public class FrmAktionenController
 	// ----------------------------
 	@FXML
 	private MenuItem men01AktionenBeenden, men02StdatPersonen;
+	@FXML
+	private MenuItem men03Programminfo, men03WebAllgemein, men03UpdatesPruefen, men03HilfeVersion, men03Lizenz, men03WebOnlinehilfe;
 
 	@FXML
 	private MenuItem men40, men40Programm, men40Datenbank;
@@ -2606,6 +2611,130 @@ public class FrmAktionenController
 	public void men02StdatImport_OnAction() throws Exception
 	{
 		openStammdaten("import");
+	}
+
+	@FXML
+	public void men01Importieren_OnClick()
+	{
+	}
+
+	@FXML
+	public void men03WebAllgemein_OnClick()
+	{
+	}
+
+	@FXML
+	public void men03UpdatesPruefen_OnClick()
+	{
+	}
+
+	@FXML
+	public void men03Lizenz_OnClick()
+	{
+		// showLicenseInfoDialog();
+		LicenseManager lm = LicenseManager.getInstance();
+		License lic = lm.getCurrentLicense();
+
+		if (lic == null)
+		{
+			Msgbox.warn("Lizenz", "Keine Lizenz vorhanden");
+			return;
+		}
+
+		String text = "Lizenz: " + lic.getLicenseKey() + "\n" +
+				"E-Mail: " + lic.getEmail() + "\n" +
+				// "Gültig bis: " + lic.getValidUntil() + "\n" +
+				"Letzter Online-Check: " + lic.getLastOnlineCheck() + "\n" +
+				"Status: " + lm.getLicenseStatusText();
+
+		Msgbox.show("Lizenzinformationen", text);
+	}
+	@FXML
+	public void men03HilfeVersion_OnClick() throws Exception
+	{
+		//ProgrammversionenModel version = 
+		String msg;
+		msg = "Progamm-Vers: " + ValuesGlobals.progVersion;
+		//msg += "\nDatenbank-Vers" + version.getVernr() + " (" + version.getVerdat() + ")\n";
+		msg += "\nProgrammpfad: " + ValuesGlobals.progPfad;
+		msg += "\nDatenbankdatei: " + ConfigManager.loadDBPath();
+		msg += "\nSicherungspfad: " + ConfigManager.loadBackupDirectory();
+		msg += "\nTitelgrafikpfad: " + ConfigManager.loadGrafikDirectory();
+		msg += "\n\n " + ValuesGlobals.progIconLizenz;
+		msg += "\n\nJavaVers JRT:	" + ValuesGlobals.Versionsinfo + "\nPfad JRT: " + System.getProperty("java.home");
+		msg += "\nJavaFX: " + System.getProperty("javafx.runtime.version") + "\nPfad JFX-Module:\n" + System.getProperty("java.class.path");
+
+		try
+		{
+			Msgbox.show("Programminformationen....", msg);
+		}
+		catch (Exception e)
+		{
+
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	public void men03WebOnlinehilfe_OnClick()
+	{
+		String url = "https://www.pcnd.eu/jpcnd/"; // Hilfeseite Notenarchiv
+		if (tabDetails.isSelected())
+		{
+			url = "https://www.pcnd.eu/jpcnd/";
+		}
+		else if (tabMitwirkende.isSelected())
+		{
+			url = "https://www.pcnd.eu/jpcnd/";
+		}
+		else if (tabDrucken.isSelected()) {
+			url = "https://www.pcnd.eu/jpcnd/";
+		}
+
+		try
+		{
+			if (Desktop.isDesktopSupported())
+			{
+				Desktop.getDesktop().browse(new URI(url));
+
+			}
+			else
+			{
+				System.out.println("Desktop wird nicht unterstützt");
+			}
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+		}
+	}
+
+	@FXML
+	public void men40Programm_OnClick()
+	{
+		String url = "https://www.pcnd.eu/jpcnd/index.php?aw=20-01-prg.php"; // Update Programm
+		try
+		{
+			if (Desktop.isDesktopSupported())
+			{
+				Desktop.getDesktop().browse(new URI(url));
+			}
+			else
+			{
+				System.out.println("Desktop wird nicht unterstützt");
+			}
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		// men03WebAllgemein_OnClick();
+	}
+
+	@FXML
+	public void men40Datenbank_OnClick() throws IOException
+	{
+		fctUpdaten();
 	}
 
 // --------------------------------------------------------------------------------

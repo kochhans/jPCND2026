@@ -59,6 +59,7 @@
 						</Menu>
 						<Menu fx:id="men30" mnemonicParsing="false" text="Infos">
 							<items>
+                        <MenuItem fx:id="men03WebOnlinehilfe" mnemonicParsing="false" onAction="#men03WebOnlinehilfe_OnClick" text="Online-Hilfe" />
 								<MenuItem fx:id="men03WebAllgemein" mnemonicParsing="false" onAction="#men03WebAllgemein_OnClick" text="Web-Updateseite" visible="false" />
 								<MenuItem fx:id="men03UpdatesPruefen" disable="true" mnemonicParsing="false" onAction="#men03UpdatesPruefen_OnClick" text="auf Updates prüfen..." visible="false" />
 								<MenuItem fx:id="men03HilfeVersion" mnemonicParsing="false" onAction="#men03HilfeVersion_OnClick" text="Programminfos ..." />
@@ -357,10 +358,10 @@
                               <SearchableComboBox fx:id="cbxLitEditBearb" layoutX="82.0" layoutY="361.0" prefHeight="30.0" prefWidth="432.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="705.0" />
                               <SearchableComboBox fx:id="cbxLitStueckart" layoutX="82.0" layoutY="393.0" prefHeight="25.0" prefWidth="211.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="705.0" />
 										<TextField fx:id="txtLitEditTonart" alignment="CENTER" layoutX="629.0" layoutY="266.0" prefHeight="28.0" prefWidth="182.0" promptText="Es - D" AnchorPane.bottomAnchor="145.0" AnchorPane.rightAnchor="409.0" />
-										<TextField fx:id="txtLitEditSeitezus" alignment="CENTER" layoutX="627.0" layoutY="311.0" prefHeight="28.0" prefWidth="182.0" promptText="25 oben" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="411.0" />
-										<TextField fx:id="txtLitEditSeite" alignment="CENTER_RIGHT" disable="true" editable="false" layoutX="824.0" layoutY="311.0" prefHeight="28.0" prefWidth="83.0" promptText="25" style="-fx-background-color: #e8e8e8;" AnchorPane.bottomAnchor="97.0" AnchorPane.rightAnchor="313.0" />
-										<TextField fx:id="txtLitEditNrzus" alignment="CENTER" layoutX="627.0" layoutY="343.0" prefHeight="28.0" prefWidth="182.0" promptText="3 A" AnchorPane.bottomAnchor="68.0" AnchorPane.rightAnchor="411.0" />
-										<TextField fx:id="txtLitEditNr" alignment="CENTER_RIGHT" disable="true" editable="false" layoutX="824.0" layoutY="343.0" prefHeight="28.0" prefWidth="83.0" promptText="3" style="-fx-background-color: #e8e8e8;" AnchorPane.bottomAnchor="68.0" AnchorPane.rightAnchor="313.0" />
+										<TextField fx:id="txtLitEditSeitezus" alignment="CENTER" layoutX="627.0" layoutY="311.0" prefHeight="28.0" prefWidth="182.0" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="411.0" />
+										<TextField fx:id="txtLitEditSeite" alignment="CENTER_RIGHT" disable="true" editable="false" layoutX="824.0" layoutY="311.0" prefHeight="28.0" prefWidth="83.0" style="-fx-background-color: #e8e8e8;" AnchorPane.bottomAnchor="97.0" AnchorPane.rightAnchor="313.0" />
+										<TextField fx:id="txtLitEditNrzus" alignment="CENTER" layoutX="627.0" layoutY="343.0" prefHeight="28.0" prefWidth="182.0" AnchorPane.bottomAnchor="68.0" AnchorPane.rightAnchor="411.0" />
+										<TextField fx:id="txtLitEditNr" alignment="CENTER_RIGHT" disable="true" editable="false" layoutX="824.0" layoutY="343.0" prefHeight="28.0" prefWidth="83.0" style="-fx-background-color: #e8e8e8;" AnchorPane.bottomAnchor="68.0" AnchorPane.rightAnchor="313.0" />
                               <TextField fx:id="txtLitEditMin" alignment="CENTER_RIGHT" focusTraversable="false" layoutX="901.0" layoutY="266.0" prefHeight="28.0" prefWidth="58.0" promptText="min" AnchorPane.bottomAnchor="145.0" AnchorPane.rightAnchor="261.0" />
                               <TextField fx:id="txtLitEditSec" alignment="CENTER_RIGHT" focusTraversable="false" layoutX="976.0" layoutY="266.0" prefHeight="28.0" prefWidth="58.0" promptText="sec" AnchorPane.bottomAnchor="145.0" AnchorPane.rightAnchor="186.0" />
 										<TextArea fx:id="txtaLitEditBesetzung" layoutX="627.0" layoutY="365.0" prefHeight="48.0" prefWidth="413.0" promptText="SSATB; Solotrp. SATB, ...." AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="180.0" />
@@ -375,7 +376,7 @@
 										<Button fx:id="btnLitNeu" disable="true" layoutX="866.0" layoutY="245.0" mnemonicParsing="false" onAction="#btnLitNeuAdb_OnClick" prefHeight="26.0" prefWidth="122.0" styleClass="button-neu" text="Neuer Datensatz" textFill="#077c57" AnchorPane.rightAnchor="12.0" />
 										<Button fx:id="btnLitLoeschen" disable="true" layoutX="866.0" layoutY="308.0" mnemonicParsing="false" onAction="#btnLitLoeschen_OnClick" prefHeight="26.0" prefWidth="122.0" styleClass="button-loeschen" text="Löschen" textFill="#d01717" AnchorPane.rightAnchor="12.0" />
 										<TextField fx:id="txtLitEditTitelgrafikpfad" alignment="CENTER_RIGHT" disable="true" editable="false" focusTraversable="false" layoutX="867.0" layoutY="187.0" prefHeight="26.0" prefWidth="121.0" style="-fx-background-color: #BFBFBF;" AnchorPane.rightAnchor="12.0" />
-										<Label alignment="CENTER_RIGHT" layoutX="576.0" layoutY="275.0" prefHeight="15.0" prefWidth="63.0" text="Tonart" AnchorPane.bottomAnchor="149.0" AnchorPane.rightAnchor="596.0">
+										<Label alignment="CENTER_RIGHT" layoutX="561.0" layoutY="273.0" prefHeight="15.0" prefWidth="63.0" text="Tonart" AnchorPane.bottomAnchor="151.0" AnchorPane.rightAnchor="596.0">
 
 										</Label>
 										<Label alignment="CENTER_RIGHT" layoutX="3.0" layoutY="337.0" prefHeight="15.0" prefWidth="75.0" text="Komp." AnchorPane.bottomAnchor="87.0" AnchorPane.leftAnchor="3.0">

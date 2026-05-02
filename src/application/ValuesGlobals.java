@@ -8,7 +8,7 @@ public class ValuesGlobals
 	// ###### ALLG. EINSTELLUNG #########
 	public static int progAdmin = 1; // 0 oder 1
 	public static String progTitel = "jPCND ";
-	public static String progVersion = "Version 1.25.04301";//"Version 1.26.01251" letzte Ziffer für Tagesversion
+	public static String progVersion = "Version 1.26.05022";//"Version 1.26.01251" letzte Ziffer für Tagesversion
 	public static String dbVersion ="";
 	//public static StrinMg dbStructureVersion ="";
 	public static String Versionsinfo = "JRT: " + System.getProperty("java.runtime.version") + " // JFX: " + System.getProperty("javafx.version");

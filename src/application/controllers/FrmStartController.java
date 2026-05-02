@@ -121,7 +121,7 @@ public class FrmStartController implements Initializable
 	@FXML
 	private MenuItem men01Einstellungen, men01Beenden, men01Importieren;
 	@FXML
-	private MenuItem men03Programminfo, men03WebAllgemein, men03UpdatesPruefen, men03HilfeVersion, men03Lizenz;
+	private MenuItem men03Programminfo, men03WebAllgemein, men03UpdatesPruefen, men03HilfeVersion, men03Lizenz, men03WebOnlinehilfe;
 	@FXML
 	private MenuItem men40, men40Programm, men40Datenbank;
 
@@ -462,7 +462,7 @@ public class FrmStartController implements Initializable
 					if (!ValuesGlobals.updateprogramm.isEmpty())
 					{ // kein Programmupdate
 						men40Programm.setVisible(true);
-						
+
 					}
 					if (!ValuesGlobals.updatedatenbank.isEmpty())
 					{
@@ -849,7 +849,7 @@ public class FrmStartController implements Initializable
 				tblvwLiteratur.setItems(oblist_lit);
 				tblvwLiteratur.getSortOrder().add(tblvwColTitel);
 				lblFilterFortschrittsinfo.setText("" + oblist_lit.size() + " Einträge gefunden");// (maximal " + ValuesGlobals.filtermax + ")");
-				
+
 				Platform.runLater(new Runnable()
 				{
 					@Override
@@ -907,7 +907,7 @@ public class FrmStartController implements Initializable
 						filterstckgesbuch);
 				listadb.forEach((item) -> oblist_st.add(item));
 				tblvwStuecke.setItems(oblist_st);
-				lblFilterFortschrittsinfo.setText("" + oblist_st.size() +  " Einträge gefunden");
+				lblFilterFortschrittsinfo.setText("" + oblist_st.size() + " Einträge gefunden");
 				tblvwStuecke.getSortOrder().add(tblvwColStckTitel);// sortieren nach erster Spalte
 				if (suppressAutoSelection == false)
 				{
@@ -965,7 +965,7 @@ public class FrmStartController implements Initializable
 				List<EditionenlisteModel> listedit = dbStart().getEditionenListeFilter(filternaeditlang, filternaverlag, filterlitnoma);
 				listedit.forEach((item) -> oblist_edit.add(item));
 				tblvwEditionen.setItems(oblist_edit);
-				lblFilterFortschrittsinfo.setText("" + oblist_edit.size()  + " Einträge gefunden");
+				lblFilterFortschrittsinfo.setText("" + oblist_edit.size() + " Einträge gefunden");
 				System.out.println(tblvwEditionen.getSortOrder());
 				tblvwEditionen.getSortOrder().add(tblvwColEditLt);// sortieren nach erster Spalte
 				Platform.runLater(new Runnable()
@@ -1168,7 +1168,7 @@ public class FrmStartController implements Initializable
 
 	@FXML
 	private void btnAktivitaeten_OnClick(ActionEvent event) throws Exception
-	{ 
+	{
 
 		saveFilterToState(); // ALLE Filter speichern
 		// btnUpdaten.setVisible(false);
@@ -2718,9 +2718,7 @@ public class FrmStartController implements Initializable
 			// oblist_lit.clear();
 			filterGesetzt = fctFilterzustand(0);
 			lblHaupttitel.setText("Literatur - Gesamtliste");
-			lblFilterFortschrittsinfo.setText(oblist_lit.size() + " Einträge gefunden");//+ " Literatureinträge angezeigt (maximal " + ValuesGlobals.filtermax + ")");
-
-
+			lblFilterFortschrittsinfo.setText(oblist_lit.size() + " Einträge gefunden");// + " Literatureinträge angezeigt (maximal " + ValuesGlobals.filtermax + ")");
 
 			// Textfelder
 			txtFilterTitel.setDisable(false);
@@ -2737,7 +2735,7 @@ public class FrmStartController implements Initializable
 			cbxFilterBibel.setDisable(true);
 			cbxFilterGesangbuch.setDisable(true);
 			btnNotenmappen.setDisable(false);
-			
+
 			// Fokus setzen
 			Platform.runLater(() -> txtFilterTitel.requestFocus());
 
@@ -2747,9 +2745,8 @@ public class FrmStartController implements Initializable
 			filterGesetzt = fctFilterzustand(1);
 			// oblist_edit.clear();
 			lblHaupttitel.setText("Notenausgaben");
-			lblFilterFortschrittsinfo.setText(oblist_edit.size() +  " Einträge gefunden");// " Editionen (Notenausgaben) gefiltert (maximal " + ValuesGlobals.filtermax + ")");
-
-
+			lblFilterFortschrittsinfo.setText(oblist_edit.size() + " Einträge gefunden");// " Editionen (Notenausgaben) gefiltert (maximal " + ValuesGlobals.filtermax +
+																							// ")");
 
 			txtFilterTitel.setDisable(true);
 			txtFilterKomp.setDisable(true);
@@ -2772,9 +2769,7 @@ public class FrmStartController implements Initializable
 			filterGesetzt = fctFilterzustand(2);
 			// oblist_st.clear();
 			lblHaupttitel.setText("Stücke/Lieder");
-			lblFilterFortschrittsinfo.setText(oblist_st.size()  + " Einträge gefunden");//+ " Stücke und Lieder gefiltert (maximal " + ValuesGlobals.filtermax + ")");
-
-
+			lblFilterFortschrittsinfo.setText(oblist_st.size() + " Einträge gefunden");// + " Stücke und Lieder gefiltert (maximal " + ValuesGlobals.filtermax + ")");
 
 			txtFilterTitel.setDisable(false);
 			txtFilterKomp.setDisable(true);
@@ -3146,7 +3141,7 @@ public class FrmStartController implements Initializable
 
 		String text = "Lizenz: " + lic.getLicenseKey() + "\n" +
 				"E-Mail: " + lic.getEmail() + "\n" +
-				//"Gültig bis: " + lic.getValidUntil() + "\n" +
+				// "Gültig bis: " + lic.getValidUntil() + "\n" +
 				"Letzter Online-Check: " + lic.getLastOnlineCheck() + "\n" +
 				"Status: " + lm.getLicenseStatusText();
 
@@ -3180,19 +3175,59 @@ public class FrmStartController implements Initializable
 	}
 
 	@FXML
+	public void men03WebOnlinehilfe_OnClick()
+	{
+		String url = "https://www.pcnd.eu/jpcnd/"; // Hilfeseite Notenarchiv
+		if (tabregLiteratur.isSelected())
+		{
+			url = "https://www.pcnd.eu/jpcnd/index.php?aw=31-01-notenarchiv.php";
+		}
+		else if (tabregNotenausgaben.isSelected())
+		{
+			url = "https://www.pcnd.eu/jpcnd/index.php?aw=31-01-editionen.php";
+		}
+		else if (tabregStck.isSelected()) {
+			url = "https://www.pcnd.eu/jpcnd/index.php?aw=31-01-liederstuecke.php";
+		}
+
+		try
+		{
+			if (Desktop.isDesktopSupported())
+			{
+				Desktop.getDesktop().browse(new URI(url));
+
+			}
+			else
+			{
+				System.out.println("Desktop wird nicht unterstützt");
+			}
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+		}
+	}
+
+	@FXML
 	public void men40Programm_OnClick()
 	{
-		String url="https://www.pcnd.eu/jpcnd/index.php?aw=20-01-prg.php"; //Update Programm
-        try {
-            if (Desktop.isDesktopSupported()) {
-                Desktop.getDesktop().browse(new URI(url));
-            } else {
-                System.out.println("Desktop wird nicht unterstützt");
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-		//men03WebAllgemein_OnClick();
+		String url = "https://www.pcnd.eu/jpcnd/index.php?aw=20-01-prg.php"; // Update Programm
+		try
+		{
+			if (Desktop.isDesktopSupported())
+			{
+				Desktop.getDesktop().browse(new URI(url));
+			}
+			else
+			{
+				System.out.println("Desktop wird nicht unterstützt");
+			}
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		// men03WebAllgemein_OnClick();
 	}
 
 	@FXML
@@ -3666,8 +3701,6 @@ public class FrmStartController implements Initializable
 //  Allgemeine Methoden 
 //===============================================================================	
 
-	
-	
 	public void titelgrafikAnzeigen()
 	{
 		// System.out.println("titelgarfikAnzeigen()" + ValuesGlobals.progPfadGrafik);
