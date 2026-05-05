@@ -8,7 +8,7 @@ public class ValuesGlobals
 	// ###### ALLG. EINSTELLUNG #########
 	public static int progAdmin = 1; // 0 oder 1
 	public static String progTitel = "jPCND ";
-	public static String progVersion = "Version 1.26.05022";//"Version 1.26.01251" letzte Ziffer für Tagesversion
+	public static String progVersion = "Version 1.26.05052";//"Version 1.26.01251" letzte Ziffer für Tagesversion
 	public static String dbVersion ="";
 	//public static StrinMg dbStructureVersion ="";
 	public static String Versionsinfo = "JRT: " + System.getProperty("java.runtime.version") + " // JFX: " + System.getProperty("javafx.version");
@@ -52,8 +52,8 @@ public class ValuesGlobals
 	// URLs für Online-Lizenz-Erstellung u. Update / Lizenz checken
 	public static final String CREATE_LICENSE_URL = "https://www.pcnd.eu/jpcnd/license-api/create_license.php";
 	public static final String LICENSE_SERVER_URL = "https://www.pcnd.eu/jpcnd/license-api/check_license.php"; // ysdlgfkjsdfgölkjs
-	//Lokale Lizenzdatei
-	public static final String LICENSE_FILENAME = System.getProperty("user.home") + "/.jpcnd/lizenz.txt"; //c:\USERS\xxxx\.jpcnd
+	//Lokale Lizenzdatei !!ALT!!
+	//public static final String LICENSE_FILENAME = System.getProperty("user.home") + "/.jpcnd/lizenz.txt"; //c:\USERS\xxxx\.jpcnd
 	// AES-Schlüssel (16 Bytes = 128 Bit)
 	public static final String SECRET_KEY = "1234567890abcdef";
 	//Lizenzzeiten

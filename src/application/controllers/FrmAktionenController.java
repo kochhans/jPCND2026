@@ -83,7 +83,6 @@ import application.models.AktionenListePositionenModel;
 import application.models.CvwPersonenComboChorModel;
 import application.models.CvwPersonenComboGruppeModel;
 import application.models.CvwPersonenModel;
-import application.models.ProgrammversionenModel;
 import application.uicomponents.Msgbox;
 import application.utils.TableData;
 import application.utils.TableUtils;

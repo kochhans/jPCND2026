@@ -44,30 +44,45 @@ public class OnlineLicenseService {
     private static String post(String urlStr, String postData) throws Exception {
         URI uri = URI.create(urlStr);
         HttpURLConnection con = (HttpURLConnection) uri.toURL().openConnection();
-        con.setRequestMethod("POST");
-        con.setDoOutput(true);
-        con.setConnectTimeout(5000);
-        con.setReadTimeout(5000);
-        con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
 
-        try (OutputStream os = con.getOutputStream()) {
-            os.write(postData.getBytes(StandardCharsets.UTF_8));
+        try {
+            con.setRequestMethod("POST");
+            con.setDoOutput(true);
+            con.setConnectTimeout(5000);
+            con.setReadTimeout(15000); // 🔥 erhöht
+
+            con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+
+            try (OutputStream os = con.getOutputStream()) {
+                os.write(postData.getBytes(StandardCharsets.UTF_8));
+            }
+
+            int code = con.getResponseCode();
+
+            InputStreamReader isr;
+            if (code >= 200 && code < 300) {
+                isr = new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8);
+            } else {
+                if (con.getErrorStream() != null) {
+                    isr = new InputStreamReader(con.getErrorStream(), StandardCharsets.UTF_8);
+                } else {
+                    throw new RuntimeException("HTTP Fehler: " + code);
+                }
+            }
+
+            BufferedReader br = new BufferedReader(isr);
+            StringBuilder sb = new StringBuilder();
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+
+            return sb.toString();
+
+        } finally {
+            con.disconnect(); // 🔥 wichtig
         }
-
-        int code = con.getResponseCode();
-        BufferedReader br = new BufferedReader(
-                new InputStreamReader(
-                        code >= 200 && code < 300 ? con.getInputStream() : con.getErrorStream(),
-                        StandardCharsets.UTF_8
-                )
-        );
-
-        StringBuilder sb = new StringBuilder();
-        String line;
-        while ((line = br.readLine()) != null) {
-            sb.append(line);
-        }
-        return sb.toString();
     }
 
     // =================== JSON → OnlineLicenseResult ==========

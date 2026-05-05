@@ -4,26 +4,20 @@ package application.controllers;
 import java.io.File;
 import java.io.IOException;
 
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
-import java.util.Objects;
-
-import application.AppInitializer;
 import application.ConfigManager;
 import application.StartSettingsResult;
-import application.StartupManager;
+
 import application.ValuesGlobals;
 import application.uicomponents.Msgbox;
 import application.utils.DownloadAndUnzipTask;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+
 import javafx.stage.DirectoryChooser;
 
 import javafx.stage.Stage;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -48,9 +42,9 @@ public class FrmStartEinstellungenController
 	@FXML
 	private ProgressBar progressBar;
 
-	private String selectedPath;
+	//private String selectedPath;
 
-	private boolean startupMode = false;
+	private boolean startupMode = false;	
 	private StartSettingsResult result;
 
 	// #####################################################################################################################

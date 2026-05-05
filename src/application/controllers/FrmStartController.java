@@ -610,9 +610,15 @@ public class FrmStartController implements Initializable
 		cbxFilterBibel.getEditor().setText(f.bibel);
 		cbxFilterGesangbuch.getEditor().setText(f.gesangbuch);
 		// ----------------------------------
-
-		lblFilterFortschrittsinfo.setText("Bitte Filterkriterien eingeben ...");
-		filtern(0);
+		boolean filterGesetzt = fctFilterzustand(0);
+		if(filterGesetzt==false) {
+			oblist_lit.clear();
+		}
+		else {
+			filtern(0);
+		}
+		//lblFilterFortschrittsinfo.setText("Bitte Filterkriterien eingeben ...");
+		
 
 	}
 
@@ -2715,8 +2721,10 @@ public class FrmStartController implements Initializable
 		switch (selectedTabindex)
 		{
 		case 0: // Literatur
-			// oblist_lit.clear();
 			filterGesetzt = fctFilterzustand(0);
+			if(filterGesetzt==false) {
+				oblist_lit.clear();
+			}
 			lblHaupttitel.setText("Literatur - Gesamtliste");
 			lblFilterFortschrittsinfo.setText(oblist_lit.size() + " Einträge gefunden");// + " Literatureinträge angezeigt (maximal " + ValuesGlobals.filtermax + ")");
 

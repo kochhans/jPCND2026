@@ -2,10 +2,9 @@ package application.dbupdate;
 
 import java.util.logging.Logger;
 import java.util.logging.FileHandler;
-import java.util.logging.Level;
+
 import java.util.logging.SimpleFormatter;
-import java.util.logging.Formatter;
-import java.util.logging.LogRecord;
+
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
@@ -31,8 +30,7 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.logging.FileHandler;
-import java.util.logging.SimpleFormatter;
+
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 

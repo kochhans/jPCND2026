@@ -404,7 +404,7 @@ public class LicenseManager
 
 //public class LicenseManager
 //{
-//	
+//	ALTE PFADE!!!!
 
 //
 //	private static LicenseManager instance;
